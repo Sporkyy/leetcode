@@ -1,3 +1,4 @@
+// 977. Squares of a Sorted Array
 // https://leetcode.com/problems/squares-of-a-sorted-array/
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -6,7 +7,7 @@
  * @param {number[]} A
  * @return {number[]}
  */
-const sortedSquares = A => A.map(n => n * n).sort((a, b) => (b < a ? 1 : a < b ? -1 : 0));
+const sortedSquares = A => A.map(n => Math.pow(n, 2)).sort((a, b) => (b < a ? 1 : a < b ? -1 : 0));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -50,7 +51,7 @@ const tests = [
 ];
 
 const compare = (a, b) =>
-  a.length === b.length && a.map((n, i) => n === b[i]).reduce((a, c) => a && c, true);
+  a && b && a.length === b.length && a.map((n, i) => n === b[i]).reduce((a, c) => a && c, true);
 
 tests.forEach(({ name, input, expected }) => {
   const result = sortedSquares(input);
