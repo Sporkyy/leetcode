@@ -83,6 +83,35 @@ const judgeCircle = moves => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+/**
+ * @param {string} moves
+ * @return {boolean}
+ */
+const judgeCircle = moves => {
+  let n = 0;
+  for (let i = moves.length; 0 < i; i--) {
+    switch (moves[i - 1]) {
+      case 'U':
+        n++;
+        n++;
+        break;
+      case 'D':
+        n--;
+        n--;
+        break;
+      case 'R':
+        n++;
+        break;
+      case 'L':
+        n--;
+        break;
+    }
+  }
+  return 0 === n;
+};
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 const tests = [
   { name: 'Example 1', input: 'UD', expected: true },
   { name: 'Example 2', input: 'LL', expected: false },
