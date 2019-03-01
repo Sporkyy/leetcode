@@ -64,22 +64,22 @@
  * @param {string} moves
  * @return {boolean}
  */
-const judgeCircle = moves => {
-  let n = 0;
-  for (let i = moves.length; 0 < i; i--) {
-    n +=
-      'U' === moves[i - 1]
-        ? 1
-        : 'D' === moves[i - 1]
-        ? -1
-        : 'L' === moves[i - 1]
-        ? 2
-        : 'R' === moves[i - 1]
-        ? -2
-        : 0;
-  }
-  return 0 === n;
-};
+// const judgeCircle = moves => {
+//   let n = 0;
+//   for (let i = moves.length; 0 < i; i--) {
+//     n +=
+//       'U' === moves[i - 1]
+//         ? 1
+//         : 'D' === moves[i - 1]
+//         ? -1
+//         : 'L' === moves[i - 1]
+//         ? 2
+//         : 'R' === moves[i - 1]
+//         ? -2
+//         : 0;
+//   }
+//   return 0 === n;
+// };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
