@@ -41,7 +41,7 @@ const tests = [
   { name: 'Example 1', input: ['cba', 'daf', 'ghi'], expected: 1 },
   { name: 'Example 2', input: ['a', 'b'], expected: 0 },
   { name: 'Example 3', input: ['zyx', 'wvu', 'tsr'], expected: 3 },
-  { name: 'Rectangular', input: ['abcdef', 'abcdef', 'abcdef'], expected: 6 },
+  { name: 'Rectangular', input: ['abcdef', 'abcdef', 'abcdef'], expected: 0 },
   { name: 'Wrong Answer', input: ['rrjk', 'furt', 'guzm'], expected: 2 }
 ];
 
