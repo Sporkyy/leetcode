@@ -35,17 +35,19 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const isSelfDividing = i => new String(i)
+const isSelfDividing = i => String(i)
   .split('')
   .map(s => parseInt(s, 10))
   .reduce((answer, digit) => (answer && 0 !== digit && 0 === i % digit), true);
+
+const arraryRange = (start, end) => Array.from(Array(end - start + 1), (x, i) => start + i);
 
 /**
  * @param {number} left
  * @param {number} right
  * @return {number[]}
  */
-const selfDividingNumbers = (left, right) => Array.from(Array(right - left + 1), (x, i) => left + i).filter(n => isSelfDividing(n));
+const selfDividingNumbers = (left, right) => arraryRange(left, right).filter(n => isSelfDividing(n));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
