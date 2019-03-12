@@ -8,30 +8,44 @@
  * @param {number} right
  * @return {number[]}
  */
-const selfDividingNumbers = (left, right) => {
-  const a = [];
-  for (let i = left, x = 0; i <= right; i++) {
-    if (i <= 9) {
-      a[x++] = i;
-      continue;
-    }
-    // console.log(i);
-    const digits = `${i}`.split('').map(s => parseInt(s, 10));
-    // console.log(digits);
-    if (-1 !== digits.indexOf(0)) continue;
-    let isSelfDividing = true
-    for (let j = digits.length - 1; 0 <= j; --j) {
-      // console.log(digits[j]);
-      isSelfDividing = isSelfDividing && 0 === i % digits[j];
-    }
-    if (isSelfDividing) {
-      a[x++] = i;
-      continue;
-    }
-  }
-  // console.log(a);
-  return a;
-};
+// const selfDividingNumbers = (left, right) => {
+//   const a = [];
+//   for (let i = left, x = 0; i <= right; i++) {
+//     if (i <= 9) {
+//       a[x++] = i;
+//       continue;
+//     }
+//     // console.log(i);
+//     const digits = `${i}`.split('').map(s => parseInt(s, 10));
+//     // console.log(digits);
+//     if (-1 !== digits.indexOf(0)) continue;
+//     let isSelfDividing = true
+//     for (let j = digits.length - 1; 0 <= j; --j) {
+//       // console.log(digits[j]);
+//       isSelfDividing = isSelfDividing && 0 === i % digits[j];
+//     }
+//     if (isSelfDividing) {
+//       a[x++] = i;
+//       continue;
+//     }
+//   }
+//   // console.log(a);
+//   return a;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+const isSelfDividing = i => new String(i)
+  .split('')
+  .map(s => parseInt(s, 10))
+  .reduce((answer, digit) => (answer && 0 !== digit && 0 === i % digit), true);
+
+/**
+ * @param {number} left
+ * @param {number} right
+ * @return {number[]}
+ */
+const selfDividingNumbers = (left, right) => Array.from(Array(right - left + 1), (x, i) => left + i).filter(n => isSelfDividing(n));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
