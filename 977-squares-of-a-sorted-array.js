@@ -11,8 +11,7 @@ const sortedSquares = A => A.map(n => Math.pow(n, 2)).sort((a, b) => (b < a ? 1 
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
+const tests = [{
     name: 'Example 1',
     input: [-4, -1, 0, 3, 10],
     expected: [0, 1, 9, 16, 100]
@@ -50,12 +49,16 @@ const tests = [
   }
 ];
 
-const compare = (a, b) =>
+const check = (a, b) =>
   a && b && a.length === b.length && a.map((n, i) => n === b[i]).reduce((a, c) => a && c, true);
 
-tests.forEach(({ name, input, expected }) => {
+tests.forEach(({
+  name,
+  input,
+  expected
+}) => {
   const result = sortedSquares(input);
-  if (compare(expected, result)) {
+  if (check(expected, result)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);

@@ -30,19 +30,18 @@
  */
 const twoSum = (nums, target) =>
   nums
-    .map((n1, i1) =>
-      nums.reduce((answer, n2, i2) => (i1 !== i2 && target === n1 + n2 ? i2 : answer), undefined)
-    )
-    .reduce(
-      (answer, i2, i1) =>
-        'undefined' === typeof answer && 'undefined' !== typeof i2 ? [i1, i2] : answer,
-      undefined
-    );
+  .map((n1, i1) =>
+    nums.reduce((answer, n2, i2) => (i1 !== i2 && target === n1 + n2 ? i2 : answer), undefined)
+  )
+  .reduce(
+    (answer, i2, i1) =>
+    'undefined' === typeof answer && 'undefined' !== typeof i2 ? [i1, i2] : answer,
+    undefined
+  );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
+const tests = [{
     name: 'Given example',
     input: {
       nums: [2, 7, 11, 15],
@@ -84,12 +83,19 @@ const tests = [
   }
 ];
 
-const compare = (a, b) =>
+const check = (a, b) =>
   a && b && a.length === b.length && a.map((n, i) => n === b[i]).reduce((a, c) => a && c, true);
 
-tests.forEach(({ name, input: { nums, target }, expected }) => {
+tests.forEach(({
+  name,
+  input: {
+    nums,
+    target
+  },
+  expected
+}) => {
   const result = twoSum(nums, target);
-  if (compare(expected, result)) {
+  if (check(expected, result)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
