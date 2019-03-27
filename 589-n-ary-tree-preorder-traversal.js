@@ -4,14 +4,14 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const preorderNested = root =>
-  !root
-    ? []
-    : 0 === root.children.length
-    ? [root.val]
-    : [root.val, ...root.children.map(c => preorderNested(c))];
+  !root ?
+  [] :
+  0 === root.children.length ?
+  [root.val] :
+  [root.val, ...root.children.map(c => preorderNested(c))];
 
-const flatten = a =>
-  a.reduce((acc, curr) => (Array.isArray(curr) ? [...acc, ...flatten(curr)] : [...acc, curr]), []);
+const flattened = a =>
+  a.reduce((acc, curr) => (Array.isArray(curr) ? [...acc, ...flattened(curr)] : [...acc, curr]), []);
 
 /**
  * // Definition for a Node.
@@ -24,20 +24,17 @@ const flatten = a =>
  * @param {Node} root
  * @return {number[]}
  */
-const preorder = root => flatten(preorderNested(root));
+const preorder = root => flattened(preorderNested(root));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
+const tests = [{
     name: 'Example 1',
     input: {
       $id: '1',
-      children: [
-        {
+      children: [{
           $id: '2',
-          children: [
-            {
+          children: [{
               $id: '5',
               children: [],
               val: 5
@@ -83,7 +80,11 @@ const tests = [
 
 const check = (a1, a2) => a1.reduce((acc, curr, i) => acc && curr === a2[i], true);
 
-tests.forEach(({ name, input, expected }) => {
+tests.forEach(({
+  name,
+  input,
+  expected
+}) => {
   const result = preorder(input);
   if (check(result, expected)) {
     console.log(`✅ ${name}`);
