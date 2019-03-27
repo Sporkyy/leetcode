@@ -7,13 +7,13 @@ const flattened = a =>
   a.reduce((acc, curr) => (Array.isArray(curr) ? [...acc, ...flattened(curr)] : [...acc, curr]), []);
 
 const rotated = a => {
-  const rotated = [...a.map(a2 => [...a2])];
+  const aRotated = [...a.map(a2 => [...a2])];
   for (let i = 0; i < a.length; i++) {
     for (let j = 0, r = a.length - 1; j < a[i].length; j++, r--) {
-      rotated[i][j] = a[r][i];
+      aRotated[i][j] = a[r][i];
     }
   }
-  return rotated;
+  return aRotated;
 };
 
 const max = a => a.reduce((acc, curr) => acc < curr ? curr : acc);
