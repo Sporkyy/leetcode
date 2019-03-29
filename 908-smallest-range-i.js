@@ -9,7 +9,7 @@
  * @return {number}
  */
 const smallestRangeI = (A, K) => {
-  return Math.max((Math.max(...A) + -Math.abs(K)) - (Math.min(...A) + Math.abs(K)), 0);
+  return Math.max((Math.max(...A) - K) - (Math.min(...A) + K), 0);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
