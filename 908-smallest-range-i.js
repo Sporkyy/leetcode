@@ -8,7 +8,9 @@
  * @param {number} K
  * @return {number}
  */
-const smallestRangeI = (A, K) => Math.max(0, Math.max(...A) - Math.min(...A) - K * 2);
+const smallestRangeI = (A, K) => {
+  return Math.max((Math.max(...A) + -Math.abs(K)) - (Math.min(...A) + Math.abs(K)), 0);
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
