@@ -20,9 +20,11 @@ const allDomains = domains => {
   return Array.from(new Set(a));
 };
 
-cpdomainVisits = s => parseInt(s.split(' ')[0], 10);
-cpdomainDomain = s => s.split(' ')[1];
-domainMatch = (sub, domain) => RegExp(`${sub}$`).test(domain);
+const cpdomainVisits = s => parseInt(s.split(' ')[0], 10);
+
+const cpdomainDomain = s => s.split(' ')[1];
+
+const domainMatch = (sub, domain) => RegExp(`${sub}$`).test(domain);
 
 /**
  * @param {string[]} cpdomains
