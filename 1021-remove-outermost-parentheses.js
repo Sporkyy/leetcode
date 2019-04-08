@@ -9,11 +9,11 @@
  */
 const removeOuterParentheses = S => {
   let answer = '';
-  for (let l = i = 0; i < S.length; i++) {
-    const c = S[i];
-    if ('(' === c) l++;
-    if (1 < l) answer += c;
-    if (')' === c) l--;
+  for (let level = i = 0; i < S.length; i++) {
+    const char = S[i];
+    if ('(' === char) level++;
+    if (1 < level) answer += char;
+    if (')' === char) level--;
   }
   return answer;
 };
