@@ -4,14 +4,17 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const preorderNested = root =>
-  !root ?
-  [] :
-  0 === root.children.length ?
-  [root.val] :
-  [root.val, ...root.children.map(c => preorderNested(c))];
+  !root
+    ? []
+    : root.children.length === 0
+    ? [root.val]
+    : [root.val, ...root.children.map(c => preorderNested(c))];
 
 const flattened = a =>
-  a.reduce((acc, curr) => (Array.isArray(curr) ? [...acc, ...flattened(curr)] : [...acc, curr]), []);
+  a.reduce(
+    (acc, curr) => (Array.isArray(curr) ? [...acc, ...flattened(curr)] : [...acc, curr]),
+    [],
+  );
 
 /**
  * // Definition for a Node.
@@ -28,63 +31,62 @@ const preorder = root => flattened(preorderNested(root));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [{
+const tests = [
+  {
     name: 'Example 1',
     input: {
       $id: '1',
-      children: [{
+      children: [
+        {
           $id: '2',
-          children: [{
+          children: [
+            {
               $id: '5',
               children: [],
-              val: 5
+              val: 5,
             },
             {
               $id: '6',
               children: [],
-              val: 6
-            }
+              val: 6,
+            },
           ],
-          val: 3
+          val: 3,
         },
         {
           $id: '3',
           children: [],
-          val: 2
+          val: 2,
         },
         {
           $id: '4',
           children: [],
-          val: 4
-        }
+          val: 4,
+        },
       ],
-      val: 1
+      val: 1,
     },
-    expected: [1, 3, 5, 6, 2, 4]
+    expected: [1, 3, 5, 6, 2, 4],
   },
   {
     name: 'No children',
     input: {
       $id: '1',
       children: [],
-      val: 44
+      val: 44,
     },
-    expected: [44]
+    expected: [44],
   },
   {
     name: 'Null',
     input: null,
-    expected: []
-  }
+    expected: [],
+  },
 ];
 
 const check = (a1, a2) => a1.reduce((acc, curr, i) => acc && curr === a2[i], true);
 
-tests.forEach(({
-  name,
-  input,
-  expected
-}) => {
+tests.forEach(({ name, input, expected }) => {
   const result = preorder(input);
   if (check(result, expected)) {
     console.log(`✅ ${name}`);
