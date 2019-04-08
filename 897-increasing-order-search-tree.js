@@ -10,7 +10,7 @@ const serializeBinaryTreeAsInorderArray = root => {
     fillInorder(root.left);
     a.push(root.val);
     fillInorder(root.right);
-  }
+  };
   fillInorder(root);
   return a;
 };
@@ -22,7 +22,7 @@ const deserializeArrayAsRightOnlyTree = queue => {
     current = current.right = new TreeNode(queue[i]);
   }
   return root.right;
-}
+};
 
 /**
  * Definition for a binary tree node.
@@ -88,7 +88,7 @@ const serializeBinaryTreeAsLevelOrderArray = root => {
   const q = [root];
   const a = [];
 
-  while (0 < q.length) {
+  while (q.length > 0) {
     const curr = q.shift();
     a.push(curr.val);
     if (curr.left) q.push(curr.left);
@@ -128,24 +128,23 @@ const deserializeLevelOrderArrayAsBinaryTree = a => {
   return na[0];
 };
 
-const tests = [{
-  name: 'Example 1',
-  //       5
-  //      / \
-  //     3    6
-  //    / \    \
-  //   2   4    8
-  //  /        / \
-  // 1        7   9
-  input: [5, 3, 6, 2, 4, null, 8, 1, null, null, null, 7, 9]
-}];
+const tests = [
+  {
+    name: 'Example 1',
+    //       5
+    //      / \
+    //     3    6
+    //    / \    \
+    //   2   4    8
+    //  /        / \
+    // 1        7   9
+    input: [5, 3, 6, 2, 4, null, 8, 1, null, null, null, 7, 9],
+  },
+];
 
 const areArraysEqual = (a1, a2) => a1.reduce((acc, curr, i) => acc && curr === a2[i], true);
 
-tests.forEach(({
-  name,
-  input
-}) => {
+tests.forEach(({ name, input }) => {
   const root = deserializeLevelOrderArrayAsBinaryTree(input);
   const expected = serializeBinaryTreeAsLevelOrderArray(referenceSolution(root));
   const result = serializeBinaryTreeAsLevelOrderArray(increasingBST(root));
