@@ -13,7 +13,7 @@ const shortestToChar = (S, C) => {
 
   for (let i = 0; i < answer.length; i++) {
     if (S[i] === C) {
-      // Fill ccurrent
+      // Fill current
       answer[i] = 0;
       // Fill backwards
       for (let j = 1; j <= i; j++) {
