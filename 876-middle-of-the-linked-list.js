@@ -11,7 +11,7 @@ const listLength = head => {
     tmp = tmp.next;
   }
   return length;
-}
+};
 
 const listMiddle = length => Math.floor(length / 2);
 
@@ -25,7 +25,7 @@ const listFfwd = (head, begin) => {
     pos++;
     tmp = tmp.next;
   }
-}
+};
 
 /**
  * Definition for singly-linked list.
@@ -66,7 +66,7 @@ const toListNode = a => {
     }
   }
   return tmp[0];
-}
+};
 
 const serializeList = head => {
   const a = [];
@@ -76,25 +76,25 @@ const serializeList = head => {
     tmp = tmp.next;
   }
   return a;
-}
+};
 
-const areArraysEqual = (a1, a2) => a1.reduce((acc, curr, i) => acc && curr === a2[i], true);
+const areArraysEqual = (a1, a2) =>
+  a1.length === a2.length && a1.reduce((acc, curr, i) => acc && curr === a2[i], true);
 
-const tests = [{
-  name: 'Example 1',
-  input: [1, 2, 3, 4, 5],
-  expected: [3, 4, 5]
-}, {
-  name: 'Example 2',
-  input: [1, 2, 3, 4, 5, 6],
-  expected: [4, 5, 6]
-}];
+const tests = [
+  {
+    name: 'Example 1',
+    input: [1, 2, 3, 4, 5],
+    expected: [3, 4, 5],
+  },
+  {
+    name: 'Example 2',
+    input: [1, 2, 3, 4, 5, 6],
+    expected: [4, 5, 6],
+  },
+];
 
-tests.forEach(({
-  name,
-  input,
-  expected
-}) => {
+tests.forEach(({ name, input, expected }) => {
   // console.log(input);
   const result = middleNode(toListNode(input));
   // console.log(result);

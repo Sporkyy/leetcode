@@ -142,7 +142,8 @@ const tests = [
   },
 ];
 
-const areArraysEqual = (a1, a2) => a1.reduce((acc, curr, i) => acc && curr === a2[i], true);
+const areArraysEqual = (a1, a2) =>
+  a1.length === a2.length && a1.reduce((acc, curr, i) => acc && curr === a2[i], true);
 
 tests.forEach(({ name, input }) => {
   const root = deserializeLevelOrderArrayAsBinaryTree(input);
