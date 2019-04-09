@@ -23,6 +23,8 @@ const shortestToChar = (S, C) => {
       }
       // Fill forwards
       for (let j = 1; j < answer.length - i; j++) {
+        // Stop if the "C" char is found
+        if (C === S[i + j]) break;
         answer[i + j] = j;
       }
     }
