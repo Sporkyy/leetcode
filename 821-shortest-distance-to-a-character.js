@@ -9,7 +9,7 @@
  * @return {number[]}
  */
 const shortestToChar = (S, C) => {
-  const answer = new Array(S.length).fill(S.length);
+  const answer = new Array(S.length);
 
   for (let i = 0; i < answer.length; i++) {
     if (S[i] === C) {
