@@ -16,7 +16,7 @@ const sortArrayByParityII = A => {
   const odds = A.filter(n => isOdd(n));
   // console.log(odds);
   const answer = [];
-  for (let i = e = o = 0; i < A.length; i++) {
+  for (let i = (e = o = 0); i < A.length; i++) {
     if (isEven(i)) {
       answer.push(evens[e++]);
     } else {
@@ -28,20 +28,20 @@ const sortArrayByParityII = A => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [{
-  name: 'Example 1',
-  input: [4, 2, 5, 7]
-}];
+const tests = [
+  {
+    name: 'Example 1',
+    input: [4, 2, 5, 7],
+  },
+];
 
-const check = a => a.every((n, i) => (isEven(n) && isEven(i)) || (isOdd(n) && isOdd(i)));
+const sortArrayByParityIICheck = a =>
+  a.every((n, i) => (isEven(n) && isEven(i)) || (isOdd(n) && isOdd(i)));
 
-tests.forEach(({
-  name,
-  input
-}) => {
+tests.forEach(({ name, input }) => {
   const result = sortArrayByParityII(input);
   console.log(result);
-  if (check(result)) {
+  if (sortArrayByParityIICheck(result)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);

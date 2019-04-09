@@ -79,7 +79,11 @@ const serializeList = head => {
 };
 
 const areArraysEqual = (a1, a2) =>
-  a1.length === a2.length && a1.reduce((acc, curr, i) => acc && curr === a2[i], true);
+  a1.length === a2.length &&
+  a1.reduce(
+    (acc, curr, i) => ('undefined' === typeof acc ? curr === a2[i] : acc && curr === a2[i]),
+    undefined,
+  );
 
 const tests = [
   {

@@ -15,10 +15,7 @@
  * @param {TreeNode} t2
  * @return {TreeNode}
  */
-const mergeTrees = (
-  t1,
-  t2
-) => {
+const mergeTrees = (t1, t2) => {
   // console.log(t1);
   // console.log(t2);
 
@@ -52,13 +49,11 @@ const mergeTrees = (
   //   r2
   // });
 
-  return ({
-    val: (null !== v1 && null === v2) ?
-      v1 : (null === v1 && null !== v2) ?
-      v2 : v1 + v2,
+  return {
+    val: null !== v1 && null === v2 ? v1 : null === v1 && null !== v2 ? v2 : v1 + v2,
     left: mergeTrees(l1, l2),
-    right: mergeTrees(r1, r2)
-  });
+    right: mergeTrees(r1, r2),
+  };
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -79,50 +74,53 @@ const mergeTrees = (
 // val: 03, left: 07 (val * 2 + 1), right: 08 (val * 2 + 2)
 // val: 04, left: 09 (val * 2 + 1), right: 10 (val * 2 + 2)
 
-const tests = [{
-  name: '"Run Code" example',
-  input: {
-    //      1
-    //     / \
-    //   3    2
-    //  /
-    // 5
-    t1: [1, 3, 2, 5],
-    //      2
-    //     / \
-    //    1   3
-    //     \   \
-    //      4   7
-    t2: [2, 1, 3, null, 4, null, 7]
+const tests = [
+  {
+    name: '"Run Code" example',
+    input: {
+      //      1
+      //     / \
+      //   3    2
+      //  /
+      // 5
+      t1: [1, 3, 2, 5],
+      //      2
+      //     / \
+      //    1   3
+      //     \   \
+      //      4   7
+      t2: [2, 1, 3, null, 4, null, 7],
+    },
+    //     3
+    //    / \
+    //   4   5
+    //  / \   \
+    // 5   4   7
+    expected: [3, 4, 5, 5, 4, null, 7],
   },
-  //     3
-  //    / \
-  //   4   5
-  //  / \   \
-  // 5   4   7
-  expected: [3, 4, 5, 5, 4, null, 7]
-}];
+];
 
-// const check = (a1, a2) => a1.reduce((a, c, i) => a && c === a2[i], true);
+// const areArraysEqual = (a1, a2) =>
+//   a1.length === a2.length &&
+//   a1.reduce(
+//     (acc, curr, i) => ('undefined' === typeof acc ? curr === a2[i] : acc && curr === a2[i]),
+//     undefined,
+//   );
 
 const TreeNode = (val, left = null, right = null) => ({
   val,
   left,
-  right
+  right,
 });
 
 const arrayToTree = (a, i = 0) => {
   if (a.length <= i) {
-    return null
+    return null;
   }
-  return TreeNode(a[i], arrayToTree(a, (i * 2) + 1) || null, arrayToTree(a, (i * 2) + 2) || null);
-}
+  return TreeNode(a[i], arrayToTree(a, i * 2 + 1) || null, arrayToTree(a, i * 2 + 2) || null);
+};
 
-tests.forEach(({
-  name,
-  input,
-  expected
-}) => {
+tests.forEach(({ name, input, expected }) => {
   const t1 = arrayToTree(input.t1);
   const t2 = arrayToTree(input.t2);
   // console.log(t1);
@@ -131,7 +129,7 @@ tests.forEach(({
   // console.log(arrayToTree(t2));
   console.log(mergeTrees(t1, t2));
   // const output = mergeTrees(t1, t2);
-  // if (check(expected, output)) {
+  // if (areArraysEqual(expected, output)) {
   //   console.log(`✅ ${name}`);
   // } else {
   //   console.log(`🔴 ${name}`);

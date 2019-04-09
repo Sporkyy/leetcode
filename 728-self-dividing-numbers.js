@@ -35,10 +35,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const isSelfDividing = i => String(i)
-  .split('')
-  .map(s => parseInt(s, 10))
-  .reduce((answer, digit) => (answer && 0 !== digit && 0 === i % digit), true);
+const isSelfDividing = i =>
+  String(i)
+    .split('')
+    .map(s => parseInt(s, 10))
+    .reduce((answer, digit) => answer && 0 !== digit && 0 === i % digit, true);
 
 const arraryRange = (start, end) => Array.from(Array(end - start + 1), (x, i) => start + i);
 
@@ -47,33 +48,35 @@ const arraryRange = (start, end) => Array.from(Array(end - start + 1), (x, i) =>
  * @param {number} right
  * @return {number[]}
  */
-const selfDividingNumbers = (left, right) => arraryRange(left, right).filter(n => isSelfDividing(n));
+const selfDividingNumbers = (left, right) =>
+  arraryRange(left, right).filter(n => isSelfDividing(n));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [{
+const tests = [
+  {
     name: 'Example 1',
     input: {
       left: 1,
-      right: 22
+      right: 22,
     },
-    expected: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]
+    expected: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22],
   },
   {
     name: 'One Number',
     input: {
       left: 1,
-      right: 1
+      right: 1,
     },
-    expected: [1]
+    expected: [1],
   },
   {
-    name: 'Check 128',
+    name: '128',
     input: {
       left: 127,
-      right: 129
+      right: 129,
     },
-    expected: [128]
+    expected: [128],
   },
   // {
   //   name: 'From 50 to 100',
@@ -85,28 +88,19 @@ const tests = [{
   // }
 ];
 
-const check = (a1, a2) => {
+const doArraysHaveSameElements = (a1, a2) => {
   if (a1.length !== a2.length) return false;
   for (let i = a1.length - 1; 0 <= i; --i) {
-    if (-1 === a2.indexOf(a1[i])) return false;
-  }
-  for (let i = a2.length - 1; 0 <= i; --i) {
-    if (-1 === a1.indexOf(a2[i])) return false;
+    if (a2.indexOf(a1[i]) < 0) return false;
+    if (a1.indexOf(a2[i]) < 0) return false;
   }
   return true;
 };
 
-tests.forEach(({
-  name,
-  input: {
-    left,
-    right
-  },
-  expected
-}) => {
+tests.forEach(({ name, input: { left, right }, expected }) => {
   const output = selfDividingNumbers(left, right);
   // console.log(output);
-  if (check(expected, output)) {
+  if (doArraysHaveSameElements(expected, output)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);

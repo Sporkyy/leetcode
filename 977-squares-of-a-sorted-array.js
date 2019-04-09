@@ -11,15 +11,16 @@ const sortedSquares = A => A.map(n => Math.pow(n, 2)).sort((a, b) => (b < a ? 1 
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [{
+const tests = [
+  {
     name: 'Example 1',
     input: [-4, -1, 0, 3, 10],
-    expected: [0, 1, 9, 16, 100]
+    expected: [0, 1, 9, 16, 100],
   },
   {
     name: 'Example 2',
     input: [-7, -3, 2, 3, 11],
-    expected: [4, 9, 9, 49, 121]
+    expected: [4, 9, 9, 49, 121],
   },
   {
     name: 'Test data',
@@ -44,21 +45,21 @@ const tests = [{
       324,
       324,
       361,
-      400
-    ]
-  }
+      400,
+    ],
+  },
 ];
 
-const check = (a, b) =>
-  a && b && a.length === b.length && a.map((n, i) => n === b[i]).reduce((a, c) => a && c, true);
+const areArraysEqual = (a1, a2) =>
+  a1.length === a2.length &&
+  a1.reduce(
+    (acc, curr, i) => ('undefined' === typeof acc ? curr === a2[i] : acc && curr === a2[i]),
+    undefined,
+  );
 
-tests.forEach(({
-  name,
-  input,
-  expected
-}) => {
+tests.forEach(({ name, input, expected }) => {
   const result = sortedSquares(input);
-  if (check(expected, result)) {
+  if (areArraysEqual(expected, result)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);

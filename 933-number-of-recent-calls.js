@@ -3,7 +3,7 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const RecentCounter = function () {
+const RecentCounter = function() {
   this.pings = [];
 };
 
@@ -11,7 +11,7 @@ const RecentCounter = function () {
  * @param {number} t
  * @return {number}
  */
-RecentCounter.prototype.ping = function (t) {
+RecentCounter.prototype.ping = function(t) {
   // console.log(t);
   this.pings.push(t);
   const length = this.pings.filter(ping => null !== ping && t - 3000 <= ping).length;
@@ -26,30 +26,25 @@ RecentCounter.prototype.ping = function (t) {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [{
-  name: 'Example 1',
-  input: {
-    pings: ["RecentCounter", "ping", "ping", "ping", "ping"],
-    times: [,
-      1,
-      100,
-      3001,
-      3002
-    ]
+const tests = [
+  {
+    name: 'Example 1',
+    input: {
+      pings: ['RecentCounter', 'ping', 'ping', 'ping', 'ping'],
+      times: [, 1, 100, 3001, 3002],
+    },
+    expected: [null, 1, 2, 3, 3],
   },
-  expected: [null, 1, 2, 3, 3]
-}];
+];
 
-const check = (a1, a2) => a1.reduce((acc, curr, i) => acc && curr === a2[i], true);
+const areArraysEqual = (a1, a2) =>
+  a1.length === a2.length &&
+  a1.reduce(
+    (acc, curr, i) => ('undefined' === typeof acc ? curr === a2[i] : acc && curr === a2[i]),
+    undefined,
+  );
 
-tests.forEach(({
-  name,
-  input: {
-    pings,
-    times
-  },
-  expected
-}) => {
+tests.forEach(({ name, input: { pings, times }, expected }) => {
   let rc;
   let result = [];
   for (let i = 0; i < pings.length; i++) {
@@ -58,18 +53,17 @@ tests.forEach(({
     const time = times[i];
     // console.log(time);
     if ('RecentCounter' === ping) {
-      rc = new RecentCounter;
+      rc = new RecentCounter();
       // console.log(rc);
     }
     // console.log(time);
     result.push(rc.ping(time));
   }
 
-  if (check(expected, result)) {
+  if (areArraysEqual(expected, result)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
     console.log(`Expected "${expected}", but got "${result}"`);
   }
-
 });

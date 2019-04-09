@@ -30,72 +30,70 @@
  */
 const twoSum = (nums, target) =>
   nums
-  .map((n1, i1) =>
-    nums.reduce((answer, n2, i2) => (i1 !== i2 && target === n1 + n2 ? i2 : answer), undefined)
-  )
-  .reduce(
-    (answer, i2, i1) =>
-    'undefined' === typeof answer && 'undefined' !== typeof i2 ? [i1, i2] : answer,
-    undefined
-  );
+    .map((n1, i1) =>
+      nums.reduce((answer, n2, i2) => (i1 !== i2 && target === n1 + n2 ? i2 : answer), undefined),
+    )
+    .reduce(
+      (answer, i2, i1) =>
+        'undefined' === typeof answer && 'undefined' !== typeof i2 ? [i1, i2] : answer,
+      undefined,
+    );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [{
+const tests = [
+  {
     name: 'Given example',
     input: {
       nums: [2, 7, 11, 15],
-      target: 9
+      target: 9,
     },
-    expected: [0, 1]
+    expected: [0, 1],
   },
   {
     name: 'Given example reversed',
     input: {
       nums: [15, 11, 7, 2],
-      target: 9
+      target: 9,
     },
-    expected: [2, 3]
+    expected: [2, 3],
   },
   {
     name: 'Two nums',
     input: {
       nums: [2, 7],
-      target: 9
+      target: 9,
     },
-    expected: [0, 1]
+    expected: [0, 1],
   },
   {
     name: 'Two nums',
     input: {
       nums: [2, 7],
-      target: 9
+      target: 9,
     },
-    expected: [0, 1]
+    expected: [0, 1],
   },
   {
     name: 'Two zeroes',
     input: {
       nums: [0, 1, 2, 0],
-      target: 0
+      target: 0,
     },
-    expected: [0, 3]
-  }
+    expected: [0, 3],
+  },
 ];
 
-const check = (a, b) =>
-  a && b && a.length === b.length && a.map((n, i) => n === b[i]).reduce((a, c) => a && c, true);
+const areArraysEqual = (a1, a2) =>
+  a1.length === a2.length &&
+  a1.reduce(
+    (acc, curr, i) => ('undefined' === typeof acc ? curr === a2[i] : acc && curr === a2[i]),
+    undefined,
+  );
 
-tests.forEach(({
-  name,
-  input: {
-    nums,
-    target
-  },
-  expected
-}) => {
+tests.forEach(({ name, input: { nums, target }, expected }) => {
   const result = twoSum(nums, target);
-  if (check(expected, result)) {
+  if (areArraysEqual(expected, result)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);

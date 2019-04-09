@@ -60,18 +60,23 @@ const tests = [
     name: 'Example 1',
     input: {
       A: [1, 2, 3, 4],
-      queries: [[1, 0], [-3, 1], [-4, 0], [2, 3]]
+      queries: [[1, 0], [-3, 1], [-4, 0], [2, 3]],
     },
-    expected: [8, 6, 2, 4]
-  }
+    expected: [8, 6, 2, 4],
+  },
 ];
 
-const check = (a1, a2) => a1.reduce((acc, curr, i) => acc && curr === a2[i], true);
+const areArraysEqual = (a1, a2) =>
+  a1.length === a2.length &&
+  a1.reduce(
+    (acc, curr, i) => ('undefined' === typeof acc ? curr === a2[i] : acc && curr === a2[i]),
+    undefined,
+  );
 
 tests.forEach(({ name, input: { A, queries }, expected }) => {
   const result = sumEvenAfterQueries(A, queries);
   console.log(result);
-  if (check(expected, result)) {
+  if (areArraysEqual(expected, result)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
