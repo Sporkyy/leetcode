@@ -11,22 +11,22 @@
 const shortestToChar = (S, C) => {
   const answer = new Array(S.length);
 
-  for (let i = 0; i < answer.length; i++) {
+  for (let i = (distance = 0), flag = false; i < answer.length; i++) {
+    // If the sought character is found
     if (S[i] === C) {
-      // Fill current
-      answer[i] = 0;
-      // Fill backwards
+      // Fill current and reset distance
+      answer[i] = distance = 0;
+      // Fill previous
       for (let j = 1; j <= i; j++) {
-        // Don't overwrite closer answers
+        // But don't overwrite closer answers
         if (answer[i - j] < j) break;
         answer[i - j] = j;
       }
-      // Fill forwards
-      for (let j = 1; j < answer.length - i; j++) {
-        // Stop if the "C" char is found
-        if (C === S[i + j]) break;
-        answer[i + j] = j;
-      }
+      // After the first "C" character is found, allow filling forward
+      if (!flag) flag = true;
+    } else if (flag) {
+      // Fill forward, but only once the first "C" char is found
+      answer[i] = ++distance;
     }
   }
 
