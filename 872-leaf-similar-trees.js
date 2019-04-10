@@ -5,23 +5,15 @@
 
 const leafNodesVals = root => {
   const vals = [];
-  const recur = node => {
+  const depthFirst = node => {
     if (!node) return;
-    recur(node.left);
-    recur(node.right);
-    if (!node.val || (node.left && node.left.val) || (node.right && node.right.val)) return;
+    depthFirst(node.left);
+    depthFirst(node.right);
+    if (!node.val || node.left || node.right) return;
     vals.push(node.val);
   };
-  recur(root);
+  depthFirst(root);
   return vals;
-};
-
-const areArraysEqual = (a1, a2) => {
-  if (a1.length !== a2.length) return false;
-  for (let i = 0; i < a1.length; i++) {
-    if (a1[i] !== a2[i]) return false;
-  }
-  return true;
 };
 
 /**
@@ -36,7 +28,7 @@ const areArraysEqual = (a1, a2) => {
  * @param {TreeNode} root2
  * @return {boolean}
  */
-var leafSimilar = (root1, root2) => areArraysEqual(leafNodesVals(root1), leafNodesVals(root2));
+var leafSimilar = (root1, root2) => leafNodesVals(root1).join() === leafNodesVals(root2).join();
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -49,8 +41,9 @@ class TreeNode {
 }
 
 const deserializeLevelOrderArrayAsBinaryTree = a => {
-  const nodeArray = [...a].map(e => new TreeNode(e));
+  const nodeArray = [...a].map(e => (e ? new TreeNode(e) : null));
   nodeArray.forEach((e, i) => {
+    if (!e) return;
     const childIndex = (i + 1) * 2;
     e.left = nodeArray[childIndex - 1] || null;
     e.right = nodeArray[childIndex] || null;
@@ -116,8 +109,6 @@ const tests = [
 ];
 
 tests.forEach(({ name, input: { tree1, tree2 }, expected }) => {
-  // console.log(tree1);
-  // console.log(tree2);
   const result = leafSimilar(tree1, tree2);
   if (expected === result) {
     console.log(`✅ ${name}`);
