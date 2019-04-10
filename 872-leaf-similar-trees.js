@@ -9,11 +9,10 @@ const leafNodesVals = root => {
     if (!node) return;
     recur(node.left);
     recur(node.right);
-    if (null !== node.left || null !== node.right) return;
+    if (!node.val || (node.left && node.left.val) || (node.right && node.right.val)) return;
     vals.push(node.val);
   };
   recur(root);
-  console.log(vals);
   return vals;
 };
 
@@ -60,52 +59,52 @@ const deserializeLevelOrderArrayAsBinaryTree = a => {
 };
 
 const tests = [
-  // {
-  //   name: 'Problem Example, True',
-  //   input: {
-  //     //      3
-  //     //    /   \
-  //     //   5     1
-  //     //  / \   / \
-  //     //  6  2  9  8
-  //     //    / \
-  //     //   7   4
-  //     tree1: deserializeLevelOrderArrayAsBinaryTree([3, 5, 1, 6, 2, 9, 8, null, null, 7, 4]),
-  //     //         3
-  //     //       /   \
-  //     //     5       1
-  //     //    / \     / \
-  //     //   6   7   4   2
-  //     //              / \
-  //     //             9   8
-  //     tree2: deserializeLevelOrderArrayAsBinaryTree([
-  //       3,
-  //       5,
-  //       1,
-  //       6,
-  //       7,
-  //       4,
-  //       2,
-  //       null,
-  //       null,
-  //       null,
-  //       null,
-  //       null,
-  //       null,
-  //       9,
-  //       8,
-  //     ]),
-  //   },
-  //   expected: true,
-  // },
-  // {
-  //   name: 'Problem Example, False',
-  //   input: {
-  //     tree1: deserializeLevelOrderArrayAsBinaryTree([3, 5, 1, 6, 2, 9, 8, 7, 4]),
-  //     tree2: deserializeLevelOrderArrayAsBinaryTree([3, 5, 1, 6, 2, 9, 8, 4, 7]),
-  //   },
-  //   expected: false,
-  // },
+  {
+    name: 'Problem Example, True',
+    input: {
+      //      3
+      //    /   \
+      //   5     1
+      //  / \   / \
+      //  6  2  9  8
+      //    / \
+      //   7   4
+      tree1: deserializeLevelOrderArrayAsBinaryTree([3, 5, 1, 6, 2, 9, 8, null, null, 7, 4]),
+      //         3
+      //       /   \
+      //     5       1
+      //    / \     / \
+      //   6   7   4   2
+      //              / \
+      //             9   8
+      tree2: deserializeLevelOrderArrayAsBinaryTree([
+        3,
+        5,
+        1,
+        6,
+        7,
+        4,
+        2,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        9,
+        8,
+      ]),
+    },
+    expected: true,
+  },
+  {
+    name: 'Problem Example, False',
+    input: {
+      tree1: deserializeLevelOrderArrayAsBinaryTree([3, 5, 1, 6, 2, 9, 8, 7, 4]),
+      tree2: deserializeLevelOrderArrayAsBinaryTree([3, 5, 1, 6, 2, 9, 8, 4, 7]),
+    },
+    expected: false,
+  },
   {
     name: 'Run Code; Wrong Answer',
     input: {
