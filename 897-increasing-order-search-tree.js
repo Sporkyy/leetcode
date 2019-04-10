@@ -49,17 +49,17 @@ const increasingBST = root => {
 const referenceSolution = root => {
   const nodes = [];
   const treeNode = new TreeNode(0);
-  const dfs = root => {
+  const depthFirstInorder = root => {
     if (root != null) {
-      dfs(root.left);
+      depthFirstInorder(root.left);
       nodes.push(root.val);
-      dfs(root.right);
+      depthFirstInorder(root.right);
     }
   };
 
   let current = treeNode;
 
-  dfs(root);
+  depthFirstInorder(root);
 
   for (let i = 0; i < nodes.length; i++) {
     current.right = new TreeNode(nodes[i]);
@@ -117,15 +117,13 @@ const serializeBinaryTreeAsLevelOrderArray = root => {
 // 8: left = 17, right = 18
 // 9: left = 19, right = 20
 const deserializeLevelOrderArrayAsBinaryTree = a => {
-  const na = [...a].map(e => new TreeNode(e));
-  // console.log(tna);
-  na.forEach((e, i) => {
-    const ci = (i + 1) * 2;
-    e.left = na[ci - 1];
-    e.right = na[ci];
+  const nodeArray = [...a].map(e => new TreeNode(e));
+  nodeArray.forEach((e, i) => {
+    const childIndex = (i + 1) * 2;
+    e.left = nodeArray[childIndex - 1] || null;
+    e.right = nodeArray[childIndex] || null;
   });
-  // console.log(tna);
-  return na[0];
+  return nodeArray[0];
 };
 
 const tests = [
@@ -142,12 +140,13 @@ const tests = [
   },
 ];
 
-const areArraysEqual = (a1, a2) =>
-  a1.length === a2.length &&
-  a1.reduce(
-    (acc, curr, i) => ('undefined' === typeof acc ? curr === a2[i] : acc && curr === a2[i]),
-    undefined,
-  );
+const areArraysEqual = (a1, a2) => {
+  if (a1.length !== a2.length) return false;
+  for (let i = 0; i < a1.length; i++) {
+    if (a1[i] !== a2[i]) return false;
+  }
+  return true;
+};
 
 tests.forEach(({ name, input }) => {
   const root = deserializeLevelOrderArrayAsBinaryTree(input);

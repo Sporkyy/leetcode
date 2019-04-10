@@ -37,12 +37,13 @@ const tests = [
   },
 ];
 
-const areArraysEqual = (a1, a2) =>
-  a1.length === a2.length &&
-  a1.reduce(
-    (acc, curr, i) => ('undefined' === typeof acc ? curr === a2[i] : acc && curr === a2[i]),
-    undefined,
-  );
+const areArraysEqual = (a1, a2) => {
+  if (a1.length !== a2.length) return false;
+  for (let i = 0; i < a1.length; i++) {
+    if (a1[i] !== a2[i]) return false;
+  }
+  return true;
+};
 
 tests.forEach(({ name, input: { pings, times }, expected }) => {
   let rc;
