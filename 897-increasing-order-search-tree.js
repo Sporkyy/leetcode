@@ -117,8 +117,9 @@ const serializeBinaryTreeAsLevelOrderArray = root => {
 // 8: left = 17, right = 18
 // 9: left = 19, right = 20
 const deserializeLevelOrderArrayAsBinaryTree = a => {
-  const nodeArray = [...a].map(e => new TreeNode(e));
+  const nodeArray = [...a].map(e => (e ? new TreeNode(e) : null));
   nodeArray.forEach((e, i) => {
+    if (!e) return;
     const childIndex = (i + 1) * 2;
     e.left = nodeArray[childIndex - 1] || null;
     e.right = nodeArray[childIndex] || null;
