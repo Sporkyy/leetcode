@@ -18,16 +18,23 @@ const flipBits = b =>
     .map(d => ('0' === d ? '1' : '0'))
     .join('');
 
+const toDecimal = n =>
+  n
+    .split('')
+    .reverse()
+    .reduce((acc, curr, i) => (acc += '1' === curr ? Math.pow(2, i) : 0), 0);
+
 /**
  * @param {number} num
  * @return {number}
  */
 const findComplement = num => {
+  // console.log(num);
   const b = toBinary(num);
   // console.log(b);
   const f = flipBits(b);
   // console.log(f);
-  const c = parseInt(f, 2);
+  const c = toDecimal(f);
   // console.log(c);
   return c;
 };
