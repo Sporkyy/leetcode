@@ -9,15 +9,11 @@ const evenChars = s =>
     .filter((c, i) => 0 === i % 2)
     .join('');
 
-// console.log(evenChars('abcd'));
-
 const oddChars = s =>
   s
     .split('')
     .filter((c, i) => 1 === i % 2)
     .join('');
-
-// console.log(oddChars('abcd'));
 
 const sortedString = s =>
   s
@@ -27,14 +23,13 @@ const sortedString = s =>
 
 const normalized = s => `${sortedString(evenChars(s))}${sortedString(oddChars(s))}`;
 
-// console.log(normalized('abc'));
-// console.log(normalized('cba'));
+const numUniqueElements = a => new Set(a).size;
 
 /**
  * @param {string[]} A
  * @return {number}
  */
-const numSpecialEquivGroups = A => new Set(A.map(s => normalized(s))).size;
+const numSpecialEquivGroups = A => numUniqueElements(A.map(s => normalized(s)));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
