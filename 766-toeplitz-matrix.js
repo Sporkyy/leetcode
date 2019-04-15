@@ -27,13 +27,12 @@
 //     [ [ 0, 1 ], [ 1, 2 ]  [ 2, 3 ]         ],
 //     [ [ 0, 2 ], [ 1, 3 ]                   ] ]
 toeplitzIndices = (width, height) => {
-  const min = Math.min(width, height);
-  const indices = new Array(min - 1);
-  for (let i = 0; i < min; i++) {
+  const indices = new Array(width - 1);
+  for (let i = 0; i < width - 1; i++) {
     console.log(`${i} ${height}`);
-    const group = new Array(min - 1);
-    for (let j = 0; j < min; j++) {
-      group[j] = [j, j + i];
+    const group = new Array(width - 1);
+    for (let j = 0; j < height; j++) {
+      group[j] = [i, i + i];
     }
     indices[i] = group;
   }
