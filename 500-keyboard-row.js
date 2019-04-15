@@ -79,6 +79,8 @@ const rows = ['qwertyuiop'.split(''), 'asdfghjkl'.split(''), 'zxcvbnm'.split('')
 const includesAny = (s, a) => a.reduce((acc, curr) => (acc = acc || s.includes(curr)), false);
 
 /**
+ * See? This is faster and uses less memory even though it's easier to understand
+ *
  * @param {string[]} words
  * @return {string[]}
  */
