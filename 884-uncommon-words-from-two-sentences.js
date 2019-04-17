@@ -3,26 +3,48 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const instances = (haystack, needle) =>
-  haystack.reduce((count, word) => count + (needle === word ? 1 : 0), 0);
+// const instances = (haystack, needle) =>
+//   haystack.reduce((count, word) => count + (needle === word ? 1 : 0), 0);
 
-const uniqueElements = a => a.filter(word => 1 === instances(a, word));
+// const uniqueElements = a => a.filter(word => 1 === instances(a, word));
 
-const allWords = (...strings) =>
-  strings.reduce((words, string) => [...words, ...string.split(' ')], []);
+// const allWords = (...strings) =>
+//   strings.reduce((words, string) => [...words, ...string.split(' ')], []);
 
-const uniqueWords = (...strings) =>
-  Array.from(new Set(uniqueElements(allWords(...strings))).values());
+// const uniqueWords = (...strings) =>
+//   Array.from(new Set(uniqueElements(allWords(...strings))).values());
 
-const xorWord = (haystack1, haystack2, word) =>
-  haystack1.split(' ').indexOf(word) !== haystack2.split(' ').indexOf(word);
+// const xorWord = (haystack1, haystack2, word) =>
+//   haystack1.split(' ').indexOf(word) !== haystack2.split(' ').indexOf(word);
 
-/**
- * @param {string} A
- * @param {string} B
- * @return {string[]}
- */
-const uncommonFromSentences = (A, B) => uniqueWords(A, B).filter(word => xorWord(A, B, word));
+// /**
+//  * @param {string} A
+//  * @param {string} B
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (A, B) => uniqueWords(A, B).filter(word => xorWord(A, B, word));
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+const uncommonFromSentences = (A, B) => {
+  const answer = [];
+
+  A = A.split(' ');
+  B = B.split(' ');
+  AB = A.concat(B);
+
+  for (let i = 0; i < AB.length; i++) {
+    if (
+      A.indexOf(AB[i]) === A.lastIndexOf(AB[i]) &&
+      B.indexOf(AB[i]) === B.lastIndexOf(AB[i]) &&
+      (-1 === A.indexOf(AB[i])) !== (-1 === B.indexOf(AB[i]))
+    ) {
+      answer.push(AB[i]);
+    }
+  }
+
+  return answer;
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -42,6 +64,14 @@ const tests = [
       B: 'banana',
     },
     expected: ['banana'],
+  },
+  {
+    name: 'Wrong answer',
+    input: {
+      A: 'fd kss fd',
+      B: 'fd fd kss',
+    },
+    expected: [],
   },
 ];
 
