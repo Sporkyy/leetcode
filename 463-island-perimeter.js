@@ -16,7 +16,7 @@ const neighbors = (row, col, grid) => [
 ];
 
 const edges = (cell, row, col, grid) =>
-  0 === cell ? 0 : neighbors(row, col, grid).reduce((acc, curr) => acc - curr, 4);
+  0 === cell ? 0 : neighbors(row, col, grid).reduce((count, neighbor) => count - neighbor, 4);
 
 /**
  * @param {number[][]} grid
