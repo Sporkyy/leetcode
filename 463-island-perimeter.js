@@ -8,33 +8,26 @@ const right = (row, col, grid) => (grid[0].length - 1 === col ? 0 : grid[row][co
 const down = (row, col, grid) => (grid.length - 1 === row ? 0 : grid[row + 1][col]);
 const left = (row, col, grid) => (0 === col ? 0 : grid[row][col - 1]);
 
-const sides = (row, col, grid) => [
+const neighbors = (row, col, grid) => [
   up(row, col, grid),
   right(row, col, grid),
   down(row, col, grid),
   left(row, col, grid),
 ];
 
-const numPerimiterSides = (row, col, grid) =>
-  0 === grid[row][col] ? 0 : sides(row, col, grid).reduce((acc, curr) => acc - curr, 4);
+const edges = (cell, row, col, grid) =>
+  0 === cell ? 0 : neighbors(row, col, grid).reduce((acc, curr) => acc - curr, 4);
 
 /**
  * @param {number[][]} grid
  * @return {number}
  */
-const islandPerimeter = grid => {
-  let perimiter = 0;
-  // console.log(sides(0, 1, grid));
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[0].length; j++) {
-      // console.log(`[${i}, ${j}]`);
-      // console.log(sides(i, j, grid));
-      // console.log(`[${i}, ${j}] = ${numPerimiterSides(i, j, grid)}`);
-      perimiter += numPerimiterSides(i, j, grid);
-    }
-  }
-  return perimiter;
-};
+const islandPerimeter = grid =>
+  grid.reduce(
+    (gridAcc, row, i) =>
+      gridAcc + row.reduce((rowAcc, cell, j) => rowAcc + edges(cell, i, j, grid), 0),
+    0,
+  );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -56,6 +49,6 @@ tests.forEach(({ name, input, expected }) => {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
-    console.log(``);
+    console.log(`Expected "${expected}", but got "${result}"`);
   }
 });
