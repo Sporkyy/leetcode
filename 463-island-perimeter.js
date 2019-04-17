@@ -24,8 +24,9 @@ const edges = (cell, row, col, grid) =>
  */
 const islandPerimeter = grid =>
   grid.reduce(
-    (gridAcc, row, i) =>
-      gridAcc + row.reduce((rowAcc, cell, j) => rowAcc + edges(cell, i, j, grid), 0),
+    (gridAcc, row, rowIndex) =>
+      gridAcc +
+      row.reduce((rowAcc, cell, colIndex) => rowAcc + edges(cell, rowIndex, colIndex, grid), 0),
     0,
   );
 
