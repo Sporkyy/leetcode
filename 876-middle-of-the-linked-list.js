@@ -78,13 +78,7 @@ const serializeList = head => {
   return a;
 };
 
-const areArraysEqual = (a1, a2) => {
-  if (a1.length !== a2.length) return false;
-  for (let i = 0; i < a1.length; i++) {
-    if (a1[i] !== a2[i]) return false;
-  }
-  return true;
-};
+const areArraysEqual = (a1, a2) => a1.length === a2.length && a1.join() === a2.join();
 
 const tests = [
   {
