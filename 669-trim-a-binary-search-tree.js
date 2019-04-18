@@ -73,21 +73,21 @@ class BinaryTree {
 }
 
 const tests = [
-  // {
-  //   name: 'Example 1',
-  //   input: {
-  //     //   1
-  //     //  / \
-  //     // 0   2
-  //     root: new BinaryTree(1, 0, 2),
-  //     L: 1,
-  //     R: 2,
-  //   },
-  //   // 1
-  //   //  \
-  //   //   2
-  //   expected: new BinaryTree(1, null, 2),
-  // },
+  {
+    name: 'Example 1',
+    input: {
+      //   1
+      //  / \
+      // 0   2
+      root: new BinaryTree(1, 0, 2),
+      L: 1,
+      R: 2,
+    },
+    // 1
+    //  \
+    //   2
+    expected: new BinaryTree(1, null, 2),
+  },
   {
     name: 'Example 2',
     input: {
@@ -111,11 +111,16 @@ const tests = [
   },
 ];
 
+const areArraysEqual = (a1, a2) => a1.length === a2.length && a1.join() === a2.join();
+
 tests.forEach(({ name, input: { root, L, R }, expected }) => {
-  console.log(name);
-  // console.log(root);
-  console.log(`Input: ${BinaryTree.serializeInLevelOrder(root)}`);
-  const result = trimBST(root, L, R);
-  console.log(`Output: ${BinaryTree.serializeInLevelOrder(result)}`);
-  console.log(`Expected: ${BinaryTree.serializeInLevelOrder(expected)}`);
+  const output = trimBST(root, L, R);
+  const serializedExpected = BinaryTree.serializeInLevelOrder(expected);
+  const serializedOutput = BinaryTree.serializeInLevelOrder(output);
+  if (areArraysEqual(serializedExpected, serializedOutput)) {
+    console.log(`✅ ${name}`);
+  } else {
+    console.log(`🔴 ${name}`);
+    console.log(`Expected "${expected}", but got "${output}"`);
+  }
 });
