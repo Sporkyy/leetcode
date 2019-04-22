@@ -3,6 +3,37 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 88 ms, faster than 8.25% of JavaScript online submissions for Maximum Depth of Binary Tree.
+// Memory Usage: 37.4 MB, less than 5.14% of JavaScript online submissions for Maximum Depth of Binary Tree.
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+// const maxDepth = root => {
+//   let answer = 0;
+//   const recurse = (leaf, level) => {
+//     if (!leaf) return;
+//     if (answer < level) answer = level;
+//     if (leaf.left) recurse(leaf.left, level + 1);
+//     if (leaf.right) recurse(leaf.right, level + 1);
+//   };
+//   recurse(root, 1);
+//   return answer;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 72 ms, faster than 47.99% of JavaScript online submissions for Maximum Depth of Binary Tree.
+// Memory Usage: 37.2 MB, less than 14.02% of JavaScript online submissions for Maximum Depth of Binary Tree.
+
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -15,15 +46,16 @@
  * @return {number}
  */
 const maxDepth = root => {
-  let answer = 0;
-  const recurse = (leaf, level) => {
-    if (!leaf) return;
-    if (answer < level) answer = level;
-    if (leaf.left) recurse(leaf.left, level + 1);
-    if (leaf.right) recurse(leaf.right, level + 1);
-  };
-  recurse(root, 1);
-  return answer;
+  const nodes = [[root, 1]];
+  let deepestDepth = 0;
+  while (0 < nodes.length) {
+    const [leaf, depth] = nodes.pop();
+    if (null === leaf) continue;
+    if (deepestDepth < depth) deepestDepth = depth;
+    if (leaf.left) nodes.push([leaf.left, depth + 1]);
+    if (leaf.right) nodes.push([leaf.right, depth + 1]);
+  }
+  return deepestDepth;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -46,27 +78,10 @@ class BinaryTree {
       node.right = nodeArray[childIndex] || null;
     });
     this.root = nodeArray[0];
-    return nodeArray[0];
-  }
-
-  static serializeInLevelOrder(root) {
-    const levels = new Map();
-    const fill = (leaf, level) => {
-      if (!levels.has(level)) levels.set(level, []);
-      if (!leaf) {
-        levels.set(level, [...levels.get(level), null]);
-        return;
-      }
-      levels.set(level, [...levels.get(level), leaf.val]);
-      fill(leaf.left, level + 1);
-      fill(leaf.right, level + 1);
-    };
-    fill(root, 0);
-    let vals = [];
-    for (const entry of levels.entries()) {
-      vals = vals.concat(entry[1]);
+    if (0 === levelOrderValues.length) {
+      this.root = null;
     }
-    return vals;
+    return this;
   }
 }
 
@@ -78,15 +93,26 @@ const tests = [
     //  9  20
     //    /  \
     //   15   7
-    input: new BinaryTree(3, 9, 20, null, null, 15, 7),
+    input: new BinaryTree(3, 9, 20, null, null, 15, 7).root,
     expected: 3,
+  },
+  {
+    name: 'Zero levels',
+    input: new BinaryTree().root,
+    expected: 0,
+  },
+  {
+    name: 'Two levels',
+    input: new BinaryTree(1, 2).root,
+    expected: 2,
   },
 ];
 
 tests.forEach(({ name, input, expected }) => {
+  // console.log(input);
   const output = maxDepth(input);
   if (expected === output) {
-    console.log(`✅ ${name}`);
+    console.log(`✅ ${name} (${expected} = ${output})`);
   } else {
     console.log(`🔴 ${name}`);
     console.log(`Expected "${expected}", but got "${output}"`);
