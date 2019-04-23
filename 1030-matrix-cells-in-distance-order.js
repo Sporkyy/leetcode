@@ -4,16 +4,19 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 176 ms, faster than 71.19% of JavaScript online submissions for Matrix Cells in Distance Order.
-// Memory Usage: 52.1 MB, less than 100.00% of JavaScript online submissions for Matrix Cells in Distance Order.
+// Memory Usage: 48.5 MB, less than 100.00% of JavaScript online submissions for Matrix Cells in Distance Order.
 
-const cellsWithDistance = (R, C, r0, c0) => {
-  const answer = [];
-  for (let i = 0; i <= R - 1; i++) {
-    for (let j = 0; j <= C - 1; j++) {
-      answer.push([i, j, Math.abs(r0 - i) + Math.abs(c0 - j)]);
+const distance = (originRow, originCol, hereRow, hereCol) =>
+  Math.abs(originRow - hereRow) + Math.abs(originCol - hereCol);
+
+const cellsWithDistance = (rowCount, colCount, specialRowIndex, specialColIndex) => {
+  const result = new Array(rowCount * colCount);
+  for (let i = 0, k = 0; i <= rowCount - 1; i++) {
+    for (let j = 0; j <= colCount - 1; j++, k++) {
+      result[k] = [i, j, distance(specialRowIndex, specialColIndex, i, j)];
     }
   }
-  return answer;
+  return result;
 };
 
 /**
@@ -25,13 +28,34 @@ const cellsWithDistance = (R, C, r0, c0) => {
  */
 const allCellsDistOrder = (R, C, r0, c0) => {
   const cells = cellsWithDistance(R, C, r0, c0);
-  // console.log(cells);
   const sorted = cells.sort((a, b) => (a[2] < b[2] ? -1 : b[2] < a[2] ? 1 : 0));
-  // console.log(sorted);
-  const answer = sorted.map(cellWithDistance => [cellWithDistance[0], cellWithDistance[1]]);
-  // console.log(answer);
-  return answer;
+  const result = sorted.map(cellWithDistance => [cellWithDistance[0], cellWithDistance[1]]);
+  return result;
 };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 160 ms, faster than 94.07% of JavaScript online submissions for Matrix Cells in Distance Order.
+// Memory Usage: 47.6 MB, less than 100.00% of JavaScript online submissions for Matrix Cells in Distance Order.
+
+// /**
+//  * @param {number} R
+//  * @param {number} C
+//  * @param {number} r0
+//  * @param {number} c0
+//  * @return {number[][]}
+//  */
+// const allCellsDistOrder = (R, C, r0, c0) => {
+//   const distanceGroups = Array(R * C)
+//     .fill()
+//     .map(() => []);
+//   for (let i = R - 1; 0 <= i; --i) {
+//     for (let j = C - 1; 0 <= j; --j) {
+//       distanceGroups[Math.abs(i - r0) + Math.abs(j - c0)].push([i, j]);
+//     }
+//   }
+//   return [].concat(...distanceGroups);
+// };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
