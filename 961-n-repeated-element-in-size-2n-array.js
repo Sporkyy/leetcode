@@ -32,13 +32,34 @@
  * @param {number[]} A
  * @return {number}
  */
+// const repeatedNTimes = A => {
+//   const counts = new Map(Array.from(new Set(A)).map(v => [v, 0]));
+//   for (let i = A.length - 1; 0 <= i; --i) {
+//     counts.set(A[i], 1 + counts.get(A[i]));
+//   }
+//   for (let [key, value] of counts) {
+//     if (A.length / 2 === value) return key;
+//   }
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 100.00% of JavaScript online submissions for N-Repeated Element in Size 2N Array.
+// Memory Usage: 36.7 MB, less than 50.00% of JavaScript online submissions for N-Repeated Element in Size 2N Array.
+
+/**
+ * @param {number[]} A
+ * @return {number}
+ */
 const repeatedNTimes = A => {
-  const counts = new Map(Array.from(new Set(A)).map(v => [v, 0]));
+  const map = new Map();
   for (let i = A.length - 1; 0 <= i; --i) {
-    counts.set(A[i], 1 + counts.get(A[i]));
-  }
-  for (let [key, value] of counts) {
-    if (A.length / 2 === value) return key;
+    const e = A[i];
+    if (map.has(e)) {
+      return e;
+    } else {
+      map.set(e, true);
+    }
   }
 };
 
@@ -59,6 +80,11 @@ const tests = [
     name: 'Example 3',
     input: [5, 1, 5, 2, 5, 3, 5, 4],
     expected: 5,
+  },
+  {
+    name: 'Hard',
+    input: [1, 3, 3, 2, 2, 2],
+    expected: 2,
   },
 ];
 
