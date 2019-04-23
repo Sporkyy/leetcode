@@ -25,8 +25,8 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 152 ms, faster than 7.38% of JavaScript online submissions for N-Repeated Element in Size 2N Array.
-// Memory Usage: 48.8 MB, less than 5.38% of JavaScript online submissions for N-Repeated Element in Size 2N Array.
+// Runtime: 96 ms, faster than 37.14% of JavaScript online submissions for N-Repeated Element in Size 2N Array.
+// Memory Usage: 42.3 MB, less than 5.38% of JavaScript online submissions for N-Repeated Element in Size 2N Array.
 
 /**
  * @param {number[]} A
@@ -34,11 +34,9 @@
  */
 const repeatedNTimes = A => {
   const counts = new Map(Array.from(new Set(A)).map(v => [v, 0]));
-  console.log(counts);
   for (let i = A.length - 1; 0 <= i; --i) {
     counts.set(A[i], 1 + counts.get(A[i]));
   }
-  console.log(counts);
   for (let [key, value] of counts) {
     if (A.length / 2 === value) return key;
   }
