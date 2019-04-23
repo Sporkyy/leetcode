@@ -74,11 +74,30 @@
  * @param {string[]} emails
  * @return {number}
  */
+// function numUniqueEmails(emails) {
+//   const cleanEmails = new Set();
+//   for (let i = emails.length - 1; 0 <= i; --i) {
+//     const matches = emails[i].match(/^([^\+]+)(?:\+.+)?(@.+)$/);
+//     cleanEmails.add(`${matches[1].replace(/\./g, '')}@${matches[2]}`);
+//   }
+//   return cleanEmails.size;
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 92 ms, faster than 69.23% of JavaScript online submissions for Unique Email Addresses.
+// Memory Usage: 41.6 MB, less than 53.76% of JavaScript online submissions for Unique Email Addresses.
+
+/**
+ * @param {string[]} emails
+ * @return {number}
+ */
 function numUniqueEmails(emails) {
   const cleanEmails = new Set();
   for (let i = emails.length - 1; 0 <= i; --i) {
-    const matches = emails[i].match(/^([^\+]+)(?:\+.+)?(@.+)$/);
-    cleanEmails.add(`${matches[1].replace(/\./g, '')}@${matches[2]}`);
+    let [localName, domain] = emails[i].split('@');
+    localName = localName.split('+')[0].replace(/\./g, '');
+    cleanEmails.add(`${localName}@${domain}`);
   }
   return cleanEmails.size;
 }
