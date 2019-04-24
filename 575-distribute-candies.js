@@ -11,15 +11,15 @@
  * @return {number}
  */
 const distributeCandies = candies => {
-  // 1. Count the total candies and cleave that count in twain
+  // 1. Count the total candies and cleave it in twain
   const portionSize = candies.length / 2;
   // 2. Count the unique candies
   const uniqueCandiesCount = new Set(candies).size;
-  // 3. If the count of unique candies
+  // 3. If the unique candies count
   //    is greater than or equal to half the total candies count,
-  //    return half the count of total candies
+  //    return half the total candies count
   if (portionSize <= uniqueCandiesCount) return portionSize;
-  // 4. Else return the unique candies
+  // 4. If not, return the unique candies count
   return uniqueCandiesCount;
 };
 
