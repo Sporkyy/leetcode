@@ -34,7 +34,7 @@
 //     .sort((a, b) => {
 //       const sortableA = sortableLog(a);
 //       const sortableB = sortableLog(b);
-//       return sortableA < sortableB ? -1 : sortableB < sortableA ? 1 : 0;
+//       return sortableA < sortableB ? -1 : sortableB === sortableA ? 0 : 1;
 //     })
 //     .concat(digitLogs);
 // };
@@ -49,7 +49,7 @@
  * @return {string[]}
  */
 const reorderLogFiles = logs => {
-  logsWithInfo = logs.map(original => {
+  const logsWithInfo = logs.map(original => {
     const identifier = original.slice(0, original.indexOf(' '));
     const body = original.slice(original.indexOf(' ') + 1);
     const type = /\d/.test(body) ? 'digit' : 'letter';
@@ -64,7 +64,7 @@ const reorderLogFiles = logs => {
 
   return logsWithInfo
     .filter(({ type }) => 'letter' === type)
-    .sort(({ sortable: a }, { sortable: b }) => (a < b ? -1 : b < a ? 1 : 0))
+    .sort(({ sortable: a }, { sortable: b }) => (a < b ? -1 : b === a ? 0 : 1))
     .map(({ original }) => original)
     .concat(logsWithInfo.filter(({ type }) => 'digit' === type).map(({ original }) => original));
 };
