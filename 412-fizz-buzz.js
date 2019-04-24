@@ -133,31 +133,83 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 90.08% of JavaScript online submissions for Fizz Buzz.
-// Memory Usage: 37 MB, less than 93.75% of JavaScript online submissions for Fizz Buzz.
+// Memory Usage: 37.2 MB, less than 82.81% of JavaScript online submissions for Fizz Buzz.
 
-const key = [
-  'FizzBuzz', // ... 0 (15)
-  undefined, // .... 1
-  undefined, // .... 2
-  'Fizz', // ....... 3
-  undefined, // .... 4
-  'Buzz', // ....... 5
-  'Fizz', // ....... 6
-  undefined, // .... 7
-  undefined, // .... 8
-  'Fizz', // ....... 9
-  'Buzz', // ...... 10
-  undefined, // ... 11
-  'Fizz', // ...... 12
-  undefined, // ... 13
-  undefined, // ... 14
-];
+// const key = {
+//   0: 'FizzBuzz',
+//   3: 'Fizz',
+//   5: 'Buzz',
+//   6: 'Fizz',
+//   9: 'Fizz',
+//   10: 'Buzz',
+//   12: 'Fizz',
+// };
 
 /**
  * @param {number} n
  * @return {string[]}
  */
-const fizzBuzz = n => new Array(n).fill().map((e, i) => key[(1 + i) % 15] || `${i + 1}`);
+// const fizzBuzz = n => new Array(n).fill().map((e, i) => key[(1 + i) % 15] || '' + (i + 1));
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 90.08% of JavaScript online submissions for Fizz Buzz.
+// Memory Usage: 37.3 MB, less than 78.13% of JavaScript online submissions for Fizz Buzz.
+
+// const key = {
+//   0: 'FizzBuzz',
+//   3: 'Fizz',
+//   5: 'Buzz',
+//   6: 'Fizz',
+//   9: 'Fizz',
+//   10: 'Buzz',
+//   12: 'Fizz',
+// };
+
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+// const fizzBuzz = n => {
+//   const result = new Array(n);
+//   while (0 < n) {
+//     result[n - 1] = key[n % 15] || '' + n;
+//     --n;
+//   }
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 100.00% of JavaScript online submissions for Fizz Buzz.
+// Memory Usage: 37 MB, less than 91.41% of JavaScript online submissions for Fizz Buzz.
+
+const key = {
+  3: 'Fizz',
+  5: 'Buzz',
+  6: 'Fizz',
+  9: 'Fizz',
+  10: 'Buzz',
+  12: 'Fizz',
+  15: 'FizzBuzz',
+};
+
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+const fizzBuzz = n => {
+  const result = new Array(n);
+  let curr = 1;
+  let iter = 1;
+  while (iter <= n) {
+    if (15 < curr) curr = 1;
+    result[iter - 1] = key[curr] || '' + iter;
+    curr++;
+    iter++;
+  }
+  return result;
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
