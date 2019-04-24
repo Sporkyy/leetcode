@@ -71,6 +71,9 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 64 ms, faster than 99.61% of JavaScript online submissions for Reorder Log Files.
+// Memory Usage: 36.5 MB, less than 83.33% of JavaScript online submissions for Reorder Log Files.
+
 /**
  * @param {string[]} logs
  * @return {string[]}
@@ -98,9 +101,6 @@ const reorderLogFiles = logs => {
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-// Runtime: 64 ms, faster than 99.61% of JavaScript online submissions for Reorder Log Files.
-// Memory Usage: 36.5 MB, less than 83.33% of JavaScript online submissions for Reorder Log Files.
 
 const tests = [
   {
