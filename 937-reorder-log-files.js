@@ -3,6 +3,9 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 68 ms, faster than 87.60% of JavaScript online submissions for Reorder Log Files.
+// Memory Usage: 37.1 MB, less than 50.00% of JavaScript online submissions for Reorder Log Files.
+
 const logIdentifier = log => log.slice(0, log.indexOf(' '));
 
 const logMinusIdentifier = log => log.slice(log.indexOf(' ') + 1);
