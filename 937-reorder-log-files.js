@@ -48,28 +48,59 @@
  * @param {string[]} logs
  * @return {string[]}
  */
+// const reorderLogFiles = logs => {
+//   const logsWithInfo = logs.map(original => {
+//     const identifier = original.slice(0, original.indexOf(' '));
+//     const body = original.slice(original.indexOf(' ') + 1);
+//     const type = /\d/.test(body) ? 'digit' : 'letter';
+//     const sortable = `${body} ${identifier}`;
+
+//     return {
+//       original,
+//       sortable,
+//       type,
+//     };
+//   });
+
+//   return logsWithInfo
+//     .filter(({ type }) => 'letter' === type)
+//     .sort(({ sortable: a }, { sortable: b }) => (a < b ? -1 : b === a ? 0 : 1))
+//     .map(({ original }) => original)
+//     .concat(logsWithInfo.filter(({ type }) => 'digit' === type).map(({ original }) => original));
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/**
+ * @param {string[]} logs
+ * @return {string[]}
+ */
 const reorderLogFiles = logs => {
-  const logsWithInfo = logs.map(original => {
-    const identifier = original.slice(0, original.indexOf(' '));
-    const body = original.slice(original.indexOf(' ') + 1);
-    const type = /\d/.test(body) ? 'digit' : 'letter';
-    const sortable = `${body} ${identifier}`;
+  const letterLogs = [];
+  const digitLogs = [];
 
-    return {
-      original,
-      sortable,
-      type,
-    };
-  });
+  for (let i = 0; i < logs.length; i++) {
+    const body = logs[i].slice(logs[i].indexOf(' ') + 1);
+    if (/\d/.test(body)) {
+      digitLogs.push(logs[i]);
+    } else {
+      letterLogs.push({
+        original: logs[i],
+        sortable: `${body} ${logs[i].slice(0, logs[i].indexOf(' '))}`,
+      });
+    }
+  }
 
-  return logsWithInfo
-    .filter(({ type }) => 'letter' === type)
+  return letterLogs
     .sort(({ sortable: a }, { sortable: b }) => (a < b ? -1 : b === a ? 0 : 1))
     .map(({ original }) => original)
-    .concat(logsWithInfo.filter(({ type }) => 'digit' === type).map(({ original }) => original));
+    .concat(digitLogs);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 99.61% of JavaScript online submissions for Reorder Log Files.
+// Memory Usage: 36.5 MB, less than 83.33% of JavaScript online submissions for Reorder Log Files.
 
 const tests = [
   {
