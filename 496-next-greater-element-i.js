@@ -3,6 +3,9 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 92 ms, faster than 9.03% of JavaScript online submissions for Next Greater Element I.
+// Memory Usage: 39.3 MB, less than 6.45% of JavaScript online submissions for Next Greater Element I.
+
 const nextNumbers = (num, arr) => arr.slice(arr.indexOf(num) + 1);
 
 const nextGreaterNumber = (num, arr) =>
@@ -17,9 +20,6 @@ const nextGreaterElement = (nums1, nums2) =>
   nums1.map(num => nextGreaterNumber(num, nextNumbers(num, nums2)));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-// Runtime: 92 ms, faster than 9.03% of JavaScript online submissions for Next Greater Element I.
-// Memory Usage: 39.3 MB, less than 6.45% of JavaScript online submissions for Next Greater Element I.
 
 const tests = [
   {
