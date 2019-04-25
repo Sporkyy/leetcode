@@ -29,20 +29,20 @@
  * @param {number[]} nums2
  * @return {number[]}
  */
-// const nextGreaterElement = (nums1, nums2) => {
-//   const result = new Array(nums1.length).fill(-1);
-//   for (let i = 0; i < nums1.length; i++) {
-//     for (let j = 0, ffwd = true; j < nums2.length; j++) {
-//       if (!ffwd && nums1[i] < nums2[j]) {
-//         result[i] = nums2[j];
-//         break;
-//       } else if (nums1[i] === nums2[j]) {
-//         ffwd = false;
-//       }
-//     }
-//   }
-//   return result;
-// };
+const nextGreaterElement = (nums1, nums2) => {
+  const result = new Array(nums1.length).fill(-1);
+  for (let i = 0; i < nums1.length; i++) {
+    for (let j = 0, ffwd = true; j < nums2.length; j++) {
+      if (!ffwd && nums1[i] < nums2[j]) {
+        result[i] = nums2[j];
+        break;
+      } else if (nums1[i] === nums2[j]) {
+        ffwd = false;
+      }
+    }
+  }
+  return result;
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -54,19 +54,19 @@
  * @param {number[]} nums2
  * @return {number[]}
  */
-const nextGreaterElement = (nums1, nums2) => {
-  const answer = new Map(nums1.map(e => [e, undefined]));
+// const nextGreaterElement = (nums1, nums2) => {
+//   const answer = new Map(nums1.map(e => [e, undefined]));
 
-  for (let i = 0; i < nums2.length; i++) {
-    if (answer.has(nums2[i])) answer.set(nums2[i], i);
-  }
+//   for (let i = 0; i < nums2.length; i++) {
+//     if (answer.has(nums2[i])) answer.set(nums2[i], i);
+//   }
 
-  for ([num1, position] of answer.entries()) {
-    answer.set(num1, nums2.slice(position + 1).filter(num2 => num1 < num2)[0] || -1);
-  }
+//   for ([num1, position] of answer.entries()) {
+//     answer.set(num1, nums2.slice(position + 1).filter(num2 => num1 < num2)[0] || -1);
+//   }
 
-  return Array.from(answer.values());
-};
+//   return Array.from(answer.values());
+// };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
