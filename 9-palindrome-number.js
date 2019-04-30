@@ -63,9 +63,49 @@
  * @param {number} x
  * @return {boolean}
  */
+// const isPalindrome = x => {
+//   if (x < 0 || (x !== 0 && 0 === x % 10)) return false;
+
+//   let revX = 0;
+//   while (revX < x) {
+//     revX = revX * 10 + (x % 10);
+//     x = Math.trunc(x / 10);
+//   }
+
+//   return x === revX || x === Math.trunc(revX / 10);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 236 ms, faster than 98.21% of JavaScript online submissions for Palindrome Number.
+// Memory Usage: 45.3 MB, less than 65.62% of JavaScript online submissions for Palindrome Number.
+
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
 const isPalindrome = x => {
-  if (x < 0 || (x !== 0 && 0 === x % 10)) return false;
-  if (x < 10) return true;
+  if (x < 0 || (x !== 0 && 0 === x % 10)) {
+    return false;
+  } else if (x < 10) {
+    return true;
+  } else if (x < 100) {
+    if (Math.trunc(x / 10) !== x % 10) return false;
+  } else if (x < 1000) {
+    if (Math.trunc(x / 100) !== x % 10) return false;
+  } else if (x < 10000) {
+    if (Math.trunc(x / 1000) !== x % 10) return false;
+  } else if (x < 100000) {
+    if (Math.trunc(x / 10000) !== x % 10) return false;
+  } else if (x < 1000000) {
+    if (Math.trunc(x / 100000) !== x % 10) return false;
+  } else if (x < 10000000) {
+    if (Math.trunc(x / 1000000) !== x % 10) return false;
+  } else if (x < 100000000) {
+    if (Math.trunc(x / 10000000) !== x % 10) return false;
+  } else if (x < 1000000000) {
+    if (Math.trunc(x / 100000000) !== x % 10) return false;
+  }
 
   let revX = 0;
   while (revX < x) {
@@ -79,26 +119,46 @@ const isPalindrome = x => {
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const tests = [
+  // {
+  //   name: 'Example 1',
+  //   input: 121,
+  //   expected: true,
+  // },
+  // {
+  //   name: 'Example 2',
+  //   input: -121,
+  //   expected: false,
+  // },
+  // {
+  //   name: 'Example 3',
+  //   input: 10,
+  //   expected: false,
+  // },
   {
-    name: 'Example 1',
-    input: 121,
-    expected: true,
-  },
-  {
-    name: 'Example 2',
-    input: -121,
-    expected: false,
-  },
-  {
-    name: 'Example 3',
-    input: 10,
-    expected: false,
-  },
-  {
-    name: 'Wrong answer',
+    name: '1000021',
     input: 1000021,
     expected: false,
   },
+  // {
+  //   name: '11',
+  //   input: 11,
+  //   expected: true,
+  // },
+  // {
+  //   name: '111',
+  //   input: 111,
+  //   expected: true,
+  // },
+  // {
+  //   name: '1239321',
+  //   input: 1239321,
+  //   expected: false,
+  // },
+  // {
+  //   name: 1001,
+  //   input: 1001,
+  //   expected: true,
+  // },
 ];
 
 tests.forEach(({ name, input, expected }) => {
