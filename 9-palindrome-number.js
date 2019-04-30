@@ -27,12 +27,31 @@
  * @param {number} x
  * @return {boolean}
  */
+// const isPalindrome = x => {
+//   const s = '' + x;
+//   for (let i = 0, j = s.length - 1; 0 <= j; i++, --j) {
+//     if (s[i] !== s[j]) return false;
+//   }
+//   return true;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 248 ms, faster than 74.99% of JavaScript online submissions for Palindrome Number.
+// Memory Usage: 44.5 MB, less than 96.63% of JavaScript online submissions for Palindrome Number.
+
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
 const isPalindrome = x => {
-  const s = '' + x;
-  for (let i = 0, j = s.length - 1; 0 <= j; i++, --j) {
-    if (s[i] !== s[j]) return false;
+  let revX = 0;
+  let tmp = x;
+  while (0 < tmp) {
+    revX = revX * 10 + (tmp % 10);
+    tmp = Math.trunc(tmp / 10);
   }
-  return true;
+  return revX === x;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
