@@ -10,28 +10,56 @@
  * @param {string[]} strs
  * @return {string}
  */
+// const longestCommonPrefix = strs => {
+//   let prefix = '';
+
+//   const charAtInStrs = n => strs.map(s => s.slice(n, n + 1));
+
+//   const isArrayHomogeneous = a =>
+//     a.reduce((acc, curr, i) => acc && (curr === a[i + 1] || 'undefined' === typeof a[i + 1]), true);
+
+//   const isArrayFull = a => a.length === a.join('').length;
+
+//   let slicePoint = 0;
+
+//   while (true) {
+//     const chars = charAtInStrs(slicePoint);
+//     if (0 < chars.length && isArrayFull(chars) && isArrayHomogeneous(chars)) {
+//       prefix += chars[0];
+//       slicePoint++;
+//     } else {
+//       break;
+//     }
+//   }
+
+//   return prefix;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 80.12% of JavaScript online submissions for Longest Common Prefix.
+// Memory Usage: 35.1 MB, less than 44.45% of JavaScript online submissions for Longest Common Prefix.
+
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
 const longestCommonPrefix = strs => {
+  if (0 === strs.length) return '';
+  if (1 === strs.length) return strs[0];
   let prefix = '';
-
-  const charAtInStrs = n => strs.map(s => s.slice(n, n + 1));
-
-  const isArrayHomogeneous = a =>
-    a.reduce((acc, curr, i) => acc && (curr === a[i + 1] || 'undefined' === typeof a[i + 1]), true);
-
-  const isArrayFull = a => a.length === a.join('').length;
-
-  let slicePoint = 0;
-
+  let tmp = '';
+  let i = 0;
   while (true) {
-    const chars = charAtInStrs(slicePoint);
-    if (0 < chars.length && isArrayFull(chars) && isArrayHomogeneous(chars)) {
-      prefix += chars[0];
-      slicePoint++;
-    } else {
-      break;
+    const c = strs[0][i];
+    if ('undefined' === typeof c) break;
+    tmp += c;
+    for (let j = 1; j < strs.length; j++) {
+      if (!strs[j].startsWith(tmp)) return prefix;
     }
+    prefix += c;
+    i++;
   }
-
   return prefix;
 };
 
@@ -62,6 +90,11 @@ const tests = [
     name: 'abca, abc',
     input: ['abca', 'abc'],
     expected: 'abc',
+  },
+  {
+    name: 'a',
+    input: ['a'],
+    expected: 'a',
   },
 ];
 
