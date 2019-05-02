@@ -44,18 +44,44 @@
  * @param {string[]} strs
  * @return {string}
  */
+// const longestCommonPrefix = strs => {
+//   if (0 === strs.length) return '';
+//   if (1 === strs.length) return strs[0];
+//   let prefix = '';
+//   let tmp = '';
+//   let i = 0;
+//   while (true) {
+//     const c = strs[0][i];
+//     if ('undefined' === typeof c) break;
+//     tmp += c;
+//     for (let j = 1; j < strs.length; j++) {
+//       if (!strs[j].startsWith(tmp)) return prefix;
+//     }
+//     prefix += c;
+//     i++;
+//   }
+//   return prefix;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 80.12% of JavaScript online submissions for Longest Common Prefix.
+// Memory Usage: 34.9 MB, less than 63.80% of JavaScript online submissions for Longest Common Prefix.
+
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
 const longestCommonPrefix = strs => {
   if (0 === strs.length) return '';
   if (1 === strs.length) return strs[0];
   let prefix = '';
-  let tmp = '';
   let i = 0;
   while (true) {
     const c = strs[0][i];
     if ('undefined' === typeof c) break;
-    tmp += c;
     for (let j = 1; j < strs.length; j++) {
-      if (!strs[j].startsWith(tmp)) return prefix;
+      if (c !== strs[j][i]) return prefix;
     }
     prefix += c;
     i++;
@@ -95,6 +121,16 @@ const tests = [
     name: 'a',
     input: ['a'],
     expected: 'a',
+  },
+  {
+    name: 'Two blanks',
+    input: ['', ''],
+    expected: '',
+  },
+  {
+    name: '["c","c"]',
+    input: ['c', 'c'],
+    expected: 'c',
   },
 ];
 
