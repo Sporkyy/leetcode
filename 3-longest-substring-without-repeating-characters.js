@@ -36,6 +36,37 @@
  * @param {string} s
  * @return {number}
  */
+// const lengthOfLongestSubstring = s => {
+//   if (0 === s.length) return 0;
+//   if (1 === s.length) return 1;
+//   let candidate = s[0];
+//   let longest = 0;
+//   for (let i = 1; i < s.length; i++) {
+//     const char = s[i];
+//     const index = candidate.indexOf(char);
+//     if (-1 < index) {
+//       const length = candidate.length;
+//       if (longest < length) {
+//         longest = length;
+//       }
+//       candidate = candidate.slice(index + 1) + char;
+//     } else {
+//       candidate += char;
+//     }
+//   }
+//   if (longest < candidate.length) return candidate.length;
+//   return longest;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 100.00% of JavaScript online submissions for Longest Substring Without Repeating Characters.
+// Memory Usage: 39.8 MB, less than 70.51% of JavaScript online submissions for Longest Substring Without Repeating Characters.
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
 const lengthOfLongestSubstring = s => {
   if (0 === s.length) return 0;
   if (1 === s.length) return 1;
@@ -44,18 +75,17 @@ const lengthOfLongestSubstring = s => {
   for (let i = 1; i < s.length; i++) {
     const char = s[i];
     const index = candidate.indexOf(char);
-    if (-1 < index) {
-      const length = candidate.length;
-      if (longest < length) {
-        longest = length;
-      }
-      candidate = candidate.slice(index + 1) + char;
-    } else {
+    if (-1 === index) {
       candidate += char;
+      continue;
     }
+    const length = candidate.length;
+    if (longest < length) {
+      longest = length;
+    }
+    candidate = candidate.slice(index + 1) + char;
   }
-  if (longest < candidate.length) return candidate.length;
-  return longest;
+  return longest < candidate.length ? candidate.length : longest;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
