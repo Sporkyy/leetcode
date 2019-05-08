@@ -3,30 +3,66 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 96 ms, faster than 87.05% of JavaScript online submissions for Longest Substring Without Repeating Characters.
+// Memory Usage: 45.1 MB, less than 17.31% of JavaScript online submissions for Longest Substring Without Repeating Characters.
+
 /**
  * @param {string} s
  * @return {number}
  */
-const lengthOfLongestSubstring = s => {};
+const lengthOfLongestSubstring = s => {
+  if (s.length < 2) return s.length;
+  let current = s[0];
+  const possibilities = [];
+  for (let i = 1; i < s.length; i++) {
+    if (current.includes(s[i])) {
+      possibilities.push(current);
+      current = current.split(s[i])[1] + s[i];
+      continue;
+    }
+    current += s[i];
+  }
+  possibilities.push(current);
+  // console.log(possibilities);
+  return Math.max(...possibilities.map(p => p.length));
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const tests = [
+  // {
+  //   name: 'Example 1',
+  //   input: 'abcabcbb',
+  //   expected: 3,
+  //   // Explanation: The answer is "abc", with the length of 3.
+  // },
+  // {
+  //   name: 'Example 2',
+  //   input: 'bbbbb',
+  //   expected: 1,
+  //   // Explanation: The answer is "b", with the length of 1.
+  // },
+  // {
+  //   name: 'Example 3',
+  //   input: 'pwwkew',
+  //   expected: 3,
+  //   // Explanation: The answer is "wke", with the length of 3.
+  // },
+  // {
+  //   name: 'blank',
+  //   input: '',
+  //   expected: 0,
+  //   // Explanation: The answer is "wke", with the length of 3.
+  // },
+  // {
+  //   name: 'au',
+  //   input: 'au',
+  //   expected: 2,
+  //   // Explanation: The answer is "wke", with the length of 3.
+  // },
   {
-    name: 'Example 1',
-    input: 'abcabcbb',
-    expected: 3,
-    // Explanation: The answer is "abc", with the length of 3.
-  },
-  {
-    name: 'Example 2',
-    input: 'bbbbb',
-    expected: 1,
-    // Explanation: The answer is "b", with the length of 1.
-  },
-  {
-    name: 'Example 3',
-    input: 'pwwkew',
+    name: 'dvdf',
+    input: 'dvdf',
     expected: 3,
     // Explanation: The answer is "wke", with the length of 3.
   },
