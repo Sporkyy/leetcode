@@ -113,19 +113,16 @@ const tests = [
     name: 'blank',
     input: '',
     expected: 0,
-    // Explanation: The answer is "wke", with the length of 3.
   },
   {
     name: 'au',
     input: 'au',
     expected: 2,
-    // Explanation: The answer is "wke", with the length of 3.
   },
   {
     name: 'dvdf',
     input: 'dvdf',
     expected: 3,
-    // Explanation: The answer is "wke", with the length of 3.
   },
 ];
 
