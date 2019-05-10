@@ -28,15 +28,15 @@ const findMedianSortedArrays = (nums1, nums2) =>
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const tests = [
-  // {
-  //   name: '[1, 3] & [2]',
-  //   input: {
-  //     nums1: [1, 3],
-  //     nums2: [2],
-  //   },
-  //   expected: 2.0,
-  //   // Explanation: The median is 2.0
-  // },
+  {
+    name: '[1, 3] & [2]',
+    input: {
+      nums1: [1, 3],
+      nums2: [2],
+    },
+    expected: 2.0,
+    // Explanation: The median is 2.0
+  },
   {
     name: '[1, 2] & [3, 4]',
     input: {
@@ -46,22 +46,22 @@ const tests = [
     expected: 2.5,
     // Explanation: The median is (2 + 3)/2 = 2.5
   },
-  // {
-  //   name: '[1, 2] & []',
-  //   input: {
-  //     nums1: [1, 2],
-  //     nums2: [],
-  //   },
-  //   expected: 1.5,
-  // },
-  // {
-  //   name: '[3] & [-2, -1]',
-  //   input: {
-  //     nums1: [3],
-  //     nums2: [-2, -1],
-  //   },
-  //   expected: -1.0,
-  // },
+  {
+    name: '[1, 2] & []',
+    input: {
+      nums1: [1, 2],
+      nums2: [],
+    },
+    expected: 1.5,
+  },
+  {
+    name: '[3] & [-2, -1]',
+    input: {
+      nums1: [3],
+      nums2: [-2, -1],
+    },
+    expected: -1.0,
+  },
 ];
 
 tests.forEach(({ name, input: { nums1, nums2 }, expected }) => {
