@@ -21,22 +21,72 @@ The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 // Runtime: 144 ms, faster than 66.67% of JavaScript online submissions for Flower Planting With No Adjacent.
 // Memory Usage: 56.4 MB, less than 100.00% of JavaScript online submissions for Flower Planting With No Adjacent.
 
-class Garden {
-  constructor() {
-    this.connectedGardens = [];
-    this.flower = '';
+// class Garden {
+//   constructor() {
+//     this.connectedGardens = [];
+//     this.flower = '';
 
-    return this;
-  }
+//     return this;
+//   }
 
-  connectTo(g) {
-    this.connectedGardens.push(g);
-  }
+//   connectTo(g) {
+//     this.connectedGardens.push(g);
+//   }
 
-  getConnectedGardenFlowers() {
-    return this.connectedGardens.map(g => g.flower);
-  }
-}
+//   getConnectedGardenFlowers() {
+//     return this.connectedGardens.map(g => g.flower);
+//   }
+// }
+
+// /**
+//  * @param {number} N
+//  * @param {number[][]} paths
+//  * @return {number[]}
+//  */
+// const gardenNoAdj = (N, paths) => {
+//   const gardens = new Array(N);
+
+//   for (let i = 0; i < N; i++) {
+//     gardens[i] = new Garden();
+//   }
+
+//   // console.log(gardens);
+//   // console.log(gardens.length);
+
+//   for (let i = 0; i < paths.length; i++) {
+//     const [from, to] = [paths[i][0] - 1, paths[i][1] - 1];
+//     gardens[from].connectTo(gardens[to]);
+//     gardens[to].connectTo(gardens[from]);
+//   }
+
+//   // console.log(gardens);
+//   // console.log(gardens.length);
+
+//   for (let i = 0; i < gardens.length; i++) {
+//     // console.log(i);
+//     // console.log(gardens[i]);
+//     if (!gardens[i].getConnectedGardenFlowers().includes(1)) {
+//       gardens[i].flower = 1;
+//     } else if (!gardens[i].getConnectedGardenFlowers().includes(2)) {
+//       gardens[i].flower = 2;
+//     } else if (!gardens[i].getConnectedGardenFlowers().includes(3)) {
+//       gardens[i].flower = 3;
+//     } else if (!gardens[i].getConnectedGardenFlowers().includes(4)) {
+//       gardens[i].flower = 4;
+//     }
+//   }
+
+//   // console.log(gardens);
+
+//   return gardens.map(g => g.flower);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 140 ms, faster than 65.00% of JavaScript online submissions for
+// Flower Planting With No Adjacent.
+// Memory Usage: 47.1 MB, less than 100.00% of JavaScript online submissions for
+// Flower Planting With No Adjacent.
 
 /**
  * @param {number} N
@@ -47,36 +97,27 @@ const gardenNoAdj = (N, paths) => {
   const gardens = new Array(N);
 
   for (let i = 0; i < N; i++) {
-    gardens[i] = new Garden();
+    gardens[i] = {
+      flower: '',
+      connectedGardens: [],
+    };
   }
 
-  // console.log(gardens);
-  // console.log(gardens.length);
-
-  for (let i = 0; i < paths.length; i++) {
-    const [from, to] = [paths[i][0] - 1, paths[i][1] - 1];
-    gardens[from].connectTo(gardens[to]);
-    gardens[to].connectTo(gardens[from]);
-  }
-
-  // console.log(gardens);
-  // console.log(gardens.length);
+  paths.forEach(([gn1, gn2]) => {
+    const [gi1, gi2] = [gn1 - 1, gn2 - 1];
+    gardens[gi1].connectedGardens.push(gardens[gi2]);
+    gardens[gi2].connectedGardens.push(gardens[gi1]);
+  });
 
   for (let i = 0; i < gardens.length; i++) {
-    // console.log(i);
-    // console.log(gardens[i]);
-    if (!gardens[i].getConnectedGardenFlowers().includes(1)) {
-      gardens[i].flower = 1;
-    } else if (!gardens[i].getConnectedGardenFlowers().includes(2)) {
-      gardens[i].flower = 2;
-    } else if (!gardens[i].getConnectedGardenFlowers().includes(3)) {
-      gardens[i].flower = 3;
-    } else if (!gardens[i].getConnectedGardenFlowers().includes(4)) {
-      gardens[i].flower = 4;
+    const connectedFlowers = gardens[i].connectedGardens.map(g => g.flower);
+    for (let j = 1; j < 5; j++) {
+      if (!connectedFlowers.includes(j)) {
+        gardens[i].flower = j;
+        break;
+      }
     }
   }
-
-  // console.log(gardens);
 
   return gardens.map(g => g.flower);
 };
@@ -95,10 +136,6 @@ const tests = [
     },
     expected: [1, 2, 3],
   },
-  // G1: G2
-  // G2: G1
-  // G3: G4
-  // G4: G3
   {
     name: 'Example 2',
     input: {
@@ -107,10 +144,6 @@ const tests = [
     },
     expected: [1, 2, 1, 2],
   },
-  // G1: G2, G3, G4
-  // G2: G1, G3, G4
-  // G3: G1, G2, G4
-  // G4: G1, G2, G3
   {
     name: 'Example 3',
     input: {
