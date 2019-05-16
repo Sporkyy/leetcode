@@ -23,19 +23,19 @@ class Solution
         for ($i = 0; $i < $N; $i++) {
             $gardens[] = [
                 'flower' => '',
-                'connections' => [],
+                'connectedGardens' => [],
             ];
         }
 
         foreach ($paths as $path) {
-            $gardens[$path[0] - 1]['connections'][] = &$gardens[$path[1] - 1];
-            $gardens[$path[1] - 1]['connections'][] = &$gardens[$path[0] - 1];
+            $gardens[$path[0] - 1]['connectedGardens'][] = &$gardens[$path[1] - 1];
+            $gardens[$path[1] - 1]['connectedGardens'][] = &$gardens[$path[0] - 1];
         }
 
         foreach ($gardens as &$garden) {
             $connectedFlowers = array_map(function ($g) {
                 return $g['flower'];
-            }, $garden['connections']);
+            }, $garden['connectedGardens']);
 
             for ($i = 1; $i < 5; $i++) {
                 if (!in_array($i, $connectedFlowers)) {
