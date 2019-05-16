@@ -141,7 +141,7 @@ class Solution
         foreach ($nums as $index1 => $num1) {
             $num2 = $target - $num1;
             $index2 = $numsFlipped[$num2] ?? null;
-            if (! is_null($index2) && $index1 !== $index2) {
+            if (!is_null($index2) && $index1 !== $index2) {
                 return [$index1, $index2];
             }
         }
@@ -162,8 +162,8 @@ $tests = [
     [
         'name' => '[15, 11, 7, 2], 9',
         'input' => [
-          'nums' => [15, 11, 7, 2],
-          'target' => 9,
+            'nums' => [15, 11, 7, 2],
+            'target' => 9,
         ],
         'expected' => [2, 3],
     ],
@@ -186,8 +186,8 @@ $tests = [
     [
         'name' => '[0, 1, 2, 0], 0',
         'input' => [
-          'nums' => [0, 1, 2, 0],
-          'target' => 0,
+            'nums' => [0, 1, 2, 0],
+            'target' => 0,
         ],
         'expected' => [0, 3],
     ],
@@ -216,6 +216,6 @@ foreach ($tests as $test) {
         echo 'But got the below instead<br>';
         print_r($output);
     }
-    echo('<hr>');
+    echo '<hr>';
 }
 echo '</pre>';
