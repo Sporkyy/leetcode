@@ -3,10 +3,10 @@
 // 1042. Flower Planting With No Adjacent
 // https://leetcode.com/problems/flower-planting-with-no-adjacent/
 
-// Runtime: 300 ms, faster than 100.00% of PHP online submissions for
-// Flower Planting With No Adjacent.
-// Memory Usage: 35 MB, less than 100.00% of PHP online submissions for
-// Flower Planting With No Adjacent.
+// Runtime: 296 ms, faster than 100.00% of PHP online submissions
+// for Flower Planting With No Adjacent.
+// Memory Usage: 35.1 MB, less than 100.00% of PHP online submissions
+// for Flower Planting With No Adjacent.
 
 class Solution
 {
