@@ -12,56 +12,58 @@ class Solution
     /**
      * @param String $instructions
      * @return Boolean
+     *
+     * Orthogonal directions have different values
+     * i.e. x-axis = 1 and y-axis = 2
+     * Opposite directions sum to zero
+     * i.e. right = +1 and left = -1
+     *      up = +2 and down = -2
+     *
+     * Arrays are used to handle the calculations rather than
+     * logic structures like if or switch
      */
     function isRobotBounded($instructions)
     {
-        $a = 0;
-        $g = 0;
+        // 0 = Right, 1 = Up, 2 = Left, 3 = Down
+        $direction = 0;
+
+        // Right = +1, Up = +2, Left = -1, Down = -2
+        $position = 0;
+
+        // Rotate left, Rotate right
+        $directionOptions = ['L' => 1, 'R' => -1];
+
+        // Right, Up, Left, Down
+        $positionOptions = [1, 2, -1, -2];
 
         for ($i = 0; $i < strlen($instructions); $i++) {
             $instruction = $instructions[$i];
+
             if ('L' === $instruction || 'R' === $instruction) {
-                switch ($instruction) {
-                    case 'L':
-                        $g++;
-                        break;
-                    case 'R':
-                        $g--;
-                        break;
+                // Update direction
+                $direction += $directionOptions[$instruction];
+
+                // Handle wrapping around
+                if ($direction < 0) {
+                    // Handle rotations below 0 gradians
+                    $direction = 4 + $direction;
+                } else if (3 < $direction) {
+                    // Handle rotations over 400 gradians
+                    $direction = $direction % 4;
                 }
 
-                if ($g < 0) {
-                    $g = 4 + $g;
-                } else if (3 < $g) {
-                    $g = $g % 4;
-                }
-
-                // $directions = ['➡', '⬆', '⬅', '⬇'];
-                // echo $directions[$g], '<br>';
-
+                // Nothing else to do; loop again
                 continue;
             }
 
-            switch ($g) {
-                case 0:
-                    $a += 1;
-                    break;
-                case 1:
-                    $a += 2;
-                    break;
-                case 2:
-                    $a -= 1;
-                    break;
-                case 3:
-                    $a -= 2;
-                    break;
-            }
+            // Update position based on direction
+            $position += $positionOptions[$direction];
         }
 
-        // echo '$a = ', $a, '<br>';
-        // echo '$g = ', $g, '<br>';
-
-        return 0 === $a || 0 !== $g;
+        // If back at the same position started from
+        // Or if direction differs from started from
+        // (Thus circling back eventually)
+        return 0 === $position || 0 !== $direction;
     }
 }
 
