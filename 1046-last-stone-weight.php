@@ -85,9 +85,9 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 4 ms, faster than 75.00% of PHP online submissions
+// Runtime: 8 ms, faster than 50.00% of PHP online submissions
 // for Last Stone Weight.
-// Memory Usage: 14.6 MB, less than 100.00% of PHP online submissions
+// Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
 // for Last Stone Weight.
 
 // class Solution
@@ -101,17 +101,18 @@
 //     {
 //         while (1 < count($stones)) {
 //             rsort($stones, SORT_NUMERIC);
-//             $stones[0] = -$stones[1] + array_shift($stones);
+//             $outcome = array_shift($stones) - array_shift($stones);
+//             if (0 < $outcome) array_push($stones, $outcome);
 //         }
-//         return max($stones);
+//         return $stones[0] ?? 0;
 //     }
 // }
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 4 ms, faster than 75.00% of PHP online submissions
+// Runtime: 8 ms, faster than 50.00% of PHP online submissions
 // for Last Stone Weight.
-// Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
+// Memory Usage: 14.9 MB, less than 100.00% of PHP online submissions
 // for Last Stone Weight.
 
 class Solution
