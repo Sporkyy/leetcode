@@ -128,8 +128,7 @@ class Solution
         foreach ($stones as $stone) $pq->insert($stone, $stone);
         while (1 < $pq->count()) {
             $outcome = $pq->extract() - $pq->extract();
-            if (0 === $outcome) continue;
-            $pq->insert($outcome, $outcome);
+            if (0 < $outcome) $pq->insert($outcome, $outcome);
         }
         return $pq->current() ?? 0;
     }
