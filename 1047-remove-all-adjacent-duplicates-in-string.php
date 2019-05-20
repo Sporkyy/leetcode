@@ -10,27 +10,27 @@
 // Memory Usage: 15.1 MB, less than 100.00% of PHP online submissions
 // for Remove All Adjacent Duplicates In String.
 
-class Solution
-{
+// class Solution
+// {
 
-    /**
-     * @param String $S
-     * @return String
-     */
-    function removeDuplicates($S)
-    {
-        if (strlen($S) < 2) return $S;
-        $result = $S[0];
-        for ($i = 1; $i < strlen($S); $i++) {
-            if (0 < strlen($result) && $result[strlen($result) - 1] === $S[$i]) {
-                $result = substr($result, 0, strlen($result) - 1);
-            } else {
-                $result .= $S[$i];
-            }
-        }
-        return $result;
-    }
-}
+//     /**
+//      * @param String $S
+//      * @return String
+//      */
+//     function removeDuplicates($S)
+//     {
+//         if (strlen($S) < 2) return $S;
+//         $result = $S[0];
+//         for ($i = 1; $i < strlen($S); $i++) {
+//             if (0 < strlen($result) && $result[strlen($result) - 1] === $S[$i]) {
+//                 $result = substr($result, 0, strlen($result) - 1);
+//             } else {
+//                 $result .= $S[$i];
+//             }
+//         }
+//         return $result;
+//     }
+// }
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -62,6 +62,34 @@ class Solution
 //         return join($result);
 //     }
 // }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 24 ms, faster than 33.33% of PHP online submissions
+// for Remove All Adjacent Duplicates In String.
+// Memory Usage: 14.9 MB, less than 100.00% of PHP online submissions
+// for Remove All Adjacent Duplicates In String.
+
+class Solution
+{
+
+    /**
+     * @param String $S
+     * @return String
+     */
+    function removeDuplicates($S)
+    {
+        $end = -1;
+        for ($i = 0; $i < strlen($S); $i++) {
+            if (0 <= $end && $S[$end] === $S[$i]) {
+                --$end;
+            } else {
+                $S[++$end] = $S[$i];
+            }
+        }
+        return substr($S, 0, $end + 1);
+    }
+}
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
