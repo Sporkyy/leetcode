@@ -82,7 +82,7 @@ class Solution
         $end = -1;
         for ($i = 0; $i < strlen($S); $i++) {
             if (0 <= $end && $S[$end] === $S[$i]) {
-                --$end;
+                $end--;
             } else {
                 $S[++$end] = $S[$i];
             }
@@ -138,11 +138,11 @@ $tests = [
         'input' => 'abaca',
         'expected' => 'abaca',
     ],
-    // [
-    //     'name' => 'Really Long',
-    //     'input' => 'miepavtabopghtcivgoguhgpjhiepbofvuvggfnpjllomlvuibrnulpegacebqwswjjfsevmnpcathldtkomiubnisfawbshbmswnjlcdocowvqhwivullaqkvfkeewriauouartlhotuctwhwlvecgaolbctivbdjrsqfwacvsnpjhouvappgpdskbcfhqjggpminhcffljiljfmcekudkjnugejfucwilfvdeaosmoppujofaurvantovgdclqcfqsssvmscbsnhogkcasckdbtiuovevsramwpcojqrkqqkukuaddidifmkdrjpfvcnmihwqudfqsrgeoleefuwmmgnvlgcugouelnjidaqggafhmoskmdnlfirngbqhfsfcfcfiwqkunrkfcseluhoshagnlhoneedllcflcrboofpuckusgcfroqgdcbpwskvnndrmorekebuffpnrkhrufwijbufetfjjadjlebclwigwdcmpvdjlqqlomjtooiagsiwadswcqqsclbwosdmarbooernmrfvtnnrfokbwksjaeucdscowqfgopgwqptffioviduvwwloqlodcrtdogogtkolursittcvfuewnrsmshfadnkswtqssstkfajosstdwrwgvmhuqvkguvlqovotakwhwhsgbcvffpsthlpfpwgsscmcbgohsilwgknhwkpfdiurhtlcsahuhvmlkte',
-    //     'expected' => 'miepavtabopghtcivgoguhgpjhiepbofvuvfnpjomlvuibrnulpegacebqwswfsevmnpcathldtkomiubnisfawbshbmswnjlcdocowvqhwivuaqkvfkwriauouartlhotuctwhwlvecgaolbctivbdjrsqfwacvsnpjhouvagpdskbcfhqjpminhcljiljfmcekudkjnugejfucwilfvdeaosmoujofaurvantovgdclqcfqsvmscbsnhogkcasckdbtiuovevsramwpcojqrukuaidifmkdrjpfvcnmihwqudfqsrgeolfuwgnvlgcugouelnjidaqafhmoskmdnlfirngbqhfsfcfcfiwqkunrkfcseluhoshagnlhondcflcrbfpuckusgcfroqgdcbpwskvdrmorekebupnrkhrufwijbufetfadjlebclwigwdcmpvdjomjtiagsiwadswcsclbwosdmarbernmrfvtrfokbwksjaeucdscowqfgopgwqptioviduvloqlodcrtdogogtkolursicvfuewnrsmshfadnkswtqstkfajotdwrwgvmhuqvkguvlqovotakwhwhsgbcvpsthlpfpwgcmcbgohsilwgknhwkpfdiurhtlcsahuhvmlkte',
-    // ],
+    [
+        'name' => 'Really Long',
+        'input' => 'miepavtabopghtcivgoguhgpjhiepbofvuvggfnpjllomlvuibrnulpegacebqwswjjfsevmnpcathldtkomiubnisfawbshbmswnjlcdocowvqhwivullaqkvfkeewriauouartlhotuctwhwlvecgaolbctivbdjrsqfwacvsnpjhouvappgpdskbcfhqjggpminhcffljiljfmcekudkjnugejfucwilfvdeaosmoppujofaurvantovgdclqcfqsssvmscbsnhogkcasckdbtiuovevsramwpcojqrkqqkukuaddidifmkdrjpfvcnmihwqudfqsrgeoleefuwmmgnvlgcugouelnjidaqggafhmoskmdnlfirngbqhfsfcfcfiwqkunrkfcseluhoshagnlhoneedllcflcrboofpuckusgcfroqgdcbpwskvnndrmorekebuffpnrkhrufwijbufetfjjadjlebclwigwdcmpvdjlqqlomjtooiagsiwadswcqqsclbwosdmarbooernmrfvtnnrfokbwksjaeucdscowqfgopgwqptffioviduvwwloqlodcrtdogogtkolursittcvfuewnrsmshfadnkswtqssstkfajosstdwrwgvmhuqvkguvlqovotakwhwhsgbcvffpsthlpfpwgsscmcbgohsilwgknhwkpfdiurhtlcsahuhvmlkte',
+        'expected' => 'miepavtabopghtcivgoguhgpjhiepbofvuvfnpjomlvuibrnulpegacebqwswfsevmnpcathldtkomiubnisfawbshbmswnjlcdocowvqhwivuaqkvfkwriauouartlhotuctwhwlvecgaolbctivbdjrsqfwacvsnpjhouvagpdskbcfhqjpminhcljiljfmcekudkjnugejfucwilfvdeaosmoujofaurvantovgdclqcfqsvmscbsnhogkcasckdbtiuovevsramwpcojqrukuaidifmkdrjpfvcnmihwqudfqsrgeolfuwgnvlgcugouelnjidaqafhmoskmdnlfirngbqhfsfcfcfiwqkunrkfcseluhoshagnlhondcflcrbfpuckusgcfroqgdcbpwskvdrmorekebupnrkhrufwijbufetfadjlebclwigwdcmpvdjomjtiagsiwadswcsclbwosdmarbernmrfvtrfokbwksjaeucdscowqfgopgwqptioviduvloqlodcrtdogogtkolursicvfuewnrsmshfadnkswtqstkfajotdwrwgvmhuqvkguvlqovotakwhwhsgbcvpsthlpfpwgcmcbgohsilwgknhwkpfdiurhtlcsahuhvmlkte',
+    ],
 ];
 
 $s = new Solution();
