@@ -112,19 +112,19 @@ class Solution
      */
     function isBoomerang($points)
     {
-        // If all points are in a line vertially
+        // If all points align vertically
         if (
             $points[0][0] === $points[1][0]
             && $points[1][0] === $points[2][0]
             && $points[2][0] === $points[0][0]
         ) return false;
-        // If all points are in a line horizontally
+        // If all points align horizontally
         if (
             $points[0][1] === $points[1][1]
             && $points[1][1] === $points[2][1]
             && $points[2][1] === $points[0][1]
         ) return false;
-        // If any of the points are the same
+        // If any points are the same
         if (
             ($points[0][0] === $points[1][0]
                 && $points[0][1] === $points[1][1])
@@ -133,13 +133,13 @@ class Solution
             || ($points[2][0] === $points[0][0]
                 && $points[2][1] === $points[0][1])
         ) return false;
-        // If the points are in a line diagonally
+        // If all points align diagonally
         if (
             ($points[0][0] - $points[1][0] === $points[0][1] - $points[1][1])
             && ($points[1][0] - $points[2][0] === $points[1][1] - $points[2][1])
             && ($points[2][0] - $points[0][0] === $points[2][1] - $points[0][1])
         ) return false;
-        // If all the tests are passed, assume it is valid
+        // Assume it is valid since all the tests were passed
         return true;
     }
 }
