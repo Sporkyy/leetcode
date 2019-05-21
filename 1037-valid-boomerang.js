@@ -12,38 +12,65 @@
  * @param {number[][]} points
  * @return {boolean}
  */
-var isBoomerang = function(points) {
-  // If all points align vertically
-  if (
-    points[0][0] === points[1][0] &&
-    points[1][0] === points[2][0] &&
-    points[2][0] === points[0][0]
-  )
-    return false;
-  // If all points align horizontally
-  if (
-    points[0][1] === points[1][1] &&
-    points[1][1] === points[2][1] &&
-    points[2][1] === points[0][1]
-  )
-    return false;
-  // If any points are the same
-  if (
+// const isBoomerang = points => {
+//   // If any points are the same
+//   if (
+//     (points[0][0] === points[1][0] && points[0][1] === points[1][1]) ||
+//     (points[1][0] === points[2][0] && points[1][1] === points[2][1]) ||
+//     (points[2][0] === points[0][0] && points[2][1] === points[0][1])
+//   )
+//     return false;
+//   // If all points align vertically
+//   if (
+//     points[0][0] === points[1][0] &&
+//     points[1][0] === points[2][0] &&
+//     points[2][0] === points[0][0]
+//   )
+//     return false;
+//   // If all points align horizontally
+//   if (
+//     points[0][1] === points[1][1] &&
+//     points[1][1] === points[2][1] &&
+//     points[2][1] === points[0][1]
+//   )
+//     return false;
+//   // If all points align diagonally
+//   if (
+//     points[0][0] - points[1][0] === points[0][1] - points[1][1] &&
+//     points[1][0] - points[2][0] === points[1][1] - points[2][1] &&
+//     points[2][0] - points[0][0] === points[2][1] - points[0][1]
+//   )
+//     return false;
+//   // Assume it is valid since all the tests were passed
+//   return true;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 56 ms, faster than 88.70% of JavaScript online submissions
+// for Valid Boomerang.
+// Memory Usage: 33.7 MB, less than 100.00% of JavaScript online submissions
+// for Valid Boomerang.
+
+/**
+ * @param {number[][]} points
+ * @return {boolean}
+ */
+var isBoomerang = points =>
+  !(
     (points[0][0] === points[1][0] && points[0][1] === points[1][1]) ||
     (points[1][0] === points[2][0] && points[1][1] === points[2][1]) ||
-    (points[2][0] === points[0][0] && points[2][1] === points[0][1])
-  )
-    return false;
-  // If all points align diagonally
-  if (
-    points[0][0] - points[1][0] === points[0][1] - points[1][1] &&
-    points[1][0] - points[2][0] === points[1][1] - points[2][1] &&
-    points[2][0] - points[0][0] === points[2][1] - points[0][1]
-  )
-    return false;
-  // Assume it is valid since all the tests were passed
-  return true;
-};
+    (points[2][0] === points[0][0] && points[2][1] === points[0][1]) ||
+    (points[0][0] === points[1][0] &&
+      points[1][0] === points[2][0] &&
+      points[2][0] === points[0][0]) ||
+    (points[0][1] === points[1][1] &&
+      points[1][1] === points[2][1] &&
+      points[2][1] === points[0][1]) ||
+    (points[0][0] - points[1][0] === points[0][1] - points[1][1] &&
+      points[1][0] - points[2][0] === points[1][1] - points[2][1] &&
+      points[2][0] - points[0][0] === points[2][1] - points[0][1])
+  );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -105,9 +132,9 @@ const tests = [
 tests.forEach(({ name, input, expected }) => {
   const output = isBoomerang(input);
   if (expected === output) {
-    console.log(`✅ {name}`);
+    console.log(`✅ ${name}`);
   } else {
-    console.log(`🔴 {name}`);
-    console.log(`Expected "{expected}", but got "{output}"`);
+    console.log(`🔴 ${name}`);
+    console.log(`Expected "${expected}", but got "${output}"`);
   }
 });
