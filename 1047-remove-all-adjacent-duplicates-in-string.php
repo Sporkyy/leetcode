@@ -148,9 +148,7 @@ $tests = [
 $s = new Solution();
 
 foreach ($tests as $test) {
-    $name = $test['name'];
-    $input = $test['input'];
-    $expected = $test['expected'];
+    extract($test);
     $output = $s->removeDuplicates($input);
     if ($expected === $output) {
         echo '✅ ', $name, '<br>';

@@ -201,21 +201,21 @@ $tests = [
     ],
 ];
 
-$solution = new Solution();
+$s = new Solution();
 
-echo '<pre>';
 foreach ($tests as $test) {
-    $output = $solution->twoSum($test['input']['nums'], $test['input']['target']);
+    extract($test);
+    extract($input);
+    $output = $s->twoSum($nums, $target);
     // TODO: Figure out how array comparison works in PHP
-    if ($test['expected'] === $output) {
-        echo "✅ {$test['name']}<br>";
+    if ($expected === $output) {
+        echo "✅ {$name}<br>";
     } else {
-        echo "🔴 {$test['name']}<br>";
+        echo "🔴 {$name}<br>";
         echo 'Expected the below<br>';
-        print_r($test['expected']);
+        print_r($expected);
         echo 'But got the below instead<br>';
         print_r($output);
     }
     echo '<hr>';
 }
-echo '</pre>';

@@ -142,7 +142,7 @@ function serializeNodeList($head)
     $curr = $head;
     $s = '';
     while (null !== $curr) {
-        $s = $curr->val.$s;
+        $s = $curr->val . $s;
         $curr = $curr->next;
     }
     return intval($s);
@@ -159,14 +159,15 @@ $tests = [
 $solution = new Solution();
 
 foreach ($tests as $test) {
-    $expected = serializeNodeList($test['expected']);
+    extract($test);
+    $expected = serializeNodeList($expected);
     $output = serializeNodeList(
-        $solution->addTwoNumbers($test['input'][0], $test['input'][1])
+        $solution->addTwoNumbers($input[0], $input[1])
     );
     if ($expected === $output) {
-        print("✅ {$test['name']}<br>");
+        print("✅ {$name}<br>");
     } else {
-        print("🔴 {$test['name']}<br>");
+        print("🔴 {$name}<br>");
         print('Expected the below<br>');
         print_r($expected);
         print('But got the below instead<br>');

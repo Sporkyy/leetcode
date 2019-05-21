@@ -81,7 +81,7 @@ $tests = [
 $s = new Solution;
 
 foreach ($tests as $test) {
-    $N = $test['input']['N'];
-    $paths = $test['input']['paths'];
+    extract($test);
+    extract($input);
     echo '<pre>', print_r($s->gardenNoAdj($N, $paths), true), '<pre>', '<hr>';
 }

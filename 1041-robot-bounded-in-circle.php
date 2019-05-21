@@ -104,9 +104,7 @@ $tests = [
 $s = new Solution();
 
 foreach ($tests as $test) {
-    $name = $test['name'];
-    $input = $test['input'];
-    $expected = $test['expected'];
+    extract($test);
     $output = $s->isRobotBounded($input);
 
     if ($expected === $output) {

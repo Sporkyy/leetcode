@@ -104,18 +104,16 @@ $tests = [
     ],
 ];
 
-$solution = new Solution();
+$s = new Solution();
 
 foreach ($tests as $test) {
-    $name = $test['name'];
-    $input = $test['input'];
-    $expected = $test['expected'];
-    $output = $solution->lengthOfLongestSubstring($input);
+    extract($test);
+    $output = $s->lengthOfLongestSubstring($input);
     if ($expected === $output) {
         echo "✅ $name<br>";
     } else {
         echo "🔴 $name<br>";
-        echo "Expected \"$expected\" but got \"$output\" instead<br>";
+        echo "Expected \"{$expected}\" but got \"{$output}\" instead<br>";
     }
     echo "<hr>";
 }

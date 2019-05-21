@@ -55,7 +55,7 @@ $tests = [
         // |-|X|-|
         'name' => '[[1, 1], [2, 3], [3, 2]]',
         'input' => [[1, 1], [2, 3], [3, 2]],
-        'output' => true,
+        'expected' => true,
     ],
     [
         // |X|-|-|
@@ -63,7 +63,7 @@ $tests = [
         // |-|-|X|
         'name' => '[[1, 1], [2, 2], [3, 3]]',
         'input' => [[1, 1], [2, 2], [3, 3]],
-        'output' => false,
+        'expected' => false,
     ],
     [
         // |-|-|-|-|-|
@@ -73,7 +73,7 @@ $tests = [
         // |-|-|-|X|-|
         'name' => '[[1, 2], [2, 3], [4, 5]]',
         'input' => [[1, 2], [2, 3], [4, 5]],
-        'output' => false,
+        'expected' => false,
     ],
     [
         // |-|-|-|-|-|
@@ -83,7 +83,7 @@ $tests = [
         // |-|-|-|-|X|
         'name' => '[[1, 2], [2, 3], [4, 5]]',
         'input' => [[1, 2], [2, 3], [5, 5]],
-        'output' => true,
+        'expected' => true,
     ],
     [
         // |X|-|-|
@@ -91,7 +91,7 @@ $tests = [
         // |X|-|-|
         'name' => '[[0, 0], [0, 2], [2, 1]]',
         'input' => [[0, 0], [0, 2], [2, 1]],
-        'output' => true,
+        'expected' => true,
     ],
     [
         // |X|-|-|
@@ -99,16 +99,14 @@ $tests = [
         // |-|-|-|
         'name' => '[[0, 0], [2, 1], [2, 1]]',
         'input' => [[0, 0], [2, 1], [2, 1]],
-        'output' => false,
+        'expected' => false,
     ],
 ];
 
 $s = new Solution();
 
 foreach ($tests as $test) {
-    $name = $test['name'];
-    $input = $test['input'];
-    $expected = $test['output'];
+    extract($test);
     $output = $s->isBoomerang($input);
     if ($expected === $output) {
         echo '✅ ', $name, '<br>';

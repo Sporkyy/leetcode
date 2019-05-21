@@ -121,10 +121,8 @@ $tests = [
 $solution = new Solution();
 
 foreach ($tests as $test) {
-    $name = $test['name'];
-    $nums1 = $test['input']['nums1'];
-    $nums2 = $test['input']['nums2'];
-    $expected = $test['expected'];
+    extract($test);
+    extract($input);
     $output = $solution->findMedianSortedArrays($nums1, $nums2);
 
     if ($expected === $output) {
