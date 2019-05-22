@@ -67,6 +67,56 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 60 ms, faster than 94.27% of JavaScript online submissions
+// for Moving Stones Until Consecutive.
+// Memory Usage: 34.1 MB, less than 10.43% of JavaScript online submissions
+// for Moving Stones Until Consecutive.
+
+/**
+ * @param {number} a
+ * @param {number} b
+ * @param {number} c
+ * @return {number[]}
+ */
+// const numMovesStones = (a, b, c) => {
+//   const [min, mid, max] = [a, b, c].sort((a, b) => a - b);
+//   const [x, y, z] = [mid - min, max - mid, max - min];
+//   const maxMoves = z - 2;
+//   if (x === 2 || y === 2) return [1, maxMoves];
+//   let minMoves = 0;
+//   if (x > 2) minMoves++;
+//   if (y > 2) minMoves++;
+//   return [minMoves, maxMoves];
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 80 ms, faster than 7.64% of JavaScript online submissions
+// for Moving Stones Until Consecutive.
+// Memory Usage: 33.7 MB, less than 95.65% of JavaScript online submissions
+// for Moving Stones Until Consecutive.
+
+/**
+ * @param {number} a
+ * @param {number} b
+ * @param {number} c
+ * @return {number[]}
+ */
+// const numMovesStones = (a, b, c) => {
+//   const min = Math.min(a, b, c);
+//   const max = Math.max(a, b, c);
+//   const mid = a ^ b ^ c ^ min ^ max;
+//   const [x, y, z] = [mid - min, max - mid, max - min];
+//   const maxMoves = z - 2;
+//   if (x === 2 || y === 2) return [1, maxMoves];
+//   let minMoves = 0;
+//   if (x > 2) minMoves++;
+//   if (y > 2) minMoves++;
+//   return [minMoves, maxMoves];
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {number} a
  * @param {number} b
@@ -74,10 +124,15 @@
  * @return {number[]}
  */
 const numMovesStones = (a, b, c) => {
-  const [min, mid, max] = [a, b, c].sort((a, b) => a - b);
-  const minMoves = Math.min(mid - min + (max - mid), 2);
-  const maxMoves = max - min - 2;
-  return [minMoves, maxMoves];
+  console.log([a - b, a - c, b - a, b - c, c - a, c - b]);
+  // const [x, y, z] = [a - b, a - c, b - a, b - c, c - a, c - b];
+  // const maxMoves = z - 2;
+  // if (x === 2 || y === 2) return [1, maxMoves];
+  // let minMoves = 0;
+  // if (x > 2) minMoves++;
+  // if (y > 2) minMoves++;
+  // return [minMoves, maxMoves];
+  return [];
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
