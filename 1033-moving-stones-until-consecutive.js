@@ -14,25 +14,69 @@
  * @param {number} c
  * @return {number[]}
  */
+// const numMovesStones = (a, b, c) => {
+//   let [min, mid, max] = [a, b, c].sort((a, b) => a - b);
+
+//   maxMoves = max - min - 2;
+
+//   minMoves = 0;
+//   if (2 === mid - min) {
+//     max = mid;
+//     mid--;
+//     minMoves++;
+//   }
+//   if (2 === max - mid) {
+//     min = mid;
+//     mid++;
+//     minMoves++;
+//   }
+//   if (1 < mid - min) minMoves++;
+//   if (1 < max - mid) minMoves++;
+
+//   return [minMoves, maxMoves];
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 94.27% of JavaScript online submissions
+// for Moving Stones Until Consecutive.
+// Memory Usage: 33.7 MB, less than 95.65% of JavaScript online submissions
+// for Moving Stones Until Consecutive.
+
+/**
+ * @param {number} a
+ * @param {number} b
+ * @param {number} c
+ * @return {number[]}
+ */
+// const numMovesStones = (a, b, c) => {
+//   const [min, mid, max] = [a, b, c].sort((a, b) => a - b);
+
+//   let minMoves = 0;
+//   if (2 === mid - min || 2 === max - mid) {
+//     minMoves = 1;
+//   } else {
+//     if (2 < mid - min) minMoves++;
+//     if (2 < max - mid) minMoves++;
+//   }
+
+//   const maxMoves = max - min - 2;
+
+//   return [minMoves, maxMoves];
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/**
+ * @param {number} a
+ * @param {number} b
+ * @param {number} c
+ * @return {number[]}
+ */
 const numMovesStones = (a, b, c) => {
-  let [min, mid, max] = [a, b, c].sort((a, b) => a - b);
-
-  maxMoves = max - min - 2;
-
-  minMoves = 0;
-  if (2 === mid - min) {
-    max = mid;
-    mid--;
-    minMoves++;
-  }
-  if (2 === max - mid) {
-    min = mid;
-    mid++;
-    minMoves++;
-  }
-  if (1 < mid - min) minMoves++;
-  if (1 < max - mid) minMoves++;
-
+  const [min, mid, max] = [a, b, c].sort((a, b) => a - b);
+  const minMoves = Math.min(mid - min + (max - mid), 2);
+  const maxMoves = max - min - 2;
   return [minMoves, maxMoves];
 };
 
