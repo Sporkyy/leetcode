@@ -10,6 +10,49 @@
 // Memory Usage: 14.9 MB, less than 100.00% of PHP online submissions
 // for Moving Stones Until Consecutive.
 
+// class Solution
+// {
+
+//     /**
+//      * @param Integer $a
+//      * @param Integer $b
+//      * @param Integer $c
+//      * @return Integer[]
+//      */
+//     function numMovesStones($a, $b, $c)
+//     {
+//         $arr = array($a, $b, $c);
+//         sort($arr);
+//         list($min, $mid, $max) = $arr;
+
+//         $maxMoves = $max - $min - 2;
+
+//         $minMoves = 0;
+//         if (2 === $mid - $min) {
+//             $max = $mid;
+//             $mid--;
+//             $minMoves++;
+//         }
+//         if (2 === $max - $mid) {
+//             $min = $mid;
+//             $mid++;
+//             $minMoves++;
+//         }
+//         if (1 < $mid - $min) $minMoves++;
+//         if (1 < $max - $mid) $minMoves++;
+
+//         return [$minMoves, $maxMoves];
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 8 ms, faster than 100.00% of PHP online submissions
+// for Moving Stones Until Consecutive.
+// Memory Usage: 14.9 MB, less than 100.00% of PHP online submissions
+// for Moving Stones Until Consecutive.
+
+// Get the distances between the stones to avoid sorting
 class Solution
 {
 
@@ -21,27 +64,10 @@ class Solution
      */
     function numMovesStones($a, $b, $c)
     {
-        $arr = array($a, $b, $c);
-        sort($arr);
-        list($min, $mid, $max) = $arr;
-
-        $maxMoves = $max - $min - 2;
-
-        $minMoves = 0;
-        if (2 === $mid - $min) {
-            $max = $mid;
-            $mid--;
-            $minMoves++;
-        }
-        if (2 === $max - $mid) {
-            $min = $mid;
-            $mid++;
-            $minMoves++;
-        }
-        if (1 < $mid - $min) $minMoves++;
-        if (1 < $max - $mid) $minMoves++;
-
-        return [$minMoves, $maxMoves];
+        list($x, $y, $z) = [abs($a - $b), abs($b - $c), abs($c - $a)];
+        list($min, $max) = [min($x, $y, $z), max($x, $y, $z)];
+        if (2 === $max) return [0, 0];
+        return [$min < 3 ? 1 : 2, $max - 2];
     }
 }
 
@@ -97,6 +123,17 @@ $tests = [
         // init  | c | a | - | b |
         // min 1 | - | a | c | b |
         // max 1 | c | a | b | - |
+    ],
+    [
+        'name' => 'a=1, b=4, c=5',
+        'input' => ['a' => 1, 'b' => 4, 'c' => 5],
+        'expected' => [1, 2],
+        // Explanation: Move the stone from 1 to 4; or move the stone from 1 to 2 to 4.
+        //       | 1 | 2 | 3 | 4 | 5 |
+        // init  | a | - | - | b | c |
+        // min 1 | - | - | a | b | c |
+        // max 1 | - | a | - | b | c |
+        // max 2 | - | - | a | b | c |
     ],
 ];
 

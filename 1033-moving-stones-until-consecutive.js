@@ -117,6 +117,41 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 56 ms, faster than 94.90% of JavaScript online submissions
+// for Moving Stones Until Consecutive.
+// Memory Usage: 33.9 MB, less than 32.17% of JavaScript online submissions
+// for Moving Stones Until Consecutive.
+
+// var minMax = (...arr) => {
+//   let min = (max = arr[0]),
+//     x;
+//   for (let i = 1, n = arr.length; i < n; ++i) {
+//     x = arr[i];
+//     if (x < min) min = x;
+//     if (x > max) max = x;
+//   }
+//   return [min, max];
+// };
+
+/**
+ * @param {number} a
+ * @param {number} b
+ * @param {number} c
+ * @return {number[]}
+ */
+// const numMovesStones = (a, b, c) => {
+//   const [x, y, z] = [Math.abs(a - b), Math.abs(b - c), Math.abs(c - a)];
+//   const [min, max] = minMax(x, y, z);
+//   return 2 === max ? [0, 0] : min < 3 ? [1, max - 2] : [2, max - 2];
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 94.27% of JavaScript online submissions
+// for Moving Stones Until Consecutive.
+// Memory Usage: 33.8 MB, less than 80.87% of JavaScript online submissions
+// for Moving Stones Until Consecutive.
+
 /**
  * @param {number} a
  * @param {number} b
@@ -124,15 +159,9 @@
  * @return {number[]}
  */
 const numMovesStones = (a, b, c) => {
-  console.log([a - b, a - c, b - a, b - c, c - a, c - b]);
-  // const [x, y, z] = [a - b, a - c, b - a, b - c, c - a, c - b];
-  // const maxMoves = z - 2;
-  // if (x === 2 || y === 2) return [1, maxMoves];
-  // let minMoves = 0;
-  // if (x > 2) minMoves++;
-  // if (y > 2) minMoves++;
-  // return [minMoves, maxMoves];
-  return [];
+  const [x, y, z] = [Math.abs(a - b), Math.abs(b - c), Math.abs(c - a)];
+  const [min, max] = [Math.min(x, y, z), Math.max(x, y, z)];
+  return 2 === max ? [0, 0] : [min < 3 ? 1 : 2, max - 2];
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -188,9 +217,20 @@ tests = [
     // min 1 | - | a | c | b |
     // max 1 | c | a | b | - |
   },
+  {
+    name: 'a=1, b=4, c=5',
+    input: { a: 1, b: 4, c: 5 },
+    expected: [1, 2],
+    // Explanation: Move the stone from 1 to 4; or move the stone from 1 to 2 to 4.
+    //       | 1 | 2 | 3 | 4 | 5 |
+    // init  | a | - | - | b | c |
+    // min 1 | - | - | a | b | c |
+    // max 1 | - | a | - | b | c |
+    // max 2 | - | - | a | b | c |
+  },
 ];
 
-const numericalArraysAreEqual = (a, b) => a.join() === b.join();
+const numericalArraysAreEqual = (a, b) => a && b && a.join() === b.join();
 
 tests.forEach(({ name, input: { a, b, c }, expected }) => {
   output = numMovesStones(a, b, c);
