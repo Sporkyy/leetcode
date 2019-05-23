@@ -99,18 +99,49 @@
  * @param {number} c0
  * @return {number[][]}
  */
+// const allCellsDistOrder = (R, C, r0, c0) => {
+//   const byDistance = [];
+//   for (let rI = 0; rI <= R - 1; rI++) {
+//     for (let cI = 0; cI <= C - 1; cI++) {
+//       const distance = Math.abs(r0 - rI) + Math.abs(c0 - cI);
+//       if ('undefined' === typeof byDistance[distance]) {
+//         byDistance[distance] = [];
+//       }
+//       byDistance[distance].push([rI, cI]);
+//     }
+//   }
+//   return byDistance.reduce((acc, curr) => [...acc, ...curr], []);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 152 ms, faster than 96.07% of JavaScript online submissions
+// for Matrix Cells in Distance Order.
+// Memory Usage: 50.4 MB, less than 53.27% of JavaScript online submissions
+// for Matrix Cells in Distance Order.
+
+/**
+ * @param {number} R
+ * @param {number} C
+ * @param {number} r0
+ * @param {number} c0
+ * @return {number[][]}
+ */
 const allCellsDistOrder = (R, C, r0, c0) => {
-  const byDistance = [];
+  const byDistance = new Array(R * C).fill(0).map(x => []);
   for (let rI = 0; rI <= R - 1; rI++) {
     for (let cI = 0; cI <= C - 1; cI++) {
       const distance = Math.abs(r0 - rI) + Math.abs(c0 - cI);
-      if ('undefined' === typeof byDistance[distance]) {
-        byDistance[distance] = [];
-      }
       byDistance[distance].push([rI, cI]);
     }
   }
-  return byDistance.reduce((acc, curr) => [...acc, ...curr], []);
+  const result = [];
+  for (let i = 0; i < byDistance.length; i++) {
+    for (let j = 0; j < byDistance[i].length; j++) {
+      result.push(byDistance[i][j]);
+    }
+  }
+  return result;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
