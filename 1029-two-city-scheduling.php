@@ -5,6 +5,46 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 12 ms, faster than 100.00% of PHP online submissions
+// for Two City Scheduling.
+// Memory Usage: 14.9 MB, less than 66.67% of PHP online submissions
+// for Two City Scheduling.
+
+// class Solution
+// {
+
+//     /**
+//      * @param Integer[][] $costs
+//      * @return Integer
+//      */
+//     function twoCitySchedCost($costs)
+//     {
+//         $savings = [];
+
+//         for ($i = 0; $i < count($costs); $i++) {
+//             $savings[100 * ($costs[$i][0] - $costs[$i][1]) + $i] = $costs[$i];
+//         }
+
+//         ksort($savings);
+
+//         $answer = 0;
+//         $i = 0;
+
+//         foreach ($savings as $cost) {
+//             $answer += $i++ < count($savings) / 2 ? $cost[0] : $cost[1];
+//         }
+
+//         return $answer;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 12 ms, faster than 100.00% of PHP online submissions
+// for Two City Scheduling.
+// Memory Usage: 14.9 MB, less than 33.33% of PHP online submissions
+// for Two City Scheduling.
+
 class Solution
 {
 
@@ -14,40 +54,13 @@ class Solution
      */
     function twoCitySchedCost($costs)
     {
-        $count = count($costs);
-        $balance = $count / 2;
-
-        $cityA = [];
-        $cityB = [];
-
-        for ($i = 0; $i < count($costs); $i++) {
-            if ($costs[$i][0] < $costs[$i][1]) {
-                $cityA[100 * abs($costs[$i][0] - $costs[$i][1]) + $i] = $costs[$i];
-            } else {
-                $cityB[100 * abs($costs[$i][0] - $costs[$i][1]) + $i] = $costs[$i];
-            }
-        }
-
-        if ($balance < count($cityA)) {
-            ksort($cityA);
-            foreach (array_slice($cityA, 0, count($cityA) - $balance) as $person) {
-                $cityB[] = $person;
-            }
-            $cityA = array_slice($cityA, $balance, count($cityA) - 1);
-        } else if ($balance < count($cityB)) {
-            ksort($cityB);
-            foreach (array_slice($cityB, 0, count($cityB) - $balance) as $person) {
-                $cityB[] = $person;
-            }
-            $cityB = array_slice($cityB, $balance, count($cityB) - 1);
-        }
-
-        return array_reduce($cityA, function ($acc, $curr) {
-            return $acc + $curr[0];
-        }, 0)
-            + array_reduce($cityB, function ($acc, $curr) {
-                return $acc + $curr[1];
-            }, 0);
+        usort($costs, function ($a, $b) {
+            return ($a[0] - $a[1]) - ($b[0] - $b[1]);
+        });
+        $i = 0;
+        return array_reduce($costs, function ($acc, $curr) use ($costs, &$i) {
+            return $acc += $i++ < count($costs) / 2 ? $curr[0] : $curr[1];
+        }, 0);
     }
 }
 
@@ -70,6 +83,11 @@ $tests = [
         'name' => '[[10, 20], [30, 200], [50, 400], [20, 30]]',
         'input' => [[10, 20], [30, 200], [50, 400], [20, 30]],
         'expected' => 130,
+    ],
+    [
+        'name' => '[[259, 770], [448, 54], [926, 667], [184, 139], [840, 118], [577, 469]]',
+        'input' => [[259, 770], [448, 54], [926, 667], [184, 139], [840, 118], [577, 469]],
+        'expected' => 1859
     ],
     // [[259,770],[448,54],[926,667],[184,139],[840,118],[577,469]]
     // Output
