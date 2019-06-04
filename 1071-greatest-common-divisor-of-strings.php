@@ -1,0 +1,99 @@
+<?php
+
+// 1071. Greatest Common Divisor of Strings
+// https://leetcode.com/problems/greatest-common-divisor-of-strings/
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 12 ms, faster than 100.00% of PHP online submissions
+// for Greatest Common Divisor of Strings.
+// Memory Usage: 14.7 MB, less than 100.00% of PHP online submissions
+// for Greatest Common Divisor of Strings.
+
+class Solution
+{
+
+    /**
+     * @param String $str1
+     * @param String $str2
+     * @return String
+     */
+    function gcdOfStrings($str1, $str2)
+    {
+        if (strlen($str2) < strlen($str1)) list($str1, $str2) = [$str2, $str1];
+        if (strlen($str1) < strlen($str2)) $str2 = substr($str2, strlen($str1));
+        if (strlen($str2) < strlen($str1)) list($str1, $str2) = [$str2, $str1];
+        $test = '';
+        $gcd = '';
+        for ($i = 0; $i < strlen($str1); $i++) {
+            $test .= $str1[$i];
+            if (
+                0 === strlen(str_replace($test, '', $str1))
+                && 0 === strlen(str_replace($test, '', $str2))
+            ) {
+                $gcd = $test;
+            }
+        }
+        return $gcd;
+    }
+}
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+$tests = [
+    [
+        'name' => 'ABCABC, ABC',
+        'input' => [
+            'str1' => 'ABCABC',
+            'str2' => 'ABC',
+        ],
+        'expected' => 'ABC'
+    ],
+    [
+        'name' => 'ABABAB, ABAB',
+        'input' => [
+            'str1' => 'ABABAB',
+            'str2' => 'ABAB',
+        ],
+        'expected' => 'AB'
+    ],
+    [
+        'name' => 'ABABAB, ABABC',
+        'input' => [
+            'str1' => 'ABABAB',
+            'str2' => 'ABABC',
+        ],
+        'expected' => ''
+    ],
+    [
+        'name' => 'AB, AB',
+        'input' => [
+            'str1' => 'AB',
+            'str2' => 'AB',
+        ],
+        'expected' => 'AB'
+    ],
+    [
+        'name' => 'LEET, CODE',
+        'input' => [
+            'str1' => 'LEET',
+            'str2' => 'CODE',
+        ],
+        'expected' => ''
+    ]
+];
+
+$s = new Solution();
+
+foreach ($tests as $test) {
+    extract($test);
+    extract($input);
+    $output = $s->gcdOfStrings($str1, $str2);
+    if ($expected === $output) {
+        echo "✅ {$name}<br>";
+    } else {
+        echo "🔴 {$name}<br>";
+        echo "Expected \"{$expected}\" but got \"{$output}\"";
+    }
+    echo '<br>';
+}
