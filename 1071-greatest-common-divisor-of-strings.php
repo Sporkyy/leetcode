@@ -10,8 +10,49 @@
 // Memory Usage: 14.7 MB, less than 100.00% of PHP online submissions
 // for Greatest Common Divisor of Strings.
 
+// class Solution
+// {
+
+//     /**
+//      * @param String $str1
+//      * @param String $str2
+//      * @return String
+//      */
+//     function gcdOfStrings($str1, $str2)
+//     {
+//         if (strlen($str2) < strlen($str1)) list($str1, $str2) = [$str2, $str1];
+//         if (strlen($str1) < strlen($str2)) $str2 = substr($str2, strlen($str1));
+//         if (strlen($str2) < strlen($str1)) list($str1, $str2) = [$str2, $str1];
+//         $test = '';
+//         $gcd = '';
+//         for ($i = 0; $i < strlen($str1); $i++) {
+//             $test .= $str1[$i];
+//             if (
+//                 0 === strlen(str_replace($test, '', $str1))
+//                 && 0 === strlen(str_replace($test, '', $str2))
+//             ) {
+//                 $gcd = $test;
+//             }
+//         }
+//         return $gcd;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 4 ms, faster than 100.00% of PHP online submissions
+// for Greatest Common Divisor of Strings.
+// Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
+// for Greatest Common Divisor of Strings.
+
 class Solution
 {
+
+    function gcd($a, $b)
+    {
+        if (0 === $b) return $a;
+        return $this->gcd($b, $a % $b);
+    }
 
     /**
      * @param String $str1
@@ -20,21 +61,13 @@ class Solution
      */
     function gcdOfStrings($str1, $str2)
     {
-        if (strlen($str2) < strlen($str1)) list($str1, $str2) = [$str2, $str1];
-        if (strlen($str1) < strlen($str2)) $str2 = substr($str2, strlen($str1));
-        if (strlen($str2) < strlen($str1)) list($str1, $str2) = [$str2, $str1];
-        $test = '';
-        $gcd = '';
-        for ($i = 0; $i < strlen($str1); $i++) {
-            $test .= $str1[$i];
-            if (
-                0 === strlen(str_replace($test, '', $str1))
-                && 0 === strlen(str_replace($test, '', $str2))
-            ) {
-                $gcd = $test;
-            }
+        $gcd = $this->gcd(strlen($str1), strlen($str2));
+        $combo = $str1 . $str2;
+        $gcdString = substr($combo, 0, $gcd);
+        for ($i = $gcd; $i < strlen($combo); $i += $gcd) {
+            if ($gcdString !== substr($combo, $i, $gcd)) return '';
         }
-        return $gcd;
+        return $gcdString;
     }
 }
 
@@ -72,6 +105,14 @@ $tests = [
             'str2' => 'AB',
         ],
         'expected' => 'AB'
+    ],
+    [
+        'name' => 'ABABABABABAB, ABABABABABAB',
+        'input' => [
+            'str1' => 'ABABABABABAB',
+            'str2' => 'ABABABABABAB',
+        ],
+        'expected' => 'ABABABABABAB'
     ],
     [
         'name' => 'LEET, CODE',
