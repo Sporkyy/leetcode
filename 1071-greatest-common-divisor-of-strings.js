@@ -60,18 +60,38 @@
  * @param {string} str2
  * @return {string}
  */
+// const gcdOfStrings = (str1, str2) => {
+//   const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
+//   const gcd = findGcd(str1.length, str2.length);
+//   for (let i = 0; i < gcd; i++) {
+//     for (let j = i + gcd; j < str1.length; j += gcd) {
+//       if (str1.charAt(i) !== str1.charAt(j)) return '';
+//     }
+//     for (let j = i; j < str2.length; j += gcd) {
+//       if (str1.charAt(i) !== str2.charAt(j)) return '';
+//     }
+//   }
+//   return str1.substring(0, gcd);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 25.35% of JavaScript online submissions
+// for Greatest Common Divisor of Strings.
+// Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
+// for Greatest Common Divisor of Strings.
+
+/**
+ * @param {string} str1
+ * @param {string} str2
+ * @return {string}
+ */
 const gcdOfStrings = (str1, str2) => {
   const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
   const gcd = findGcd(str1.length, str2.length);
-  for (let i = 0; i < gcd; i++) {
-    for (let j = i + gcd; j < str1.length; j += gcd) {
-      if (str1.charAt(i) !== str1.charAt(j)) return '';
-    }
-    for (let j = i; j < str2.length; j += gcd) {
-      if (str1.charAt(i) !== str2.charAt(j)) return '';
-    }
-  }
-  return str1.substring(0, gcd);
+  const gcdString = str1.substring(0, gcd);
+  if (0 < str2.replace(new RegExp(gcdString, 'g'), '').length) return '';
+  return gcdString;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
