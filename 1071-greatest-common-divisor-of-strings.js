@@ -106,14 +106,58 @@
  * @param {string} str2
  * @return {string}
  */
+// const gcdOfStrings = (str1, str2) => {
+//   const len1 = str1.length;
+//   const len2 = str2.length;
+//   if (len1 < len2) return gcdOfStrings(str2, str1);
+//   if (len1 === len2 && str1 !== str2) return '';
+//   if (str1 !== str1.substring(len2, len1) + str2) return '';
+//   const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
+//   return str1.substring(0, findGcd(str1.length, str2.length));
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 49.30% of JavaScript online submissions
+// for Greatest Common Divisor of Strings.
+// Memory Usage: 33.7 MB, less than 100.00% of JavaScript online submissions
+// for Greatest Common Divisor of Strings.
+
+/**
+ * @param {string} str1
+ * @param {string} str2
+ * @return {string}
+ */
+// const gcdOfStrings = (str1, str2) => {
+//   const len1 = str1.length;
+//   const len2 = str2.length;
+//   if (
+//     (len1 === len2 && str1 !== str2) ||
+//     (len2 < len1 && str1 !== str1.substring(len2, len1) + str2) ||
+//     (len1 < len2 && str2 !== str2.substring(len2, len1) + str1)
+//   ) {
+//     return '';
+//   }
+//   const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
+//   return str1.substring(0, findGcd(str1.length, str2.length));
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 48 ms, faster than 95.77% of JavaScript online submissions
+// for Greatest Common Divisor of Strings.
+// Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
+// for Greatest Common Divisor of Strings.
+
+/**
+ * @param {string} str1
+ * @param {string} str2
+ * @return {string}
+ */
 const gcdOfStrings = (str1, str2) => {
-  const len1 = str1.length;
-  const len2 = str2.length;
-  if (len1 < len2) return gcdOfStrings(str2, str1);
-  if (len1 === len2 && str1 !== str2) return '';
-  if (str1 !== str1.substring(len2, len1) + str2) return '';
-  const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
-  return str1.substring(0, findGcd(str1.length, str2.length));
+  if (str1 + str2 !== str2 + str1) return '';
+  const gcd = (a, b) => (0 === b ? a : gcd(b, a % b));
+  return str1.substring(0, gcd(str1.length, str2.length));
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -144,10 +188,26 @@ const tests = [
     expected: '',
   },
   {
+    name: 'Wrong Anwer 1',
+    input: {
+      str1: 'TAUXXTAUXXTAUXXTAUXXTAUXX',
+      str2: 'TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX',
+    },
+    expected: 'TAUXX',
+  },
+  {
     name: 'ABABAB, ABCD',
     input: {
       str1: 'ABABAB',
       str2: 'ABCD',
+    },
+    expected: '',
+  },
+  {
+    name: 'ABCD, ABABAB',
+    input: {
+      str1: 'ABCD',
+      str2: 'ABABAB',
     },
     expected: '',
   },
