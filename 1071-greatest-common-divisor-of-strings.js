@@ -13,16 +13,16 @@
  * @param {string} str2
  * @return {string}
  */
-// const gcdOfStrings = (str1, str2) => {
-//   const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
-//   const gcd = findGcd(str1.length, str2.length);
-//   const combo = str1 + str2;
-//   const gcdString = combo.substring(0, gcd);
-//   for (let i = gcd; i < combo.length; i += gcd) {
-//     if (gcdString !== combo.substring(i, gcd)) return '';
-//   }
-//   return gcdString;
-// };
+const gcdOfStrings = (str1, str2) => {
+  const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
+  const gcd = findGcd(str1.length, str2.length);
+  const combo = str1 + str2;
+  const gcdString = combo.substring(0, gcd);
+  for (let i = gcd; i < combo.length; i += gcd) {
+    if (gcdString !== combo.substring(i, i + gcd)) return '';
+  }
+  return gcdString;
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -36,18 +36,18 @@
  * @param {string} str2
  * @return {string}
  */
-const gcdOfStrings = (str1, str2) => {
-  const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
-  const gcd = findGcd(str1.length, str2.length);
-  const combo = str1 + str2;
-  const times = combo.length / gcd;
-  for (let i = 0; i < times; i++) {
-    for (let j = i + gcd; j < combo.length; j += gcd) {
-      if (combo.charAt(i) !== combo.charAt(j)) return '';
-    }
-  }
-  return combo.substring(0, gcd);
-};
+// const gcdOfStrings = (str1, str2) => {
+//   const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
+//   const gcd = findGcd(str1.length, str2.length);
+//   const combo = str1 + str2;
+//   const times = combo.length / gcd;
+//   for (let i = 0; i < times; i++) {
+//     for (let j = i + gcd; j < combo.length; j += gcd) {
+//       if (combo.charAt(i) !== combo.charAt(j)) return '';
+//     }
+//   }
+//   return combo.substring(0, gcd);
+// };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
