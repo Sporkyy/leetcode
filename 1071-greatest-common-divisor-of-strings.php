@@ -45,13 +45,45 @@
 // Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
 // for Greatest Common Divisor of Strings.
 
+// class Solution
+// {
+
+//     function gcd($a, $b)
+//     {
+//         if (0 === $b) return $a;
+//         return $this->gcd($b, $a % $b);
+//     }
+
+//     /**
+//      * @param String $str1
+//      * @param String $str2
+//      * @return String
+//      */
+//     function gcdOfStrings($str1, $str2)
+//     {
+//         $gcd = $this->gcd(strlen($str1), strlen($str2));
+//         $combo = $str1 . $str2;
+//         $gcdString = substr($combo, 0, $gcd);
+//         for ($i = $gcd; $i < strlen($combo); $i += $gcd) {
+//             if ($gcdString !== substr($combo, $i, $gcd)) return '';
+//         }
+//         return $gcdString;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 4 ms, faster than 100.00% of PHP online submissions
+// for Greatest Common Divisor of Strings.
+// Memory Usage: 14.7 MB, less than 100.00% of PHP online submissions
+// for Greatest Common Divisor of Strings.
+
 class Solution
 {
 
     function gcd($a, $b)
     {
-        if (0 === $b) return $a;
-        return $this->gcd($b, $a % $b);
+        return 0 === $b ? $a : $this->gcd($b, $a % $b);
     }
 
     /**
@@ -61,13 +93,8 @@ class Solution
      */
     function gcdOfStrings($str1, $str2)
     {
-        $gcd = $this->gcd(strlen($str1), strlen($str2));
-        $combo = $str1 . $str2;
-        $gcdString = substr($combo, 0, $gcd);
-        for ($i = $gcd; $i < strlen($combo); $i += $gcd) {
-            if ($gcdString !== substr($combo, $i, $gcd)) return '';
-        }
-        return $gcdString;
+        if ($str1 . $str2 !== $str2 . $str1) return '';
+        return substr($str1, 0, $this->gcd(strlen($str1), strlen($str2)));
     }
 }
 
