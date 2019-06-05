@@ -86,12 +86,34 @@
  * @param {string} str2
  * @return {string}
  */
+// const gcdOfStrings = (str1, str2) => {
+//   const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
+//   const gcd = findGcd(str1.length, str2.length);
+//   const gcdString = str1.substring(0, gcd);
+//   if (0 < str2.replace(new RegExp(gcdString, 'g'), '').length) return '';
+//   return gcdString;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 52 ms, faster than 91.55% of JavaScript online submissions
+// for Greatest Common Divisor of Strings.
+// Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
+// for Greatest Common Divisor of Strings.
+
+/**
+ * @param {string} str1
+ * @param {string} str2
+ * @return {string}
+ */
 const gcdOfStrings = (str1, str2) => {
+  const len1 = str1.length;
+  const len2 = str2.length;
+  if (len1 < len2) return gcdOfStrings(str2, str1);
+  if (len1 === len2 && str1 !== str2) return '';
+  if (str1 !== str1.substring(len2, len1) + str2) return '';
   const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
-  const gcd = findGcd(str1.length, str2.length);
-  const gcdString = str1.substring(0, gcd);
-  if (0 < str2.replace(new RegExp(gcdString, 'g'), '').length) return '';
-  return gcdString;
+  return str1.substring(0, findGcd(str1.length, str2.length));
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -114,34 +136,18 @@ const tests = [
     expected: 'AB',
   },
   {
-    name: 'ABABAB, ABABC',
-    input: {
-      str1: 'ABABAB',
-      str2: 'ABABC',
-    },
-    expected: '',
-  },
-  {
-    name: 'AB, AB',
-    input: {
-      str1: 'AB',
-      str2: 'AB',
-    },
-    expected: 'AB',
-  },
-  {
-    name: 'ABABABABABAB, ABABABABABAB',
-    input: {
-      str1: 'ABABABABABAB',
-      str2: 'ABABABABABAB',
-    },
-    expected: 'ABABABABABAB',
-  },
-  {
     name: 'LEET, CODE',
     input: {
       str1: 'LEET',
       str2: 'CODE',
+    },
+    expected: '',
+  },
+  {
+    name: 'ABABAB, ABCD',
+    input: {
+      str1: 'ABABAB',
+      str2: 'ABCD',
     },
     expected: '',
   },
