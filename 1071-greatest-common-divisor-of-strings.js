@@ -13,15 +13,40 @@
  * @param {string} str2
  * @return {string}
  */
+// const gcdOfStrings = (str1, str2) => {
+//   const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
+//   const gcd = findGcd(str1.length, str2.length);
+//   const combo = str1 + str2;
+//   const gcdString = combo.substring(0, gcd);
+//   for (let i = gcd; i < combo.length; i += gcd) {
+//     if (gcdString !== combo.substring(i, gcd)) return '';
+//   }
+//   return gcdString;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 72 ms, faster than 21.13% of JavaScript online submissions
+// for Greatest Common Divisor of Strings.
+// Memory Usage: 35.1 MB, less than 100.00% of JavaScript online submissions
+// for Greatest Common Divisor of Strings.
+
+/**
+ * @param {string} str1
+ * @param {string} str2
+ * @return {string}
+ */
 const gcdOfStrings = (str1, str2) => {
   const findGcd = (a, b) => (0 === b ? a : findGcd(b, a % b));
   const gcd = findGcd(str1.length, str2.length);
   const combo = str1 + str2;
-  const gcdString = combo.substr(0, gcd);
-  for (let i = gcd; i < combo.length; i += gcd) {
-    if (gcdString !== combo.substr(i, gcd)) return '';
+  const times = combo.length / gcd;
+  for (let i = 0; i < times; i++) {
+    for (let j = i + gcd; j < combo.length; j += gcd) {
+      if (combo.charAt(i) !== combo.charAt(j)) return '';
+    }
   }
-  return gcdString;
+  return combo.substring(0, gcd);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -77,6 +102,7 @@ const tests = [
   },
 ];
 
+console.time();
 tests.forEach(({ name, input: { str1, str2 }, expected }) => {
   const output = gcdOfStrings(str1, str2);
   if (expected === output) {
@@ -86,3 +112,4 @@ tests.forEach(({ name, input: { str1, str2 }, expected }) => {
     console.log(`Expected "${expected}", but got "${output}"`);
   }
 });
+console.timeEnd();
