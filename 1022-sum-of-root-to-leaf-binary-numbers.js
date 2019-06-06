@@ -34,6 +34,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 76 ms, faster than 28.74% of JavaScript online submissions
+// for Sum of Root To Leaf Binary Numbers.
+// Memory Usage: 37.1 MB, less than 21.56% of JavaScript online submissions
+// for Sum of Root To Leaf Binary Numbers.
+
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -45,18 +50,41 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var sumRootToLeaf = function(root) {
-  let answer = 0;
-  const stack = [[root, '']];
-  while (0 < stack.length) {
-    let [{ val, left, right }, acc] = stack.pop();
-    acc += val;
-    if (left) stack.push([left, acc]);
-    if (right) stack.push([right, acc]);
-    if (!left && !right) answer += parseInt(acc, 2);
-  }
-  return answer;
-};
+// var sumRootToLeaf = function(root) {
+//   let answer = 0;
+//   const stack = [[root, '']];
+//   while (0 < stack.length) {
+//     let [{ val, left, right }, acc] = stack.pop();
+//     acc += val;
+//     if (left) stack.push([left, acc]);
+//     if (right) stack.push([right, acc]);
+//     if (!left && !right) answer += parseInt(acc, 2);
+//   }
+//   return answer;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 93.84% of JavaScript online submissions
+// for Sum of Root To Leaf Binary Numbers.
+// Memory Usage: 36 MB, less than 56.47% of JavaScript online submissions
+// for Sum of Root To Leaf Binary Numbers.
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+const sumRootToLeaf = ({ val, left, right }, acc = '') =>
+  !left && !right
+    ? parseInt(acc + val, 2)
+    : (left ? sumRootToLeaf(left, acc + val) : 0) + (right ? sumRootToLeaf(right, acc + val) : 0);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
