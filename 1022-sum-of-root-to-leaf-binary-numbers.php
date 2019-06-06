@@ -46,6 +46,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 12 ms, faster than 50.00% of PHP online submissions
+// for Sum of Root To Leaf Binary Numbers.
+// Memory Usage: 15.3 MB, less than 100.00% of PHP online submissions
+// for Sum of Root To Leaf Binary Numbers.
+
 /**
  * Definition for a binary tree node.
  * class TreeNode {
