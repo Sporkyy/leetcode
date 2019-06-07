@@ -256,14 +256,39 @@
  * @param {string} s
  * @return {number}
  */
+// const romanToInt = s => {
+//   const d = {
+//     IV: 4,
+//     IX: 9,
+//     XL: 40,
+//     XC: 90,
+//     CD: 400,
+//     CM: 900,
+//     I: 1,
+//     V: 5,
+//     X: 10,
+//     L: 50,
+//     C: 100,
+//     D: 500,
+//     M: 1000,
+//   };
+//   for (k in d) s = s.replace(new RegExp(k, 'g'), `${d[k]}+`);
+//   return eval(s + 0);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 152 ms, faster than 83.04% of JavaScript online submissions
+// for Roman to Integer.
+// Memory Usage: 41.1 MB, less than 16.82% of JavaScript online submissions
+// for Roman to Integer.
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
 const romanToInt = s => {
-  const d = {
-    IV: 4,
-    IX: 9,
-    XL: 40,
-    XC: 90,
-    CD: 400,
-    CM: 900,
+  const dict = {
     I: 1,
     V: 5,
     X: 10,
@@ -272,8 +297,12 @@ const romanToInt = s => {
     D: 500,
     M: 1000,
   };
-  for (k in d) s = s.replace(new RegExp(k, 'g'), `${d[k]}+`);
-  return eval(s + 0);
+  let sum = 0;
+  for (let i = 0; i < s.length; i++) {
+    [curr, next] = [dict[s[i]], dict[s[i + 1]]];
+    sum += (curr < next ? -1 : 1) * curr;
+  }
+  return sum;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
