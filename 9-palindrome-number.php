@@ -19,7 +19,7 @@
 //      */
 //     function isPalindrome($x)
 //     {
-//         return (string)$x === strrev($x);
+//         return strrev($x) === (string)$x;
 //     }
 // }
 
@@ -51,9 +51,9 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 24 ms, faster than 92.62% of PHP online submissions
+// Runtime: 36 ms, faster than 80.98% of PHP online submissions
 // for Palindrome Number.
-// Memory Usage: 14.8 MB, less than 65.97% of PHP online submissions
+// Memory Usage: 16.6 MB, less than 5.21% of PHP online submissions
 // for Palindrome Number.
 
 // class Solution
@@ -65,13 +65,12 @@
 //      */
 //     function isPalindrome($x)
 //     {
-//         if ($x < 0 || ($x !== 0 && 0 === $x % 10)) return false;
-//         $revX = 0;
-//         while ($revX < $x) {
-//             $revX = $revX * 10 + $x % 10;
+//         if ($r = 0 === $x % 10 && $x !== 0 || $x < 0) return false;
+//         while ($r < $x) {
+//             $r = $r * 10 + $x % 10;
 //             $x = intval($x / 10);
 //         }
-//         return $x === $revX || $x === intval($revX / 10);
+//         return $x === $r || $x === intval($r / 10);
 //     }
 // }
 
@@ -91,9 +90,9 @@ class Solution
      */
     function isPalindrome($x)
     {
-        if ($r = 0 === $x % 10 && $x !== 0 || $x < 0) return false;
+        if ($r = 0 === $x % 10 && 0 !== $x || $x < 0) return false;
         while ($r < $x) list($r, $x) = [$r * 10 + $x % 10, (int)($x / 10)];
-        return $x === $r || $x === (int)($r / 10);
+        return $x === $r || (int)($r / 10) === $x;
     }
 }
 
