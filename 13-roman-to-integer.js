@@ -206,41 +206,74 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 172 ms, faster than 62.65% of JavaScript online submissions for Roman to Integer.
-// Memory Usage: 40.5 MB, less than 25.08% of JavaScript online submissions for Roman to Integer.
+// Runtime: 172 ms, faster than 62.65% of JavaScript online submissions
+// for Roman to Integer.
+// Memory Usage: 40.5 MB, less than 25.08% of JavaScript online submissions
+// for Roman to Integer.
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+// const romanToInt = s => {
+//   let sum = 0;
+//   const dict = {
+//     I: 1,
+//     IV: 4,
+//     V: 5,
+//     IX: 9,
+//     X: 10,
+//     XL: 40,
+//     L: 50,
+//     XC: 90,
+//     C: 100,
+//     CD: 400,
+//     D: 500,
+//     CM: 900,
+//     M: 1000,
+//   };
+//   for (let i = s.length - 1; 0 <= i; i--) {
+//     const curr = s[i];
+//     const nextAndCurr = s[i - 1] + curr; // Next is right-to-left
+//     if (dict[nextAndCurr]) {
+//       sum += dict[nextAndCurr];
+//       i--;
+//       continue;
+//     }
+//     sum += dict[curr];
+//   }
+//   return sum;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 236 ms, faster than 6.20% of JavaScript online submissions
+// for Roman to Integer.
+// Memory Usage: 45.6 MB, less than 5.03% of JavaScript online submissions
+// for Roman to Integer.
 
 /**
  * @param {string} s
  * @return {number}
  */
 const romanToInt = s => {
-  let sum = 0;
-  const dict = {
-    I: 1,
+  const d = {
     IV: 4,
-    V: 5,
     IX: 9,
-    X: 10,
     XL: 40,
-    L: 50,
     XC: 90,
-    C: 100,
     CD: 400,
-    D: 500,
     CM: 900,
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
     M: 1000,
   };
-  for (let i = s.length - 1; 0 <= i; i--) {
-    const curr = s[i];
-    const nextAndCurr = s[i - 1] + curr; // Next is right-to-left
-    if (dict[nextAndCurr]) {
-      sum += dict[nextAndCurr];
-      i--;
-      continue;
-    }
-    sum += dict[curr];
-  }
-  return sum;
+  for (k in d) s = s.replace(new RegExp(k, 'g'), `${d[k]}+`);
+  return eval(s + 0);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
