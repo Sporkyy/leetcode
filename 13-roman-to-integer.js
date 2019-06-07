@@ -247,43 +247,41 @@ const romanToInt = s => {
 
 const tests = [
   {
-    name: 'III',
     input: 'III',
     expected: 3,
   },
   {
-    name: 'IV',
     input: 'IV',
     expected: 4,
   },
   {
-    name: 'IX',
     input: 'IX',
     expected: 9,
   },
   {
-    name: 'LVIII',
     input: 'LVIII',
     expected: 58,
   },
   {
-    name: 'MCMXCIV',
     input: 'MCMXCIV',
     expected: 1994,
   },
   {
-    name: 'MCDLXXVI',
     input: 'MCDLXXVI',
     expected: 1476,
   },
+  {
+    input: 'MMMCDXC',
+    expected: 3490,
+  },
 ];
 
-tests.forEach(({ name, input, expected }) => {
+tests.forEach(({ input, expected }) => {
   const output = romanToInt(input);
   if (expected === output) {
-    console.log(`✅ ${name}`);
+    console.log(`✅ ${input}`);
   } else {
-    console.log(`🔴 ${name}`);
+    console.log(`🔴 ${input}`);
     console.log(`Expected "${expected}", but got "${output}"`);
   }
 });
