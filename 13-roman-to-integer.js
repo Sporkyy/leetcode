@@ -287,22 +287,47 @@
  * @param {string} s
  * @return {number}
  */
+// const romanToInt = s => {
+//   const dict = {
+//     I: 1,
+//     V: 5,
+//     X: 10,
+//     L: 50,
+//     C: 100,
+//     D: 500,
+//     M: 1000,
+//   };
+//   let sum = 0;
+//   for (let i = 0; i < s.length; i++) {
+//     [curr, next] = [dict[s[i]], dict[s[i + 1]]];
+//     sum += (curr < next ? -1 : 1) * curr;
+//   }
+//   return sum;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 152 ms, faster than 82.13% of JavaScript online submissions
+// for Roman to Integer.
+// Memory Usage: 40.8 MB, less than 19.64% of JavaScript online submissions
+// for Roman to Integer.
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
 const romanToInt = s => {
   const dict = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000,
+    I: next => (1 < next ? -1 : 1),
+    V: next => (5 < next ? -5 : 5),
+    X: next => (10 < next ? -10 : 10),
+    L: next => (50 < next ? -50 : 50),
+    C: next => (100 < next ? -100 : 100),
+    D: next => (500 < next ? -500 : 500),
+    M: next => (1000 < next ? -1000 : 1000),
+    undefined: () => 0,
   };
-  let sum = 0;
-  for (let i = 0; i < s.length; i++) {
-    [curr, next] = [dict[s[i]], dict[s[i + 1]]];
-    sum += (curr < next ? -1 : 1) * curr;
-  }
-  return sum;
+  return s.split('').reduce((a, c, i) => a + dict[c](dict[s[i + 1]]()), 0);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
