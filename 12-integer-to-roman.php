@@ -5,9 +5,65 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 4 ms, faster than 98.84% of PHP online submissions
+// for Integer to Roman.
+// Memory Usage: 14.6 MB, less than 100.00% of PHP online submissions
+// for Integer to Roman.
+
+// class Solution
+// {
+
+//     /**
+//      * @param Integer $num
+//      * @return String
+//      */
+//     function intToRoman($num)
+//     {
+//         $dict = [
+//             '0' => '',
+//             '1' => 'I',
+//             '2' => 'II',
+//             '3' => 'III',
+//             '4' => 'IV',
+//             '5' => 'V',
+//             '6' => 'VI',
+//             '7' => 'VII',
+//             '8' => 'VIII',
+//             '9' => 'IX',
+//             '10' => 'X',
+//             '20' => 'XX',
+//             '30' => 'XXX',
+//             '40' => 'XL',
+//             '50' => 'L',
+//             '60' => 'LX',
+//             '70' => 'LXX',
+//             '80' => 'LXXX',
+//             '90' => 'XC',
+//             '100' => 'C',
+//             '200' => 'CC',
+//             '300' => 'CCC',
+//             '400' => 'CD',
+//             '500' => 'D',
+//             '600' => 'DC',
+//             '700' => 'DCC',
+//             '800' => 'DCCC',
+//             '900' => 'CM',
+//             '1000' => 'M',
+//             '2000' => 'MM',
+//             '3000' => 'MMM',
+//         ];
+//         list($k, $num) = [intdiv($num, 1000) * 1000, $num % 1000];
+//         list($h, $num) = [intdiv($num, 100) * 100, $num % 100];
+//         list($da, $num) = [intdiv($num, 10) * 10, $num % 10];
+//         return $dict[$k] . $dict[$h] . $dict[$da] . $dict[$num];
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 // Runtime: 12 ms, faster than 96.51% of PHP online submissions
 // for Integer to Roman.
-// Memory Usage: 14.8 MB, less than 71.67% of PHP online submissions
+// Memory Usage: 14.7 MB, less than 88.33% of PHP online submissions
 // for Integer to Roman.
 
 class Solution
@@ -19,43 +75,17 @@ class Solution
      */
     function intToRoman($num)
     {
-        $d = [
-            '3000' => 'MMM',
-            '2000' => 'MM',
-            '1000' => 'M',
-            '900' => 'CM',
-            '800' => 'DCCC',
-            '700' => 'DCC',
-            '600' => 'DC',
-            '500' => 'D',
-            '400' => 'CD',
-            '300' => 'CCC',
-            '200' => 'CC',
-            '100' => 'C',
-            '90' => 'XC',
-            '80' => 'LXXX',
-            '70' => 'LXX',
-            '60' => 'LX',
-            '50' => 'L',
-            '40' => 'XL',
-            '30' => 'XXX',
-            '20' => 'XX',
-            '10' => 'X',
-            '9' => 'IX',
-            '8' => 'VIII',
-            '7' => 'VII',
-            '6' => 'VI',
-            '5' => 'V',
-            '4' => 'IV',
-            '3' => 'III',
-            '2' => 'II',
-            '1' => 'I',
-            '0' => '',
+        $dict = [
+            ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+            ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
+            ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'],
+            ['', 'M', 'MM', 'MMM'],
         ];
-        list($k, $num) = [intdiv($num, 1000) * 1000, $num % 1000];
-        list($h, $num) = [intdiv($num, 100) * 100, $num % 100];
-        list($da, $num) = [intdiv($num, 10) * 10, $num % 10];
-        return $d[$k] . $d[$h] . $d[$da] . $d[$num];
+        return
+            $dict[3][intdiv($num, 1000)] .
+            $dict[2][intdiv(($num % 1000), 100)] .
+            $dict[1][intdiv(($num % 100), 10)] .
+            $dict[0][$num % 10];
     }
 }
 
