@@ -3,8 +3,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 64 ms, faster than 80.12% of JavaScript online submissions for Longest Common Prefix.
-// Memory Usage: 35 MB, less than 50.54% of JavaScript online submissions for Longest Common Prefix.
+// Runtime: 64 ms, faster than 80.12% of JavaScript online submissions
+// for Longest Common Prefix.
+// Memory Usage: 35 MB, less than 50.54% of JavaScript online submissions
+// for Longest Common Prefix.
 
 /**
  * @param {string[]} strs
@@ -37,8 +39,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 64 ms, faster than 80.12% of JavaScript online submissions for Longest Common Prefix.
-// Memory Usage: 35.1 MB, less than 44.45% of JavaScript online submissions for Longest Common Prefix.
+// Runtime: 64 ms, faster than 80.12% of JavaScript online submissions
+// for Longest Common Prefix.
+// Memory Usage: 35.1 MB, less than 44.45% of JavaScript online submissions
+// for Longest Common Prefix.
 
 /**
  * @param {string[]} strs
@@ -65,8 +69,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 64 ms, faster than 80.12% of JavaScript online submissions for Longest Common Prefix.
-// Memory Usage: 34.9 MB, less than 63.80% of JavaScript online submissions for Longest Common Prefix.
+// Runtime: 64 ms, faster than 80.12% of JavaScript online submissions
+// for Longest Common Prefix.
+// Memory Usage: 34.9 MB, less than 63.80% of JavaScript online submissions
+// for Longest Common Prefix.
 
 /**
  * @param {string[]} strs
