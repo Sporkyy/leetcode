@@ -35,35 +35,6 @@ const longestPalindrome = s => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-/**
- * @param {string} s
- * @return {string}
- */
-// const longestPalindrome = s => {
-//   let lp = '';
-//   const checked = {};
-//   const isPalindrome = t => {
-//     for (let i = 0; i < Math.trunc(t.length); i++) {
-//       if (t[i] !== t[t.length - i - 1]) return false;
-//     }
-//     return true;
-//   };
-//   for (let i = 0; i < s.length; i++) {
-//     for (let j = i + 1; j <= s.length; j++) {
-//       const candidate = s.substring(i, j);
-//       if (!checked[candidate]) {
-//         checked[candidate] = null;
-//         if (lp.length < candidate.length && isPalindrome(candidate)) {
-//           lp = candidate;
-//         }
-//       }
-//     }
-//   }
-//   return lp;
-// };
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
 const tests = [
   {
     input: 'babad',
