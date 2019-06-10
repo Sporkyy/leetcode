@@ -1,10 +1,13 @@
 <?php
 
+// 12. Integer to Roman
+// https://leetcode.com/problems/integer-to-roman/submissions/
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 20 ms, faster than 82.56% of PHP online submissions
+// Runtime: 12 ms, faster than 96.51% of PHP online submissions
 // for Integer to Roman.
-// Memory Usage: 14.7 MB, less than 93.33% of PHP online submissions
+// Memory Usage: 14.8 MB, less than 71.67% of PHP online submissions
 // for Integer to Roman.
 
 class Solution
@@ -52,7 +55,7 @@ class Solution
         list($k, $num) = [intdiv($num, 1000) * 1000, $num % 1000];
         list($h, $num) = [intdiv($num, 100) * 100, $num % 100];
         list($da, $num) = [intdiv($num, 10) * 10, $num % 10];
-        return implode('', [$d[$k], $d[$h], $d[$da], $d[$num]]);
+        return $d[$k] . $d[$h] . $d[$da] . $d[$num];
     }
 }
 
@@ -84,6 +87,10 @@ $tests = [
     [
         'input' => 10,
         'expected' => 'X',
+    ],
+    [
+        'input' => 1986,
+        'expected' => 'MCMLXXXVI',
     ],
 ];
 
