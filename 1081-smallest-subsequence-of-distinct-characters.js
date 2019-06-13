@@ -8,18 +8,24 @@
  * @return {string}
  */
 const smallestSubsequence = text => {
-  let uniques = Array.from(new Set(text.split('')));
+  const uniques = Array.from(new Set(text.split('')));
   console.log(uniques);
-  let weights = text.split('').map((c, i) => [
+  const weights = text.split('').map((c, i) => [
     i,
     c,
     uniques
       .filter(x => x !== c)
-      .map(x => text.substring(i, text.length).indexOf(x))
+      .map(x => {
+        console.log(text.substring(i, text.length));
+        return text.substring(i, text.length).indexOf(x);
+      })
       .reduce((a, c) => a + c, 0),
   ]);
   console.log(weights);
-  uniques = uniques.map(u => weights.filter(([,c]) => {});
+  const answer = uniques.map(u =>
+    weights.filter(([, c]) => c === u).sort(([, , a], [, , b]) => a - b),
+  );
+  console.log(answer);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
