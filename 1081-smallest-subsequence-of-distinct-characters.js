@@ -202,7 +202,19 @@
  * @param {string} text
  * @return {string}
  */
-const smallestSubsequence = text => {};
+const smallestSubsequence = text => {
+  const dedupeA2A = a => Array.from(new Set(a));
+  const dedupeA2S = a => dedupeA2A(a).join('');
+  const dedupeS2S = s => dedupeA2S(s.split(''));
+  const dedupeS2A = s => dedupeA2A(s.split(''));
+  const uA = dedupeS2A(text);
+  let temp = text.split('').map((s, i) => text.substr(i));
+  console.log(temp);
+  temp = temp.map(s => dedupeS2S(s));
+  console.log(temp);
+  temp = temp.map(s => s.length);
+  console.log(temp);
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
