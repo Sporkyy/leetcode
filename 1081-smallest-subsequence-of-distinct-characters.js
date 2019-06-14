@@ -9,51 +9,71 @@
  * @param {string} text
  * @return {string}
  */
+// const smallestSubsequence = text => {
+//   const codes = new Array(text.length);
+//   for (let i = 0; i < text.length; i++) codes[i] = text[i].charCodeAt(0) - 97;
+//   // console.log(codes);
+
+//   const counts = new Array(26).fill(0);
+//   for (let i = 0; i < codes.length; i++) counts[codes[i]]++;
+//   // console.log(counts);
+
+//   const uniques = [];
+//   for (let i = 0; i < counts.length; i++)
+//     if (0 < counts[i] && !uniques.includes(i)) uniques.push(i);
+//   // console.log(uniques);
+
+//   const considerations = [];
+//   for (let i = 0; i < codes.length - uniques.length + 1; i++) {
+//     for (let j = i + 1; j < codes.length - uniques.length + 2; j++) {
+//       considerations.push([codes[i], ...codes.slice(j)]);
+//     }
+//   }
+//   // console.log(considerations);
+
+//   const possiblities = [];
+//   for (let i = 0; i < considerations.length; i++) {
+//     let pushIt = true;
+//     for (let j = 0; j < uniques.length; j++) {
+//       if (!considerations[i].includes(uniques[j])) {
+//         pushIt = false;
+//         break;
+//       }
+//     }
+//     if (pushIt) possiblities.push(considerations[i]);
+//   }
+//   // console.log(possiblities);
+
+//   const answers = possiblities.map(a =>
+//     Array.from(new Set(a))
+//       .map(n => String.fromCharCode(n + 97))
+//       .join(''),
+//   );
+//   // console.log(answers);
+
+//   const answer = answers.sort()[0];
+//   // console.log(answer);
+
+//   return answer;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/**
+ * @param {string} text
+ * @return {string}
+ */
 const smallestSubsequence = text => {
-  const codes = new Array(text.length);
-  for (let i = 0; i < text.length; i++) codes[i] = text[i].charCodeAt(0) - 97;
-  // console.log(codes);
-
-  const counts = new Array(26).fill(0);
-  for (let i = 0; i < codes.length; i++) counts[codes[i]]++;
-  // console.log(counts);
-
-  const uniques = [];
-  for (let i = 0; i < counts.length; i++)
-    if (0 < counts[i] && !uniques.includes(i)) uniques.push(i);
-  // console.log(uniques);
-
-  const considerations = [];
-  for (let i = 0; i < codes.length - uniques.length + 1; i++) {
-    for (let j = i + 1; j < codes.length - uniques.length + 2; j++) {
-      considerations.push([codes[i], ...codes.slice(j)]);
+  let answer = '';
+  for (let i = 0; i < text.length; i++) {
+    const current = text[i];
+    if (!answer.includes(current)) {
+      answer += current;
+    } else if (answer[answer.length - 1] < current) {
+      answer = answer.replace(new RegExp(current), '');
+      answer += current;
     }
   }
-  // console.log(considerations);
-
-  const possiblities = [];
-  for (let i = 0; i < considerations.length; i++) {
-    let pushIt = true;
-    for (let j = 0; j < uniques.length; j++) {
-      if (!considerations[i].includes(uniques[j])) {
-        pushIt = false;
-        break;
-      }
-    }
-    if (pushIt) possiblities.push(considerations[i]);
-  }
-  // console.log(possiblities);
-
-  const answers = possiblities.map(a =>
-    Array.from(new Set(a))
-      .map(n => String.fromCharCode(n + 97))
-      .join(''),
-  );
-  // console.log(answers);
-
-  const answer = answers.sort()[0];
-  // console.log(answer);
-
   return answer;
 };
 
