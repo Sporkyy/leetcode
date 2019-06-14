@@ -202,18 +202,148 @@
  * @param {string} text
  * @return {string}
  */
+// const smallestSubsequence = text => {
+//   const dedupeA2A = a => Array.from(new Set(a));
+//   const dedupeA2S = a => dedupeA2A(a).join('');
+//   const dedupeS2S = s => dedupeA2S(s.split(''));
+//   const dedupeS2A = s => dedupeA2A(s.split(''));
+//   const uA = dedupeS2A(text);
+//   let temp = text.split('').map((s, i) => text.substr(i));
+//   console.log(temp);
+//   // temp = temp.map(s => dedupeS2S(s));
+//   // console.log(temp);
+//   // temp = temp.map(s => s.length);
+//   // console.log(temp);
+//   // temp = temp.filter(x => 4 === x.length);
+//   // console.log(temp);
+//   // temp = temp.sort();
+//   // console.log(temp);
+//   // return temp[0];
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/**
+ * @param {string} text
+ * @return {string}
+ */
+// const smallestSubsequence = text => {
+//   const codes = new Array(text.length);
+//   for (let i = 0; i < text.length; i++) codes[i] = text[i].charCodeAt(0) - 97;
+//   console.log(codes);
+
+//   const counts = new Array(26).fill(0);
+//   for (let i = 0; i < codes.length; i++) counts[codes[i]]++;
+//   console.log(counts);
+
+//   const uniques = [];
+//   for (let i = 0; i < counts.length; i++)
+//     if (0 < counts[i] && !uniques.includes(i)) uniques.push(i);
+//   console.log(uniques);
+
+//   const subsequents = new Array(codes.length - uniques.length + 1);
+//   for (let i = 0; i < subsequents.length; i++) subsequents[i] = codes.slice(i, codes.length);
+//   console.log(subsequents);
+
+//   const possiblities = [];
+//   for (let i = 0; i < subsequents.length; i++) {
+//     let pushIt = true;
+//     for (let j = 0; j < uniques.length; j++) pushIt = subsequents[i].includes(uniques[j]);
+//     if (pushIt) possiblities.push(subsequents[i]);
+//   }
+//   console.log(possiblities);
+
+//   const considerations = [];
+//   for (let i = 0; i < possiblities.length; i++) considerations.push(codes.slice(i));
+//   console.log(considerations);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/**
+ * @param {string} text
+ * @return {string}
+ */
+// const smallestSubsequence = text => {
+//   const codes = new Array(text.length);
+//   for (let i = 0; i < text.length; i++) codes[i] = text[i].charCodeAt(0) - 97;
+//   console.log(codes);
+
+//   const counts = new Array(26).fill(0);
+//   for (let i = 0; i < codes.length; i++) counts[codes[i]]++;
+//   console.log(counts);
+
+//   const uniques = [];
+//   for (let i = 0; i < counts.length; i++)
+//     if (0 < counts[i] && !uniques.includes(i)) uniques.push(i);
+//   console.log(uniques);
+
+//   const answers = [];
+//   for (let i = 0; i < codes.length - 1; i++) {
+//     const current = codes[i];
+//     console.log(current);
+//     const rest = codes.slice(i + 1);
+//     console.log(rest);
+
+//     // for (let j = i + 1; j < codes.length; j++) {
+
+//     // }
+//   }
+//   console.log(answers);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/**
+ * @param {string} text
+ * @return {string}
+ */
 const smallestSubsequence = text => {
-  const dedupeA2A = a => Array.from(new Set(a));
-  const dedupeA2S = a => dedupeA2A(a).join('');
-  const dedupeS2S = s => dedupeA2S(s.split(''));
-  const dedupeS2A = s => dedupeA2A(s.split(''));
-  const uA = dedupeS2A(text);
-  let temp = text.split('').map((s, i) => text.substr(i));
-  console.log(temp);
-  temp = temp.map(s => dedupeS2S(s));
-  console.log(temp);
-  temp = temp.map(s => s.length);
-  console.log(temp);
+  const codes = new Array(text.length);
+  for (let i = 0; i < text.length; i++) codes[i] = text[i].charCodeAt(0) - 97;
+  // console.log(codes);
+
+  const counts = new Array(26).fill(0);
+  for (let i = 0; i < codes.length; i++) counts[codes[i]]++;
+  // console.log(counts);
+
+  const uniques = [];
+  for (let i = 0; i < counts.length; i++)
+    if (0 < counts[i] && !uniques.includes(i)) uniques.push(i);
+  // console.log(uniques);
+
+  const considerations = [];
+  for (let i = 0; i < codes.length - uniques.length + 1; i++) {
+    for (let j = i + 1; j < codes.length - uniques.length + 2; j++) {
+      considerations.push([codes[i], ...codes.slice(j)]);
+    }
+  }
+  // console.log(considerations);
+
+  const possiblities = [];
+  for (let i = 0; i < considerations.length; i++) {
+    let pushIt = true;
+    for (let j = 0; j < uniques.length; j++) {
+      if (!considerations[i].includes(uniques[j])) {
+        pushIt = false;
+        break;
+      }
+    }
+    if (pushIt) possiblities.push(considerations[i]);
+  }
+  // console.log(possiblities);
+
+  const answers = possiblities.map(a =>
+    Array.from(new Set(a))
+      .map(n => String.fromCharCode(n + 97))
+      .join(''),
+  );
+  // console.log(answers);
+
+  const answer = answers.sort()[0];
+  // console.log(answer);
+
+  return answer;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -237,10 +367,10 @@ const tests = [
     input: 'cdadabcc',
     expected: 'adbc',
   },
-  // {
-  //   input: 'abcd',
-  //   expected: 'abcd',
-  // },
+  {
+    input: 'abcd',
+    expected: 'abcd',
+  },
   //          |---|---|---|---|---|---|---|
   //      i = | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
   //          |---|---|---|---|---|---|---|
@@ -255,14 +385,19 @@ const tests = [
   //          |---|---|---|---|---|---|---|
   //      i = | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
   //          |---|---|---|---|---|---|---|
-  // {
-  //   input: 'ecbacba',
-  //   expected: 'eacb',
-  // },
-  // {
-  //   input: 'leetcode',
-  //   expected: 'letcod',
-  // },
+  {
+    input: 'ecbacba',
+    expected: 'eacb',
+  },
+  {
+    input: 'leetcode',
+    expected: 'letcod',
+  },
+  {
+    input:
+      'wugnnjdhsvjhsfabalvlpsqdayxdlwvbehakmoihrfnkvusyamwcurqsnurpetktgkieckvybcfxnannkbqjpaqqmotomsdekawunwruvuxsggeimjkpkhvlyhpduehssfnmhggkxetehmqideojgtwqtejdsgfdbdxpwktapefjysaqywgvctoowduajfrycdqxtscqocsgsvlqvcdfihbakstrwbpfeihswoejvywayoitsxehgkjvirepgjfnamniwilftquswgyrcrmfnirxtktixargkhcrsaimutfdphftxmtvaypwottqslureglmwvwakqkptnunloidvediccgtcybfbjmpcsdtkyiqgmfvhocytgkrkrrwpuptrhmmqqhuakjphpvibkbtyyqauxlldltgqwotienfpnafwycdwdfmmlluwgonlvqnbixlkrxqhoiiibykmpnjvtqtmqebbhfxhpqtyqknnkwrcqekfsconougekhqrhvpmqkcfgjnnxtrjqmkslgoyqoqlsbynidqlheoelomwetcgfakhbnhsmcsltywgcbchuqdrdsdlcgasbcncyexvoogxfenpxitrcygacygdhmisyxiabfceuxrvgjmngnapdkwolmdkhufleljqdyrjwvoqswnefcwkwnbjvdnygtlgnttwgijsvgmltnebqyuewcuhblxbipqeqmflmleiepsmakmitketbomhffggcxarabqgypjeathwwcolgpuhbeuqtyytynpwtpngwfsjimnwjahljtk',
+    expected: 'abcfxnkqjpmotsdewurvgihly',
+  },
 ];
 
 tests.forEach(({ input, expected }) => {
