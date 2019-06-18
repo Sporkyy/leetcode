@@ -27,27 +27,22 @@ tests = [
   {
     input: [1, 0, 2, 3, 0, 4, 5, 0],
     expected: [1, 0, 0, 2, 3, 0, 0, 4],
-    // Explanation: After calling your function, the input array is modified to: [1,0,0,2,3,0,0,4]
   },
   {
     input: [1, 2, 3],
     expected: [1, 2, 3],
-    // Explanation: After calling your function, the input array is modified to: [1,2,3]
   },
   {
     input: [1, 0, 1],
     expected: [1, 0, 0],
-    // Explanation: After calling your function, the input array is modified to: [1,2,3]
   },
   {
     input: [1, 0, 0],
     expected: [1, 0, 0],
-    // Explanation: After calling your function, the input array is modified to: [1,2,3]
   },
   {
     input: [1, 0, 1, 2],
     expected: [1, 0, 0, 1],
-    // Explanation: After calling your function, the input array is modified to: [1,2,3]
   },
 ];
 
