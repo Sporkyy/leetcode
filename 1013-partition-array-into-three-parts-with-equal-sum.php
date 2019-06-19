@@ -65,6 +65,32 @@
 // Memory Usage: 21.7 MB, less than 44.44% of PHP online submissions
 // for Partition Array Into Three Parts With Equal Sum.
 
+// class Solution
+// {
+//     /**
+//      * @param Integer[] $A
+//      * @return Boolean
+//      */
+//     function canThreePartsEqualSum($A)
+//     {
+//         $target = array_sum($A) / 3;
+//         list($left, $right) = [0, count($A) - 1];
+//         list($lsum, $rsum) = [$A[$left], $A[$right]];
+//         $i = -1;
+//         while ($left < $right && $i++ < count($A) - 1) {
+//             if ($target !== $lsum) $lsum += $A[++$left];
+//             if ($target !== $rsum) $rsum += $A[--$right];
+//         }
+//         return $left < $right;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 100 ms, faster than 100.00% of PHP online submissions
+// for Partition Array Into Three Parts With Equal Sum.
+// Memory Usage: 21.7 MB, less than 55.56% of PHP online submissions
+// for Partition Array Into Three Parts With Equal Sum.
 class Solution
 {
     /**
@@ -73,14 +99,25 @@ class Solution
      */
     function canThreePartsEqualSum($A)
     {
-        $target = array_sum($A) / 3;
-        list($left, $right) = [0, count($A) - 1];
-        list($lsum, $rsum) = [$A[$left], $A[$right]];
-        $i = -1;
-        while ($left < $right && $i++ < count($A) - 1) {
-            if ($target !== $lsum) $lsum += $A[++$left];
-            if ($target !== $rsum) $rsum += $A[--$right];
+        $sum = array_sum($A);
+        if (0 !== $sum % 3) return false;
+        $target = $sum / 3;
+        for ($i = 0, $sum = 0; $i < count($A) - 2; $i++) {
+            $sum += $A[$i];
+            if ($target === $sum) {
+                $left = $i;
+                break;
+            }
         }
+        if (!isset($left)) return false;
+        for ($i = count($A) - 1, $sum = 0; $left + 1 < $i; $i--) {
+            $sum += $A[$i];
+            if ($target === $sum) {
+                $right = $i;
+                break;
+            }
+        }
+        if (!isset($right)) return false;
         return $left < $right;
     }
 }

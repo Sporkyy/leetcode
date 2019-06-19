@@ -141,15 +141,51 @@
  * @param {number[]} A
  * @return {boolean}
  */
+// const canThreePartsEqualSum = A => {
+//   const target = A.reduce((arr, curr) => arr + curr, 0) / 3;
+//   let [left, right] = [0, A.length - 1];
+//   let [lsum, rsum] = [A[left], A[right]];
+//   let i = -1;
+//   while (left < right && i++ < A.length - 1) {
+//     if (target !== lsum) lsum += A[++left];
+//     if (target !== rsum) rsum += A[--right];
+//   }
+//   return left < right;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 89.31% of JavaScript online submissions
+// for Partition Array Into Three Parts With Equal Sum.
+// Memory Usage: 39.9 MB, less than 40.06% of JavaScript online submissions
+// for Partition Array Into Three Parts With Equal Sum.
+
+/**
+ * @param {number[]} A
+ * @return {boolean}
+ */
 const canThreePartsEqualSum = A => {
-  const target = A.reduce((arr, curr) => arr + curr, 0) / 3;
-  let [left, right] = [0, A.length - 1];
-  let [lsum, rsum] = [A[left], A[right]];
-  let i = -1;
-  while (left < right && i++ < A.length - 1) {
-    if (target !== lsum) lsum += A[++left];
-    if (target !== rsum) rsum += A[--right];
+  const sum = A.reduce((arr, curr) => arr + curr, 0);
+  if (0 !== sum % 3) return false;
+  const target = sum / 3;
+  let left;
+  for (let i = 0, sum = 0; i < A.length - 2; i++) {
+    sum += A[i];
+    if (target === sum) {
+      left = i;
+      break;
+    }
   }
+  if ('undefined' === typeof left) return false;
+  let right;
+  for (let i = A.length - 1, sum = 0; left + 1 < i; i--) {
+    sum += A[i];
+    if (target === sum) {
+      right = i;
+      break;
+    }
+  }
+  if ('undefined' === typeof right) return false;
   return left < right;
 };
 
@@ -196,6 +232,10 @@ const tests = [
   {
     input: [14, 6, -10, 2, 18, -7, -4, 11],
     expected: false,
+  },
+  {
+    input: [12, -4, 16, -5, 9, -3, 3, 8, 0],
+    expected: true,
   },
 ];
 
