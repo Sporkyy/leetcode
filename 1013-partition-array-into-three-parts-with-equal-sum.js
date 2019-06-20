@@ -165,9 +165,9 @@
  * @return {boolean}
  */
 const canThreePartsEqualSum = A => {
-  const sum = A.reduce((arr, curr) => arr + curr, 0);
-  if (0 !== sum % 3) return false;
-  const target = sum / 3;
+  const total = A.reduce((arr, curr) => arr + curr, 0);
+  if (0 !== total % 3) return false;
+  const target = total / 3;
   let left;
   for (let i = 0, sum = 0; i < A.length - 2; i++) {
     sum += A[i];
