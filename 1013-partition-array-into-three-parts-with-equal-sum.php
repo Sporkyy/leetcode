@@ -87,10 +87,49 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 100 ms, faster than 100.00% of PHP online submissions
+// Runtime: 108 ms, faster than 100.00% of PHP online submissions
+// for Partition Array Into Three Parts With Equal Sum.
+// Memory Usage: 21.6 MB, less than 88.89% of PHP online submissions
+// for Partition Array Into Three Parts With Equal Sum.
+
+// class Solution
+// {
+//     /**
+//      * @param Integer[] $A
+//      * @return Boolean
+//      */
+//     function canThreePartsEqualSum($A)
+//     {
+//         $sum = array_sum($A);
+//         if (0 !== $sum % 3) return false;
+//         $target = $sum / 3;
+//         for ($i = 0, $sum = 0; $i < count($A) - 2; $i++) {
+//             $sum += $A[$i];
+//             if ($target === $sum) {
+//                 $left = $i;
+//                 break;
+//             }
+//         }
+//         if (!isset($left)) return false;
+//         for ($i = count($A) - 1, $sum = 0; $left + 1 < $i; $i--) {
+//             $sum += $A[$i];
+//             if ($target === $sum) {
+//                 $right = $i;
+//                 break;
+//             }
+//         }
+//         if (!isset($right)) return false;
+//         return $left < $right;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 128 ms, faster than 61.90% of PHP online submissions
 // for Partition Array Into Three Parts With Equal Sum.
 // Memory Usage: 21.7 MB, less than 55.56% of PHP online submissions
 // for Partition Array Into Three Parts With Equal Sum.
+
 class Solution
 {
     /**
@@ -99,26 +138,15 @@ class Solution
      */
     function canThreePartsEqualSum($A)
     {
-        $sum = array_sum($A);
-        if (0 !== $sum % 3) return false;
-        $target = $sum / 3;
-        for ($i = 0, $sum = 0; $i < count($A) - 2; $i++) {
-            $sum += $A[$i];
-            if ($target === $sum) {
-                $left = $i;
-                break;
-            }
+        $target = array_sum($A) / 3;
+        if (!is_int($target)) return false;
+        list($left, $right) = [0, count($A) - 1];
+        list($lSum, $rSum) = [$target, $target];
+        while ($left < $right && !(0 === $lSum && 0 === $rSum)) {
+            if (0 !== $lSum) $lSum -= $A[$left++];
+            if (0 !== $rSum) $rSum -= $A[$right--];
         }
-        if (!isset($left)) return false;
-        for ($i = count($A) - 1, $sum = 0; $left + 1 < $i; $i--) {
-            $sum += $A[$i];
-            if ($target === $sum) {
-                $right = $i;
-                break;
-            }
-        }
-        if (!isset($right)) return false;
-        return $left < $right;
+        return 0 === $lSum && 0 === $rSum;
     }
 }
 

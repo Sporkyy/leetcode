@@ -155,7 +155,43 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 68 ms, faster than 89.31% of JavaScript online submissions
+// Runtime: 60 ms, faster than 97.06% of JavaScript online submissions
+// for Partition Array Into Three Parts With Equal Sum.
+// Memory Usage: 39.7 MB, less than 73.08% of JavaScript online submissions
+// for Partition Array Into Three Parts With Equal Sum.
+
+/**
+ * @param {number[]} A
+ * @return {boolean}
+ */
+// const canThreePartsEqualSum = A => {
+//   const total = A.reduce((arr, curr) => arr + curr, 0);
+//   if (0 !== total % 3) return false;
+//   const target = total / 3;
+//   let left;
+//   for (let i = 0, sum = 0; i < A.length - 2; i++) {
+//     sum += A[i];
+//     if (target === sum) {
+//       left = i;
+//       break;
+//     }
+//   }
+//   if ('undefined' === typeof left) return false;
+//   let right;
+//   for (let i = A.length - 1, sum = 0; left + 1 < i; i--) {
+//     sum += A[i];
+//     if (target === sum) {
+//       right = i;
+//       break;
+//     }
+//   }
+//   if ('undefined' === typeof right) return false;
+//   return left < right;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 80 ms, faster than 31.24% of JavaScript online submissions
 // for Partition Array Into Three Parts With Equal Sum.
 // Memory Usage: 39.9 MB, less than 40.06% of JavaScript online submissions
 // for Partition Array Into Three Parts With Equal Sum.
@@ -165,28 +201,15 @@
  * @return {boolean}
  */
 const canThreePartsEqualSum = A => {
-  const total = A.reduce((arr, curr) => arr + curr, 0);
-  if (0 !== total % 3) return false;
-  const target = total / 3;
-  let left;
-  for (let i = 0, sum = 0; i < A.length - 2; i++) {
-    sum += A[i];
-    if (target === sum) {
-      left = i;
-      break;
-    }
+  const target = A.reduce((arr, curr) => arr + curr, 0) / 3;
+  if (!Number.isInteger(target)) return false;
+  let [left, right] = [0, A.length - 1];
+  let [lSum, rSum] = [target, target];
+  while (left < right && !(0 === lSum && 0 === rSum)) {
+    if (0 !== lSum) lSum -= A[left++];
+    if (0 !== rSum) rSum -= A[right--];
   }
-  if ('undefined' === typeof left) return false;
-  let right;
-  for (let i = A.length - 1, sum = 0; left + 1 < i; i--) {
-    sum += A[i];
-    if (target === sum) {
-      right = i;
-      break;
-    }
-  }
-  if ('undefined' === typeof right) return false;
-  return left < right;
+  return 0 === lSum && 0 === rSum;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
