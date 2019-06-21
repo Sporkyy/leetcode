@@ -26,8 +26,33 @@
  * @param {number[]} A
  * @return {boolean[]}
  */
-const prefixesDivBy5 = A =>
-  A.map((n, i) => BigInt(0) === BigInt(`0b${A.slice(0, i).join('')}${n}`) % BigInt(5));
+// const prefixesDivBy5 = A =>
+//   A.map((n, i) => BigInt(0) === BigInt(`0b${A.slice(0, i).join('')}${n}`) % BigInt(5));
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 84 ms, faster than 34.53% of JavaScript online submissions
+// for Binary Prefix Divisible By 5.
+// Memory Usage: 42.1 MB, less than 13.42% of JavaScript online submissions
+// for Binary Prefix Divisible By 5.
+
+/**
+ * @param {number[]} A
+ * @return {boolean[]}
+ */
+const prefixesDivBy5 = A => {
+  const result = [];
+  for (let i = 0, s = ''; i < A.length; i++) {
+    s += A[i];
+    if (BigInt(0) === BigInt(`0b${s}`) % BigInt(5)) {
+      result.push(true);
+      s = '';
+    } else {
+      result.push(false);
+    }
+  }
+  return result;
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -47,6 +72,57 @@ const tests = [
   {
     input: [1, 1, 1, 0, 1],
     expected: [false, false, false, false, false],
+  },
+  {
+    input: [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1],
+    expected: [
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ],
+  },
+  {
+    input: [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1],
+    expected: [
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ],
   },
   {
     input: [
