@@ -28,7 +28,107 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// const summ = n => (n < 0 ? -1 : n === 0 ? 1 : n + summ(n - 1));
+// Runtime: 60 ms, faster than 40.22% of JavaScript online submissions
+// for Distribute Candies to People.
+// Memory Usage: 36.6 MB, less than 100.00% of JavaScript online submissions
+// for Distribute Candies to People.
+
+// 0 |  1  2  3  4  5 =  15
+// 1 |  7  9 11 13 15 =  55
+// 2 | 18 21 24 27 30 = 120
+// 3 | 34 38 42 46 50 = 210
+// 4 | 55 60 65 70 75 = 325
+
+// (n / 2) * (a1 + aN)
+
+//  1, 5 = (Math.ceil (1 / 5) / 2) * (1 +  1) =  1
+//  2, 5 = (Math.ceil (2 / 5) / 2) * (2 +  2) =  2
+//  6, 5 = (Math.ceil( 6 / 5) / 2) * (1 +  6) =  7
+//  7, 5 = (Math.ceil( 7 / 5) / 2) * (2 +  7) =  9
+// 11, 5 = (Math.ceil(11 / 5) / 2) * (1 + 11) = 18
+// 16, 5 = (Math.ceil(16 / 5) / 2) * (1 + 16) = 34
+// 21, 5 = (Math.ceil(21 / 5) / 2) * (1 + 21) = 55
+
+// const sumTo = (n, s = 1) => (Math.ceil(n / s) / 2) * ((n % s || s) + n);
+
+// console.log(sumTo(1, 5));
+// console.log(sumTo(2, 5));
+// console.log(sumTo(3, 5));
+// console.log(sumTo(4, 5));
+// console.log(sumTo(5, 5));
+// ----------------------
+// console.log(sumTo(6, 5));
+// console.log(sumTo(7, 5));
+// console.log(sumTo(8, 5));
+// console.log(sumTo(9, 5));
+// console.log(sumTo(10, 5));
+// -----------------------
+// console.log(sumTo(11, 5));
+// console.log(sumTo(16, 5));
+// console.log(sumTo(21, 5));
+
+// 5 * n * (5 * n + 1) / 2
+// 1, 5 = (5 * 1) * ((5 * 1) + 1) / 2 =  15
+// 2, 5 = (5 * 2) * ((5 * 2) + 1) / 2 =  55
+// 3, 5 = (5 * 3) * ((5 * 3) + 1) / 2 = 120
+// 4, 5 = (5 * 4) * ((5 * 4) + 1) / 2 = 210
+// 5, 5 = (5 * 5) * ((5 * 5) + 1) / 2 = 325
+// const getTriangularNumber = (n, s = 1) => (s * n * (s * n + 1)) / 2;
+// console.log(getTriangularNumber(1, 5));
+// console.log(getTriangularNumber(2, 5));
+// console.log(getTriangularNumber(3, 5));
+// console.log(getTriangularNumber(4, 5));
+// console.log(getTriangularNumber(5, 5));
+
+// arraySum = a => a.reduce((acc, curr) => acc + curr);
+
+/**
+ * @param {number} candies
+ * @param {number} num_people
+ * @return {number[]}
+ */
+// const distributeCandies = (candies, num_people) => {
+//   let [tn, tni] = [0, 0];
+//   while (tn < candies) tn = getTriangularNumber(tni++, num_people);
+
+//   // console.log(tn);
+//   // console.log(tni - 2);
+//   // console.log((tni - 2) * num_people + 1);
+
+//   const start = (tni - 2) * num_people + 1;
+//   // console.log(start);
+
+//   const result = new Array(num_people).fill(0).map((x, i) => sumTo(start + i, num_people));
+//   // console.log(result);
+
+//   if (candies === arraySum(result)) return result;
+
+//   const under = new Array(num_people)
+//     .fill(0)
+//     .map((x, i) => (start < num_people ? 0 : sumTo(start - num_people + i, num_people)));
+//   // console.log(under);
+
+//   let cursor = result.length - 1;
+//   // console.log(cursor);
+//   while (candies < arraySum(result)) {
+//     result[cursor] = under[cursor];
+//     cursor--;
+//   }
+
+//   // console.log(result);
+
+//   if (arraySum(result) < candies) {
+//     // console.log('here');
+//     // console.log(cursor + 1);
+//     result[cursor + 1] += candies - arraySum(result);
+//   }
+
+//   // console.log(result);
+
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const a000217 = [
   0,
@@ -87,36 +187,7 @@ const a000217 = [
   1431,
 ];
 
-// Index of the number inthe sorted array without going over
-// const bobdex = (a, n) => {
-//   for (let i = 0; i < a.length; i++) {
-//     if (n < a[i]) return i - 1;
-//   }
-//   return undefined;
-// };
-
-// const pir = (a, n) => {
-//   for (let i = 0; i < a.length; i++) {
-//     if (n < a[i]) return a[i - 1];
-//   }
-//   return undefined;
-// };
-
-const sumTo = n => (n * (n + 1)) / 2;
-
-const underOverOrEquals = (a, n, s) => {
-  for (let i = a.indexOf(sumTo(s)); i < a.length; i += s) {
-    if (n <= a[i]) return [a[i - s], a[i]];
-  }
-  return [undefined, undefined];
-};
-
-const under = (a, n, s) => {
-  for (let i = a.indexOf(sumTo(s)); i < a.length; i += s) {
-    if (n <= a[i]) return a[i - s];
-  }
-  return undefined;
-};
+const sumTo = (n, s = 1) => (Math.ceil(n / s) / 2) * ((n % s || s) + n);
 
 /**
  * @param {number} candies
@@ -124,57 +195,37 @@ const under = (a, n, s) => {
  * @return {number[]}
  */
 const distributeCandies = (candies, num_people) => {
-  // const [u, o] = underOverOrEquals(a000217, candies, num_people);
-  // console.log(u, o);
-  // const [ur, or] = [];
-  // console.log(ur, or);
-  const u = under(a000217, candies, num_people);
-  console.log(u);
-  const ur = Math.trunc(a000217.indexOf(u) / num_people) - 1;
-  console.log(ur);
-  const [un, on] = [
-    new Array(num_people).fill(null).map(x => x),
-    new Array(num_people).fill(null).map(x => x),
-  ];
-  console.log(un, on);
-  // const b = bobdex(a000217, candies);
-  // console.log(b);
-  // const r = Math.trunc(b / num_people);
-  // console.log(r);
-  //   Two: n * ((2 * n - 0) / 2)
-  // Three: n * ((3 * n - 1) / 2)
-  //  Five: n * ((5 * n - 3) / 2)
-  // const y = 2;
-  // console.log(y * ((num_people * y - 1) / 2));
-  return [];
+  const result = new Array(num_people);
+
+  console.log(candies);
+
+  for (let i = 0; i < a000217.length; i += 1) {
+    if (candies <= a000217[i]) {
+      finalRoundStart = i - num_people + 2;
+      candies -= a000217[finalRoundStart - 1];
+      for (let j = 0; j < num_people; j++) {
+        result[j] = sumTo(j + num_people + 1, num_people);
+      }
+      break;
+    }
+  }
+
+  console.log(candies);
+  console.log(result);
+
+  // for (let i = 0; i < num_people; i++) {
+  // const person = (i - 1) % num_people;
+  // if (candies < i) {
+  //   result[person] += candies;
+  //   break;
+  // }
+  // result[person] += i;
+  // }
+
+  return result;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-// One
-// 0 | 1 = 1
-// 1 | 2 = 2
-// 2 | 3 = 3
-
-// Two
-// 0 | 1  2 =  3 (6)
-// 1 | 4  6 = 10 (15)
-// 2 | 9 12 = 21
-
-// Three
-// 0 |  1  2  3 =  6 (10, 15)
-// 1 |  5  7  9 = 21 (28, 36)
-// 2 | 12 15 18 = 45
-
-// Four
-// 0 |  1  2  3  4 = 10 (15, 21, 28)
-// 1 |  6  8 10 12 = 36 (45, 55, 66)
-// 2 | 15 18 21 24 = 78
-
-// Five
-// 0 |  1  2  3  4  5 =  15 (21, 28, 36,  45)
-// 1 |  7  9 11 13 15 =  55 (66, 78, 91, 105)
-// 2 | 18 21 24 27 30 = 120
 
 const tests = [
   // {
@@ -185,18 +236,20 @@ const tests = [
   //   expected: [1, 2, 3, 1],
   // },
 
-  // 0 | (1) (2) (3) (4-3) = 10
+  // 0 |  0   0   0  (0+1) =  0 (1, 3, 6)
+  // 1 | (1) (2) (3)  4    = 10
 
-  // {
-  //   input: {
-  //     candies: 10,
-  //     num_people: 3,
-  //   },
-  //   expected: [5, 2, 3],
-  // },
+  {
+    input: {
+      candies: 10,
+      num_people: 3,
+    },
+    expected: [5, 2, 3],
+  },
 
-  // 0 |  1  (2) (3) =  6 (10, 15)
-  // 1 | (5)  7   9  = 21
+  // 0 |  0   0   0  =  0 ( 1,  3)
+  // 1 |  1  (2) (3) =  6 (10, 15)
+  // 2 | (5)  7   9  = 21
 
   {
     input: {
@@ -206,9 +259,20 @@ const tests = [
     expected: [15, 18, 15, 12],
   },
 
-  // 0 |   1    2    3      4  = 10 (15, 21, 28)
-  // 1 |   6    8  (10+5) (12) = 36 (45, 55, 66)
-  // 2 | (15) (18)  21     24  = 78
+  // 0 |   0    0    0      0  =  0 ( 1,  3,  6)
+  // 1 |   1    2    3      4  = 10 (15, 21, 28)
+  // 2 |   6    8  (10+5) (12) = 36 (45, 55, 66)
+  // 3 | (15) (18)  21     24  = 78
+
+  // {
+  //   input: {
+  //     candies: 1,
+  //     num_people: 2,
+  //   },
+  //   expected: [1, 0],
+  // },
+
+  // 0 | (1) 0 = 0 (1)
 ];
 
 const areArraysEqual = (a, b) => a.length === b.length && a.join() === b.join();
@@ -223,3 +287,53 @@ tests.forEach(({ input: { candies, num_people }, expected }) => {
     console.log(`Expected "${expected.join(', ')}", but got "${output.join(', ')}"`);
   }
 });
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// One
+// 0 | 1 = 1
+// 1 | 2 = 3
+// 2 | 3 = 6
+
+// console.log(sumTo(1, 1));
+// console.log(sumTo(2, 1));
+// console.log(sumTo(3, 1));
+
+// Two
+// 0 | 1  2 =  3 (6)
+// 1 | 4  6 = 10 (15)
+// 2 | 9 12 = 21
+
+// console.log(sumTo(1, 2));
+// console.log(sumTo(3, 2));
+// console.log(sumTo(5, 2));
+
+// Three
+// 0 |  1  2  3 =  6 (10, 15)
+// 1 |  5  7  9 = 21 (28, 36)
+// 2 | 12 15 18 = 45
+
+// console.log(sumTo(1, 3));
+// console.log(sumTo(4, 3));
+// console.log(sumTo(7, 3));
+
+// Four
+// 0 |  1  2  3  4 = 10 (15, 21, 28)
+// 1 |  6  8 10 12 = 36 (45, 55, 66)
+// 2 | 15 18 21 24 = 78
+
+// console.log(sumTo(1, 4));
+// console.log(sumTo(5, 4));
+// console.log(sumTo(9, 4));
+
+// Five
+// 0 |  1  2  3  4  5 =  15 (21,   28,  36,  45)
+// 1 |  7  9 11 13 15 =  55 (66,   78,  91, 105)
+// 2 | 18 21 24 27 30 = 120 (136, 153, 171, 190)
+// 3 | 34 38 42 46 50 = 210 (231, 253, 276, 300)
+// 4 | 55 60 65 70 75 = 325
+
+// console.log(sumTo(1, 5));
+// console.log(sumTo(6, 5));
+// console.log(sumTo(11, 5));
+// console.log(sumTo(16, 5));
