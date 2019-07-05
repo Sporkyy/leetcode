@@ -10,6 +10,36 @@
 // Memory Usage: 14.7 MB, less than 100.00% of PHP online submissions
 // for Distribute Candies to People.
 
+// class Solution
+// {
+
+//     /**
+//      * @param Integer $candies
+//      * @param Integer $num_people
+//      * @return Integer[]
+//      */
+//     function distributeCandies($candies, $num_people)
+//     {
+//         $result = array_fill(0, $num_people, 0);
+//         for ($i = 1; 0 < $candies; $candies -= $i, $i++) {
+//             $person = ($i - 1) % $num_people;
+//             if ($candies < $i) {
+//                 $result[$person] += $candies;
+//                 break;
+//             }
+//             $result[$person] += $i;
+//         }
+//         return $result;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 12 ms, faster than 50.00% of PHP online submissions
+// for Distribute Candies to People.
+// Memory Usage: 14.9 MB, less than 100.00% of PHP online submissions
+// for Distribute Candies to People.
+
 class Solution
 {
 
@@ -21,14 +51,8 @@ class Solution
     function distributeCandies($candies, $num_people)
     {
         $result = array_fill(0, $num_people, 0);
-        for ($i = 1; 0 < $candies; $candies -= $i, $i++) {
-            $person = ($i - 1) % $num_people;
-            if ($candies < $i) {
-                $result[$person] += $candies;
-                break;
-            }
-            $result[$person] += $i;
-        }
+        for ($i = 1; 0 < $candies; $candies -= $i++)
+            $result[($i - 1) % $num_people] += $candies < $i ? $candies : $i;
         return $result;
     }
 }
