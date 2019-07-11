@@ -55,9 +55,31 @@
  * @param {number[][]} trust
  * @return {number}
  */
+// const findJudge = (N, trust) => {
+//   const a = new Array(N + 1).fill(0);
+//   for (let [x, y] of trust) [a[x], a[y]] = [a[x] + 1, a[y] - 1];
+//   for (let i = 1; i <= N; i++) if (-N + 1 === a[i]) return i;
+//   return -1;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 104 ms, faster than 74.40% of JavaScript online submissions
+// for Find the Town Judge.
+// Memory Usage: 43.3 MB, less than 82.43% of JavaScript online submissions
+// for Find the Town Judge.
+
+/**
+ * @param {number} N
+ * @param {number[][]} trust
+ * @return {number}
+ */
 const findJudge = (N, trust) => {
   const a = new Array(N + 1).fill(0);
-  for (let [x, y] of trust) [a[x], a[y]] = [a[x] + 1, a[y] - 1];
+  for (let [x, y] of trust) {
+    a[x]++;
+    a[y]--;
+  }
   for (let i = 1; i <= N; i++) if (-N + 1 === a[i]) return i;
   return -1;
 };

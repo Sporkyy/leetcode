@@ -5,7 +5,26 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 312 ms, faster than 100.00% of PHP online submissions
+// class Solution
+// {
+
+//     /**
+//      * @param Integer $N
+//      * @param Integer[][] $trust
+//      * @return Integer
+//      */
+//     function findJudge($N, $trust)
+//     {
+//         $a = array_fill(1, $N, 0);
+//         foreach ($trust as $t) list($a[$t[0]], $a[$t[1]]) = [$a[$t[0]] + 1, $a[$t[1]] - 1];
+//         for ($i = 1; $i <= $N; $i++) if (-$N + 1 === $a[$i]) return $i;
+//         return -1;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 300 ms, faster than 100.00% of PHP online submissions
 // for Find the Town Judge.
 // Memory Usage: 28.4 MB, less than 50.00% of PHP online submissions
 // for Find the Town Judge.
@@ -21,9 +40,9 @@ class Solution
     function findJudge($N, $trust)
     {
         $a = array_fill(1, $N, 0);
-        foreach ($trust as $t) {
-            $a[$t[0]]++;
-            $a[$t[1]]--;
+        foreach ($trust as [$x, $y]) {
+            $a[$x]++;
+            $a[$y]--;
         }
         for ($i = 1; $i <= $N; $i++) if (-$N + 1 === $a[$i]) return $i;
         return -1;
