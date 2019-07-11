@@ -78,48 +78,108 @@
 // Memory Usage: 36.8 MB, less than 48.31% of JavaScript online submissions
 // for Rotting Oranges.
 
-const gridToArray = grid => {
-  const [w, h] = [grid[0].length, grid.length];
-  const arr = [];
-  for (let i = 0, z = 0; i < h; i++)
-    for (let j = 0; j < w && z < w * h; j++, z++) arr[z] = grid[i][j];
-  return arr;
-};
+// const gridToArray = grid => {
+//   const [w, h] = [grid[0].length, grid.length];
+//   const arr = [];
+//   for (let i = 0, z = 0; i < h; i++)
+//     for (let j = 0; j < w && z < w * h; j++, z++) arr[z] = grid[i][j];
+//   return arr;
+// };
 
-const gridToArrayIndices = grid => {
-  const [w, h] = [grid[0].length, grid.length];
-  return new Array(w * h).fill(0).map((n, i) => {
-    const indices = {};
-    if (0 < Math.trunc(i / w)) indices['u'] = i - w;
-    if (i % w < w - 1) indices['r'] = i + 1;
-    if (Math.trunc(i / w) < h - 1) indices['d'] = i + w;
-    if (0 < i % w) indices['l'] = i - 1;
-    return indices;
-  });
-};
+// const gridToArrayIndices = grid => {
+//   const [w, h] = [grid[0].length, grid.length];
+//   return new Array(w * h).fill(0).map((n, i) => {
+//     const indices = {};
+//     if (0 < Math.trunc(i / w)) indices['u'] = i - w;
+//     if (i % w < w - 1) indices['r'] = i + 1;
+//     if (Math.trunc(i / w) < h - 1) indices['d'] = i + w;
+//     if (0 < i % w) indices['l'] = i - 1;
+//     return indices;
+//   });
+// };
 
 /**
  * @param {number[][]} grid
  * @return {number}
  */
-var orangesRotting = function(grid) {
-  let linear = gridToArray(grid);
-  const indices = gridToArrayIndices(grid);
-  let iterations = 0;
-  while (linear.includes(1)) {
-    const copy = linear.slice(0);
+// var orangesRotting = function(grid) {
+//   let linear = gridToArray(grid);
+//   const indices = gridToArrayIndices(grid);
+//   let iterations = 0;
+//   while (linear.includes(1)) {
+//     const copy = linear.slice(0);
+//     for (let i = 0; i < copy.length; i++) {
+//       if (2 !== linear[i]) continue;
+//       if (1 === copy[indices[i]['u']]) copy[indices[i]['u']] = 2;
+//       if (1 === copy[indices[i]['r']]) copy[indices[i]['r']] = 2;
+//       if (1 === copy[indices[i]['d']]) copy[indices[i]['d']] = 2;
+//       if (1 === copy[indices[i]['l']]) copy[indices[i]['l']] = 2;
+//     }
+//     if (linear.join() === copy.join()) break;
+//     linear = copy;
+//     iterations++;
+//   }
+//   return linear.includes(1) ? -1 : iterations;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 82.06% of JavaScript online submissions
+// for Rotting Oranges.
+// Memory Usage: 37.2 MB, less than 26.97% of JavaScript online submissions
+// for Rotting Oranges.
+
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+// var orangesRotting = function(grid) {
+//   let minutes = 0;
+//   while (JSON.stringify(grid).includes('1')) {
+//     const copy = grid.map(a => a.slice(0));
+//     for (let i = 0; i < copy.length; i++) {
+//       for (let j = 0; j < copy[i].length; j++) {
+//         if (2 !== grid[i][j]) continue;
+//         if (grid[i - 1] && 1 === grid[i - 1][j]) copy[i - 1][j] = 2;
+//         if (grid[i + 1] && 1 === grid[i + 1][j]) copy[i + 1][j] = 2;
+//         if (1 === grid[i][j - 1]) copy[i][j - 1] = 2;
+//         if (1 === grid[i][j + 1]) copy[i][j + 1] = 2;
+//       }
+//     }
+//     if (JSON.stringify(grid) === JSON.stringify(copy)) break;
+//     grid = copy;
+//     minutes++;
+//   }
+//   return JSON.stringify(grid).includes('1') ? -1 : minutes;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 80 ms, faster than 40.08% of JavaScript online submissions
+// for Rotting Oranges.
+// Memory Usage: 37.2 MB, less than 25.84% of JavaScript online submissions
+// for Rotting Oranges.
+
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var orangesRotting = function(grid, minutes = 0) {
+  while (JSON.stringify(grid).includes('1') && ++minutes) {
+    const copy = grid.map(a => a.slice(0));
     for (let i = 0; i < copy.length; i++) {
-      if (2 !== linear[i]) continue;
-      if (1 === copy[indices[i]['u']]) copy[indices[i]['u']] = 2;
-      if (1 === copy[indices[i]['r']]) copy[indices[i]['r']] = 2;
-      if (1 === copy[indices[i]['d']]) copy[indices[i]['d']] = 2;
-      if (1 === copy[indices[i]['l']]) copy[indices[i]['l']] = 2;
+      for (let j = 0; j < copy[i].length; j++) {
+        if (2 !== grid[i][j]) continue;
+        if (grid[i - 1] && 1 === grid[i - 1][j]) copy[i - 1][j] = 2;
+        if (grid[i + 1] && 1 === grid[i + 1][j]) copy[i + 1][j] = 2;
+        if (1 === grid[i][j - 1]) copy[i][j - 1] = 2;
+        if (1 === grid[i][j + 1]) copy[i][j + 1] = 2;
+      }
     }
-    if (linear.join() === copy.join()) break;
-    linear = copy;
-    iterations++;
+    if (JSON.stringify(grid) === JSON.stringify(copy)) break;
+    grid = copy;
   }
-  return linear.includes(1) ? -1 : iterations;
+  return JSON.stringify(grid).includes('1') ? -1 : minutes;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
