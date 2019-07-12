@@ -54,43 +54,62 @@
  * @param {number[]} nums
  * @return {number}
  */
+// const singleNumber = nums => {
+//   const map = Object(null);
+//   for (let i = nums.length - 1; 0 <= i; --i) {
+//     if (map.hasOwnProperty(nums[i])) {
+//       map[nums[i]] = map[nums[i]] + 1;
+//     } else {
+//       map[nums[i]] = 1;
+//     }
+//   }
+//   for (let key in map) {
+//     if (1 === map[key]) {
+//       return parseInt(key, 10);
+//     }
+//   }
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 63.75% of JavaScript online submissions
+// for Single Number.
+// Memory Usage: 38.2 MB, less than 15.69% of JavaScript online submissions
+// for Single Number.
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
 const singleNumber = nums => {
-  const map = Object(null);
-  for (let i = nums.length - 1; 0 <= i; --i) {
-    if (map.hasOwnProperty(nums[i])) {
-      map[nums[i]] = map[nums[i]] + 1;
-    } else {
-      map[nums[i]] = 1;
-    }
+  const map = {};
+  for (let i = 0; i < nums.length; i++) {
+    if ('undefined' === typeof map[nums[i]]) map[nums[i]] = 1;
+    else map[nums[i]]++;
   }
-  for (let key in map) {
-    if (1 === map[key]) {
-      return parseInt(key, 10);
-    }
-  }
+  for (let key in map) if (1 === map[key]) return parseInt(key, 10);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const tests = [
   {
-    name: 'Example 1',
     input: [2, 2, 1],
     expected: 1,
   },
   {
-    name: 'Example 2',
     input: [4, 1, 2, 1, 2],
     expected: 4,
   },
 ];
 
-tests.forEach(({ name, input, expected }) => {
+for ({ input, expected } of tests) {
   const output = singleNumber(input);
+  const name = input.join(', ');
   if (expected === output) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
     console.log(`Expected "${expected}", but got "${output}"`);
   }
-});
+}
