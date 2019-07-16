@@ -138,6 +138,68 @@
 // Memory Usage: 37.9 MB, less than 33.22% of JavaScript online submissions
 // for Longest Palindromic Substring.
 
+// const isPalindrome = p => {
+//   for (let i = 0; i < p.length; i++) if (p[i] !== p[p.length - i - 1]) return false;
+//   return true;
+// };
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+// const longestPalindrome = s => {
+//   let longest = '';
+//   // console.log(s);
+//   if (isPalindrome(s)) return s;
+//   for (let i = 1; i < s.length - 1; i++) {
+//     for (let [a, b] = [0, s.length - 1 - i]; b < s.length; a++, b++) {
+//       // console.log(`${i} | (${a}, ${b}) | ${s.slice(a, b + 1)}`);
+//       const candidate = s.slice(a, b + 1);
+//       if (isPalindrome(candidate)) return candidate;
+//     }
+//   }
+//   return s[0];
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 496 ms, faster than 15.90% of JavaScript online submissions
+// for Longest Palindromic Substring.
+// Memory Usage: 37.8 MB, less than 33.67% of JavaScript online submissions
+// for Longest Palindromic Substring.
+
+// const isPalindrome = p => {
+//   for (let i = 0; i < p.length; i++) if (p[i] !== p[p.length - i - 1]) return false;
+//   return true;
+// };
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+// const longestPalindrome = s => {
+//   let longest = '';
+//   const seen = [];
+//   // console.log(s);
+//   if (isPalindrome(s)) return s;
+//   for (let i = 1; i < s.length - 1; i++) {
+//     for (let [a, b] = [0, s.length - 1 - i]; b < s.length; a++, b++) {
+//       // console.log(`${i} | (${a}, ${b}) | ${s.slice(a, b + 1)}`);
+//       const candidate = s.slice(a, b + 1);
+//       if (seen.includes(candidate)) continue;
+//       if (isPalindrome(candidate)) return candidate;
+//     }
+//   }
+//   return s[0];
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 496 ms, faster than 15.90% of JavaScript online submissions
+// for Longest Palindromic Substring.
+// Memory Usage: 37.8 MB, less than 33.67% of JavaScript online submissions
+// for Longest Palindromic Substring.
+
 const isPalindrome = p => {
   for (let i = 0; i < p.length; i++) if (p[i] !== p[p.length - i - 1]) return false;
   return true;
@@ -149,12 +211,14 @@ const isPalindrome = p => {
  */
 const longestPalindrome = s => {
   let longest = '';
+  const seen = [];
   // console.log(s);
   if (isPalindrome(s)) return s;
   for (let i = 1; i < s.length - 1; i++) {
     for (let [a, b] = [0, s.length - 1 - i]; b < s.length; a++, b++) {
       // console.log(`${i} | (${a}, ${b}) | ${s.slice(a, b + 1)}`);
       const candidate = s.slice(a, b + 1);
+      if (seen.includes(candidate)) continue;
       if (isPalindrome(candidate)) return candidate;
     }
   }
