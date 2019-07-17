@@ -60,6 +60,61 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 12 ms, faster than 100.00% of PHP online submissions
+// for Magic Squares In Grid.
+// Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
+// for Magic Squares In Grid.
+
+// class Solution
+// {
+
+//     /**
+//      * @param Integer[][] $grid
+//      * @return Integer
+//      */
+//     function numMagicSquaresInside($grid)
+//     {
+//         list($cols, $rows) = [count($grid[0]), count($grid)];
+//         if ($cols < 3 || $rows < 3) return 0;
+//         $result = 0;
+//         $window = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]];
+//         for ($i = 0; $i < $rows - 2; $i++) {
+//             $window[0][0] = $window[1][0] = $window[2][0] = $i;
+//             $window[3][0] = $window[4][0] = $window[5][0] = $i + 1;
+//             $window[6][0] = $window[7][0] = $window[8][0] = $i + 2;
+//             for ($j = 0; $j < $cols - 2; $j++) {
+//                 $window[0][1] = $window[3][1] = $window[6][1] = $j;
+//                 $window[1][1] = $window[4][1] = $window[7][1] = $j + 1;
+//                 $window[2][1] = $window[5][1] = $window[8][1] = $j + 2;
+//                 if (5 !== $grid[$window[4][0]][$window[4][1]]) continue;
+//                 $perimiter =
+//                     $grid[$window[0][0]][$window[0][1]] .
+//                     $grid[$window[1][0]][$window[1][1]] .
+//                     $grid[$window[2][0]][$window[2][1]] .
+//                     $grid[$window[3][0]][$window[3][1]] .
+//                     $grid[$window[5][0]][$window[5][1]] .
+//                     $grid[$window[6][0]][$window[6][1]] .
+//                     $grid[$window[7][0]][$window[7][1]] .
+//                     $grid[$window[8][0]][$window[8][1]];
+//                 if (
+//                     $perimiter === '29473618' ||
+//                     $perimiter === '67219834' ||
+//                     $perimiter === '81637492' ||
+//                     $perimiter === '43891276' ||
+//                     $perimiter === '27691438' ||
+//                     $perimiter === '49237816' ||
+//                     $perimiter === '83419672' ||
+//                     $perimiter === '61873294'
+//                 )
+//                     $result++;
+//             }
+//         }
+//         return $result;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 // Runtime: 8 ms, faster than 100.00% of PHP online submissions
 // for Magic Squares In Grid.
 // Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
@@ -106,9 +161,100 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 12 ms, faster than 100.00% of PHP online submissions
+// Runtime: 16 ms, faster than 50.00% of PHP online submissions
 // for Magic Squares In Grid.
 // Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
+// for Magic Squares In Grid.
+
+// class Solution
+// {
+
+//     /**
+//      * @param Integer[][] $grid
+//      * @return Integer
+//      */
+//     function numMagicSquaresInside($grid)
+//     {
+//         list($cols, $rows) = [count($grid[0]), count($grid)];
+//         if ($cols < 3 || $rows < 3) return 0;
+//         $result = 0;
+//         for ($i = 0; $i < $rows - 2; $i++) {
+//             for ($j = 0; $j < $cols - 2; $j++) {
+//                 $s = $grid[$i][$j] .
+//                     $grid[$i][$j + 1] .
+//                     $grid[$i][$j + 2] .
+//                     $grid[$i + 1][$j] .
+//                     $grid[$i + 1][$j + 1] .
+//                     $grid[$i + 1][$j + 2] .
+//                     $grid[$i + 2][$j] .
+//                     $grid[$i + 2][$j + 1] .
+//                     $grid[$i + 2][$j + 2];
+//                 if (
+//                     $s === '294753618' ||
+//                     $s === '672159834' ||
+//                     $s === '816357492' ||
+//                     $s === '438951276' ||
+//                     $s === '276951438' ||
+//                     $s === '492357816' ||
+//                     $s === '834159672' ||
+//                     $s === '618753294'
+//                 ) $result++;
+//             }
+//         }
+//         return $result;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 8 ms, faster than 100.00% of PHP online submissions
+// for Magic Squares In Grid.
+// Memory Usage: 14.9 MB, less than 100.00% of PHP online submissions
+// for Magic Squares In Grid.
+
+// class Solution
+// {
+
+//     /**
+//      * @param Integer[][] $grid
+//      * @return Integer
+//      */
+//     function numMagicSquaresInside($grid)
+//     {
+//         list($cols, $rows) = [count($grid[0]), count($grid)];
+//         if ($cols < 3 || $rows < 3) return 0;
+//         $result = 0;
+//         for ($i = 0; $i < $rows - 2; $i++) {
+//             for ($j = 0; $j < $cols - 2; $j++) {
+//                 if (5 !== $grid[$i + 1][$j + 1]) continue;
+//                 if (isset([
+//                     '29473618' => 1,
+//                     '67219834' => 1,
+//                     '81637492' => 1,
+//                     '43891276' => 1,
+//                     '27691438' => 1,
+//                     '49237816' => 1,
+//                     '83419672' => 1,
+//                     '61873294' => 1,
+//                 ][$grid[$i][$j] .
+//                     $grid[$i][$j + 1] .
+//                     $grid[$i][$j + 2] .
+//                     $grid[$i + 1][$j] .
+//                     $grid[$i + 1][$j + 2] .
+//                     $grid[$i + 2][$j] .
+//                     $grid[$i + 2][$j + 1] .
+//                     $grid[$i + 2][$j + 2]])) $result++;
+//             }
+//         }
+//         return $result;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 4 ms, faster than 100.00% of PHP online submissions
+// for Magic Squares In Grid.
+// Memory Usage: 14.9 MB, less than 100.00% of PHP online submissions
 // for Magic Squares In Grid.
 
 class Solution
@@ -123,25 +269,17 @@ class Solution
         list($cols, $rows) = [count($grid[0]), count($grid)];
         if ($cols < 3 || $rows < 3) return 0;
         $result = 0;
-        $window = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]];
         for ($i = 0; $i < $rows - 2; $i++) {
-            $window[0][0] = $window[1][0] = $window[2][0] = $i;
-            $window[3][0] = $window[4][0] = $window[5][0] = $i + 1;
-            $window[6][0] = $window[7][0] = $window[8][0] = $i + 2;
             for ($j = 0; $j < $cols - 2; $j++) {
-                $window[0][1] = $window[3][1] = $window[6][1] = $j;
-                $window[1][1] = $window[4][1] = $window[7][1] = $j + 1;
-                $window[2][1] = $window[5][1] = $window[8][1] = $j + 2;
-                if (5 !== $grid[$window[4][0]][$window[4][1]]) continue;
-                $perimiter =
-                    $grid[$window[0][0]][$window[0][1]] .
-                    $grid[$window[1][0]][$window[1][1]] .
-                    $grid[$window[2][0]][$window[2][1]] .
-                    $grid[$window[3][0]][$window[3][1]] .
-                    $grid[$window[5][0]][$window[5][1]] .
-                    $grid[$window[6][0]][$window[6][1]] .
-                    $grid[$window[7][0]][$window[7][1]] .
-                    $grid[$window[8][0]][$window[8][1]];
+                if (5 !== $grid[$i + 1][$j + 1]) continue;
+                $perimiter = $grid[$i][$j] .
+                    $grid[$i][$j + 1] .
+                    $grid[$i][$j + 2] .
+                    $grid[$i + 1][$j] .
+                    $grid[$i + 1][$j + 2] .
+                    $grid[$i + 2][$j] .
+                    $grid[$i + 2][$j + 1] .
+                    $grid[$i + 2][$j + 2];
                 if (
                     $perimiter === '29473618' ||
                     $perimiter === '67219834' ||
@@ -151,8 +289,7 @@ class Solution
                     $perimiter === '49237816' ||
                     $perimiter === '83419672' ||
                     $perimiter === '61873294'
-                )
-                    $result++;
+                ) $result++;
             }
         }
         return $result;
@@ -205,6 +342,18 @@ $tests = [
     [
         'input' => [[8, 3, 4], [1, 5, 9], [6, 7, 2]],
         'expected' => 1,
+    ],
+
+    [
+        'input' => [
+            [8, 7, 4, 1, 7, 2],
+            [5, 8, 4, 2, 6, 9],
+            [4, 2, 1, 4, 2, 8],
+            [6, 5, 9, 2, 7, 4],
+            [8, 2, 3, 9, 5, 3],
+            [3, 9, 5, 6, 8, 1],
+        ],
+        'expected' => 0,
     ],
 ];
 

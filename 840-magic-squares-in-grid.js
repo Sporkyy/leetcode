@@ -262,50 +262,6 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 52 ms, faster than 93.24% of JavaScript online submissions
-// for Magic Squares In Grid.
-// Memory Usage: 36.7 MB, less than 17.65% of JavaScript online submissions
-// for Magic Squares In Grid.
-
-/**
- * @param {number[][]} grid
- * @return {number}
- */
-// const numMagicSquaresInside = grid => {
-//   let [cols, rows] = [grid[0].length, grid.length];
-//   if (cols < 3 || rows < 3) return 0;
-//   let result = 0;
-//   for (let i = 0; i < rows; i++) {
-//     for (let j = 0; j < cols; j++) {
-//       const s =
-//         '' +
-//         grid[(i + 1) % rows][(j + 1) % cols] +
-//         grid[(i + 1) % rows][(j + 2) % cols] +
-//         grid[(i + 1) % rows][(j + 3) % cols] +
-//         grid[(i + 2) % rows][(j + 1) % cols] +
-//         grid[(i + 2) % rows][(j + 2) % cols] +
-//         grid[(i + 2) % rows][(j + 3) % cols] +
-//         grid[(i + 3) % rows][(j + 1) % cols] +
-//         grid[(i + 3) % rows][(j + 2) % cols] +
-//         grid[(i + 3) % rows][(j + 3) % cols];
-//       if (
-//         s === '294753618' ||
-//         s === '672159834' ||
-//         s === '816357492' ||
-//         s === '438951276' ||
-//         s === '276951438' ||
-//         s === '492357816' ||
-//         s === '834159672' ||
-//         s === '618753294'
-//       )
-//         result++;
-//     }
-//   }
-//   return result;
-// };
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
 // Runtime: 64 ms, faster than 51.35% of JavaScript online submissions
 // for Magic Squares In Grid.
 // Memory Usage: 34 MB, less than 76.47% of JavaScript online submissions
@@ -332,6 +288,57 @@
 //         grid[(i + 3) % rows][(j + 1) % cols] +
 //         grid[(i + 3) % rows][(j + 2) % cols] +
 //         grid[(i + 3) % rows][(j + 3) % cols];
+//       if (
+//         perimiter === '29473618' ||
+//         perimiter === '67219834' ||
+//         perimiter === '81637492' ||
+//         perimiter === '43891276' ||
+//         perimiter === '27691438' ||
+//         perimiter === '49237816' ||
+//         perimiter === '83419672' ||
+//         perimiter === '61873294'
+//       )
+//         result++;
+//     }
+//   }
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 84 ms, faster than 10.81% of JavaScript online submissions
+// for Magic Squares In Grid.
+// Memory Usage: 37.3 MB, less than 11.76% of JavaScript online submissions
+// for Magic Squares In Grid.
+
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+// const numMagicSquaresInside = grid => {
+//   let [cols, rows] = [grid[0].length, grid.length];
+//   if (cols < 3 || rows < 3) return 0;
+//   let result = 0;
+//   const window = [[,], [,], [,], [,], [,], [,], [,], [,], [,]];
+//   for (let i = 0; i < rows - 2; i++) {
+//     window[0][0] = window[1][0] = window[2][0] = i;
+//     window[3][0] = window[4][0] = window[5][0] = i + 1;
+//     window[6][0] = window[7][0] = window[8][0] = i + 2;
+//     for (let j = 0; j < cols - 2; j++) {
+//       window[0][1] = window[3][1] = window[6][1] = j;
+//       window[1][1] = window[4][1] = window[7][1] = j + 1;
+//       window[2][1] = window[5][1] = window[8][1] = j + 2;
+//       if (5 !== grid[window[4][0]][window[4][1]]) continue;
+//       const perimiter =
+//         '' +
+//         grid[window[0][0]][window[0][1]] +
+//         grid[window[1][0]][window[1][1]] +
+//         grid[window[2][0]][window[2][1]] +
+//         grid[window[3][0]][window[3][1]] +
+//         grid[window[5][0]][window[5][1]] +
+//         grid[window[6][0]][window[6][1]] +
+//         grid[window[7][0]][window[7][1]] +
+//         grid[window[8][0]][window[8][1]];
 //       if (
 //         perimiter === '29473618' ||
 //         perimiter === '67219834' ||
@@ -389,9 +396,53 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 84 ms, faster than 10.81% of JavaScript online submissions
+// Runtime: 52 ms, faster than 93.24% of JavaScript online submissions
 // for Magic Squares In Grid.
-// Memory Usage: 37.3 MB, less than 11.76% of JavaScript online submissions
+// Memory Usage: 36.7 MB, less than 17.65% of JavaScript online submissions
+// for Magic Squares In Grid.
+
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+// const numMagicSquaresInside = grid => {
+//   let [cols, rows] = [grid[0].length, grid.length];
+//   if (cols < 3 || rows < 3) return 0;
+//   let result = 0;
+//   for (let i = 0; i < rows; i++) {
+//     for (let j = 0; j < cols; j++) {
+//       const s =
+//         '' +
+//         grid[(i + 1) % rows][(j + 1) % cols] +
+//         grid[(i + 1) % rows][(j + 2) % cols] +
+//         grid[(i + 1) % rows][(j + 3) % cols] +
+//         grid[(i + 2) % rows][(j + 1) % cols] +
+//         grid[(i + 2) % rows][(j + 2) % cols] +
+//         grid[(i + 2) % rows][(j + 3) % cols] +
+//         grid[(i + 3) % rows][(j + 1) % cols] +
+//         grid[(i + 3) % rows][(j + 2) % cols] +
+//         grid[(i + 3) % rows][(j + 3) % cols];
+//       if (
+//         s === '294753618' ||
+//         s === '672159834' ||
+//         s === '816357492' ||
+//         s === '438951276' ||
+//         s === '276951438' ||
+//         s === '492357816' ||
+//         s === '834159672' ||
+//         s === '618753294'
+//       )
+//         result++;
+//     }
+//   }
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 56 ms, faster than 83.78% of JavaScript online submissions
+// for Magic Squares In Grid.
+// Memory Usage: 35.4 MB, less than 41.18% of JavaScript online submissions
 // for Magic Squares In Grid.
 
 /**
@@ -402,35 +453,28 @@ const numMagicSquaresInside = grid => {
   let [cols, rows] = [grid[0].length, grid.length];
   if (cols < 3 || rows < 3) return 0;
   let result = 0;
-  const window = [[,], [,], [,], [,], [,], [,], [,], [,], [,]];
   for (let i = 0; i < rows - 2; i++) {
-    window[0][0] = window[1][0] = window[2][0] = i;
-    window[3][0] = window[4][0] = window[5][0] = i + 1;
-    window[6][0] = window[7][0] = window[8][0] = i + 2;
     for (let j = 0; j < cols - 2; j++) {
-      window[0][1] = window[3][1] = window[6][1] = j;
-      window[1][1] = window[4][1] = window[7][1] = j + 1;
-      window[2][1] = window[5][1] = window[8][1] = j + 2;
-      if (5 !== grid[window[4][0]][window[4][1]]) continue;
-      const perimiter =
+      const s =
         '' +
-        grid[window[0][0]][window[0][1]] +
-        grid[window[1][0]][window[1][1]] +
-        grid[window[2][0]][window[2][1]] +
-        grid[window[3][0]][window[3][1]] +
-        grid[window[5][0]][window[5][1]] +
-        grid[window[6][0]][window[6][1]] +
-        grid[window[7][0]][window[7][1]] +
-        grid[window[8][0]][window[8][1]];
+        grid[i][j] +
+        grid[i][j + 1] +
+        grid[i][j + 2] +
+        grid[i + 1][j] +
+        grid[i + 1][j + 1] +
+        grid[i + 1][j + 2] +
+        grid[i + 2][j] +
+        grid[i + 2][j + 1] +
+        grid[i + 2][j + 2];
       if (
-        perimiter === '29473618' ||
-        perimiter === '67219834' ||
-        perimiter === '81637492' ||
-        perimiter === '43891276' ||
-        perimiter === '27691438' ||
-        perimiter === '49237816' ||
-        perimiter === '83419672' ||
-        perimiter === '61873294'
+        s === '294753618' ||
+        s === '672159834' ||
+        s === '816357492' ||
+        s === '438951276' ||
+        s === '276951438' ||
+        s === '492357816' ||
+        s === '834159672' ||
+        s === '618753294'
       )
         result++;
     }
