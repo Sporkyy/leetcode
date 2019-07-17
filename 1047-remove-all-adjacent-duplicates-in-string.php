@@ -65,9 +65,9 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 24 ms, faster than 33.33% of PHP online submissions
+// Runtime: 36 ms, faster than 72.41% of PHP online submissions
 // for Remove All Adjacent Duplicates In String.
-// Memory Usage: 14.9 MB, less than 100.00% of PHP online submissions
+// Memory Usage: 15 MB, less than 100.00% of PHP online submissions
 // for Remove All Adjacent Duplicates In String.
 
 class Solution
@@ -80,13 +80,9 @@ class Solution
     function removeDuplicates($S)
     {
         $end = -1;
-        for ($i = 0; $i < strlen($S); $i++) {
-            if (0 <= $end && $S[$end] === $S[$i]) {
-                $end--;
-            } else {
-                $S[++$end] = $S[$i];
-            }
-        }
+        for ($i = 0; $i < strlen($S); $i++)
+            if (0 <= $end && $S[$end] === $S[$i]) $end--;
+            else $S[++$end] = $S[$i];
         return substr($S, 0, $end + 1);
     }
 }
@@ -95,7 +91,6 @@ class Solution
 
 $tests = [
     [
-        'name' => 'abbaca',
         'input' => 'abbaca',
         'expected' => 'ca',
         // Explanation: For example, in "abbaca" we could remove "bb" since
@@ -104,42 +99,34 @@ $tests = [
         // of which only "aa" is possible, so the final string is "ca".
     ],
     [
-        'name' => '',
         'input' => '',
         'expected' => '',
     ],
     [
-        'name' => 'a',
         'input' => 'a',
         'expected' => 'a',
     ],
     [
-        'name' => 'aa',
         'input' => 'aa',
         'expected' => '',
     ],
     [
-        'name' => 'aaa',
         'input' => 'aaa',
         'expected' => 'a',
     ],
     [
-        'name' => 'aabbccddeeffgg',
         'input' => 'aabbccddeeffgg',
         'expected' => '',
     ],
     [
-        'name' => 'aabccadda',
         'input' => 'aabccadda',
         'expected' => 'b',
     ],
     [
-        'name' => 'abaca',
         'input' => 'abaca',
         'expected' => 'abaca',
     ],
     [
-        'name' => 'Really Long',
         'input' => 'miepavtabopghtcivgoguhgpjhiepbofvuvggfnpjllomlvuibrnulpegacebqwswjjfsevmnpcathldtkomiubnisfawbshbmswnjlcdocowvqhwivullaqkvfkeewriauouartlhotuctwhwlvecgaolbctivbdjrsqfwacvsnpjhouvappgpdskbcfhqjggpminhcffljiljfmcekudkjnugejfucwilfvdeaosmoppujofaurvantovgdclqcfqsssvmscbsnhogkcasckdbtiuovevsramwpcojqrkqqkukuaddidifmkdrjpfvcnmihwqudfqsrgeoleefuwmmgnvlgcugouelnjidaqggafhmoskmdnlfirngbqhfsfcfcfiwqkunrkfcseluhoshagnlhoneedllcflcrboofpuckusgcfroqgdcbpwskvnndrmorekebuffpnrkhrufwijbufetfjjadjlebclwigwdcmpvdjlqqlomjtooiagsiwadswcqqsclbwosdmarbooernmrfvtnnrfokbwksjaeucdscowqfgopgwqptffioviduvwwloqlodcrtdogogtkolursittcvfuewnrsmshfadnkswtqssstkfajosstdwrwgvmhuqvkguvlqovotakwhwhsgbcvffpsthlpfpwgsscmcbgohsilwgknhwkpfdiurhtlcsahuhvmlkte',
         'expected' => 'miepavtabopghtcivgoguhgpjhiepbofvuvfnpjomlvuibrnulpegacebqwswfsevmnpcathldtkomiubnisfawbshbmswnjlcdocowvqhwivuaqkvfkwriauouartlhotuctwhwlvecgaolbctivbdjrsqfwacvsnpjhouvagpdskbcfhqjpminhcljiljfmcekudkjnugejfucwilfvdeaosmoujofaurvantovgdclqcfqsvmscbsnhogkcasckdbtiuovevsramwpcojqrukuaidifmkdrjpfvcnmihwqudfqsrgeolfuwgnvlgcugouelnjidaqafhmoskmdnlfirngbqhfsfcfcfiwqkunrkfcseluhoshagnlhondcflcrbfpuckusgcfroqgdcbpwskvdrmorekebupnrkhrufwijbufetfadjlebclwigwdcmpvdjomjtiagsiwadswcsclbwosdmarbernmrfvtrfokbwksjaeucdscowqfgopgwqptioviduvloqlodcrtdogogtkolursicvfuewnrsmshfadnkswtqstkfajotdwrwgvmhuqvkguvlqovotakwhwhsgbcvpsthlpfpwgcmcbgohsilwgknhwkpfdiurhtlcsahuhvmlkte',
     ],
@@ -151,9 +138,9 @@ foreach ($tests as $test) {
     extract($test);
     $output = $s->removeDuplicates($input);
     if ($expected === $output) {
-        echo '✅ ', $name, '<br>';
+        echo '✅ ', $input, '<br>';
     } else {
-        echo '🔴 ', $name, '<br>';
+        echo '🔴 ', $input, '<br>';
         echo 'Expected "', $expected, '" but got "', $output, '"';
     }
     echo '<hr>';
