@@ -5,6 +5,31 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 4 ms, faster than 81.58% of PHP online submissions
+// for Defanging an IP Address.
+// Memory Usage: 14.6 MB, less than 100.00% of PHP online submissions
+// for Defanging an IP Address.
+
+// class Solution
+// {
+
+//     /**
+//      * @param String $address
+//      * @return String
+//      */
+//     function defangIPaddr($address)
+//     {
+//         return str_replace('.', '[.]', $address);
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 4 ms, faster than 81.58% of PHP online submissions
+// for Defanging an IP Address.
+// Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
+// for Defanging an IP Address.
+
 class Solution
 {
 
@@ -14,7 +39,7 @@ class Solution
      */
     function defangIPaddr($address)
     {
-        return str_replace('.', '[.]', $address);
+        return implode('[.]', explode('.', $address));
     }
 }
 
