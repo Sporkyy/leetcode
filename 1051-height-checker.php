@@ -109,8 +109,7 @@ class Solution
         $id10ts = 0;
         $counts = array_fill(1, 100, 0);
         foreach ($heights as $height) $counts[$height]++;
-        echo '<pre>', print_r($counts, true), '</pre>';
-        for ($i = 0, $z = 0; $i < 101; $i++)
+        for ($i = 1, $z = 0; $i < 101; $i++)
             for ($j = $counts[$i]; 0 < $j; $j--, $z++)
                 if ($heights[$z] !== $i) $id10ts++;
         return $id10ts;
