@@ -65,9 +65,9 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 36 ms, faster than 72.41% of PHP online submissions
+// Runtime: 20 ms, faster than 93.10% of PHP online submissions
 // for Remove All Adjacent Duplicates In String.
-// Memory Usage: 15 MB, less than 100.00% of PHP online submissions
+// Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
 // for Remove All Adjacent Duplicates In String.
 
 class Solution
