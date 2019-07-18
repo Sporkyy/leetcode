@@ -184,32 +184,49 @@
 // Runtime: 64 ms, faster than 100.00% of JavaScript online submissions for Fizz Buzz.
 // Memory Usage: 37 MB, less than 91.41% of JavaScript online submissions for Fizz Buzz.
 
-const key = {
-  3: 'Fizz',
-  5: 'Buzz',
-  6: 'Fizz',
-  9: 'Fizz',
-  10: 'Buzz',
-  12: 'Fizz',
-  15: 'FizzBuzz',
-};
+// const key = {
+//   3: 'Fizz',
+//   5: 'Buzz',
+//   6: 'Fizz',
+//   9: 'Fizz',
+//   10: 'Buzz',
+//   12: 'Fizz',
+//   15: 'FizzBuzz',
+// };
+
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
+// const fizzBuzz = n => {
+//   const result = new Array(n);
+//   let curr = 1;
+//   let iter = 1;
+//   while (iter <= n) {
+//     if (15 < curr) curr = 1;
+//     result[iter - 1] = key[curr] || '' + iter;
+//     curr++;
+//     iter++;
+//   }
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 80 ms, faster than 13.25% of JavaScript online submissions
+// for Fizz Buzz.
+// Memory Usage: 37 MB, less than 96.30% of JavaScript online submissions
+// for Fizz Buzz.
 
 /**
  * @param {number} n
  * @return {string[]}
  */
-const fizzBuzz = n => {
-  const result = new Array(n);
-  let curr = 1;
-  let iter = 1;
-  while (iter <= n) {
-    if (15 < curr) curr = 1;
-    result[iter - 1] = key[curr] || '' + iter;
-    curr++;
-    iter++;
-  }
-  return result;
-};
+const fizzBuzz = n =>
+  new Array(n + 1)
+    .fill('Fizz')
+    .map((v, i) => (0 == i % 15 ? 'FizzBuzz' : 0 === i % 5 ? 'Buzz' : 0 !== i % 3 ? `${i}` : v))
+    .slice(1);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
