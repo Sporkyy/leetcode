@@ -72,15 +72,63 @@
  * @param {number[][]} grid
  * @return {number}
  */
+// const islandPerimeter = grid => {
+//   let edges = 0;
+//   for (let r = 0; r < grid.length; r++) {
+//     for (let c = 0; c < grid[0].length; c++) {
+//       if (0 === grid[r][c]) continue;
+//       edges += (grid[r - 1] ? (grid[r - 1][c] ? 0 : 1) : 1) + (grid[r][c + 1] ? 0 : 1);
+//     }
+//   }
+//   return edges * 2;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 196 ms, faster than 53.25% of JavaScript online submissions
+// for Island Perimeter.
+// Memory Usage: 43.9 MB, less than 80.14% of JavaScript online submissions
+// for Island Perimeter.
+
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+// const islandPerimeter = grid => {
+//   let perimiter = 0;
+//   for (let r = 0; r < grid.length; r++) {
+//     for (let c = 0; c < grid[0].length; c++) {
+//       if (1 !== grid[r][c]) continue;
+//       edges = 2;
+//       if (c < grid[0].length - 1) edges -= grid[r][c + 1];
+//       if (r < grid.length - 1) edges -= grid[r + 1][c];
+//       perimiter += edges;
+//     }
+//   }
+//   return perimiter * 2;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 180 ms, faster than 78.21% of JavaScript online submissions
+// for Island Perimeter.
+// Memory Usage: 43.7 MB, less than 92.91% of JavaScript online submissions
+// for Island Perimeter.
+
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
 const islandPerimeter = grid => {
-  let edges = 0;
+  let perimiter = 0;
   for (let r = 0; r < grid.length; r++) {
     for (let c = 0; c < grid[0].length; c++) {
       if (0 === grid[r][c]) continue;
-      edges += (grid[r - 1] ? (grid[r - 1][c] ? 0 : 1) : 1) + (grid[r][c + 1] ? 0 : 1);
+      if (grid.length - 1 === r || 0 === grid[r + 1][c]) perimiter++;
+      if (grid[0].length - 1 === c || 0 === grid[r][c + 1]) perimiter++;
     }
   }
-  return edges * 2;
+  return perimiter * 2;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -167,6 +215,28 @@ const tests = [
 
   {
     input: [[0, 1, 0], [1, 1, 1], [0, 1, 0]],
+    expected: 12,
+  },
+
+  // +---+===+===+
+  // | 0 [ 1 | 1 ]
+  // |===+---+===|
+  // [ 1 | 1 ] 0 |
+  // +===+===+---+
+
+  {
+    input: [[0, 1, 1], [1, 1, 0]],
+    expected: 10,
+  },
+
+  // +===+===+===+
+  // [ 1 | 1 | 1 ]
+  // |---+===+---|
+  // [ 1 ] 0 [ 1 ]
+  // +===+---+===+
+
+  {
+    input: [[1, 1, 1], [1, 0, 1]],
     expected: 12,
   },
 ];
