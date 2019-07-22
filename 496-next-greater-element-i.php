@@ -10,33 +10,6 @@
 // Memory Usage: 15.3 MB, less than 100.00% of PHP online submissions
 // for Next Greater Element I.
 
-// class Solution
-// {
-
-//     /**
-//      * @param Integer[] $nums1
-//      * @param Integer[] $nums2
-//      * @return Integer[]
-//      */
-//     function nextGreaterElement($nums1, $nums2)
-//     {
-//         $result = array_fill(0, count($nums1), -1);
-//         for ($i = 0; $i < count($nums1); $i++) {
-//             for ($j = 0, $ffwd = true; $j < count($nums2); $j++) {
-//                 if (!$ffwd && $nums1[$i] < $nums2[$j]) {
-//                     $result[$i] = $nums2[$j];
-//                     break;
-//                 } else if ($nums1[$i] === $nums2[$j]) {
-//                     $ffwd = false;
-//                 }
-//             }
-//         }
-//         return $result;
-//     }
-// }
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
 class Solution
 {
 
@@ -48,9 +21,17 @@ class Solution
     function nextGreaterElement($nums1, $nums2)
     {
         $result = array_fill(0, count($nums1), -1);
-        for ($i = count($nums1); $i <= 0; $i--) {
-            for ($j = count(nums2); $j <= i; $j--) { }
+        for ($i = 0; $i < count($nums1); $i++) {
+            for ($j = 0, $ffwd = true; $j < count($nums2); $j++) {
+                if (!$ffwd && $nums1[$i] < $nums2[$j]) {
+                    $result[$i] = $nums2[$j];
+                    break;
+                } else if ($nums1[$i] === $nums2[$j]) {
+                    $ffwd = false;
+                }
+            }
         }
+        return $result;
     }
 }
 
