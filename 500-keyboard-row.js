@@ -103,34 +103,120 @@
  * @param {string[]} words
  * @return {string[]}
  */
-const findWords = words => {
-  const rowMasks = [2232170, 39698560, 25178133];
-  return words.filter(word => {
-    word = word.toLowerCase();
-    let wordMask = new Array(26).fill(0);
-    for (let i = 0; i < word.length; i++) {
-      wordMask[word[i].charCodeAt(0) - 97] = 1;
-    }
-    wordMask = parseInt(wordMask.join(''), 2);
-    for (let rowMask of rowMasks) {
-      if (!(wordMask & ~rowMask)) return true;
-    }
-    return false;
-  });
-};
+// const findWords = words => {
+//   const rowMasks = [2232170, 39698560, 25178133];
+//   return words.filter(word => {
+//     word = word.toLowerCase();
+//     let wordMask = new Array(26).fill(0);
+//     for (let i = 0; i < word.length; i++) {
+//       wordMask[word[i].charCodeAt(0) - 97] = 1;
+//     }
+//     wordMask = parseInt(wordMask.join(''), 2);
+//     for (let rowMask of rowMasks) {
+//       if (!(wordMask & ~rowMask)) return true;
+//     }
+//     return false;
+//   });
+// };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 48 ms, faster than 92.07% of JavaScript online submissions
+// for Keyboard Row.
+// Memory Usage: 33.7 MB, less than 88.14% of JavaScript online submissions
+// for Keyboard Row.
+
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+// const findWords = words =>
+//   words.filter(word => {
+//     word = word.toLowerCase();
+//     let bits = new Array(26).fill(0);
+//     for (let i = 0; i < word.length; i++) bits[word.charCodeAt(i) - 97] = 1;
+//     bits = parseInt(bits.join(''), 2);
+//     return !(bits & -2232171 && bits & -39698561 && bits & -25178134);
+//   });
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 44 ms, faster than 97.42% of JavaScript online submissions
+// for Keyboard Row.
+// Memory Usage: 33.7 MB, less than 97.46% of JavaScript online submissions
+// for Keyboard Row.
+
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+const findWords = words =>
+  words.filter(word => {
+    word = word.toLowerCase();
+    let prevRow;
+    for (let c of word) {
+      const row = {
+        q: 0,
+        w: 0,
+        e: 0,
+        r: 0,
+        t: 0,
+        y: 0,
+        u: 0,
+        i: 0,
+        o: 0,
+        p: 0,
+        a: 1,
+        s: 1,
+        d: 1,
+        f: 1,
+        g: 1,
+        h: 1,
+        j: 1,
+        k: 1,
+        l: 1,
+        z: 2,
+        x: 2,
+        c: 2,
+        v: 2,
+        b: 2,
+        n: 2,
+        m: 2,
+      }[c];
+      if ('undefined' !== typeof prevRow && prevRow !== row) return false;
+      prevRow = row;
+    }
+    return true;
+  });
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// const wordToBits = word => {
+//   let bits = new Array(26).fill(0);
+//   for (let i = 0; i < word.length; i++) bits[word.charCodeAt(i) - 97] = 1;
+//   bits = bits.join('');
+//   bits = parseInt(bits, 2);
+//   return bits;
+// };
+
+// console.log(wordToBits('abc'));
+// console.log(wordToBits('a'));
+// console.log(wordToBits('a') & ~wordToBits('abc'));
+
 const tests = [
   {
-    name: 'Example',
     input: ['Hello', 'Alaska', 'Dad', 'Peace'],
     expected: ['Alaska', 'Dad'],
   },
+  {
+    input: ['abdfs', 'cccd', 'a', 'qwwewm'],
+    expected: ['a'],
+  },
 ];
 
-tests.forEach(({ name, input, expected }) => {
+tests.forEach(({ input, expected }) => {
   const result = findWords(input);
+  const name = JSON.stringify(input);
   if (JSON.stringify(expected) === JSON.stringify(result)) {
     console.log(`✅ ${name}`);
   } else {
