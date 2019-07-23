@@ -5,9 +5,9 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 12 ms, faster than 9.52% of PHP online submissions
+// Runtime: 8 ms, faster than 61.90% of PHP online submissions
 // for Keyboard Row.
-// Memory Usage: 14.9 MB, less than 41.67% of PHP online submissions
+// Memory Usage: 14.6 MB, less than 100.00% of PHP online submissions
 // for Keyboard Row.
 
 class Solution
@@ -26,8 +26,9 @@ class Solution
             for ($i = 0; $i < strlen($word); $i++) {
                 $wordMask[ord($word[$i]) - 97] = '1';
             }
+            $wordMask = bindec($wordMask);
             foreach ($rowMasks as $rowMask) {
-                if (!decbin(bindec($wordMask) & ~$rowMask)) return true;
+                if (!($wordMask & ~$rowMask)) return true;
             }
             return false;
         });
@@ -58,12 +59,10 @@ class Solution
 // echo '<pre>', $row3Mask, '</pre>';
 // echo '<pre>', bindec($row3Mask), '</pre>';
 
-$tests = [
-    [
-        'input' => ['Hello', 'Alaska', 'Dad', 'Peace'],
-        'expected' => ['Alaska', 'Dad'],
-    ],
-];
+$tests = [[
+    'input' => ['Hello', 'Alaska', 'Dad', 'Peace'],
+    'expected' => ['Alaska', 'Dad'],
+],];
 
 $s = new Solution();
 

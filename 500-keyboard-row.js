@@ -3,10 +3,12 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 76 ms, faster than 7.93% of JavaScript online submissions
+// for Keyboard Row.
+// Memory Usage: 35.3 MB, less than 5.08% of JavaScript online submissions
+// for Keyboard Row.
+
 /**
- * Instead of a functional programming approach, I tried to make an optomized solution
- * But this isn't better.
- *
  * @param {string[]} words
  * @return {string[]}
  */
@@ -74,18 +76,48 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const rows = ['qwertyuiop'.split(''), 'asdfghjkl'.split(''), 'zxcvbnm'.split('')];
+// Runtime: 48 ms, faster than 92.07% of JavaScript online submissions
+// for Keyboard Row.
+// Memory Usage: 33.9 MB, less than 16.95% of JavaScript online submissions
+// for Keyboard Row.
 
-const includesAny = (s, a) => a.reduce((acc, curr) => (acc = acc || s.includes(curr)), false);
+// const rows = ['qwertyuiop'.split(''), 'asdfghjkl'.split(''), 'zxcvbnm'.split('')];
+
+// const includesAny = (s, a) => a.reduce((acc, curr) => (acc = acc || s.includes(curr)), false);
+
+// /**
+//  * @param {string[]} words
+//  * @return {string[]}
+//  */
+// const findWords = words =>
+//   words.filter(word => 1 === rows.filter(row => includesAny(word, row)).length);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 52 ms, faster than 76.38% of JavaScript online submissions
+// for Keyboard Row.
+// Memory Usage: 33.8 MB, less than 46.61% of JavaScript online submissions
+// for Keyboard Row.
 
 /**
- * See? This is faster and uses less memory even though it's easier to understand
- *
  * @param {string[]} words
  * @return {string[]}
  */
-const findWords = words =>
-  words.filter(word => 1 === rows.filter(row => includesAny(word, row)).length);
+const findWords = words => {
+  const rowMasks = [2232170, 39698560, 25178133];
+  return words.filter(word => {
+    word = word.toLowerCase();
+    let wordMask = new Array(26).fill(0);
+    for (let i = 0; i < word.length; i++) {
+      wordMask[word[i].charCodeAt(0) - 97] = 1;
+    }
+    wordMask = parseInt(wordMask.join(''), 2);
+    for (let rowMask of rowMasks) {
+      if (!(wordMask & ~rowMask)) return true;
+    }
+    return false;
+  });
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -97,11 +129,9 @@ const tests = [
   },
 ];
 
-const areArraysEqual = (a1, a2) => a1.length === a2.length && a1.join() === a2.join();
-
 tests.forEach(({ name, input, expected }) => {
   const result = findWords(input);
-  if (areArraysEqual(expected, result)) {
+  if (JSON.stringify(expected) === JSON.stringify(result)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
