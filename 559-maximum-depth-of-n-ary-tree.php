@@ -92,7 +92,7 @@ class Node
     public $children;
 
     /**
-     * @param Integer $val
+     * @param int $val
      * @param array<Node> $children
      */
     function __construct($val, $children = [])
@@ -106,6 +106,10 @@ class NaryTree
 {
     public $root = null;
 
+    /**
+     * @param int $n
+     * @param array<mixed> $vals
+     */
     function __construct($n, ...$vals)
     {
         // echo '<pre>', print_r($vals, true), '</pre>';
