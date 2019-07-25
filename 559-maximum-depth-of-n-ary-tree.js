@@ -19,8 +19,33 @@
  * @param {Node} root
  * @return {number}
  */
-const maxDepth = root =>
-  !root ? 0 : root.children.reduce((acc, curr) => Math.max(acc, maxDepth(curr)), 0) + 1;
+// const maxDepth = root =>
+//   !root ? 0 : root.children.reduce((acc, curr) => Math.max(acc, maxDepth(curr)), 0) + 1;
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 612 ms, faster than 37.55% of JavaScript online submissions
+// for Maximum Depth of N-ary Tree.
+// Memory Usage: 80.4 MB, less than 52.63% of JavaScript online submissions
+// for Maximum Depth of N-ary Tree.
+
+/**
+ * @param {Node} root
+ * @return {number}
+ */
+const maxDepth = root => {
+  if (!root) return 0;
+  let max = 0;
+  const stk = [[root, 1]];
+  while (stk.length) {
+    [curr, depth] = stk.pop();
+    max = Math.max(max, depth);
+    if (curr.children && 0 < curr.children.length) {
+      stk.push(...curr.children.map(child => [child, depth + 1]));
+    }
+  }
+  return max;
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
