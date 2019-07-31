@@ -3,6 +3,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 48 ms, faster than 88.27% of JavaScript online submissions
+// for To Lower Case.
+// Memory Usage: 33.8 MB, less than 69.79% of JavaScript online submissions
+// for To Lower Case.
+
 /**
  * @param {string} str
  * @return {string}
@@ -13,42 +18,47 @@ const toLowerCase = str => str.toLowerCase();
 
 const tests = [
   {
-    title: 'Example 1',
     input: 'Hello',
-    output: 'hello'
+    expected: 'hello',
   },
+
   {
-    title: 'Example 2',
     input: 'here',
-    output: 'here'
+    expected: 'here',
   },
+
   {
-    title: 'Example 3',
     input: 'LOVELY',
-    output: 'lovely'
+    expected: 'lovely',
   },
+
   {
-    title: 'Empty string',
     input: '',
-    output: ''
+    expected: '',
   },
+
   {
-    title: 'Single lowercase',
     input: 'a',
-    output: 'a'
+    expected: 'a',
   },
+
   {
-    title: 'Single Uppercase',
     input: 'A',
-    output: 'a'
+    expected: 'a',
   },
+
   {
-    title: 'A digit',
     input: '1',
-    output: '1'
-  }
+    expected: '1',
+  },
 ];
 
-tests.forEach(test => {
-  console.log(`${test.title}: ${test.output === toLowerCase(test.input)}`);
-});
+for (let { input, expected } of tests) {
+  const output = toLowerCase(input);
+  if (expected === output) {
+    console.log(`✅ ${input}`);
+  } else {
+    console.log(`🔴 ${input}`);
+    console.log(`<i>Expected <b>${expected}</b>, but got <b>${output}</b></i>`);
+  }
+}
