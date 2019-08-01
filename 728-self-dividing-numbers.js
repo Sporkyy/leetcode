@@ -3,6 +3,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 64 ms, faster than 58.03% of JavaScript online submissions
+// for Self Dividing Numbers.
+// Memory Usage: 38.2 MB, less than 6.48% of JavaScript online submissions
+// for Self Dividing Numbers.
+
 /**
  * @param {number} left
  * @param {number} right
@@ -35,21 +40,52 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const isSelfDividing = i =>
-  String(i)
-    .split('')
-    .map(s => parseInt(s, 10))
-    .reduce((answer, digit) => answer && 0 !== digit && 0 === i % digit, true);
+// Runtime: 68 ms, faster than 42.34% of JavaScript online submissions
+// for Self Dividing Numbers.
+// Memory Usage: 38.1 MB, less than 7.41% of JavaScript online submissions
+// for Self Dividing Numbers.
 
-const arraryRange = (start, end) => Array.from(Array(end - start + 1), (x, i) => start + i);
+// const isSelfDividing = i =>
+//   String(i)
+//     .split('')
+//     .map(s => parseInt(s, 10))
+//     .reduce((answer, digit) => answer && 0 !== digit && 0 === i % digit, true);
+
+// const arraryRange = (start, end) => Array.from(Array(end - start + 1), (x, i) => start + i);
+
+// /**
+//  * @param {number} left
+//  * @param {number} right
+//  * @return {number[]}
+//  */
+// const selfDividingNumbers = (left, right) =>
+//   arraryRange(left, right).filter(n => isSelfDividing(n));
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 52 ms, faster than 95.90% of JavaScript online submissions
+// for Self Dividing Numbers.
+// Memory Usage: 34.8 MB, less than 93.00% of JavaScript online submissions
+// for Self Dividing Numbers.
 
 /**
  * @param {number} left
  * @param {number} right
  * @return {number[]}
  */
-const selfDividingNumbers = (left, right) =>
-  arraryRange(left, right).filter(n => isSelfDividing(n));
+const selfDividingNumbers = (left, right) => {
+  const result = [];
+  top: do {
+    let num = left;
+    do {
+      const digit = num % 10;
+      if (0 === digit || 0 !== left % digit) continue top;
+      num = Math.trunc(num / 10);
+    } while (0 < num);
+    result.push(left);
+  } while (left++ < right);
+  return result;
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
