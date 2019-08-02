@@ -3,61 +3,93 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const domainHierarchy = domain => {
-  let a = [];
-  let s = domain;
-  a.push(domain);
-  while (-1 < s.indexOf('.')) {
-    s = s.slice(s.indexOf('.') + 1);
-    a.push(s);
-  }
-  return a;
-};
+// Runtime: 620 ms, faster than 5.45% of JavaScript online submissions
+// for Subdomain Visit Count.
+// Memory Usage: 47.2 MB, less than 5.55% of JavaScript online submissions
+// for Subdomain Visit Count.
 
-const allDomains = domains => {
-  let a = [];
-  domains.forEach(d => (a = [...a, ...domainHierarchy(d)]));
-  return Array.from(new Set(a));
-};
+// const domainHierarchy = domain => {
+//   let a = [];
+//   let s = domain;
+//   a.push(domain);
+//   while (-1 < s.indexOf('.')) {
+//     s = s.slice(s.indexOf('.') + 1);
+//     a.push(s);
+//   }
+//   return a;
+// };
 
-const cpdomainVisits = s => parseInt(s.split(' ')[0], 10);
+// const allDomains = domains => {
+//   let a = [];
+//   domains.forEach(d => (a = [...a, ...domainHierarchy(d)]));
+//   return Array.from(new Set(a));
+// };
 
-const cpdomainDomain = s => s.split(' ')[1];
+// const cpdomainVisits = s => parseInt(s.split(' ')[0], 10);
 
-const domainMatch = (sub, domain) => RegExp(`${sub}$`).test(domain);
+// const cpdomainDomain = s => s.split(' ')[1];
+
+// const domainMatch = (sub, domain) => RegExp(`${sub}$`).test(domain);
+
+// /**
+//  * @param {string[]} cpdomains
+//  * @return {string[]}
+//  */
+// const subdomainVisits = cpdomains => {
+//   const justTheDomains = cpdomains.map(s => cpdomainDomain(s));
+//   // console.log(justTheDomains);
+//   const allTheDomains = allDomains(justTheDomains);
+//   // console.log(allTheDomains);
+//   const answer = new Map(allTheDomains.map(d => [d, 0]));
+//   // console.log(answer);
+//   for (let key of answer.keys()) {
+//     cpdomains.forEach(cpdomain => {
+//       if (domainMatch(key, cpdomainDomain(cpdomain))) {
+//         answer.set(key, answer.get(key) + cpdomainVisits(cpdomain));
+//       }
+//     });
+//   }
+//   // console.log(answer);
+//   return Array.from(answer, ([key, value]) => `${value} ${key}`);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 76 ms, faster than 82.75% of JavaScript online submissions
+// for Subdomain Visit Count.
+// Memory Usage: 39.3 MB, less than 12.50% of JavaScript online submissions
+// for Subdomain Visit Count.
 
 /**
  * @param {string[]} cpdomains
  * @return {string[]}
  */
 const subdomainVisits = cpdomains => {
-  const justTheDomains = cpdomains.map(s => cpdomainDomain(s));
-  // console.log(justTheDomains);
-  const allTheDomains = allDomains(justTheDomains);
-  // console.log(allTheDomains);
-  const answer = new Map(allTheDomains.map(d => [d, 0]));
-  // console.log(answer);
-  for (let key of answer.keys()) {
-    cpdomains.forEach(cpdomain => {
-      if (domainMatch(key, cpdomainDomain(cpdomain))) {
-        answer.set(key, answer.get(key) + cpdomainVisits(cpdomain));
-      }
-    });
+  const map = new Map();
+  for (let cpdomain of cpdomains) {
+    const [num, hostname] = cpdomain.split(' ');
+    const domains = hostname.split('.').reverse();
+    let memo = '';
+    for (let domain of domains) {
+      memo = memo.length ? `${domain}.${memo}` : domain;
+      if (!map.has(memo)) map.set(memo, 0);
+      map.set(memo, map.get(memo) + parseInt(num, 10));
+    }
   }
-  // console.log(answer);
-  return Array.from(answer, ([key, value]) => `${value} ${key}`);
+  const result = [];
+  map.forEach((value, key) => result.push(`${value} ${key}`));
+  return result;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const tests = [
   {
-    name: 'Example 1',
     input: ['9001 discuss.leetcode.com'],
     expected: ['9001 discuss.leetcode.com', '9001 leetcode.com', '9001 com'],
   },
+
   {
-    name: 'Example 2',
     input: ['900 google.mail.com', '50 yahoo.com', '1 intel.mail.com', '5 wiki.org'],
     expected: [
       '901 mail.com',
@@ -80,12 +112,13 @@ const arraysHaveSameElements = (a1, a2) => {
   return true;
 };
 
-tests.forEach(({ name, input, expected }) => {
+for ({ input, expected } of tests) {
   const result = subdomainVisits(input);
+  const name = input.join(', ');
   if (arraysHaveSameElements(result, expected)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
     console.log(`Expected "${expected}", but got "${result}"`);
   }
-});
+}
