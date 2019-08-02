@@ -58,6 +58,33 @@
 // Memory Usage: 14.7 MB, less than 100.00% of PHP online submissions
 // for Number of Lines To Write String.
 
+// class Solution
+// {
+
+//     /**
+//      * @param Integer[] $widths
+//      * @param String $S
+//      * @return Integer[]
+//      */
+//     function numberOfLines($widths, $S)
+//     {
+//         list($lines, $cnt) = [1, 0];
+//         for ($i = 0; $i < strlen($S); $i++) {
+//             $w = $widths[ord(substr($S, $i, 1)) - 97];
+//             if (100 < $cnt + $w) list($lines, $cnt) = [$lines + 1, 0];
+//             $cnt += $w;
+//         }
+//         return [$lines, $cnt];
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 4 ms, faster than 100.00% of PHP online submissions
+// for Number of Lines To Write String.
+// Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
+// for Number of Lines To Write String.
+
 class Solution
 {
 
@@ -70,7 +97,7 @@ class Solution
     {
         list($lines, $cnt) = [1, 0];
         for ($i = 0; $i < strlen($S); $i++) {
-            $w = $widths[ord(substr($S, $i, 1)) - 97];
+            $w = $widths[ord($S[$i]) - 97];
             if (100 < $cnt + $w) list($lines, $cnt) = [$lines + 1, 0];
             $cnt += $w;
         }
