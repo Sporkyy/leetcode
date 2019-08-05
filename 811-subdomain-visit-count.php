@@ -105,7 +105,7 @@ foreach ($tests as $test) {
     extract($test);
     $result = $s->subdomainVisits($input);
     $name = implode(', ', $input);
-    if ($result === $expected) {
+    if (0 === count(array_diff($result, $expected))) {
         echo "✅ {$name}<br>";
     } else {
         echo "🔴 {$name}<br>";
