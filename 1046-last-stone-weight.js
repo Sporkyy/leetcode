@@ -53,7 +53,6 @@
 const lastStoneWeight = stones => {
   const arrayDeleteByIndex = (a, i) => [...a.slice(0, i), ...a.slice(i + 1, a.length)];
   const biggestTwo = a => {
-    if (a.length < 2) return undefined;
     let fbi = 0;
     for (let i = 0; i < a.length; i++) if (a[fbi] < a[i]) fbi = i;
     const fb = a[fbi];
