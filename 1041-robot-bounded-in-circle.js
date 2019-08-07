@@ -33,24 +33,31 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 36 ms, faster than 100.00% of JavaScript online submissions
+// for Robot Bounded In Circle.
+// Memory Usage: 34.2 MB, less than 100.00% of JavaScript online submissions
+// for Robot Bounded In Circle.
+
 /**
  * @param {string} instructions
  * @return {boolean}
  */
 const isRobotBounded = instructions => {
-  // const cnts = { L: 0, G: 0, R: 0 };
-  // for (let i = 0; i < instructions.length; i++) cnts[instructions[i]]++;
-  // console.log(cnts);
-  // if (0 === cnts['G']) return true;
-  // if (4 <= cnts['L'] + cnts['R']) return 0 === (cnts['L'] - cnts['R']) % 4;
-  // return 0 !== (cnts['L'] + cnts['R']) % 4;
-  const distance = 0;
-  const orientation = 0;
-  // for (let i = 0; i < instructions.length; i++) cnts[instructions[i]]++;
-  // console.log(cnts);
-  // if (0 === cnts['G']) return true;
-  // if (4 <= cnts['L'] + cnts['R']) return 0 === (cnts['L'] - cnts['R']) % 4;
-  // return 0 !== (cnts['L'] + cnts['R']) % 4;
+  let [distance, orientation] = [0, 0];
+  for (i = 0; i < instructions.length; i++) {
+    switch (instructions[i]) {
+      case 'G':
+        distance += [1, 2, -1, -2][orientation];
+        break;
+      case 'L':
+        orientation = (orientation + 1) % 4;
+        break;
+      case 'R':
+        orientation = (orientation + 3) % 4;
+        break;
+    }
+  }
+  return 0 === distance || 0 !== orientation;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

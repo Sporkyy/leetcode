@@ -9,6 +9,42 @@
 // Memory Usage: 14.7 MB, less than 100.00% of PHP online submission
 // for Robot Bounded In Circle.
 
+// class Solution
+// {
+//     /**
+//      * @param String $instructions
+//      * @return Boolean
+//      */
+//     function isRobotBounded($instructions)
+//     {
+//         $direction = 0;
+//         $position = 0;
+
+//         for ($i = 0; $i < strlen($instructions); $i++) {
+//             switch ($instructions[$i]) {
+//                 case 'G':
+//                     $position += [1, 2, -1, -2][$direction];
+//                     break;
+//                 case 'L':
+//                     $direction = ($direction + 1) % 4;
+//                     break;
+//                 case 'R':
+//                     $direction = ($direction + 3) % 4;
+//                     break;
+//             }
+//         }
+
+//         return 0 === $position || 0 !== $direction;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 0 ms, faster than 100.00% of PHP online submissions
+// for Robot Bounded In Circle.
+// Memory Usage: 14.9 MB, less than 100.00% of PHP online submissions
+// for Robot Bounded In Circle.
+
 class Solution
 {
     /**
@@ -17,24 +53,21 @@ class Solution
      */
     function isRobotBounded($instructions)
     {
-        $direction = 0;
-        $position = 0;
-
+        list($distance, $orientation) = [0, 0];
         for ($i = 0; $i < strlen($instructions); $i++) {
             switch ($instructions[$i]) {
                 case 'G':
-                    $position += [1, 2, -1, -2][$direction];
+                    $distance += [1, 2, -1, -2][$orientation];
                     break;
                 case 'L':
-                    $direction = ($direction + 1) % 4;
+                    $orientation = ($orientation + 1) % 4;
                     break;
                 case 'R':
-                    $direction = ($direction + 3) % 4;
+                    $orientation = ($orientation + 3) % 4;
                     break;
             }
         }
-
-        return 0 === $position || 0 !== $direction;
+        return 0 === $distance || 0 !== $orientation;
     }
 }
 
