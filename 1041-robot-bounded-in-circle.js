@@ -44,7 +44,8 @@ const isRobotBounded = instructions => {
   // if (0 === cnts['G']) return true;
   // if (4 <= cnts['L'] + cnts['R']) return 0 === (cnts['L'] - cnts['R']) % 4;
   // return 0 !== (cnts['L'] + cnts['R']) % 4;
-  let [t, a] = [0, 0];
+  const distance = 0;
+  const orientation = 0;
   // for (let i = 0; i < instructions.length; i++) cnts[instructions[i]]++;
   // console.log(cnts);
   // if (0 === cnts['G']) return true;
@@ -107,7 +108,7 @@ const tests = [
   // },
 ];
 
-for (let { input, expected } of tests) {
+for (const { input, expected } of tests) {
   const output = isRobotBounded(input);
   if (expected === output) {
     console.log(`✅ ${input}`);
