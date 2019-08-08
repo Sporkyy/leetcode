@@ -231,7 +231,7 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 76 ms, faster than 5.56% of JavaScript online submissions
+// Runtime: 52 ms, faster than 69.31% of JavaScript online submissions
 // for Available Captures for Rook.
 // Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
 // for Available Captures for Rook.
@@ -252,37 +252,45 @@ const numRookCaptures = board => {
 
   let result = 0;
 
-  let above;
-  for (let r = rookRow - 1; 0 <= r; r--)
-    if ('.' !== board[r][rookCol]) {
-      above = board[r][rookCol];
-      break;
+  lookAbove: for (let r = rookRow - 1; 0 <= r; r--)
+    switch (board[r][rookCol]) {
+      case '.':
+        continue lookAbove;
+      case 'p':
+        result++;
+      default:
+        break lookAbove;
     }
-  if ('p' === above) result++;
 
-  let right;
-  for (let c = rookCol + 1; c < 8; c++)
-    if ('.' !== board[rookRow][c]) {
-      right = board[rookRow][c];
-      break;
+  lookRight: for (let c = rookCol + 1; c < 8; c++)
+    switch (board[rookRow][c]) {
+      case '.':
+        continue lookRight;
+      case 'p':
+        result++;
+      default:
+        break lookRight;
     }
-  if ('p' === right) result++;
 
-  let below;
-  for (let r = rookRow + 1; r < 8; r++)
-    if ('.' !== board[r][rookCol]) {
-      below = board[r][rookCol];
-      break;
+  lookBelow: for (let r = rookRow + 1; r < 8; r++)
+    switch (board[r][rookCol]) {
+      case '.':
+        continue lookBelow;
+      case 'p':
+        result++;
+      default:
+        break lookBelow;
     }
-  if ('p' === below) result++;
 
-  let left;
-  for (let c = rookCol - 1; 0 <= c; c--)
-    if ('.' !== board[rookRow][c]) {
-      left = board[rookRow][c];
-      break;
+  lookLeft: for (let c = rookCol - 1; 0 <= c; c--)
+    switch (board[rookRow][c]) {
+      case '.':
+        continue lookLeft;
+      case 'p':
+        result++;
+      default:
+        break lookLeft;
     }
-  if ('p' === left) result++;
 
   return result;
 };

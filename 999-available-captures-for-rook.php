@@ -10,6 +10,63 @@
 // Memory Usage: 14.9 MB, less than 100.00% of PHP online submissions
 // for Available Captures for Rook.
 
+// class Solution
+// {
+
+//     /**
+//      * @param String[][] $board
+//      * @return Integer
+//      */
+//     function numRookCaptures($board)
+//     {
+//         for ($r = 0; $r < 8; $r++)
+//             for ($c = 0; $c < 8; $c++)
+//                 if ('R' === $board[$r][$c]) {
+//                     list($rookRow, $rookCol) = [$r, $c];
+//                     break 2;
+//                 }
+
+//         $result = 0;
+
+//         for ($r = $rookRow - 1; 0 <= $r; $r--)
+//             if ('.' !== $board[$r][$rookCol]) {
+//                 $above = $board[$r][$rookCol];
+//                 break;
+//             }
+//         if (isset($above) && 'p' === $above) $result++;
+
+//         for ($c = $rookCol + 1; $c < 8; $c++)
+//             if ('.' !== $board[$rookRow][$c]) {
+//                 $right = $board[$rookRow][$c];
+//                 break;
+//             }
+//         if (isset($right) && 'p' === $right) $result++;
+
+//         for ($r = $rookRow + 1; $r < 8; $r++)
+//             if ('.' !== $board[$r][$rookCol]) {
+//                 $below = $board[$r][$rookCol];
+//                 break;
+//             }
+//         if (isset($below) && 'p' === $below) $result++;
+
+//         for ($c = $rookCol - 1; 0 <= $c; $c--)
+//             if ('.' !== $board[$rookRow][$c]) {
+//                 $left = $board[$rookRow][$c];
+//                 break;
+//             }
+//         if (isset($left) && 'p' === $left) $result++;
+
+//         return $result;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 8 ms, faster than 50.00% of PHP online submissions
+// for Available Captures for Rook.
+// Memory Usage: 14.8 MB, less than 100.00% of PHP online submissions
+// for Available Captures for Rook.
+
 class Solution
 {
 
@@ -29,38 +86,50 @@ class Solution
         $result = 0;
 
         for ($r = $rookRow - 1; 0 <= $r; $r--)
-            if ('.' !== $board[$r][$rookCol]) {
-                $above = $board[$r][$rookCol];
-                break;
+            switch ($board[$r][$rookCol]) {
+                case '.':
+                    continue 2;
+                case 'p':
+                    $result++;
+                default:
+                    break 2;
             }
-        if (isset($above) && 'p' === $above) $result++;
 
         for ($c = $rookCol + 1; $c < 8; $c++)
-            if ('.' !== $board[$rookRow][$c]) {
-                $right = $board[$rookRow][$c];
-                break;
+            switch ($board[$rookRow][$c]) {
+                case '.':
+                    continue 2;
+                case 'p':
+                    $result++;
+                default:
+                    break 2;
             }
-        if (isset($right) && 'p' === $right) $result++;
 
         for ($r = $rookRow + 1; $r < 8; $r++)
-            if ('.' !== $board[$r][$rookCol]) {
-                $below = $board[$r][$rookCol];
-                break;
+            switch ($board[$r][$rookCol]) {
+                case '.':
+                    continue 2;
+                case 'p':
+                    $result++;
+                default:
+                    break 2;
             }
-        if (isset($below) && 'p' === $below) $result++;
 
         for ($c = $rookCol - 1; 0 <= $c; $c--)
-            if ('.' !== $board[$rookRow][$c]) {
-                $left = $board[$rookRow][$c];
-                break;
+            switch ($board[$rookRow][$c]) {
+                case '.':
+                    continue 2;
+                case 'p':
+                    $result++;
+                default:
+                    break 2;
             }
-        if (isset($left) && 'p' === $left) $result++;
 
         return $result;
     }
 }
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 $tests = [
     [
