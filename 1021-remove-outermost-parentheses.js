@@ -78,13 +78,12 @@
  */
 const removeOuterParentheses = S => {
   let result = '';
-  // t = tail, h = head, d = depth
-  for (let [t, h, d] = [0, 1, 1]; h < S.length; h++) {
-    if (S[h] === '(') d++;
-    else if (S[h] === ')') d--;
-    if (0 === d) {
-      result += S.slice(t + 1, h);
-      t = h + 1;
+  for (let [begin, end, depth] = [0, 1, 1]; end < S.length; end++) {
+    if (S[end] === '(') depth++;
+    else if (S[end] === ')') depth--;
+    if (0 === depth) {
+      result += S.slice(begin + 1, end);
+      begin = end + 1;
     }
   }
   return result;

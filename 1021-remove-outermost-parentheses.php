@@ -73,13 +73,12 @@ class Solution
     function removeOuterParentheses($S)
     {
         $result = '';
-        // $t = tail, $h = head, $d = depth
-        for (list($t, $h, $d) = [0, 1, 1]; $h < strlen($S); $h++) {
-            if ($S[$h] === '(') $d++;
-            else if ($S[$h] === ')') $d--;
-            if (0 === $d) {
-                $result .= substr($S, $t + 1, $h - $t - 1);
-                $t = $h + 1;
+        for (list($begin, $end, $depth) = [0, 1, 1]; $end < strlen($S); $end++) {
+            if ($S[$end] === '(') $depth++;
+            else if ($S[$end] === ')') $depth--;
+            if (0 === $depth) {
+                $result .= substr($S, $begin + 1, $end - $begin - 1);
+                $begin = $end + 1;
             }
         }
         return $result;
