@@ -73,7 +73,7 @@ foreach ($tests as $test) {
     echo '<pre>', print_r($result, true), '</pre>';
     $stringifiedExpected = json_encode($expected);
     $stringifiedResult = json_encode($result);
-    $name = implode('<br>', $input);
+    $name = implode(', ', $input);
     if (json_encode(sort($result)) === json_encode(sort($expected))) {
         echo "✅ {$name}<br>";
     } else {
