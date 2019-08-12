@@ -40,19 +40,33 @@
  * @param {number[]} A
  * @return {boolean[]}
  */
-const prefixesDivBy5 = A => {
-  const result = [];
-  for (let i = 0, s = ''; i < A.length; i++) {
-    s += A[i];
-    if (BigInt(0) === BigInt(`0b${s}`) % BigInt(5)) {
-      result.push(true);
-      s = '';
-    } else {
-      result.push(false);
-    }
-  }
-  return result;
-};
+// const prefixesDivBy5 = A => {
+//   const result = [];
+//   for (let i = 0, s = ''; i < A.length; i++) {
+//     s += A[i];
+//     if (BigInt(0) === BigInt(`0b${s}`) % BigInt(5)) {
+//       result.push(true);
+//       s = '';
+//     } else {
+//       result.push(false);
+//     }
+//   }
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 72 ms, faster than 59.00% of JavaScript online submissions
+// for Binary Prefix Divisible By 5.
+// Memory Usage: 38.2 MB, less than 92.31% of JavaScript online submissions
+// for Binary Prefix Divisible By 5.
+
+/**
+ * @param {number[]} A
+ * @param {number} acc
+ * @return {boolean[]}
+ */
+const prefixesDivBy5 = (A, acc = 0) => A.map(d => !(acc = (acc * 2 + d) % 5));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
