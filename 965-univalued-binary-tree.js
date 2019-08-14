@@ -83,34 +83,21 @@ class BinaryTree {
   constructor(...vals) {
     this.root = null;
     if (0 === vals.length) return;
-    const a = vals.map(v => (null === v ? null : new TreeNode(v)));
-    for (let i = 0; i < vals.length; i++) {
-      if (null === vals[i]) continue;
-      a[i].left = a[i * 2 + 1] || null;
-      a[i].right = a[i * 2 + 2] || null;
+    const nodes = vals.map(val => {
+      if (null === val) return null;
+      return new TreeNode(val);
+    });
+    for (let i = 0; i < nodes.length; i++) {
+      if (null === nodes[i]) continue;
+      nodes[i].left = nodes[i * 2 + 1] || null;
+      nodes[i].right = nodes[i * 2 + 2] || null;
     }
-    this.root = a[0];
+    this.root = nodes[0];
     return this;
   }
 }
 
 const tests = [
-  //      1
-  //    /   \
-  //   1     1
-  //  / \     \
-  // 1  1      1
-
-  {
-    input: [1, 1, 1, 1, 1, null, 1],
-    expected: true,
-  },
-
-  {
-    input: [2, 2, 2, 5, 2],
-    expected: false,
-  },
-
   {
     input: [1],
     expected: true,
@@ -123,6 +110,28 @@ const tests = [
   {
     input: [1, null, 1],
     expected: true,
+  },
+
+  //      1
+  //    /   \
+  //   1     1
+  //  / \     \
+  // 1  1      1
+
+  {
+    input: [1, 1, 1, 1, 1, null, 1],
+    expected: true,
+  },
+
+  //      2
+  //    /   \
+  //   2     2
+  //  / \
+  // 5  2
+
+  {
+    input: [2, 2, 2, 5, 2],
+    expected: false,
   },
 ];
 
