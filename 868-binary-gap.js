@@ -35,23 +35,23 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 60 ms, faster than 100.00% of JavaScript online submissions
+// Runtime: 48 ms, faster than 95.29% of JavaScript online submissions
 // for Binary Gap.
-// Memory Usage: 33.8 MB, less than 19.05% of JavaScript online submissions
+// Memory Usage: 33.9 MB, less than 100.00% of JavaScript online submissions
 // for Binary Gap.
 
 /**
  * @param {number} N
  * @return {number}
  */
-const binaryGap = N =>
-  Math.max(
-    0,
-    ...N.toString(2)
-      .split('1')
-      .slice(1, -1)
-      .map(gap => gap.length + 1),
-  );
+// const binaryGap = N =>
+//   Math.max(
+//     0,
+//     ...N.toString(2)
+//       .split('1')
+//       .slice(1, -1)
+//       .map(gap => gap.length + 1),
+//   );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -64,17 +64,17 @@ const binaryGap = N =>
  * @param {number} N
  * @return {number}
  */
-// const binaryGap = N => {
-//   let maxGap = 0;
-//   bin = (N >>> 0).toString(2);
-//   for (let p1 = 0, p2 = 1; p2 < bin.length; p2++) {
-//     if ('1' === bin[p2]) {
-//       if (maxGap < p2 - p1) maxGap = p2 - p1;
-//       p1 = p2;
-//     }
-//   }
-//   return maxGap;
-// };
+const binaryGap = N => {
+  let maxGap = 0;
+  bin = (N >>> 0).toString(2);
+  for (let p1 = 0, p2 = 1; p2 < bin.length; p2++) {
+    if ('1' === bin[p2]) {
+      if (maxGap < p2 - p1) maxGap = p2 - p1;
+      p1 = p2;
+    }
+  }
+  return maxGap;
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
