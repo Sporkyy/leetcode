@@ -3,8 +3,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 76 ms, faster than 35.42% of JavaScript online submissions for Binary Gap.
-// Memory Usage: 33.9 MB, less than 14.29% of JavaScript online submissions for Binary Gap.
+// Runtime: 76 ms, faster than 35.42% of JavaScript online submissions
+// for Binary Gap.
+// Memory Usage: 33.9 MB, less than 14.29% of JavaScript online submissions
+// for Binary Gap.
 
 /**
  * @param {number} N
@@ -33,8 +35,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 60 ms, faster than 100.00% of JavaScript online submissions for Binary Gap.
-// Memory Usage: 33.8 MB, less than 19.05% of JavaScript online submissions for Binary Gap.
+// Runtime: 60 ms, faster than 100.00% of JavaScript online submissions
+// for Binary Gap.
+// Memory Usage: 33.8 MB, less than 19.05% of JavaScript online submissions
+// for Binary Gap.
 
 /**
  * @param {number} N
@@ -51,20 +55,67 @@ const binaryGap = N =>
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 52 ms, faster than 86.67% of JavaScript online submissions
+// for Binary Gap.
+// Memory Usage: 34 MB, less than 100.00% of JavaScript online submissions
+// for Binary Gap.
+
+/**
+ * @param {number} N
+ * @return {number}
+ */
+// const binaryGap = N => {
+//   let maxGap = 0;
+//   bin = (N >>> 0).toString(2);
+//   for (let p1 = 0, p2 = 1; p2 < bin.length; p2++) {
+//     if ('1' === bin[p2]) {
+//       if (maxGap < p2 - p1) maxGap = p2 - p1;
+//       p1 = p2;
+//     }
+//   }
+//   return maxGap;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 const tests = [
-  { name: 'Example 1', input: 22, expected: 2 },
-  { name: 'Example 2', input: 5, expected: 2 },
-  { name: 'Example 3', input: 6, expected: 1 },
-  { name: 'Example 4', input: 8, expected: 0 },
-  { name: '0', input: 0, expected: 0 },
+  {
+    input: 0,
+    expected: 0,
+  },
+
+  {
+    input: 5,
+    expected: 2,
+  },
+
+  {
+    input: 6,
+    expected: 1,
+  },
+
+  {
+    input: 8,
+    expected: 0,
+  },
+
+  {
+    input: 13,
+    expected: 2,
+  },
+
+  {
+    input: 22,
+    expected: 2,
+  },
 ];
 
-tests.forEach(({ name, input, expected }) => {
+for ({ input, expected } of tests) {
   const output = binaryGap(input);
   if (expected === output) {
-    console.log(`✅ ${name}`);
+    console.log(`✅ ${input}`);
   } else {
-    console.log(`🔴 ${name}`);
+    console.log(`🔴 ${input}`);
     console.log(`Expected "${expected}", but got "${output}"`);
   }
-});
+}
