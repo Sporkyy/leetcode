@@ -30,7 +30,7 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 56 ms, faster than 56.91% of JavaScript online submissions
+// Runtime: 52 ms, faster than 79.55% of JavaScript online submissions
 // for Univalued Binary Tree.
 // Memory Usage: 34.1 MB, less than 14.29% of JavaScript online submissions
 // for Univalued Binary Tree.
@@ -47,14 +47,11 @@
  * @return {boolean}
  */
 var isUnivalTree = root => {
-  const v = root.val;
+  const rootVal = root.val;
   const stk = [root];
   while (stk.length) {
     const { val, left, right } = stk.pop();
-    // Why this exta check? Why isn't the if left+right enough?
-    // It has something to do with the way my tree is constructed.
-    // if (null === val) continue;
-    if (val !== v) return false;
+    if (val !== rootVal) return false;
     if (left) stk.push(left);
     if (right) stk.push(right);
   }
@@ -64,23 +61,36 @@ var isUnivalTree = root => {
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 class TreeNode {
-  constructor(val) {
+  constructor(val = null, left = null, right = null) {
     this.val = val;
-    this.left = this.right = null;
+    if (null !== val) {
+      this.left = left;
+      this.right = right;
+    }
+    return this;
   }
 }
+
+//           0
+//       /       \
+//     1           2
+//    / \         /  \
+//   3   4      5      6
+//  /\   /\    / \    / \
+// 7 8  9 10  11 12  13 14
 
 class BinaryTree {
   constructor(...vals) {
     this.root = null;
     if (0 === vals.length) return;
-    const a = vals.map(v => new TreeNode(v));
+    const a = vals.map(v => (null === v ? null : new TreeNode(v)));
     for (let i = 0; i < vals.length; i++) {
-      // if (!vals[i]) continue;
+      if (null === vals[i]) continue;
       a[i].left = a[i * 2 + 1] || null;
       a[i].right = a[i * 2 + 2] || null;
     }
     this.root = a[0];
+    return this;
   }
 }
 
@@ -90,14 +100,6 @@ const tests = [
   //   1     1
   //  / \     \
   // 1  1      1
-
-  //           0
-  //       /        \
-  //     1            2
-  //    / \         /    \
-  //   3   4       5      6
-  //  /\   /\     / \    / \
-  // 7 8  9 10   11 12  13 14
 
   {
     input: [1, 1, 1, 1, 1, null, 1],
@@ -113,10 +115,20 @@ const tests = [
     input: [1],
     expected: true,
   },
+
+  // 1
+  //  \
+  //   1
+
+  {
+    input: [1, null, 1],
+    expected: true,
+  },
 ];
 
 for ({ input, expected } of tests) {
   r = new BinaryTree(...input).root;
+  // console.log(r);
   const result = isUnivalTree(r);
   // console.log(result);
   const name = JSON.stringify(input);
