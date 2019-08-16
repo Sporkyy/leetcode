@@ -3,6 +3,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 52 ms, faster than 67.88% of JavaScript online submissions
+// for Middle of the Linked List.
+// Memory Usage: 33.8 MB, less than 33.33% of JavaScript online submissions
+// for Middle of the Linked List.
+
 const listLength = head => {
   let length = 0;
   tmp = head;
