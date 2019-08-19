@@ -24,6 +24,27 @@
 // Memory Usage: 69.8 MB, less than 20.00% of JavaScript online submissions
 // for Number of Recent Calls.
 
+// const RecentCounter = function() {
+//   this.pings = [];
+// };
+
+/**
+ * @param {number} t
+ * @return {number}
+ */
+// RecentCounter.prototype.ping = function(t) {
+//   this.pings.push(t);
+//   const length = this.pings.filter(ping => null !== ping && t - 3000 <= ping).length;
+//   return 0 === length ? null : length;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 360 ms, faster than 28.76% of JavaScript online submissions
+// for Number of Recent Calls.
+// Memory Usage: 72.5 MB, less than 10.00% of JavaScript online submissions
+// for Number of Recent Calls.
+
 const RecentCounter = function() {
   this.pings = [];
 };
@@ -33,16 +54,12 @@ const RecentCounter = function() {
  * @return {number}
  */
 RecentCounter.prototype.ping = function(t) {
-  this.pings.push(t);
-  const length = this.pings.filter(ping => null !== ping && t - 3000 <= ping).length;
-  return 0 === length ? null : length;
+  if (null !== t) this.pings.push(t);
+  let offset = 0;
+  while (offset < this.pings.length && this.pings[offset] < t - 3000) offset++;
+  this.pings = this.pings.slice(offset);
+  return this.pings.length || null;
 };
-
-/**
- * Your RecentCounter object will be instantiated and called as such:
- * var obj = Object.create(RecentCounter).createNew()
- * var param_1 = obj.ping(t)
- */
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -50,9 +67,17 @@ const tests = [
   {
     input: {
       pings: ['RecentCounter', 'ping', 'ping', 'ping', 'ping'],
-      times: [, 1, 100, 3001, 3002],
+      times: [null, 1, 100, 3001, 3002],
     },
     expected: [null, 1, 2, 3, 3],
+  },
+
+  {
+    input: {
+      pings: ['RecentCounter', 'ping', 'ping', 'ping', 'ping', 'ping'],
+      times: [null, 642, 1849, 4921, 5936, 5957],
+    },
+    expected: [null, 1, 2, 1, 2, 3],
   },
 ];
 

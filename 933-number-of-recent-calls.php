@@ -60,6 +60,53 @@
 // Memory Usage: 26.1 MB, less than 100.00% of PHP online submissions
 // for Number of Recent Calls.
 
+// class RecentCounter
+// {
+//     private $pings = [];
+
+//     /**
+//      */
+//     function __construct()
+//     { }
+
+//     /**
+//      * @param Integer $t
+//      * @return Integer
+//      */
+//     function ping($t)
+//     {
+//         // echo "t = {$t}<br>";
+//         // echo '<pre>', print_r($this->pings), '</pre>';
+//         if (null !== $t) {
+//             array_push($this->pings, $t);
+//         }
+//         // echo '<pre>', print_r($this->pings), '</pre>';
+//         $min = $t - 3000;
+//         // echo 'min = ', $min, '<br>';
+//         $offset = 0;
+//         // for ($i = 0; $i < count($this->pings); $i++) {
+//         //     if ($min < $this->pings[$i]) break;
+//         //     $offset++;
+//         // }
+//         if (0 < count($this->pings)) {
+//             while (array_key_exists($offset, $this->pings) && $this->pings[$offset] < $min) $offset++;
+//             // echo 'pings = ', json_encode($this->pings), '<br>';
+//             // echo 'offset = ', $offset, '<br>';
+//             $this->pings = array_slice($this->pings, $offset);
+//         }
+//         $length = count($this->pings);
+//         // echo '<hr>';
+//         return 0 === $length ? null : $length;
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 368 ms, faster than 33.33% of PHP online submissions
+// for Number of Recent Calls.
+// Memory Usage: 26.6 MB, less than 100.00% of PHP online submissions
+// for Number of Recent Calls.
+
 class RecentCounter
 {
     private $pings = [];
@@ -75,28 +122,11 @@ class RecentCounter
      */
     function ping($t)
     {
-        // echo "t = {$t}<br>";
-        // echo '<pre>', print_r($this->pings), '</pre>';
-        if (null !== $t) {
-            array_push($this->pings, $t);
-        }
-        // echo '<pre>', print_r($this->pings), '</pre>';
-        $min = $t - 3000;
-        // echo 'min = ', $min, '<br>';
+        array_push($this->pings, $t);
         $offset = 0;
-        // for ($i = 0; $i < count($this->pings); $i++) {
-        //     if ($min < $this->pings[$i]) break;
-        //     $offset++;
-        // }
-        if (0 < count($this->pings)) {
-            while (array_key_exists($offset, $this->pings) && $this->pings[$offset] < $min) $offset++;
-            // echo 'pings = ', json_encode($this->pings), '<br>';
-            // echo 'offset = ', $offset, '<br>';
-            $this->pings = array_slice($this->pings, $offset);
-        }
-        $length = count($this->pings);
-        // echo '<hr>';
-        return 0 === $length ? null : $length;
+        while ($offset < count($this->pings) && $this->pings[$offset] < $t - 3000) $offset++;
+        $this->pings = array_slice($this->pings, $offset);
+        return count($this->pings) ?: null;
     }
 }
 
