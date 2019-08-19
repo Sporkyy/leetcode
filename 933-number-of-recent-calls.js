@@ -1,7 +1,28 @@
 // 933. Number of Recent Calls
-// 933-number-of-recent-calls.js
+// https://leetcode.com/problems/number-of-recent-calls/
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// var RecentCounter = function() {};
+
+/**
+ * @param {number} t
+ * @return {number}
+ */
+// RecentCounter.prototype.ping = function(t) {};
+
+/**
+ * Your RecentCounter object will be instantiated and called as such:
+ * var obj = new RecentCounter()
+ * var param_1 = obj.ping(t)
+ */
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 1224 ms, faster than 5.11% of JavaScript online submissions
+// for Number of Recent Calls.
+// Memory Usage: 69.8 MB, less than 20.00% of JavaScript online submissions
+// for Number of Recent Calls.
 
 const RecentCounter = function() {
   this.pings = [];
@@ -12,7 +33,6 @@ const RecentCounter = function() {
  * @return {number}
  */
 RecentCounter.prototype.ping = function(t) {
-  // console.log(t);
   this.pings.push(t);
   const length = this.pings.filter(ping => null !== ping && t - 3000 <= ping).length;
   return 0 === length ? null : length;
@@ -28,7 +48,6 @@ RecentCounter.prototype.ping = function(t) {
 
 const tests = [
   {
-    name: 'Example 1',
     input: {
       pings: ['RecentCounter', 'ping', 'ping', 'ping', 'ping'],
       times: [, 1, 100, 3001, 3002],
@@ -37,11 +56,13 @@ const tests = [
   },
 ];
 
-const areArraysEqual = (a1, a2) => a1.length === a2.length && a1.join() === a2.join();
-
-tests.forEach(({ name, input: { pings, times }, expected }) => {
+for ({
+  input: { pings, times },
+  expected,
+} of tests) {
   let rc;
   let result = [];
+
   for (let i = 0; i < pings.length; i++) {
     const ping = pings[i];
     // console.log(ping);
@@ -55,10 +76,12 @@ tests.forEach(({ name, input: { pings, times }, expected }) => {
     result.push(rc.ping(time));
   }
 
-  if (areArraysEqual(expected, result)) {
+  const name = `pings = ${JSON.stringify(pings)}, times = ${JSON.stringify(times)}`;
+
+  if (JSON.stringify(expected) === JSON.stringify(result)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
     console.log(`Expected "${expected}", but got "${result}"`);
   }
-});
+}
