@@ -3,8 +3,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 76 ms, faster than 20.84% of JavaScript online submissions for Uncommon Words from Two Sentences.
-// Memory Usage: 35.1 MB, less than 6.90% of JavaScript online submissions for Uncommon Words from Two Sentences.
+// Runtime: 76 ms, faster than 20.84% of JavaScript online submissions for
+// Uncommon Words from Two Sentences.
+// Memory Usage: 35.1 MB, less than 6.90% of JavaScript online submissions
+// for Uncommon Words from Two Sentences.
 
 // const instances = (haystack, needle) =>
 //   haystack.reduce((count, word) => count + (needle === word ? 1 : 0), 0);
@@ -29,8 +31,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 60 ms, faster than 89.18% of JavaScript online submissions for Uncommon Words from Two Sentences.
-// Memory Usage: 34.5 MB, less than 20.69% of JavaScript online submissions for Uncommon Words from Two Sentences.
+// Runtime: 60 ms, faster than 89.18% of JavaScript online submissions
+// for Uncommon Words from Two Sentences.
+// Memory Usage: 34.5 MB, less than 20.69% of JavaScript online submissions
+// for Uncommon Words from Two Sentences.
 
 // /**
 //  * @param {string} A
@@ -64,8 +68,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 60 ms, faster than 89.18% of JavaScript online submissions for Uncommon Words from Two Sentences.
-// Memory Usage: 35 MB, less than 10.34% of JavaScript online submissions for Uncommon Words from Two Sentences.
+// Runtime: 60 ms, faster than 89.18% of JavaScript online submissions
+// for Uncommon Words from Two Sentences.
+// Memory Usage: 35 MB, less than 10.34% of JavaScript online submissions
+// for Uncommon Words from Two Sentences.
 
 // /**
 //  * @param {string} A
@@ -107,8 +113,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 56 ms, faster than 100.00% of JavaScript online submissions for Uncommon Words from Two Sentences.
-// Memory Usage: 33.9 MB, less than 79.31% of JavaScript online submissions for Uncommon Words from Two Sentences.
+// Runtime: 56 ms, faster than 100.00% of JavaScript online submissions
+// for Uncommon Words from Two Sentences.
+// Memory Usage: 33.9 MB, less than 79.31% of JavaScript online submissions
+// for Uncommon Words from Two Sentences.
 
 /**
  * @param {string} A
@@ -135,7 +143,6 @@ const uncommonFromSentences = (A, B) => {
 
 const tests = [
   {
-    name: 'Example 1',
     input: {
       A: 'this apple is sweet',
       B: 'this apple is sour',
@@ -143,7 +150,6 @@ const tests = [
     expected: ['sweet', 'sour'],
   },
   {
-    name: 'Example 2',
     input: {
       A: 'apple apple',
       B: 'banana',
@@ -151,7 +157,6 @@ const tests = [
     expected: ['banana'],
   },
   {
-    name: 'Wrong answer 1',
     input: {
       A: 'fd kss fd',
       B: 'fd fd kss',
@@ -159,7 +164,6 @@ const tests = [
     expected: [],
   },
   {
-    name: 'Wrong answer 2',
     input: {
       A: 'd b zu d t',
       B: 'udb zu ap',
@@ -168,14 +172,17 @@ const tests = [
   },
 ];
 
-const areArraysEqual = (a1, a2) => a1.length === a2.length && a1.join() === a2.join();
-
-tests.forEach(({ name, input: { A, B }, expected }) => {
+for (let {
+  input,
+  input: { A, B },
+  expected,
+} of tests) {
   const result = uncommonFromSentences(A, B);
-  if (areArraysEqual(result, expected)) {
+  const name = JSON.stringify(input);
+  if (JSON.stringify(result.sort()) === JSON.stringify(expected.sort())) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
     console.log(`Expected "${expected}" but got "${result}"`);
   }
-});
+}
