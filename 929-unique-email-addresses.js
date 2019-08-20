@@ -3,8 +3,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 88 ms, faster than 78.30% of JavaScript online submissions for Unique Email Addresses.
-// Memory Usage: 42.5 MB, less than 30.46% of JavaScript online submissions for Unique Email Addresses.
+// Runtime: 88 ms, faster than 78.30% of JavaScript online submissions
+// for Unique Email Addresses.
+// Memory Usage: 42.5 MB, less than 30.46% of JavaScript online submissions
+// for Unique Email Addresses.
 
 /**
  * @param {string[]} emails
@@ -21,8 +23,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 88 ms, faster than 78.30% of JavaScript online submissions for Unique Email Addresses.
-// Memory Usage: 42.4 MB, less than 32.34% of JavaScript online submissions for Unique Email Addresses.
+// Runtime: 88 ms, faster than 78.30% of JavaScript online submissions
+// for Unique Email Addresses.
+// Memory Usage: 42.4 MB, less than 32.34% of JavaScript online submissions
+// for Unique Email Addresses.
 
 /**
  * @param {string[]} emails
@@ -46,8 +50,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 84 ms, faster than 87.68% of JavaScript online submissions for Unique Email Addresses.
-// Memory Usage: 42 MB, less than 39.85% of JavaScript online submissions for Unique Email Addresses.
+// Runtime: 84 ms, faster than 87.68% of JavaScript online submissions
+// for Unique Email Addresses.
+// Memory Usage: 42 MB, less than 39.85% of JavaScript online submissions
+// for Unique Email Addresses.
 
 /**
  * @param {string[]} emails
@@ -67,8 +73,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 116 ms, faster than 20.74% of JavaScript online submissions for Unique Email Addresses.
-// Memory Usage: 39 MB, less than 93.23% of JavaScript online submissions for Unique Email Addresses.
+// Runtime: 116 ms, faster than 20.74% of JavaScript online submissions
+// for Unique Email Addresses.
+// Memory Usage: 39 MB, less than 93.23% of JavaScript online submissions
+// for Unique Email Addresses.
 
 /**
  * @param {string[]} emails
@@ -85,28 +93,99 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 92 ms, faster than 69.23% of JavaScript online submissions for Unique Email Addresses.
-// Memory Usage: 41.6 MB, less than 53.76% of JavaScript online submissions for Unique Email Addresses.
+// Runtime: 92 ms, faster than 69.23% of JavaScript online submissions
+// for Unique Email Addresses.
+// Memory Usage: 41.6 MB, less than 53.76% of JavaScript online submissions
+// for Unique Email Addresses.
+
+/**
+ * @param {string[]} emails
+ * @return {number}
+ */
+// function numUniqueEmails(emails) {
+//   const cleanEmails = new Set();
+//   for (let i = emails.length - 1; 0 <= i; --i) {
+//     let [localName, domain] = emails[i].split('@');
+//     localName = localName.split('+')[0].replace(/\./g, '');
+//     cleanEmails.add(`${localName}@${domain}`);
+//   }
+//   return cleanEmails.size;
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 80 ms, faster than 63.27% of JavaScript online submissions
+// for Unique Email Addresses.
+// Memory Usage: 42 MB, less than 22.22% of JavaScript online submissions
+// for Unique Email Addresses.
+
+/**
+ * @param {string[]} emails
+ * @return {number}
+ */
+// function numUniqueEmails(emails) {
+//   const uniqueEmails = new Set();
+//   for (email of emails) {
+//     let [localName, domain] = email.split('@');
+//     localName = localName.split('+')[0].replace(/\./g, '');
+//     uniqueEmails.add(`${localName}@${domain}`);
+//   }
+//   return uniqueEmails.size;
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 84 ms, faster than 50.93% of JavaScript online submissions
+// for Unique Email Addresses.
+// Memory Usage: 42.2 MB, less than 22.22% of JavaScript online submissions
+// for Unique Email Addresses.
+
+/**
+ * @param {string[]} emails
+ * @return {number}
+ */
+// function numUniqueEmails(emails) {
+//   const uniqueEmails = {};
+//   let result = 0;
+//   for (let i = 0; i < emails.length; i++) {
+//     emails[i] = emails[i].split('@');
+//     emails[i][0] = emails[i][0].split('+')[0];
+//     emails[i][0] = emails[i][0].replace(/\./g, '');
+//     emails[i] = `${emails[i][0]}@${emails[i][1]}`;
+//     if (!uniqueEmails[emails[i]]) {
+//       uniqueEmails[emails[i]] = true;
+//       result++;
+//     }
+//   }
+//   return result;
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 80 ms, faster than 63.27% of JavaScript online submissions
+// for Unique Email Addresses.
+// Memory Usage: 42.1 MB, less than 22.22% of JavaScript online submissions
+// for Unique Email Addresses.
 
 /**
  * @param {string[]} emails
  * @return {number}
  */
 function numUniqueEmails(emails) {
-  const cleanEmails = new Set();
-  for (let i = emails.length - 1; 0 <= i; --i) {
-    let [localName, domain] = emails[i].split('@');
-    localName = localName.split('+')[0].replace(/\./g, '');
-    cleanEmails.add(`${localName}@${domain}`);
+  const obj = {};
+  for (let i = 0; i < emails.length; i++) {
+    emails[i] = emails[i].split('@');
+    emails[i][0] = emails[i][0].split('+')[0];
+    emails[i][0] = emails[i][0].replace(/\./g, '');
+    obj[`${emails[i][0]}@${emails[i][1]}`] = true;
   }
-  return cleanEmails.size;
+  return Object.keys(obj).length;
 }
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const tests = [
   {
-    name: 'Example 1',
     input: [
       'test.email+alex@leetcode.com',
       'test.e.mail+bob.cathy@leetcode.com',
@@ -115,12 +194,10 @@ const tests = [
     expected: 2,
   },
   {
-    name: 'One address',
     input: ['test@foo.com'],
     expected: 1,
   },
   {
-    name: 'All the same domain with plus signs',
     input: [
       'test@foo.com',
       'test+bar@foo.com',
@@ -130,7 +207,6 @@ const tests = [
     expected: 1,
   },
   {
-    name: 'All the same domain with dots',
     input: [
       'test@foo.com',
       'test.bar@foo.com',
@@ -140,7 +216,6 @@ const tests = [
     expected: 4,
   },
   {
-    name: 'All the same domain with dots and pluses',
     input: [
       'test@foo.com',
       'test+bar@foo.com',
@@ -151,12 +226,10 @@ const tests = [
     expected: 3,
   },
   {
-    name: 'All the same local name with different domains',
     input: ['test@foo.com', 'test@bar.com', 'test@baz.com', 'test@quux.com'],
     expected: 4,
   },
   {
-    name: 'Domains with dots',
     input: [
       'test@foo.com',
       'test@foo.bar.com',
@@ -166,7 +239,6 @@ const tests = [
     expected: 4,
   },
   {
-    name: 'Domains with pluses',
     input: [
       'test@foo.com',
       'test@foo+bar.com',
@@ -176,28 +248,30 @@ const tests = [
     expected: 4,
   },
   {
-    name: 'Domains with pluses and dots',
     input: ['test@foo.com', 'test@foo.bar.com', 'test@foo+bar.com', 'test@foo+bar+baz.com'],
     expected: 4,
   },
   {
-    name: 'All on same domain',
     input: ['test@foo.com', 'test@foo.com', 'test@foo.com'],
     expected: 1,
   },
   {
-    name: 'No addresses',
     input: [],
     expected: 0,
   },
+  {
+    input: ['test.email+alex@leetcode.com', 'test.email.leet+alex@code.com'],
+    expected: 2,
+  },
 ];
 
-tests.forEach(({ name, input, expected }) => {
+for (let { input, expected } of tests) {
   const output = numUniqueEmails(input);
+  const name = JSON.stringify(input);
   if (output === expected) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
     console.log(`Expected ${expected} but got ${output}`);
   }
-});
+}
