@@ -8,8 +8,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 68 ms, faster than 100.00% of JavaScript online submissions for Sort Array By Parity.
-// Memory Usage: 37 MB, less than 69.01% of JavaScript online submissions for Sort Array By Parity.
+// Runtime: 68 ms, faster than 100.00% of JavaScript online submissions
+// for Sort Array By Parity.
+// Memory Usage: 37 MB, less than 69.01% of JavaScript online submissions
+// for Sort Array By Parity.
 
 /**
  * Filter+Concat
@@ -21,8 +23,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 84 ms, faster than 92.13% of JavaScript online submissions for Sort Array By Parity.
-// Memory Usage: 37.4 MB, less than 32.65% of JavaScript online submissions for Sort Array By Parity.
+// Runtime: 84 ms, faster than 92.13% of JavaScript online submissions
+// for Sort Array By Parity.
+// Memory Usage: 37.4 MB, less than 32.65% of JavaScript online submissions
+// for Sort Array By Parity.
 
 /**
  * Filter+Spread
@@ -34,8 +38,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 76 ms, faster than 100.00% of JavaScript online submissions for Sort Array By Parity.
-// Memory Usage: 37.4 MB, less than 35.54% of JavaScript online submissions for Sort Array By Parity.
+// Runtime: 76 ms, faster than 100.00% of JavaScript online submissions
+// for Sort Array By Parity.
+// Memory Usage: 37.4 MB, less than 35.54% of JavaScript online submissions
+// for Sort Array By Parity.
 
 /**
  * Filter + Push
@@ -56,11 +62,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 76 ms, faster than 100.00% of JavaScript online submissions for Sort Array By Parity.
-// Memory Usage: 37.4 MB, less than 35.54% of JavaScript online submissions for Sort Array By Parity.
-
-// Runtime: 80 ms, faster than 100.00% of JavaScript online submissions for Sort Array By Parity.
-// Memory Usage: 37.1 MB, less than 54.13% of JavaScript online submissions for Sort Array By Parity.
+// Runtime: 76 ms, faster than 100.00% of JavaScript online submissions
+// for Sort Array By Parity.
+// Memory Usage: 37.4 MB, less than 35.54% of JavaScript online submissions
+// for Sort Array By Parity.
 
 /**
  * Loop+Push
@@ -68,59 +73,71 @@
  * @param {number[]} A
  * @return {number[]}
  */
-const sortArrayByParity = A => {
-  const result = [];
-  const secondary = [];
-  for (let i = 0; i < A.length; i++) {
-    if (0 === A[i] % 2) {
-      result.push(A[i]);
-    } else {
-      secondary.push(A[i]);
-    }
-  }
-  const start = result.length;
-  result.length = result.length + secondary.length;
-  for (let i = 0; i < secondary.length; i++) {
-    result[start + i] = secondary[i];
-  }
-  return result;
-};
+// const sortArrayByParity = A => {
+//   const result = [];
+//   const secondary = [];
+//   for (let i = 0; i < A.length; i++) {
+//     if (0 === A[i] % 2) {
+//       result.push(A[i]);
+//     } else {
+//       secondary.push(A[i]);
+//     }
+//   }
+//   const start = result.length;
+//   result.length = result.length + secondary.length;
+//   for (let i = 0; i < secondary.length; i++) {
+//     result[start + i] = secondary[i];
+//   }
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 80 ms, faster than 59.67% of JavaScript online submissions
+// for Sort Array By Parity.
+// Memory Usage: 37.9 MB, less than 8.00% of JavaScript online submissions
+// for Sort Array By Parity.
+
+/**
+ * @param {number[]} A
+ * @return {number[]}
+ */
+const sortArrayByParity = A => A.sort((a, b) => (a & 1) - (b & 1));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const tests = [
   {
-    name: 'Given example',
     input: [3, 1, 2, 4],
     expected: [2, 4, 3, 1],
   },
+
   {
-    name: 'Even first',
     input: [2, 3, 1, 4],
     expected: [2, 4, 3, 1],
   },
+
   {
-    name: 'All evens',
     input: [0, 2, 4, 6],
     expected: [0, 2, 4, 6],
   },
+
   {
-    name: 'All odds',
     input: [1, 3, 5, 7],
     expected: [1, 3, 5, 7],
   },
+
   {
-    name: 'Odd number of numbers',
     input: [1, 3, 2, 5, 7],
     expected: [2, 1, 3, 5, 7],
   },
+
   {
-    name: 'Alternating',
     input: [1, 2, 3, 4, 5],
     expected: [2, 4, 1, 3, 5],
   },
+
   {
-    name: 'Errored out data',
     input: [
       4016,
       2240,
@@ -144,26 +161,26 @@ const tests = [
       1451,
     ],
     expected: [
-      4820,
+      4016,
+      2240,
+      402,
       1600,
       2540,
-      2878,
-      1924,
-      402,
-      2982,
-      2938,
-      2240,
-      3016,
       2756,
-      4073,
-      4016,
-      1451,
+      4820,
+      3016,
+      2938,
+      2982,
+      1924,
+      2878,
       4665,
       545,
       3533,
-      2225,
       2737,
+      4073,
       2701,
+      2225,
+      1451,
     ],
   },
 ];
@@ -185,12 +202,14 @@ const evensFirst = a => {
   return true;
 };
 
-tests.forEach(({ name, input, expected }) => {
+for (let { input, expected } of tests) {
   const result = sortArrayByParity(input);
+  const name = JSON.stringify(input);
   if (expected.length === result.length && evensFirst(expected) && evensFirst(result)) {
     console.log(`✅ ${name}`);
   } else {
     console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", got "${result}"`);
+    console.log(`Expected "${expected}"`);
+    console.log(`But got "${result}"`);
   }
-});
+}

@@ -3,6 +3,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 124 ms, faster than 95.37% of JavaScript online submissions
+// for Increasing Order Search Tree.
+// Memory Usage: 43.2 MB, less than 50.00% of JavaScript online submissions
+// for Increasing Order Search Tree.
+
 const serializeBinaryTreeAsInorderArray = root => {
   const a = [];
   const fillInorder = root => {
@@ -46,112 +51,111 @@ const increasingBST = root => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const referenceSolution = root => {
-  const nodes = [];
-  const treeNode = new TreeNode(0);
-  const depthFirstInorder = root => {
-    if (root != null) {
-      depthFirstInorder(root.left);
-      nodes.push(root.val);
-      depthFirstInorder(root.right);
-    }
-  };
-
-  let current = treeNode;
-
-  depthFirstInorder(root);
-
-  for (let i = 0; i < nodes.length; i++) {
-    current.right = new TreeNode(nodes[i]);
-    current = current.right;
+class TreeNode {
+  constructor(val, left = null, right = null) {
+    this.val = val;
+    this.left = left;
+    this.right = right;
   }
 
-  return treeNode.right;
-};
-
-class TreeNode {
-  constructor(val) {
-    this.val = val;
-    this.left = this.right = null;
+  serializeInorder() {
+    const data = [this.val];
+    const stk = [];
+    if (this.left) stk.push(this.left);
+    if (this.right) stk.push(this.right);
+    while (stk.length) {
+      // console.log(stk.pop());
+      const { val, left, right } = stk.pop();
+      if (left) stk.push(left);
+      else data.push(null);
+      data.push(val);
+      if (right) stk.push(right);
+      else data.push(null);
+    }
+    return data;
   }
 }
 
-//              0
-//         /         \
-//       1            2
-//    /     \       /    \
-//   3       4     5      6
-//  / \     /
-// 7   8   9
-const serializeBinaryTreeAsLevelOrderArray = root => {
-  if (!root) return [];
-  const q = [root];
-  const a = [];
+// 0
+// 1, 2
+// 3, 4, 5, 6
+// 7, 8, 9, 10, 11, 12, 13, 14
 
-  while (q.length > 0) {
-    const curr = q.shift();
-    a.push(curr.val);
-    if (curr.left) q.push(curr.left);
-    if (curr.right) q.push(curr.right);
+class Tree {
+  constructor(...vals) {
+    this.root = null;
+    if (0 === vals.length) return this;
+    const nodes = vals.map(val => {
+      if (null === val) return null;
+      return new TreeNode(val);
+    });
+    for (let i = 0; i < vals.length; i++) {
+      if (null === nodes[i]) continue;
+      if (nodes[i * 2 + 1]) nodes[i].left = nodes[i * 2 + 1];
+      if (nodes[i * 2 + 2]) nodes[i].right = nodes[i * 2 + 2];
+    }
+    this.root = nodes[0];
+    return this;
   }
+}
 
-  return a;
-};
+// const serializeBinaryTreeAsLevelOrderArray = root => {
+//   if (!root) return [];
+//   const q = [root];
+//   const a = [];
 
-//              0
-//         /         \
-//       1            2
-//    /     \       /    \
-//   3       4     5      6
-//  / \     /
-// 7   8   9
-//
-// 0: left =  1, right =  2
-// 1: left =  3, right =  4
-// 2: left =  5, right =  6
-// 3: left =  7, right =  8
-// 4: left =  9, right = 10
-// 5: left = 11, right = 12
-// 6: left = 13, right = 14
-// 7: left = 15, right = 16
-// 8: left = 17, right = 18
-// 9: left = 19, right = 20
-const deserializeLevelOrderArrayAsBinaryTree = a => {
-  const nodeArray = [...a].map(e => (e ? new TreeNode(e) : null));
-  nodeArray.forEach((e, i) => {
-    if (!e) return;
-    const childIndex = (i + 1) * 2;
-    e.left = nodeArray[childIndex - 1] || null;
-    e.right = nodeArray[childIndex] || null;
-  });
-  return nodeArray[0];
-};
+//   while (q.length > 0) {
+//     const curr = q.shift();
+//     a.push(curr.val);
+//     if (curr.left) q.push(curr.left);
+//     if (curr.right) q.push(curr.right);
+//   }
+
+//   return a;
+// };
+
+// const deserializeLevelOrderArrayAsBinaryTree = a => {
+//   const nodeArray = [...a].map(e => (e ? new TreeNode(e) : null));
+//   nodeArray.forEach((e, i) => {
+//     if (!e) return;
+//     const childIndex = (i + 1) * 2;
+//     e.left = nodeArray[childIndex - 1] || null;
+//     e.right = nodeArray[childIndex] || null;
+//   });
+//   return nodeArray[0];
+// };
 
 const tests = [
+  //       5
+  //      / \
+  //     3    6
+  //    / \    \
+  //   2   4    8
+  //  /        / \
+  // 1        7   9
+
   {
-    name: 'Example 1',
-    //       5
-    //      / \
-    //     3    6
-    //    / \    \
-    //   2   4    8
-    //  /        / \
-    // 1        7   9
     input: [5, 3, 6, 2, 4, null, 8, 1, null, null, null, 7, 9],
+    expected: [1, null, 2, null, 3, null, 4, null, 5, null, 6, null, 7, null, 8, null, 9],
   },
 ];
 
-const areArraysEqual = (a1, a2) => a1.length === a2.length && a1.join() === a2.join();
-
-tests.forEach(({ name, input }) => {
-  const root = deserializeLevelOrderArrayAsBinaryTree(input);
-  const expected = serializeBinaryTreeAsLevelOrderArray(referenceSolution(root));
-  const result = serializeBinaryTreeAsLevelOrderArray(increasingBST(root));
+for (let { input, expected } of tests) {
+  input = new Tree(...input).root;
+  // console.log(input);
+  expected = new Tree(...expected).root;
+  // console.log(expected);
+  // console.log(expected.serializeInorder());
+  // const root = deserializeLevelOrderArrayAsBinaryTree(input);
+  // const expected = serializeBinaryTreeAsLevelOrderArray(referenceSolution(root));
+  const result = increasingBST(input);
   // console.log(serializeBinaryTreeAsInorderArray(root));
-  if (areArraysEqual(expected, result)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Got "${result}", but expected "${expected}"`);
-  }
-});
+  const stringifiedResult = JSON.stringify(result.serializeInorder());
+  console.log(stringifiedResult);
+  // if (areArraysEqual(expected, result)) {
+  //   console.log(`✅ ${name}`);
+  // } else {
+  //   console.log(`🔴 ${name}`);
+  //   console.log(`Got "${result}", but expected "${expected}"`);
+  // }
+}
