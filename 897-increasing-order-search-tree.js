@@ -58,21 +58,23 @@ class TreeNode {
     this.right = right;
   }
 
-  serializeInorder() {
-    const data = [this.val];
-    const stk = [];
-    if (this.left) stk.push(this.left);
-    if (this.right) stk.push(this.right);
-    while (stk.length) {
+  serialize() {
+    const a = [];
+    const q = [this];
+    while (q.length) {
       // console.log(stk.pop());
-      const { val, left, right } = stk.pop();
-      if (left) stk.push(left);
-      else data.push(null);
-      data.push(val);
-      if (right) stk.push(right);
-      else data.push(null);
+      const { val, left, right } = q.shift();
+      console.log(val);
+      console.log(left);
+      // console.log({ val, left, right });
+      // if (null === val) data.push(null);
+      if (null !== left) q.push(left);
+      // else a.push(null);
+      if (null !== right) q.push(right);
+      // else a.push(null);
+      a.push(val);
     }
-    return data;
+    return a;
   }
 }
 
@@ -143,15 +145,16 @@ const tests = [
 for (let { input, expected } of tests) {
   input = new Tree(...input).root;
   // console.log(input);
-  expected = new Tree(...expected).root;
+  console.log(input.serialize());
+  // expected = new Tree(...expected).root;
   // console.log(expected);
   // console.log(expected.serializeInorder());
   // const root = deserializeLevelOrderArrayAsBinaryTree(input);
   // const expected = serializeBinaryTreeAsLevelOrderArray(referenceSolution(root));
-  const result = increasingBST(input);
+  // const result = increasingBST(input);
   // console.log(serializeBinaryTreeAsInorderArray(root));
-  const stringifiedResult = JSON.stringify(result.serializeInorder());
-  console.log(stringifiedResult);
+  // const stringifiedResult = JSON.stringify(result.serializeInorder());
+  // console.log(stringifiedResult);
   // if (areArraysEqual(expected, result)) {
   //   console.log(`✅ ${name}`);
   // } else {
