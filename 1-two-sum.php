@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP version 7.2
  *
@@ -108,6 +109,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 24 ms, faster than 79.25% of PHP online submissions
+// for Two Sum.
+// emory Usage: 16.5 MB, less than 5.19% of PHP online submissions
+// for Two Sum.
+
 /**
  * Given an array of integers, return indices of the two
  * numbers such thatthey add up to a specific target.
@@ -115,35 +121,58 @@
  * You may assume that each input would have exactly one solution,
  * and you may not use the same element twice.
  *
- * Runtime: 24 ms, faster than 79.25% of PHP online submissions for Two Sum.
- * Memory Usage: 16.5 MB, less than 5.19% of PHP online submissions for Two Sum.
- *
  * @category ProfessionalDevelopment
  * @package  LeetCodeProblems
  * @author   Todd Sayre <captain.friendly+doccomment@gmail.com>
  * @license  ISC <https://opensource.org/licenses/ISC>
  * @link     https://github.com/Sporkyy
  */
+// class Solution
+// {
+//     /**
+//      * Find the two numbers that sum to the target
+//      * Return their indices
+//      *
+//      * @param Integer[] $nums   An array of integers
+//      * @param Integer   $target Number to sum to
+//      *
+//      * @return Integer[]
+//      */
+//     public function twoSum($nums, $target)
+//     {
+//         $numsFlipped = array_flip($nums);
+//         foreach ($nums as $index1 => $num1) {
+//             $num2 = $target - $num1;
+//             $index2 = $numsFlipped[$num2] ?? null;
+//             if (!is_null($index2) && $index1 !== $index2) {
+//                 return [$index1, $index2];
+//             }
+//         }
+//     }
+// }
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 12 ms, faster than 93.96% of PHP online submissions
+// for Two Sum.
+// Memory Usage: 16 MB, less than 9.68% of PHP online submissions
+// for Two Sum.
+
 class Solution
 {
+
     /**
-     * Find the two numbers that sum to the target
-     * Return their indices
-     *
-     * @param Integer[] $nums   An array of integers
-     * @param Integer   $target Number to sum to
-     *
+     * @param Integer[] $nums
+     * @param Integer $target
      * @return Integer[]
      */
-    public function twoSum($nums, $target)
+    function twoSum($nums, $target)
     {
-        $numsFlipped = array_flip($nums);
-        foreach ($nums as $index1 => $num1) {
-            $num2 = $target - $num1;
-            $index2 = $numsFlipped[$num2] ?? null;
-            if (!is_null($index2) && $index1 !== $index2) {
-                return [$index1, $index2];
-            }
+        $dict = [];
+        for ($i = 0; $i < count($nums); $i++) {
+            $need = $target - $nums[$i];
+            if (array_key_exists($need, $dict)) return [$dict[$need], $i];
+            $dict[$nums[$i]] = $i;
         }
     }
 }
@@ -152,7 +181,6 @@ class Solution
 
 $tests = [
     [
-        'name' => '[2, 7, 11, 15], 9',
         'input' => [
             'nums' => [2, 7, 11, 15],
             'target' => 9
@@ -160,7 +188,6 @@ $tests = [
         'expected' => [0, 1],
     ],
     [
-        'name' => '[15, 11, 7, 2], 9',
         'input' => [
             'nums' => [15, 11, 7, 2],
             'target' => 9,
@@ -168,7 +195,6 @@ $tests = [
         'expected' => [2, 3],
     ],
     [
-        'name' => '[2, 7], 9',
         'input' => [
             'nums' => [2, 7],
             'target' => 9,
@@ -176,7 +202,6 @@ $tests = [
         'expected' => [0, 1],
     ],
     [
-        'name' => '[7, 2], 9',
         'input' => [
             'nums' => [7, 2],
             'target' => 9,
@@ -184,7 +209,6 @@ $tests = [
         'expected' => [0, 1],
     ],
     [
-        'name' => '[0, 1, 2, 0], 0',
         'input' => [
             'nums' => [0, 1, 2, 0],
             'target' => 0,
@@ -192,7 +216,6 @@ $tests = [
         'expected' => [0, 3],
     ],
     [
-        'name' => '[3, 2, 4], 6',
         'input' => [
             'nums' => [3, 2, 4],
             'target' => 6,
@@ -206,8 +229,8 @@ $s = new Solution();
 foreach ($tests as $test) {
     extract($test);
     extract($input);
+    $name = json_encode('nums=' . json_encode($nums) . 'target=' . json_encode($target));
     $output = $s->twoSum($nums, $target);
-    // TODO: Figure out how array comparison works in PHP
     if ($expected === $output) {
         echo "✅ {$name}<br>";
     } else {
