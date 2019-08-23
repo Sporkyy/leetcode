@@ -39,7 +39,7 @@
 // const deserialize = data => {
 //   data = data.slice(1, data.length - 1).split(',');
 //   if (1 === data.length && 0 === data[0].length) return new TreeNode(null);
-//   data = data.map(v => (!v ? null : parseInt(v)));
+//   data = data.map(v => ('null' === v ? null : parseInt(v)));
 //   const nodes = data.map(val => new TreeNode(val));
 //   for (let i = 0; i < nodes.length; i++) {
 //     if (!nodes[i]) continue;
@@ -56,6 +56,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 84 ms, faster than 88.99% of JavaScript online submissions
+// for Serialize and Deserialize Binary Tree.
+// Memory Usage: 44.2 MB, less than 17.65% of JavaScript online submissions
+// for Serialize and Deserialize Binary Tree.
+
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -70,18 +75,7 @@
  * @param {TreeNode} root
  * @return {string}
  */
-const serialize = root => {
-  if (!root || !root.val) return '[]';
-  const a = [];
-  const q = [root];
-  while (q.length) {
-    const { val, left, right } = q.shift();
-    a.push(null === val ? 'null' : val);
-    if (left) q.push(left);
-    if (right) q.push(right);
-  }
-  return `[${a.join(',')}]`;
-};
+const serialize = root => JSON.stringify(root);
 
 /**
  * Decodes your encoded data to tree.
@@ -89,18 +83,7 @@ const serialize = root => {
  * @param {string} data
  * @return {TreeNode}
  */
-const deserialize = data => {
-  data = data.slice(1, data.length - 1).split(',');
-  if (1 === data.length && 0 === data[0].length) return new TreeNode(null);
-  data = data.map(v => ('null' === v ? null : parseInt(v)));
-  const nodes = data.map(val => new TreeNode(val));
-  for (let i = 0; i < nodes.length; i++) {
-    if (!nodes[i]) continue;
-    nodes[i].left = nodes[i * 2 + 1] || null;
-    nodes[i].right = nodes[i * 2 + 2] || null;
-  }
-  return nodes[0];
-};
+const deserialize = data => JSON.parse(data);
 
 /**
  * Your functions will be called as such:
