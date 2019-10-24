@@ -201,7 +201,8 @@
 // for Longest Palindromic Substring.
 
 const isPalindrome = p => {
-  for (let i = 0; i < p.length; i++) if (p[i] !== p[p.length - i - 1]) return false;
+  for (let i = 0; i < p.length; i++)
+    if (p[i] !== p[p.length - i - 1]) return false;
   return true;
 };
 
