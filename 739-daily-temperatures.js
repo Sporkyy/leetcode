@@ -58,7 +58,7 @@
 const dailyTemperatures = T => {
   const res = new Array(T.length).fill(0);
   for (let i = 0; i < T.length; i++)
-    for (let j = i; j < T.length && 0 === res[i]; j++)
+    for (let j = i + 1; j < T.length && 0 === res[i]; j++)
       if (T[i] < T[j]) res[i] = j - i;
   return res;
 };
