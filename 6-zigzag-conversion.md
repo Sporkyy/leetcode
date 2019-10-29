@@ -61,6 +61,8 @@ then up again.
 
 We just need to repeat that sequence as we go through the string.
 
+I find looking up sequences in the Online Encyclopedia of Integer sequences useful
+
 [Period 4 Zigzag Sequence](https://oeis.org/A007877)
 
 ```js
