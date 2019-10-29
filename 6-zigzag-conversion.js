@@ -32,7 +32,7 @@ const convert = (s, numRows) => {
   const seq = [...new Array(numRows).keys()];
   seq.push(...seq.slice(1, -1).reverse());
   const rows = new Array(numRows).fill('');
-  for (let i = 0; i < s.length; i++) rows[seq[i % seq.length]] += s[i];
+  [...s].forEach((c, i) => (rows[seq[i % seq.length]] += c));
   return rows.join('');
 };
 
