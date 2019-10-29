@@ -4,18 +4,8 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // /**
-//  * @param {string} s
-//  * @param {number} numRows
-//  * @return {string}
-//  */
-// const convert = (s, numRows) => {
-//   const rows = new Array(numRows).fill('');
-//   for (let i = 0; i < s.length; i++) {}
-// };
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-// /**
+//  * This works; I just didn't grab perf stats
+//  *
 //  * @param {string} s
 //  * @param {number} numRows
 //  * @return {string}
@@ -31,6 +21,9 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /**
+ * Runtime: 88 ms, faster than 74.47% of JavaScript online submissions
+ * Memory Usage: 40.4 MB, less than 66.67% of JavaScript online submissions
+ *
  * @param {string} s
  * @param {number} numRows
  * @return {string}
