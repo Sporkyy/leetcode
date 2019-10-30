@@ -43,24 +43,23 @@ const addTwoNumbers = (l1, l2) => {
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 class ListNode {
-  constructor(val) {
+  constructor(val, next = null) {
     this.val = val;
-    this.next = null;
+    this.next = next;
     return this;
   }
 }
 
-const intToListNode = n => {
-  const a = ('' + n).split('').map(d => new ListNode(parseInt(d, 10)));
-  for (let i = a.length - 1; 0 < i; i--) {
-    a[i].next = a[i - 1];
-  }
-  return a[a.length - 1];
-};
+const intToListNode = (n, next) =>
+  !n
+    ? null
+    : new ListNode(Math.trunc(n % 10), intToListNode(Math.trunc(n / 10)));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 import { deepStrictEqual } from 'assert';
+
+console.log(JSON.stringify(intToListNode(123)));
 
 deepStrictEqual(
   addTwoNumbers(intToListNode(342), intToListNode(465)),
