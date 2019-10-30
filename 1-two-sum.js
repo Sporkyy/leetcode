@@ -3,11 +3,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} nums
+//  * @param {number} target
+//  * @return {number[]}
+//  */
 // const twoSum = (nums, target) => {
 //   let answer;
 //   nums.forEach((n1, i1) => {
@@ -28,11 +28,11 @@
 // Memory Usage: 36.1 MB, less than 13.64% of JavaScript online submissions
 // for Two Sum.
 
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} nums
+//  * @param {number} target
+//  * @return {number[]}
+//  */
 // const twoSum = (nums, target) =>
 //   nums
 //     .map((n1, i1) =>
@@ -51,73 +51,43 @@
 // Memory Usage: 35.8 MB, less than 16.12% of JavaScript online submissions
 // for Two Sum.
 
+// /**
+//  * @param {number[]} nums
+//  * @param {number} target
+//  * @return {number[]}
+//  */
+// const twoSum = (nums, target) => {
+//   dict = {};
+//   for (let i = 0; i < nums.length; i++) {
+//     const need = target - nums[i];
+//     if (undefined !== dict[need]) return [dict[need], i];
+//     dict[nums[i]] = i;
+//   }
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
+ * Runtime: 76 ms, faster than 54.02% of JavaScript online submissions
+ * Memory Usage: 40 MB, less than 6.20% of JavaScript online submissions
+ *
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
 const twoSum = (nums, target) => {
-  dict = {};
-  for (let i = 0; i < nums.length; i++) {
-    const need = target - nums[i];
-    if (undefined !== dict[need]) return [dict[need], i];
-    dict[nums[i]] = i;
-  }
+  const map = new Map([...nums.entries()].map(e => e.reverse()));
+  for (const [i, n] of nums.entries())
+    if (map.has(target - n) && map.get(target - n) !== i)
+      return [i, map.get(target - n)];
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: {
-      nums: [2, 7, 11, 15],
-      target: 9,
-    },
-    expected: [0, 1],
-  },
-  {
-    input: {
-      nums: [15, 11, 7, 2],
-      target: 9,
-    },
-    expected: [2, 3],
-  },
-  {
-    input: {
-      nums: [2, 7],
-      target: 9,
-    },
-    expected: [0, 1],
-  },
-  {
-    input: {
-      nums: [2, 7],
-      target: 9,
-    },
-    expected: [0, 1],
-  },
-  {
-    input: {
-      nums: [0, 1, 2, 0],
-      target: 0,
-    },
-    expected: [0, 3],
-  },
-];
+import { deepStrictEqual } from 'assert';
 
-const areArraysEqual = (a1, a2) => a1.length === a2.length && a1.join() === a2.join();
-
-for (const {
-  input: { nums, target },
-  expected,
-} of tests) {
-  const name = `target = ${target}, nums = ${JSON.stringify(nums)}`;
-  const result = twoSum(nums, target);
-  if (areArraysEqual(expected, result)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected: ${expected}`);
-    console.log(`Result: ${result}`);
-  }
-}
+deepStrictEqual(twoSum([2, 7, 11, 15], 9), [0, 1]);
+deepStrictEqual(twoSum([15, 11, 7, 2], 9), [2, 3]);
+deepStrictEqual(twoSum([2, 7], 9), [0, 1]);
+deepStrictEqual(twoSum([0, 1, 2, 0], 0), [0, 3]);
+deepStrictEqual(twoSum([3, 2, 4], 6), [1, 2]);
