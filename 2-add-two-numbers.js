@@ -52,50 +52,22 @@ class ListNode {
 
 const intToListNode = n => {
   const a = ('' + n).split('').map(d => new ListNode(parseInt(d, 10)));
-  for (i = a.length - 1; 0 < i; i--) {
+  for (let i = a.length - 1; 0 < i; i--) {
     a[i].next = a[i - 1];
   }
   return a[a.length - 1];
 };
 
-const listNodeToInt = l => {
-  let n = '';
-  let curr = l;
-  while (null !== curr) {
-    n = n + curr.val;
-    curr = curr.next;
-  }
-  return parseInt(n, 10);
-};
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    name: '342 + 465 = 807',
-    input: {
-      l1: intToListNode(342),
-      l2: intToListNode(465),
-    },
-    expected: intToListNode(807),
-  },
-  {
-    name: '999 + 999 = 1998',
-    input: {
-      l1: intToListNode(999),
-      l2: intToListNode(999),
-    },
-    expected: intToListNode(1998),
-  },
-];
+import { deepStrictEqual } from 'assert';
 
-tests.forEach(({ name, input: { l1, l2 }, expected }) => {
-  const output = addTwoNumbers(l1, l2);
-  if (listNodeToInt(expected) === listNodeToInt(addTwoNumbers(l1, l2))) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log('Expected the below');
-    console.log(JSON.stringify(expected, null, 4));
-    console.log('But got the below instead');
-    console.log(JSON.stringify(output, null, 4));
-  }
-});
+deepStrictEqual(
+  addTwoNumbers(intToListNode(342), intToListNode(465)),
+  intToListNode(807),
+);
+
+deepStrictEqual(
+  addTwoNumbers(intToListNode(999), intToListNode(999)),
+  intToListNode(1998),
+);
