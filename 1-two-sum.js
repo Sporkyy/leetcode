@@ -86,8 +86,8 @@ const twoSum = (nums, target) => {
 
 import { deepStrictEqual } from 'assert';
 
-deepStrictEqual(twoSum([2, 7, 11, 15], 9), [0, 1]);
-deepStrictEqual(twoSum([15, 11, 7, 2], 9), [2, 3]);
-deepStrictEqual(twoSum([2, 7], 9), [0, 1]);
-deepStrictEqual(twoSum([0, 1, 2, 0], 0), [0, 3]);
-deepStrictEqual(twoSum([3, 2, 4], 6), [1, 2]);
+deepStrictEqual(twoSum([2, 7, 11, 15], 9).sort(), [0, 1].sort());
+deepStrictEqual(twoSum([15, 11, 7, 2], 9).sort(), [2, 3].sort());
+deepStrictEqual(twoSum([2, 7], 9).sort(), [0, 1].sort());
+deepStrictEqual(twoSum([0, 1, 2, 0], 0).sort(), [0, 3].sort());
+deepStrictEqual(twoSum([3, 2, 4], 6).sort(), [1, 2].sort());
