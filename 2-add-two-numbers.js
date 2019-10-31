@@ -42,9 +42,32 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * Runtime: 120 ms, faster than 44.38% of JavaScript online submissions
+//  * Memory Usage: 38.1 MB, less than 91.67% of JavaScript online submissions
+//  *
+//  * @param {ListNode} l1
+//  * @param {ListNode} l2
+//  * @param {number} [carry=0]
+//  * @return {ListNode}
+//  */
+// const addTwoNumbers = (l1, l2, carry = 0) => {
+//   if (!l1 && !l2 && !carry) return null;
+//   const sum = carry + (l1 ? l1.val : 0) + (l2 ? l2.val : 0);
+//   const node = new ListNode(sum % 10);
+//   node.next = addTwoNumbers(
+//     l1 ? l1.next : null,
+//     l2 ? l2.next : null,
+//     Math.trunc(sum / 10),
+//   );
+//   return node;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
- * Runtime: 120 ms, faster than 44.38% of JavaScript online submissions
- * Memory Usage: 38.1 MB, less than 91.67% of JavaScript online submissions
+ * Runtime: 112 ms, faster than 75.84% of JavaScript online submissions
+ * Memory Usage: 38.2 MB, less than 80.56% of JavaScript online submissions
  *
  * @param {ListNode} l1
  * @param {ListNode} l2
@@ -53,13 +76,9 @@
  */
 const addTwoNumbers = (l1, l2, carry = 0) => {
   if (!l1 && !l2 && !carry) return null;
-  const sum = carry + (l1 ? l1.val : 0) + (l2 ? l2.val : 0);
+  const sum = carry + (l1 && l1.val) + (l2 && l2.val);
   const node = new ListNode(sum % 10);
-  node.next = addTwoNumbers(
-    l1 ? l1.next : null,
-    l2 ? l2.next : null,
-    Math.trunc(sum / 10),
-  );
+  node.next = addTwoNumbers(l1 && l1.next, l2 && l2.next, Math.trunc(sum / 10));
   return node;
 };
 
