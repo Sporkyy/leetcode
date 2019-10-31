@@ -23,7 +23,7 @@ class ListNode {
   // I wish it was defined like this
   constructor(val, next = null) {
     this.val = val;
-    this.next = next; // A little change that would improve much
+    this.next = next; // A small change that would improve much
     return this;
   }
 }
@@ -66,7 +66,7 @@ const stringToListNode = s => {
 
 Quokka uses the version of [Node.js](https://nodejs.org/) installed on our machine. Node.js has an [assert module](https://nodejs.org/api/assert.html) we can use for quick and easy local testing.
 
-Now we can easily turn the problem in the description, `342 + 465 = 807`, into a test that works with Node.js.
+We can now easily turn the problem in the description, `342 + 465 = 807`, into a test that works with Node.js.
 
 ```js
 import { deepStrictEqual } from 'assert';
@@ -81,11 +81,11 @@ And then, finally, we can code the solution to the problem.
 
 ```js
 const addTwoNumbers = (l1, l2, carry = 0) => {
-  // 1. When there are no nodes or anything to carry, terminate the list
+  // 1. When there are no nodes and nothing to carry, terminate the list
   if (!l1 && !l2 && !carry) return null;
-  // 2. Add up what's carried and the node values (what's missing is zero)
+  // 2. Sum what's carried and the node values (whatever is missing is zero)
   const sum = carry + (l1 && l1.val) + (l2 && l2.val);
-  // 3. Make a new list node out of the last digit of sum
+  // 3. Make a new list node with the value of the last digit of sum
   const node = new ListNode(sum % 10);
   // 4. Recurse with the next nodes, carrying the other digits of the sum
   node.next = addTwoNumbers(l1 && l1.next, l2 && l2.next, Math.trunc(sum / 10));
@@ -93,6 +93,4 @@ const addTwoNumbers = (l1, l2, carry = 0) => {
 };
 ```
 
-For more context, you can look at the [finished file on Github](https://github.com/Sporkyy/leetcode/blob/master/2-add-two-numbers.js)
-
-This goes further than just solving the problem, because I'm not just trying to get better at solving these problems, I'm trying to get better at _how_ I solve these problems.
+That's not just how to solve the problem, it's _how to solve_ how to solve the problem. Because that's something I've been working on a well. This is the best way I've been able to come up with so far.
