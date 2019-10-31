@@ -3,17 +3,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 104 ms, faster than 100.00% of JavaScript online submissions for Add Two Numbers.
-// Memory Usage: 38.8 MB, less than 24.00% of JavaScript online submissions for Add Two Numbers.
-
 // /**
-//  * Definition for singly-linked list.
-//  * function ListNode(val) {
-//  *     this.val = val;
-//  *     this.next = null;
-//  * }
-//  */
-// /**
+//  * Runtime: 104 ms, faster than 100.00% of JavaScript online submissions
+//  * Memory Usage: 38.8 MB, less than 24.00% of JavaScript online submissions
+//  *
 //  * @param {ListNode} l1
 //  * @param {ListNode} l2
 //  * @return {ListNode}
@@ -75,9 +68,13 @@
  * @return {ListNode}
  */
 const addTwoNumbers = (l1, l2, carry = 0) => {
+  // 1. When there are no nodes or anything to carry, terminate the list
   if (!l1 && !l2 && !carry) return null;
+  // 2. Add up what's carried and the node values (what's missing is zero)
   const sum = carry + (l1 && l1.val) + (l2 && l2.val);
+  // 3. Make a new list node out of the last digit of sum
   const node = new ListNode(sum % 10);
+  // 4. Recurse with the next nodes, carrying the other digits of the sum
   node.next = addTwoNumbers(l1 && l1.next, l2 && l2.next, Math.trunc(sum / 10));
   return node;
 };
@@ -108,8 +105,9 @@ class ListNode {
  * @returns {ListNode}
  */
 const arrayToListNode = a => {
+  if (!a.length) return null;
   const node = new ListNode(a.pop());
-  node.next = a.length ? arrayToListNode(a) : null;
+  node.next = arrayToListNode(a);
   return node;
 };
 
@@ -140,10 +138,22 @@ const listNodeToInt = (node, i = 1) =>
 const listNodeToString = (node, s = '') =>
   node ? `${listNodeToString(node.next, '')}${node.val}` : '';
 
+/**
+ * @param {string} n
+ * @returns {ListNode}
+ */
+const stringToListNode = s => {
+  if (!s.length) return null;
+  const node = new ListNode(Number.parseInt(s.slice(-1)));
+  node.next = stringToListNode(s.slice(0, -1));
+  return node;
+};
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // console.log(JSON.stringify(intToListNode(123)));
 // console.log(JSON.stringify(arrayToListNode([1, 2, 3])));
+// console.log(JSON.stringify(stringToListNode('123')));
 
 // deepStrictEqual(intToListNode(123), arrayToListNode([1, 2, 3]));
 
@@ -298,6 +308,11 @@ import { deepStrictEqual } from 'assert';
 deepStrictEqual(
   addTwoNumbers(intToListNode(342), intToListNode(465)),
   intToListNode(807),
+);
+
+deepStrictEqual(
+  addTwoNumbers(stringToListNode('50'), stringToListNode('505')),
+  stringToListNode('555'),
 );
 
 deepStrictEqual(
