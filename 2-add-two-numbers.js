@@ -72,9 +72,9 @@ const addTwoNumbers = (l1, l2, carry = 0) => {
   if (!l1 && !l2 && !carry) return null;
   // 2. Sum what's carried and the node values (anything missing becomes zero)
   const sum = carry + (l1 && l1.val) + (l2 && l2.val);
-  // 3. Make a new list node with the value of the last digit of sum
+  // 3. Make a new list node with the value of the last digit in the sum
   const node = new ListNode(sum % 10);
-  // 4. Recurse with the next nodes, carrying the other digits of the sum
+  // 4. Recurse with the next nodes, carrying any other digits in the sum
   node.next = addTwoNumbers(l1 && l1.next, l2 && l2.next, Math.trunc(sum / 10));
   return node;
 };
