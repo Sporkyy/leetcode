@@ -3,13 +3,13 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 96 ms, faster than 87.05% of JavaScript online submissions for Longest Substring Without Repeating Characters.
-// Memory Usage: 45.1 MB, less than 17.31% of JavaScript online submissions for Longest Substring Without Repeating Characters.
-
-/**
- * @param {string} s
- * @return {number}
- */
+// /**
+//  * Runtime: 96 ms, faster than 87.05% of JavaScript online submissions
+//  * Memory Usage: 45.1 MB, less than 17.31% of JavaScript online submissions
+//  *
+//  * @param {string} s
+//  * @return {number}
+//  */
 // const lengthOfLongestSubstring = s => {
 //   if (s.length < 2) return s.length;
 //   let current = s[0];
@@ -29,13 +29,13 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 80 ms, faster than 100.00% of JavaScript online submissions for Longest Substring Without Repeating Characters.
-// Memory Usage: 39.8 MB, less than 70.51% of JavaScript online submissions for Longest Substring Without Repeating Characters.
-
-/**
- * @param {string} s
- * @return {number}
- */
+// /**
+//  * Runtime: 80 ms, faster than 100.00% of JavaScript online submissions
+//  * Memory Usage: 39.8 MB, less than 70.51% of JavaScript online submissions
+//  *
+//  * @param {string} s
+//  * @return {number}
+//  */
 // const lengthOfLongestSubstring = s => {
 //   if (0 === s.length) return 0;
 //   if (1 === s.length) return 1;
@@ -60,10 +60,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 68 ms, faster than 100.00% of JavaScript online submissions for Longest Substring Without Repeating Characters.
-// Memory Usage: 39.8 MB, less than 70.51% of JavaScript online submissions for Longest Substring Without Repeating Characters.
-
 /**
+ * Runtime: 68 ms, faster than 100.00% of JavaScript online submissions
+ * Memory Usage: 39.8 MB, less than 70.51% of JavaScript online submissions
+ *
  * @param {string} s
  * @return {number}
  */
@@ -90,48 +90,11 @@ const lengthOfLongestSubstring = s => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    name: 'Example 1',
-    input: 'abcabcbb',
-    expected: 3,
-    // Explanation: The answer is "abc", with the length of 3.
-  },
-  {
-    name: 'Example 2',
-    input: 'bbbbb',
-    expected: 1,
-    // Explanation: The answer is "b", with the length of 1.
-  },
-  {
-    name: 'Example 3',
-    input: 'pwwkew',
-    expected: 3,
-    // Explanation: The answer is "wke", with the length of 3.
-  },
-  {
-    name: 'blank',
-    input: '',
-    expected: 0,
-  },
-  {
-    name: 'au',
-    input: 'au',
-    expected: 2,
-  },
-  {
-    name: 'dvdf',
-    input: 'dvdf',
-    expected: 3,
-  },
-];
+import { strictEqual } from 'assert';
 
-tests.forEach(({ name, input, expected }) => {
-  const output = lengthOfLongestSubstring(input);
-  if (expected === output) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
+strictEqual(lengthOfLongestSubstring('abcabcbb'), 3);
+strictEqual(lengthOfLongestSubstring('bbbbb'), 1);
+strictEqual(lengthOfLongestSubstring('pwwkew'), 3);
+strictEqual(lengthOfLongestSubstring(''), 0);
+strictEqual(lengthOfLongestSubstring('au'), 2);
+strictEqual(lengthOfLongestSubstring('dvdf'), 3);
