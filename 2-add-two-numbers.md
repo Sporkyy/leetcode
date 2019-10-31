@@ -78,7 +78,7 @@ And then, finally, we can code the solution to the problem.
 const addTwoNumbers = (l1, l2, carry = 0) => {
   // 1. When there are no nodes and nothing to carry, terminate the list
   if (!l1 && !l2 && !carry) return null;
-  // 2. Sum what's carried and the node values (whatever is missing is zero)
+  // 2. Sum what's carried and the node values (anything missing becomes zero)
   const sum = carry + (l1 && l1.val) + (l2 && l2.val);
   // 3. Make a new list node with the value of the last digit of sum
   const node = new ListNode(sum % 10);
