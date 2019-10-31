@@ -4,6 +4,8 @@ Solving problems that are based on objects like trees and lists requires more pr
 
 I develop solutions locally using [Visual Studio Code](https://code.visualstudio.com/) with the [Quokka plugin](https://quokkajs.com/docs/index.html). (Plus a bunch of other plugins.)
 
+## Define the Class
+
 Locally, I rewrote the ListNode function delaration as a modern class declartion.
 
 ```js
@@ -28,6 +30,8 @@ class ListNode {
   }
 }
 ```
+
+## Create List Nodes
 
 I find local testing useful, so a function to quickly create ListNodes is helpful.
 
@@ -64,6 +68,8 @@ const stringToListNode = s => {
 };
 ```
 
+## Write Tests
+
 Quokka uses the version of [Node.js](https://nodejs.org/) installed on our machine. Node.js has an [assert module](https://nodejs.org/api/assert.html) we can use for quick and easy local testing.
 
 We can now easily turn the problem in the description, `342 + 465 = 807`, into a test that works with Node.js.
@@ -76,6 +82,8 @@ deepStrictEqual(
   intToListNode(807),
 );
 ```
+
+## Code the Solution
 
 And then, finally, we can code the solution to the problem.
 
