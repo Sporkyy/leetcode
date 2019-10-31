@@ -18,19 +18,6 @@ class ListNode {
 }
 ```
 
-Solutions could be shorter if ListNode had a `next` parameter in addition to `val`, like I show below, but that's not how the class is defined in the problem.
-
-```js
-class ListNode {
-  // I wish it was defined like this
-  constructor(val, next = null) {
-    this.val = val;
-    this.next = next; // A small change that would improve much
-    return this;
-  }
-}
-```
-
 ## Create List Nodes
 
 I find local testing useful, so a function to quickly create ListNodes is helpful.
