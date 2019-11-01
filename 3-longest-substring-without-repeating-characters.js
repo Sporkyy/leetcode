@@ -90,39 +90,74 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const beginIndices = (n, a = [...'0'.repeat(n)].map(Number)) =>
-  n < 1 ? [] : a.concat(beginIndices(n - 1, a.slice(1).map(i => i + 1)));
+// const beginIndices = (n, a = [...'0'.repeat(n)].map(Number)) =>
+//   n < 1 ? [] : a.concat(beginIndices(n - 1, a.slice(1).map(i => i + 1)));
 
-const endIndices = (n, a = [...new Array(n).keys()].map(i => i + 1)) =>
-  n < 1 ? [] : a.concat(endIndices(n - 1, a.slice(1)));
+// const endIndices = (n, a = [...new Array(n).keys()].map(i => i + 1)) =>
+//   n < 1 ? [] : a.concat(endIndices(n - 1, a.slice(1)));
 
-const isUnique = s => {
-  const map = new Map();
-  for (const char of [...s])
-    if (map.has(char)) return false;
-    else map.set(char, true);
-  return true;
-};
+// const isUnique = s => {
+//   const map = new Map();
+//   for (const char of [...s])
+//     if (map.has(char)) return false;
+//     else map.set(char, true);
+//   return true;
+// };
+
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const lengthOfLongestSubstring = s => {
+//   if (s.length <= 1) return s.length;
+//   const starts = beginIndices(s.length);
+//   // console.log(starts);
+//   const ends = endIndices(s.length);
+//   // console.log(ends);
+//   let res = 0;
+//   for (let i = 0; i < starts.length; i++) {
+//     const test = s.slice(starts[i], ends[i] + 1);
+//     if (res < test.length && isUnique(s.slice(starts[i], ends[i] + 1)))
+//       res = test.length;
+//   }
+//   // console.log(res);
+//   return res;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// const lengthOfLongestSubstring = s => {
+//   let [left, right, max, map] = [0, 0, 0, new Map()];
+//   while (right < s.length) {
+//     if (map.get(s[right])) map.set(s[left++], false);
+//     else map.set(s[right++], true);
+//     max = Math.max(max, right - left);
+//   }
+//   return max;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /**
  * @param {string} s
- * @return {number}
  */
 const lengthOfLongestSubstring = s => {
-  if (s.length <= 1) return s.length;
-  const starts = beginIndices(s.length);
-  // console.log(starts);
-  const ends = endIndices(s.length);
-  // console.log(ends);
-  const res = [];
-  for (let i = 0; i < starts.length; i++)
-    res.push(s.slice(starts[i], ends[i] + 1));
-  // console.log(res);
-  for (const substring of res.sort(
-    ({ length: aLen }, { length: bLen }) => bLen - aLen,
-  ))
-    if (isUnique(substring)) return substring.length;
-  return 0;
+  // 1. Track all the characters seen in the current substring
+  const buckets = new Array(128).fill(false);
+  // 2. Left qnd right indicies and the length of the longest substring
+  let [left, right, max] = [0, 0, 0];
+  // 3. Move the right index through all the letters
+  while (right < s.length) {
+    // 4. If the character on the right has lready been seen,
+    //    move the left index forward until all the characters
+    //    in the substring have never been seen before
+    if (buckets[s.charCodeAt(right)]) buckets[s.charCodeAt(left++)] = false;
+    // 5. Else keep moving to the right, marking characters seen
+    else buckets[s.charCodeAt(right++)] = true;
+    // 6. The left, right substring will always be unique; record if it's longer
+    max = Math.max(max, right - left);
+  }
+  return max;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -149,6 +184,12 @@ const lengthOfLongestSubstring = s => {
 
 import { strictEqual } from 'assert';
 
+strictEqual(lengthOfLongestSubstring('abc'), 3);
+
+strictEqual(lengthOfLongestSubstring('abcabcd'), 4);
+
+strictEqual(lengthOfLongestSubstring('abcdabc'), 4);
+
 strictEqual(lengthOfLongestSubstring('abcabcbb'), 3);
 
 strictEqual(lengthOfLongestSubstring('bbbbb'), 1);
@@ -160,6 +201,76 @@ strictEqual(lengthOfLongestSubstring(''), 0);
 strictEqual(lengthOfLongestSubstring('au'), 2);
 
 strictEqual(lengthOfLongestSubstring('dvdf'), 3);
+
+strictEqual(lengthOfLongestSubstring('abcdefghijklmnopqrstuvwxyz'), 26);
+
+strictEqual(
+  lengthOfLongestSubstring(
+    'aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ',
+  ),
+  52,
+);
+
+console.time();
+strictEqual(
+  lengthOfLongestSubstring(
+    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+  ),
+  62,
+);
+console.timeEnd();
+
+console.time();
+strictEqual(
+  lengthOfLongestSubstring(
+    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+  ),
+  62,
+);
+console.timeEnd();
+
+console.time();
+strictEqual(
+  lengthOfLongestSubstring(
+    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' +
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+  ),
+  62,
+);
+console.timeEnd();
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
