@@ -4,9 +4,6 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // /**
-//  * Runtime: 132 ms, faster than 69.43% of JavaScript online submissions
-//  * Memory Usage: 40.2 MB, less than 17.29% of JavaScript online submissions
-//  *
 //  * @param {number[]} nums1
 //  * @param {number[]} nums2
 //  * @return {number}
@@ -27,46 +24,110 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-/**
- * @param {*[]} a
- * @param {*[]} b
- * @param {*[]} [c=[]]
- * @returns
- */
-const mergeArrays = (a, b, c = []) => {
-  if (!a.length) return b;
-  if (!b.length) return a;
-  if (b[0] < a[0]) [a, b] = [b, a];
-  return [a.shift(), ...mergeArrays(a, b, c)];
-};
+// /**
+//  * @param {*[]} a
+//  * @param {*[]} b
+//  * @param {*[]} [c=[]]
+//  * @returns
+//  */
+// const mergeArrays = (a, b, c = []) => {
+//   if (!a.length) return b;
+//   if (!b.length) return a;
+//   if (b[0] < a[0]) [a, b] = [b, a];
+//   return [a.shift(), ...mergeArrays(a, b, c)];
+// };
+
+// /**
+//  * @param {number[]} nums1
+//  * @param {number[]} nums2
+//  * @return {number}
+//  */
+// const findMedianSortedArrays = (nums1, nums2) => {
+//   const merged = mergeArrays(nums1, nums2);
+//   const half = Math.floor(merged.length / 2);
+//   if (0 === merged.length % 2) return (merged[half - 1] + merged[half]) / 2;
+//   else return merged[half];
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {number[]} nums1
+//  * @param {number[]} nums2
+//  * @return {number}
+//  */
+// const findMedianSortedArrays = (nums1, nums2) => {
+//   if (1 === nums1.length + nums2.length) return nums1[0] || nums2[0];
+//   if (2 === nums1.length + nums2.length)
+//     return [...nums1, ...nums2].slice(-2).reduce((acc, curr) => acc + curr) / 2;
+//   const stack = [];
+//   while (nums1.length || nums2.length) {
+//     if (!nums1.length) [nums1, nums2] = [nums2, []];
+//     if (nums2[0] < nums1[0]) [nums1, nums2] = [nums2, nums1];
+//     stack.push(nums1.shift());
+//     if (nums1.length + nums2.length < stack.length) {
+//       if (0 === (stack.length + nums1.length + nums2.length) % 2)
+//         return (stack[stack.length - 2] + stack[stack.length - 1]) / 2.0;
+//       return stack[stack.length - 1];
+//     }
+//   }
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /**
- * Runtime: 380 ms, faster than 5.65% of JavaScript online submissions
- * Memory Usage: 136.9 MB, less than 6.38% of JavaScript online submissions
+ * Runtime: 108 ms, faster than 83.18% of JavaScript online submissions
+ * Memory Usage: 39.2 MB, less than 74.47% of JavaScript online submissions
  *
  * @param {number[]} nums1
  * @param {number[]} nums2
- * @param {number[]} combo
+ * @return {number}
+ */
+// const findMedianSortedArrays = (nums1, nums2) => {
+//   const stack = [];
+//   while (nums1.length || nums2.length) {
+//     if (!nums1.length || nums2[0] < nums1[0]) [nums1, nums2] = [nums2, nums1];
+//     stack.push(nums1.shift());
+//     if (nums1.length + nums2.length < stack.length) {
+//       if (0 === (stack.length + nums1.length + nums2.length) % 2)
+//         return (stack[stack.length - 2] + stack[stack.length - 1]) / 2.0;
+//       return stack[stack.length - 1];
+//     }
+//   }
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @return {number}
  */
 const findMedianSortedArrays = (nums1, nums2) => {
-  const merged = mergeArrays(nums1, nums2);
-  const half = Math.floor(merged.length / 2);
-  if (0 === merged.length % 2) return (merged[half - 1] + merged[half]) / 2;
-  else return merged[half];
+  const stack = [];
+  while (nums1.length || nums2.length) {
+    if (!nums1.length || nums2[0] < nums1[0]) [nums1, nums2] = [nums2, nums1];
+    stack.push(nums1.shift());
+    if (nums1.length + nums2.length < stack.length) {
+      return 0 === (stack.length + nums1.length + nums2.length) % 2
+        ? (stack[stack.length - 2] + stack[stack.length - 1]) / 2.0
+        : stack[stack.length - 1];
+    }
+  }
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// console.log(merge([1], [2]));
-// console.log(merge([2], [1]));
-// console.log(merge([1, 2], [3, 4]));
-// console.log(merge([1, 3], [2, 4]));
-// console.log(merge([3, 4], [1, 2]));
-// console.log(merge([2, 4], [1, 3]));
-// console.log(merge([1, 2, 3], [4, 5]));
-// console.log(merge([1, 2], [3, 4, 5]));
-// console.log(merge([1, 2, 3, 4], [5, 6, 7, 8]));
+// console.log(mergeArrays([1, 3], [2]));
+// console.log(mergeArrays([1], [2]));
+// console.log(mergeArrays([2], [1]));
+// console.log(mergeArrays([1, 2], [3, 4]));
+// console.log(mergeArrays([1, 3], [2, 4]));
+// console.log(mergeArrays([3, 4], [1, 2]));
+// console.log(mergeArrays([2, 4], [1, 3]));
+// console.log(mergeArrays([1, 2, 3], [4, 5]));
+// console.log(mergeArrays([1, 2], [3, 4, 5]));
+// console.log(mergeArrays([1, 2, 3, 4], [5, 6, 7, 8]));
 
 // 0, 1, 2, 3, (4), 5, 6, 7, 8
 // findMedianSortedArrays([5, 7, 8], [0, 1, 2, 3, 4, 6]);
@@ -82,3 +143,21 @@ strictEqual(findMedianSortedArrays([1, 2], [3, 4]), 2.5);
 strictEqual(findMedianSortedArrays([1, 2], []), 1.5);
 
 strictEqual(findMedianSortedArrays([3], [-2, -1]), -1.0);
+
+strictEqual(findMedianSortedArrays([1, 3], [2]), 2.0);
+
+strictEqual(findMedianSortedArrays([1], []), 1.0);
+
+strictEqual(findMedianSortedArrays([], [1]), 1.0);
+
+strictEqual(findMedianSortedArrays([1], [2]), 1.5);
+
+strictEqual(findMedianSortedArrays([2], [1]), 1.5);
+
+strictEqual(findMedianSortedArrays([], [1, 2, 3, 4, 5]), 3.0);
+
+strictEqual(findMedianSortedArrays([], [1, 2, 3, 4, 5, 6]), 3.5);
+
+strictEqual(findMedianSortedArrays([], [0, 1, 2]), 1);
+
+strictEqual(findMedianSortedArrays([-1], [0, 1]), 0);
