@@ -349,11 +349,17 @@
  * @return {string}
  */
 const longestPalindrome = s => {
+  // 1. Store the length of the input and the current longest palindrome
   let [len, longest] = [s.length, s[0]];
+  // 2. First nudge the right index by 1 (no pivot) and then 2 (for pivot)
   for (let n of [1, 2])
+  // 3. Go through each of the characters in the string
     for (let i = 0; i < len - 1; i++)
+      // 4. Left and right indices keep expanding left and right if possible
       for (let l = i, r = i + n; 0 <= l && r < len && s[l] === s[r]; l--, r++)
+        // 5. When left and right index define a palindrome, store it if longer
         if (longest.length < r + 1 - l) longest = s.slice(l, r + 1);
+  // 6. If the string has chars, returen the longest palindrome, if not, blank
   return len ? longest : '';
 };
 
