@@ -310,147 +310,182 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * @param {string} s
+//  * @return {string}
+//  */
+// const longestPalindrome = s => {
+//   let [palindromes, len] = [new Set(s[0]), s.length];
+//   for (let n of [1, 2])
+//     for (let p = 0; p < s.length - 1; p++)
+//       for (let l = p, r = p + n; 0 <= l && r < len && s[l] === s[r]; l--, r++)
+//         palindromes.add(s.slice(l, r + 1));
+//   console.log(palindromes);
+//   return [...palindromes].reduce((a, c) => (c.length < a.length ? a : c));
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * Runtime: 76 ms, faster than 88.04% of JavaScript online submissions
+//  * Memory Usage: 35.7 MB, less than 78.26% of JavaScript online submissions
+//  *
+//  * @param {string} s
+//  * @return {string}
+//  */
+// const longestPalindrome = s => {
+//   let [len, longest] = [s.length, s[0]];
+//   for (let n of [1, 2])
+//     for (let i = 0; i < len - 1; i++)
+//       for (let l = i, r = i + n; 0 <= l && r < len && s[l] === s[r]; l--, r++)
+//         if (longest.length < r + 1 - l) longest = s.slice(l, r + 1);
+//   return len ? longest : '';
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {string} s
  * @return {string}
  */
 const longestPalindrome = s => {
-  let [palindromes, len] = [new Set(s[0]), s.length];
+  let [len, longest] = [s.length, s[0]];
   for (let n of [1, 2])
-    for (let p = 0; p < s.length - 1; p++)
-      for (let l = p, r = p + n; 0 <= l && r < len && s[l] === s[r]; l--, r++)
-        palindromes.add(s.slice(l, r + 1));
-  console.log(palindromes);
-  return [...palindromes].reduce((a, c) => (c.length < a.length ? a : c));
+    for (let i = 0; i < len - 1; i++)
+      for (let l = i, r = i + n; 0 <= l && r < len && s[l] === s[r]; l--, r++)
+        if (longest.length < r + 1 - l) longest = s.slice(l, r + 1);
+  return len ? longest : '';
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 import { strictEqual } from 'assert';
 
-// strictEqual(longestPalindrome('aba'), 'aba');
+strictEqual(longestPalindrome('aba'), 'aba');
 
-// strictEqual(longestPalindrome('abac'), 'aba');
+strictEqual(longestPalindrome('abac'), 'aba');
 
 strictEqual(longestPalindrome('babad'), 'bab');
 
-// strictEqual(longestPalindrome('cbbd'), 'bb');
+strictEqual(longestPalindrome('cbbd'), 'bb');
 
-// strictEqual(longestPalindrome('abbbcd'), 'bbb');
+strictEqual(longestPalindrome('abbbcd'), 'bbb');
 
-// strictEqual(longestPalindrome('abb'), 'bb');
+strictEqual(longestPalindrome('abb'), 'bb');
 
-// strictEqual(longestPalindrome('adcda'), 'adcda');
+strictEqual(longestPalindrome('adcda'), 'adcda');
 
-// strictEqual(longestPalindrome('aabcde'), 'aa');
+strictEqual(longestPalindrome('aabcde'), 'aa');
 
-// strictEqual(longestPalindrome('abacde'), 'aba');
+strictEqual(longestPalindrome('abacde'), 'aba');
 
-// strictEqual(longestPalindrome('bb'), 'bb');
+strictEqual(longestPalindrome('bb'), 'bb');
 
-// strictEqual(longestPalindrome('ac'), 'a');
+strictEqual(longestPalindrome('ac'), 'a');
 
-// strictEqual(longestPalindrome('a'), 'a');
+strictEqual(longestPalindrome('a'), 'a');
 
-// strictEqual(longestPalindrome('abcda'), 'a');
+strictEqual(longestPalindrome('abcda'), 'a');
 
-// strictEqual(
-//   longestPalindrome('civilwartestingwhetherthatnaptionoranynartionsocon'),
-//   'ranynar',
-// );
+strictEqual(longestPalindrome(''), '');
 
-// strictEqual(
-//   longestPalindrome(
-//     'civilwartestingwhetherthatnaptionoranynartionsocon' +
-//       'ceivedandsodedicatedcanlongendureWeareqmetonagreat' +
-//       'battlefiemldoftzhatwarWehavecometodedicpateaportio' +
-//       'nofthatfieldasafinalrestingplaceforthosewhoheregav' +
-//       'etheirlivesthatthatnationmightliveItisaltogetherfa' +
-//       'ngandproperthatweshoulddothisButinalargersenseweca' +
-//       'nnotdedicatewecannotconsecratewecannothallowthisgr' +
-//       'oundThebravelmenlivinganddeadwhostruggledherehavec' +
-//       'onsecrateditfaraboveourpoorponwertoaddordetractTgh' +
-//       'eworldadswfilllittlenotlenorlongrememberwhatwesayh' +
-//       'erebutitcanneverforgetwhattheydidhereItisforusthel' +
-//       'ivingrathertobededicatedheretotheulnfinishedworkwh' +
-//       'ichtheywhofoughtherehavethusfarsonoblyadvancedItis' +
-//       'ratherforustobeherededicatedtothegreattdafskremain' +
-//       'ingbeforeusthatfromthesehonoreddeadwetakeincreased' +
-//       'devotiontothatcauseforwhichtheygavethelastpfullmea' +
-//       'sureofdevotionthatweherehighlyresolvethatthesedead' +
-//       'shallnothavediedinvainthatthisnationunsderGodshall' +
-//       'haveanewbirthoffreedomandthatgovernmentofthepeople' +
-//       'bythepeopleforthepeopleshallnotperishfromtheearth',
-//   ),
-//   'ranynar',
-// );
+strictEqual(
+  longestPalindrome('civilwartestingwhetherthatnaptionoranynartionsocon'),
+  'ranynar',
+);
 
-// strictEqual(
-//   longestPalindrome(
-//     'anugnxshgonmqydttcvmtsoaprxnhpmpovdolbidqiyqubirkv' +
-//       'hwppcdyeouvgedccipsvnobrccbndzjdbgxkzdbcjsjjovnhpn' +
-//       'bkurxqfupiprpbiwqdnwaqvjbqoaqzkqgdxkfczdkznqxvupdm' +
-//       'nyiidqpnbvgjraszbvvztpapxmomnghfaywkzlrupvjpcvascg' +
-//       'vstqmvuveiiixjmdofdwyvhgkydrnfuojhzulhobyhtsxmcovw' +
-//       'mamjwljioevhafdlpjpmqstguqhrhvsdvinphejfbdvrvabthp' +
-//       'yyphyqharjvzriosrdnwmaxtgriivdqlmugtagvsoylqfwhjpm' +
-//       'jxcysfujdvcqovxabjdbvyvembfpahvyoybdhweikcgnzrdqlz' +
-//       'usgoobysfmlzifwjzlazuepimhbgkrfimmemhayxeqxynewcny' +
-//       'nmgyjcwrpqnayvxoebgyjusppfpsfeonfwnbsdonucaipoafav' +
-//       'mlrrlplnnbsaghbawooabsjndqnvruuwvllpvvhuepmqtprgkt' +
-//       'nwxmflmmbifbbsfthbeafseqrgwnwjxkkcqgbucwusjdipxuek' +
-//       'anzwimuizqynaxrvicyzjhulqjshtsqswehnozehmbsdmaccif' +
-//       'lcgsrlyhjukpvosptmsjfteoimtewkrivdllqiotvtrubgkfca' +
-//       'cvgqzxjmhmmqlikrtfrurltgtcreafcgisjpvasiwmhcofqkct' +
-//       'eudgjoqqmtucnwcocsoiqtfuoazxdayricnmwcg',
-//   ),
-//   'hpyyph',
-// );
+strictEqual(
+  longestPalindrome(
+    'civilwartestingwhetherthatnaptionoranynartionsocon' +
+      'ceivedandsodedicatedcanlongendureWeareqmetonagreat' +
+      'battlefiemldoftzhatwarWehavecometodedicpateaportio' +
+      'nofthatfieldasafinalrestingplaceforthosewhoheregav' +
+      'etheirlivesthatthatnationmightliveItisaltogetherfa' +
+      'ngandproperthatweshoulddothisButinalargersenseweca' +
+      'nnotdedicatewecannotconsecratewecannothallowthisgr' +
+      'oundThebravelmenlivinganddeadwhostruggledherehavec' +
+      'onsecrateditfaraboveourpoorponwertoaddordetractTgh' +
+      'eworldadswfilllittlenotlenorlongrememberwhatwesayh' +
+      'erebutitcanneverforgetwhattheydidhereItisforusthel' +
+      'ivingrathertobededicatedheretotheulnfinishedworkwh' +
+      'ichtheywhofoughtherehavethusfarsonoblyadvancedItis' +
+      'ratherforustobeherededicatedtothegreattdafskremain' +
+      'ingbeforeusthatfromthesehonoreddeadwetakeincreased' +
+      'devotiontothatcauseforwhichtheygavethelastpfullmea' +
+      'sureofdevotionthatweherehighlyresolvethatthesedead' +
+      'shallnothavediedinvainthatthisnationunsderGodshall' +
+      'haveanewbirthoffreedomandthatgovernmentofthepeople' +
+      'bythepeopleforthepeopleshallnotperishfromtheearth',
+  ),
+  'ranynar',
+);
 
-// strictEqual(
-//   longestPalindrome(
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//       'ddddddddddddddddddddddddddddddddddddddddddddddddd',
-//   ),
-//   'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
-//     'ddddddddddddddddddddddddddddddddddddddddddddddddd',
-// );
+strictEqual(
+  longestPalindrome(
+    'anugnxshgonmqydttcvmtsoaprxnhpmpovdolbidqiyqubirkv' +
+      'hwppcdyeouvgedccipsvnobrccbndzjdbgxkzdbcjsjjovnhpn' +
+      'bkurxqfupiprpbiwqdnwaqvjbqoaqzkqgdxkfczdkznqxvupdm' +
+      'nyiidqpnbvgjraszbvvztpapxmomnghfaywkzlrupvjpcvascg' +
+      'vstqmvuveiiixjmdofdwyvhgkydrnfuojhzulhobyhtsxmcovw' +
+      'mamjwljioevhafdlpjpmqstguqhrhvsdvinphejfbdvrvabthp' +
+      'yyphyqharjvzriosrdnwmaxtgriivdqlmugtagvsoylqfwhjpm' +
+      'jxcysfujdvcqovxabjdbvyvembfpahvyoybdhweikcgnzrdqlz' +
+      'usgoobysfmlzifwjzlazuepimhbgkrfimmemhayxeqxynewcny' +
+      'nmgyjcwrpqnayvxoebgyjusppfpsfeonfwnbsdonucaipoafav' +
+      'mlrrlplnnbsaghbawooabsjndqnvruuwvllpvvhuepmqtprgkt' +
+      'nwxmflmmbifbbsfthbeafseqrgwnwjxkkcqgbucwusjdipxuek' +
+      'anzwimuizqynaxrvicyzjhulqjshtsqswehnozehmbsdmaccif' +
+      'lcgsrlyhjukpvosptmsjfteoimtewkrivdllqiotvtrubgkfca' +
+      'cvgqzxjmhmmqlikrtfrurltgtcreafcgisjpvasiwmhcofqkct' +
+      'eudgjoqqmtucnwcocsoiqtfuoazxdayricnmwcg',
+  ),
+  'hpyyph',
+);
+
+strictEqual(
+  longestPalindrome(
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+      'ddddddddddddddddddddddddddddddddddddddddddddddddd',
+  ),
+  'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'dddddddddddddddddddddddddddddddddddddddddddddddddd' +
+    'ddddddddddddddddddddddddddddddddddddddddddddddddd',
+);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
