@@ -83,16 +83,37 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * Runtime: 72 ms, faster than 79.48% of JavaScript online submissions
+//  * Memory Usage: 36.3 MB, less than 12.50% of JavaScript online submissions
+//  *
+//  * @param {number} x
+//  * @return {number}
+//  */
+// const reverse = x => {
+//   const revX = Math.sign(x) * [...`${Math.abs(x)}`].reverse().join('');
+//   return revX < -(2 ** 31) || 2 ** 31 - 1 < revX ? 0 : revX;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
- * Runtime: 72 ms, faster than 79.48% of JavaScript online submissions
- * Memory Usage: 36.3 MB, less than 12.50% of JavaScript online submissions
+ * Runtime: 80 ms, faster than 42.37% of JavaScript online submissions
+ * Memory Usage: 36.8 MB, less than 9.37% of JavaScript online submissions
  *
  * @param {number} x
  * @return {number}
  */
 const reverse = x => {
-  const revX = Math.sign(x) * [...`${Math.abs(x)}`].reverse().join('');
-  return revX < -(2 ** 31) || 2 ** 31 - 1 < revX ? 0 : revX;
+  if (!Array.isArray(x)) x = [Math.sign(x), Math.abs(x)];
+  if (x[x.length - 1] < 10) {
+    x = x[0] * Number.parseInt(x.slice(1).join(''));
+    return x < -(2 ** 31) || 2 ** 31 - 1 < x ? 0 : x;
+  }
+  const last = x[x.length - 1];
+  x[x.length - 1] = last % 10;
+  x.push(Math.trunc(last / 10));
+  return reverse(x);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
