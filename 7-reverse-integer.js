@@ -97,6 +97,27 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * Runtime: 80 ms, faster than 42.37% of JavaScript online submissions
+//  * Memory Usage: 36.8 MB, less than 9.37% of JavaScript online submissions
+//  *
+//  * @param {number} x
+//  * @return {number}
+//  */
+// const reverse = x => {
+//   if (!Array.isArray(x)) x = [Math.sign(x), Math.abs(x)];
+//   if (x[x.length - 1] < 10) {
+//     x = x[0] * x.slice(1).join('');
+//     return x < -(2 ** 31) || 2 ** 31 - 1 < x ? 0 : x;
+//   }
+//   const last = x[x.length - 1];
+//   x[x.length - 1] = last % 10;
+//   x.push(Math.trunc(last / 10));
+//   return reverse(x);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * Runtime: 80 ms, faster than 42.37% of JavaScript online submissions
  * Memory Usage: 36.8 MB, less than 9.37% of JavaScript online submissions
@@ -104,26 +125,28 @@
  * @param {number} x
  * @return {number}
  */
-const reverse = x => {
-  if (!Array.isArray(x)) x = [Math.sign(x), Math.abs(x)];
-  if (x[x.length - 1] < 10) {
-    x = x[0] * Number.parseInt(x.slice(1).join(''));
-    return x < -(2 ** 31) || 2 ** 31 - 1 < x ? 0 : x;
-  }
-  const last = x[x.length - 1];
-  x[x.length - 1] = last % 10;
-  x.push(Math.trunc(last / 10));
-  return reverse(x);
+const reverse = (x, revX) => {
+  console.log(x, revX);
+
+  // return reverse(x, revX);
 };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// console.log(reverse(5));
+
+console.log(reverse(42));
+
+// console.log(reverse(123));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 import { strictEqual } from 'assert';
 
-strictEqual(reverse(123), 321);
+// strictEqual(reverse(123), 321);
 
-strictEqual(reverse(-123), -321);
+// strictEqual(reverse(-123), -321);
 
-strictEqual(reverse(120), 21);
+// strictEqual(reverse(120), 21);
 
-strictEqual(reverse(1534236469), 0);
+// strictEqual(reverse(1534236469), 0);
