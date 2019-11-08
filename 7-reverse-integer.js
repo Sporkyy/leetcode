@@ -3,8 +3,8 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 84 ms, faster than 87.63% of JavaScript online submissions for Reverse Integer.
-// Memory Usage: 35.8 MB, less than 68.32% of JavaScript online submissions for Reverse Integer.
+// Runtime: 84 ms, faster than 87.63% of JavaScript online submissions
+// Memory Usage: 35.8 MB, less than 68.32% of JavaScript online submissions
 
 /**
  * @param {number} x
@@ -31,8 +31,8 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 84 ms, faster than 87.63% of JavaScript online submissions for Reverse Integer.
-// Memory Usage: 36.2 MB, less than 13.20% of JavaScript online submissions for Reverse Integer.
+// Runtime: 84 ms, faster than 87.63% of JavaScript online submissions
+// Memory Usage: 36.2 MB, less than 13.20% of JavaScript online submissions
 
 /**
  * @param {number} x
@@ -55,58 +55,54 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 84 ms, faster than 87.63% of JavaScript online submissions for Reverse Integer.
-// Memory Usage: 35.8 MB, less than 68.32% of JavaScript online submissions for Reverse Integer.
+// Runtime: 84 ms, faster than 87.63% of JavaScript online submissions
+// Memory Usage: 35.8 MB, less than 68.32% of JavaScript online submissions
 
-const realReverse = x =>
-  Math.sign(x) *
-  parseInt(
-    Math.abs(x)
-      .toString()
-      .split('')
-      .reverse()
-      .join(''),
-    10,
-  );
+// const realReverse = x =>
+//   Math.sign(x) *
+//   parseInt(
+//     Math.abs(x)
+//       .toString()
+//       .split('')
+//       .reverse()
+//       .join(''),
+//     10,
+//   );
 
-const is32BitInteger = x => Math.pow(-2, 31) <= x && x <= Math.pow(2, 31) - 1;
+// const is32BitInteger = x => Math.pow(-2, 31) <= x && x <= Math.pow(2, 31) - 1;
+
+// /**
+//  * @param {number} x
+//  * @return {number}
+//  */
+// const reverse = x => {
+//   const revX = realReverse(x);
+//   if (!is32BitInteger(revX)) return 0;
+//   return revX;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /**
+ * Runtime: 72 ms, faster than 79.48% of JavaScript online submissions
+ * Memory Usage: 36.3 MB, less than 12.50% of JavaScript online submissions
+ *
  * @param {number} x
  * @return {number}
  */
 const reverse = x => {
-  const revX = realReverse(x);
-  if (!is32BitInteger(revX)) return 0;
-  return revX;
+  const revX = Math.sign(x) * [...`${Math.abs(x)}`].reverse().join('');
+  return revX < -(2 ** 31) || 2 ** 31 - 1 < revX ? 0 : revX;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    name: 'Example 1',
-    input: 123,
-    expected: 321,
-  },
-  {
-    name: 'Example 2',
-    input: -123,
-    expected: -321,
-  },
-  {
-    name: 'Example 3',
-    input: 120,
-    expected: 21,
-  },
-];
+import { strictEqual } from 'assert';
 
-tests.forEach(({ name, input, expected }) => {
-  const output = reverse(input);
-  if (output === expected) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
+strictEqual(reverse(123), 321);
+
+strictEqual(reverse(-123), -321);
+
+strictEqual(reverse(120), 21);
+
+strictEqual(reverse(1534236469), 0);
