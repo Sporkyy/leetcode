@@ -84,20 +84,6 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // /**
-//  * Runtime: 72 ms, faster than 79.48% of JavaScript online submissions
-//  * Memory Usage: 36.3 MB, less than 12.50% of JavaScript online submissions
-//  *
-//  * @param {number} x
-//  * @return {number}
-//  */
-// const reverse = x => {
-//   const revX = Math.sign(x) * [...`${Math.abs(x)}`].reverse().join('');
-//   return revX < -(2 ** 31) || 2 ** 31 - 1 < revX ? 0 : revX;
-// };
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-// /**
 //  * Runtime: 80 ms, faster than 42.37% of JavaScript online submissions
 //  * Memory Usage: 36.8 MB, less than 9.37% of JavaScript online submissions
 //  *
@@ -155,24 +141,86 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * Runtime: 68 ms, faster than 91.05% of JavaScript online submissions
+//  * Memory Usage: 35.5 MB, less than 92.71% of JavaScript online submissions
+//  *
+//  * @param {number} x
+//  * @return {number}
+//  */
+// const reverse = x => {
+//   const sign = Math.sign(x);
+//   x = Math.abs(x);
+//   let revX = 0;
+//   while (0 < x) {
+//     revX += (x % 10) * 10 ** (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0);
+//     x = Math.trunc(x / 10);
+//   }
+//   return -(2 ** 31) <= sign * revX && sign * revX <= 2 ** 31 - 1
+//     ? sign * revX
+//     : 0;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  */
+// const digitCount = n => (Math.log10((n ^ (n >> 31)) - (n >> 31)) | 0) + 1;
+
+// /**
+//  * Runtime: 68 ms, faster than 91.05% of JavaScript online submissions
+//  * Memory Usage: 35.7 MB, less than 86.46% of JavaScript online submissions
+//  *
+//  * @param {number} x
+//  * @return {number}
+//  */
+// const reverse = x => {
+//   const sign = Math.sign(x);
+//   x = Math.abs(x);
+//   let revX = 0;
+//   for (let i = digitCount(x); 0 < i; i--) {
+//     revX += (x % 10) * 10 ** (i - 1);
+//     x = Math.trunc(x / 10);
+//   }
+//   revX *= sign;
+//   return -(2 ** 31) <= revX && revX <= 2 ** 31 - 1 ? revX : 0;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * Runtime: 80 ms, faster than 42.71% of JavaScript online submissions
+//  * Memory Usage: 35.9 MB, less than 57.29% of JavaScript online submissions
+//  *
+//  * @param {number} x
+//  * @return {number}
+//  */
+// const reverse = x => {
+//   const sign = Math.sign(x);
+//   x = Math.abs(x);
+//   let revX = 0;
+//   for (let i = Math.max(Math.floor(Math.log10(Math.abs(x))), 0); 0 <= i; i--) {
+//     revX += (x % 10) * 10 ** i;
+//     x = Math.trunc(x / 10);
+//   }
+//   revX *= sign;
+//   return -(2 ** 31) <= revX && revX <= 2 ** 31 - 1 ? revX : 0;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
- * Runtime: 68 ms, faster than 91.05% of JavaScript online submissions
- * Memory Usage: 35.5 MB, less than 92.71% of JavaScript online submissions
+ * Runtime: 64 ms, faster than 96.75% of JavaScript online submissions
+ * Memory Usage: 36.2 MB, less than 13.54% of JavaScript online submissions
  *
  * @param {number} x
  * @return {number}
  */
 const reverse = x => {
-  const sign = Math.sign(x);
-  x = Math.abs(x);
-  let revX = 0;
-  while (0 < x) {
-    revX += (x % 10) * 10 ** (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0);
-    x = Math.trunc(x / 10);
-  }
-  return -(2 ** 31) <= sign * revX && sign * revX <= 2 ** 31 - 1
-    ? sign * revX
-    : 0;
+  const revX = Math.sign(x) * [...`${Math.abs(x)}`].reverse().join('');
+  return -(2 ** 31) <= revX && revX <= 2 ** 31 - 1 ? revX : 0;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
