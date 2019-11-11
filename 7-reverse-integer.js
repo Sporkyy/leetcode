@@ -119,34 +119,40 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /**
- * Runtime: 80 ms, faster than 42.37% of JavaScript online submissions
- * Memory Usage: 36.8 MB, less than 9.37% of JavaScript online submissions
+ * Runtime: 68 ms, faster than 91.05% of JavaScript online submissions
+ * Memory Usage: 36.2 MB, less than 14.58% of JavaScript online submissions
  *
  * @param {number} x
  * @return {number}
  */
-const reverse = (x, revX) => {
-  console.log(x, revX);
-
-  // return reverse(x, revX);
+const reverse = (x, sign = Math.sign(x), revX = 0) => {
+  if (x < 0) x = Math.abs(x);
+  revX = revX + (x % 10) * 10 ** (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0);
+  x = Math.trunc(x / 10);
+  return 0 === x
+    ? sign * revX < -(2 ** 31) || 2 ** 31 - 1 < sign * revX
+      ? 0
+      : sign * revX
+    : reverse(x, sign, revX);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // console.log(reverse(5));
 
-console.log(reverse(42));
+// console.log(reverse(42));
 
 // console.log(reverse(123));
+// console.log(reverse(-123));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 import { strictEqual } from 'assert';
 
-// strictEqual(reverse(123), 321);
+strictEqual(reverse(123), 321);
 
-// strictEqual(reverse(-123), -321);
+strictEqual(reverse(-123), -321);
 
-// strictEqual(reverse(120), 21);
+strictEqual(reverse(120), 21);
 
-// strictEqual(reverse(1534236469), 0);
+strictEqual(reverse(1534236469), 0);
