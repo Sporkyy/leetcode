@@ -22,26 +22,72 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * Runtime: 84 ms, faster than 38.00% of JavaScript online submissions
+//  * Memory Usage: 35.6 MB, less than 100.00% of JavaScript online submissions
+//  *
+//  * @param {string} str
+//  * @param {number} [int=Number.parseInt(str)]
+//  * @return {number}
+//  */
+// const myAtoi = (str, int = Number.parseInt(str)) =>
+//   isNaN(int)
+//     ? 0
+//     : -(2 ** 31) <= int && int <= 2 ** 31 - 1
+//     ? int
+//     : int <= -(2 ** 31)
+//     ? -(2 ** 31)
+//     : 2 ** 31 - 1;
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
- * Runtime: 84 ms, faster than 38.00% of JavaScript online submissions
- * Memory Usage: 35.6 MB, less than 100.00% of JavaScript online submissions
- *
  * @param {string} str
  * @param {number} [int=Number.parseInt(str)]
  * @return {number}
  */
-const myAtoi = (str, int = Number.parseInt(str)) =>
-  isNaN(int)
-    ? 0
-    : -(2 ** 31) <= int && int <= 2 ** 31 - 1
-    ? int
-    : int <= -(2 ** 31)
-    ? -(2 ** 31)
-    : 2 ** 31 - 1;
+const myAtoi = str => {
+  let [nums, nonNums] = [[], []];
+  for (const char of [...str]) {
+    if (0 === nums.length + nonNums.length && ' ' === char) continue;
+    if ('0123456789'.includes(char)) {
+      if (
+        (1 === nonNums.length && !'-+'.includes(nonNums[0])) ||
+        1 < nonNums.length
+      )
+        return 0;
+      nums.push(char);
+      continue;
+    } else {
+      if (nums.length) break;
+      nonNums.push(char);
+    }
+  }
+  let num = 0;
+  for (let i = nums.length - 1; 0 <= i; i--)
+    num += nums[nums.length - i - 1] * 10 ** i;
+  if ('-' === nonNums[nonNums.length - 1]) num *= -1;
+  if (num < 0) return Math.max(-(2 ** 31), num);
+  return Math.min(2 ** 31 - 1, num);
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 import { strictEqual } from 'assert';
+
+strictEqual(myAtoi('1'), 1);
+strictEqual(myAtoi('10'), 10);
+strictEqual(myAtoi('-1'), -1);
+strictEqual(myAtoi('-10'), -10);
+strictEqual(myAtoi(' 1'), 1);
+strictEqual(myAtoi('1 '), 1);
+strictEqual(myAtoi(' 1 '), 1);
+strictEqual(myAtoi('a1'), 0);
+strictEqual(myAtoi('1b'), 1);
+strictEqual(myAtoi('a1b'), 0);
+strictEqual(myAtoi(' a1'), 0);
+strictEqual(myAtoi('1b '), 1);
+strictEqual(myAtoi(' a1b '), 0);
 
 // Example 1:
 strictEqual(myAtoi('42'), 42);
@@ -73,3 +119,11 @@ strictEqual(myAtoi('-91283472332'), -2147483648);
 strictEqual(myAtoi('-2147483648'), -2147483648);
 
 strictEqual(myAtoi('2147483648'), 2147483647);
+
+strictEqual(myAtoi('3.14159'), 3);
+
+strictEqual(myAtoi('   -42'), -42);
+
+strictEqual(myAtoi('+-2'), 0);
+
+strictEqual(myAtoi('-   234'), 0);
