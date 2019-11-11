@@ -118,22 +118,61 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * Runtime: 68 ms, faster than 91.05% of JavaScript online submissions
+//  * Memory Usage: 36.2 MB, less than 14.58% of JavaScript online submissions
+//  *
+//  * @param {number} x
+//  * @return {number}
+//  */
+// const reverse = (x, sign = Math.sign(x), revX = 0) => {
+//   if (x < 0) x = Math.abs(x);
+//   revX = revX + (x % 10) * 10 ** (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0);
+//   x = Math.trunc(x / 10);
+//   return 0 === x
+//     ? sign * revX < -(2 ** 31) || 2 ** 31 - 1 < sign * revX
+//       ? 0
+//       : sign * revX
+//     : reverse(x, sign, revX);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {number} x
+//  * @return {number}
+//  */
+// const reverse = (x, sign = Math.sign(x), revX = 0) => {
+//   if (x < 0) x = Math.abs(x);
+//   revX += (x % 10) * 10 ** (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0);
+//   x = Math.trunc(x / 10);
+//   return 0 < x
+//     ? reverse(x, sign, revX)
+//     : -(2 ** 31) <= sign * revX && sign * revX <= 2 ** 31 - 1
+//     ? sign * revX
+//     : 0;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * Runtime: 68 ms, faster than 91.05% of JavaScript online submissions
- * Memory Usage: 36.2 MB, less than 14.58% of JavaScript online submissions
+ * Memory Usage: 35.5 MB, less than 92.71% of JavaScript online submissions
  *
  * @param {number} x
  * @return {number}
  */
-const reverse = (x, sign = Math.sign(x), revX = 0) => {
-  if (x < 0) x = Math.abs(x);
-  revX = revX + (x % 10) * 10 ** (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0);
-  x = Math.trunc(x / 10);
-  return 0 === x
-    ? sign * revX < -(2 ** 31) || 2 ** 31 - 1 < sign * revX
-      ? 0
-      : sign * revX
-    : reverse(x, sign, revX);
+const reverse = x => {
+  const sign = Math.sign(x);
+  x = Math.abs(x);
+  let revX = 0;
+  while (0 < x) {
+    revX += (x % 10) * 10 ** (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0);
+    x = Math.trunc(x / 10);
+  }
+  return -(2 ** 31) <= sign * revX && sign * revX <= 2 ** 31 - 1
+    ? sign * revX
+    : 0;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
