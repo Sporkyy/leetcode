@@ -42,6 +42,9 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /**
+ * Runtime: 100 ms, faster than 10.80% of JavaScript online submissions
+ * Memory Usage: 37.8 MB, less than 14.29% of JavaScript online submissions
+ *
  * @param {string} str
  * @param {number} [int=Number.parseInt(str)]
  * @return {number}
