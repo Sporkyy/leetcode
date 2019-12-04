@@ -35,22 +35,21 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 4312 ms, faster than 5.09% of JavaScript online submissions
-// Memory Usage: 42.1 MB, less than 6.06% of JavaScript online submissions
+// Runtime: 796 ms, faster than 12.59% of JavaScript online submissions
+// Memory Usage: 35.5 MB, less than 66.67% of JavaScript online submissions
 
 /**
  * @param {number[]} heights
  * @return {number}
  */
 const maxArea = heights => {
-  const seen = new Set();
-  let max = 0;
+  let maxArea = 0;
   for (let i = 0; i < heights.length; i++)
     for (let j = i + 1; j < heights.length; j++) {
-      const [span, min] = [j - i, Math.min(heights[i], heights[j])];
-      if (!seen.has([span, min]) && max < span * min) max = span * min;
+      const area = (j - i) * Math.min(heights[i], heights[j]);
+      maxArea = Math.max(area, maxArea);
     }
-  return max;
+  return maxArea;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
