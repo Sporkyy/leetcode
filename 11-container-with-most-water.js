@@ -3,6 +3,22 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * @param {number[]} heights
+//  * @return {number}
+//  */
+// const maxArea = heights => {
+//   const map = new Map();
+//   for (let i = 0; i < heights.length; i++)
+//     for (let j = i + 1; j < heights.length; j++)
+//       map.set([], (j - i) * Math.min(heights[i], heights[j]));
+//   return Math.max(...map.values());
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {number[]} heights
  * @return {number}
@@ -10,8 +26,10 @@
 const maxArea = heights => {
   const map = new Map();
   for (let i = 0; i < heights.length; i++)
-    for (let j = i + 1; j < heights.length; j++)
-      map.set([], (j - i) * Math.min(heights[i], heights[j]));
+    for (let j = i + 1; j < heights.length; j++) {
+      const [span, min] = [j - i, Math.min(heights[i], heights[j])];
+      if (!map.has([span, min])) map.set([span, min], span * min);
+    }
   return Math.max(...map.values());
 };
 
