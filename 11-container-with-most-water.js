@@ -38,17 +38,36 @@
 // Runtime: 796 ms, faster than 12.59% of JavaScript online submissions
 // Memory Usage: 35.5 MB, less than 66.67% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} heights
+//  * @return {number}
+//  */
+// const maxArea = heights => {
+//   let maxArea = 0;
+//   for (let i = 0; i < heights.length; i++)
+//     for (let j = i + 1; j < heights.length; j++) {
+//       const area = (j - i) * Math.min(heights[i], heights[j]);
+//       maxArea = Math.max(area, maxArea);
+//     }
+//   return maxArea;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 76 ms, faster than 42.91% of JavaScript online submissions
+// Memory Usage: 35.3 MB, less than 96.97% of JavaScript online submissions
+
 /**
  * @param {number[]} heights
  * @return {number}
  */
 const maxArea = heights => {
-  let maxArea = 0;
-  for (let i = 0; i < heights.length; i++)
-    for (let j = i + 1; j < heights.length; j++) {
-      const area = (j - i) * Math.min(heights[i], heights[j]);
-      maxArea = Math.max(area, maxArea);
-    }
+  let [l, r, maxArea] = [0, heights.length - 1, 0];
+  while (l < r) {
+    maxArea = Math.max(maxArea, (r - l) * Math.min(heights[l], heights[r]));
+    if (heights[l] < heights[r]) l++;
+    else r--;
+  }
   return maxArea;
 };
 
