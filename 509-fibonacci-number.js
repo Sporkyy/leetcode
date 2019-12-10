@@ -16,35 +16,10 @@ const fib = N => (N <= 1 ? N : fib(N - 1) + fib(N - 2));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: 2,
-    expected: 1,
-  },
-  {
-    input: 3,
-    expected: 2,
-  },
-  {
-    input: 4,
-    expected: 3,
-  },
-  {
-    input: 0,
-    expected: 0,
-  },
-  {
-    input: 1,
-    expected: 1,
-  },
-];
+import { strictEqual } from 'assert';
 
-tests.forEach(({ input, expected }) => {
-  const result = fib(input);
-  if (result === expected) {
-    console.log(`✅ ${input}`);
-  } else {
-    console.log(`🔴 ${input}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-});
+strictEqual(fib(2), 1);
+strictEqual(fib(3), 2);
+strictEqual(fib(4), 3);
+strictEqual(fib(0), 0);
+strictEqual(fib(1), 1);
