@@ -91,39 +91,14 @@ const removeOuterParentheses = S => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: '(()())(())',
-    expected: '()()()',
-  },
+import { strictEqual } from 'assert';
 
-  {
-    input: '(()())(())(()(()))',
-    expected: '()()()()(())',
-  },
+strictEqual(removeOuterParentheses('(()())(())'), '()()()');
 
-  {
-    input: '()()',
-    expected: '',
-  },
+strictEqual(removeOuterParentheses('(()())(())(()(()))'), '()()()()(())');
 
-  {
-    input: '()',
-    expected: '',
-  },
+strictEqual(removeOuterParentheses('()()'), '');
 
-  {
-    input: '((((()))))',
-    expected: '(((())))',
-  },
-];
+strictEqual(removeOuterParentheses('()'), '');
 
-for ({ input, expected } of tests) {
-  const result = removeOuterParentheses(input);
-  if (result === expected) {
-    console.log(`✅ ${input}`);
-  } else {
-    console.log(`🔴 ${input}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-}
+strictEqual(removeOuterParentheses('((((()))))'), '(((())))');
