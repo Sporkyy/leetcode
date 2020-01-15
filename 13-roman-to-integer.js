@@ -332,43 +332,18 @@ const romanToInt = s => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: 'III',
-    expected: 3,
-  },
-  {
-    input: 'IV',
-    expected: 4,
-  },
-  {
-    input: 'IX',
-    expected: 9,
-  },
-  {
-    input: 'LVIII',
-    expected: 58,
-  },
-  {
-    input: 'MCMXCIV',
-    expected: 1994,
-  },
-  {
-    input: 'MCDLXXVI',
-    expected: 1476,
-  },
-  {
-    input: 'MMMCDXC',
-    expected: 3490,
-  },
-];
+import { strictEqual } from 'assert';
 
-tests.forEach(({ input, expected }) => {
-  const output = romanToInt(input);
-  if (expected === output) {
-    console.log(`✅ ${input}`);
-  } else {
-    console.log(`🔴 ${input}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
+strictEqual(romanToInt('III'), 3);
+
+strictEqual(romanToInt('IV'), 4);
+
+strictEqual(romanToInt('IX'), 9);
+
+strictEqual(romanToInt('LVIII'), 58);
+
+strictEqual(romanToInt('MCMXCIV'), 1994);
+
+strictEqual(romanToInt('MCDLXXVI'), 1476);
+
+strictEqual(romanToInt('MMMCDXC'), 3490);

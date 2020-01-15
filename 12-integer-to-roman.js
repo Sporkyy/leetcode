@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 144 ms, faster than 86.75% of JavaScript online submissions
-// for Integer to Roman.
 // Memory Usage: 43.9 MB, less than 9.92% of JavaScript online submissions
-// for Integer to Roman.
 
 /**
  * @param {number} num
@@ -56,9 +54,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 156 ms, faster than 78.85% of JavaScript online submissions
-// for Integer to Roman.
 // Memory Usage: 40.2 MB, less than 63.66% of JavaScript online submissions
-// for Integer to Roman.
 
 /**
  * @param {number} num
@@ -81,43 +77,18 @@ const intToRoman = num => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: 3,
-    expected: 'III',
-  },
-  {
-    input: 4,
-    expected: 'IV',
-  },
-  {
-    input: 9,
-    expected: 'IX',
-  },
-  {
-    input: 58,
-    expected: 'LVIII',
-  },
-  {
-    input: 1994,
-    expected: 'MCMXCIV',
-  },
-  {
-    input: 10,
-    expected: 'X',
-  },
-  {
-    input: 1986,
-    expected: 'MCMLXXXVI',
-  },
-];
+import { strictEqual } from 'assert';
 
-tests.forEach(({ input, expected }) => {
-  output = intToRoman(input);
-  if (expected === output) {
-    console.log(`✅ ${input}`);
-  } else {
-    console.log(`🔴 ${input}`);
-    console.log(`Expected ${expected}, but got ${output}`);
-  }
-});
+strictEqual(intToRoman(3), 'III');
+
+strictEqual(intToRoman(4), 'IV');
+
+strictEqual(intToRoman(9), 'IX');
+
+strictEqual(intToRoman(58), 'LVIII');
+
+strictEqual(intToRoman(1994), 'MCMXCIV');
+
+strictEqual(intToRoman(10), 'X');
+
+strictEqual(intToRoman(1986), 'MCMLXXXVI');
