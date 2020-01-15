@@ -264,6 +264,7 @@
 
 /**
  * @param {number} x
+ * @param {number} [revX=0]
  * @return {number}
  */
 const reverse = (x, revX = 0) =>
