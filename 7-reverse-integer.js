@@ -211,30 +211,45 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * Runtime: 64 ms, faster than 96.75% of JavaScript online submissions
+//  * Memory Usage: 36.2 MB, less than 13.54% of JavaScript online submissions
+//  *
+//  * @param {number} x
+//  * @return {number}
+//  */
+// const reverse = x => {
+//   const revX = Math.sign(x) * [...`${Math.abs(x)}`].reverse().join('');
+//   return -(2 ** 31) <= revX && revX <= 2 ** 31 - 1 ? revX : 0;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 80 ms, faster than 48.33% of JavaScript online submissions
+// Memory Usage: 35.6 MB, less than 91.67% of JavaScript online submissions
+
 /**
- * Runtime: 64 ms, faster than 96.75% of JavaScript online submissions
- * Memory Usage: 36.2 MB, less than 13.54% of JavaScript online submissions
- *
  * @param {number} x
  * @return {number}
  */
 const reverse = x => {
-  const revX = Math.sign(x) * [...`${Math.abs(x)}`].reverse().join('');
+  const sign = Math.sign(x);
+  x = Math.abs(x);
+  let revX = 0;
+  while (0 < x) {
+    revX += x % 10;
+    x = Math.trunc(x / 10);
+    if (0 < x) revX *= 10;
+  }
+  revX *= sign;
   return -(2 ** 31) <= revX && revX <= 2 ** 31 - 1 ? revX : 0;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// console.log(reverse(5));
-
-// console.log(reverse(42));
-
-// console.log(reverse(123));
-// console.log(reverse(-123));
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
 import { strictEqual } from 'assert';
+
+strictEqual(reverse(1), 1);
 
 strictEqual(reverse(123), 321);
 
@@ -243,3 +258,5 @@ strictEqual(reverse(-123), -321);
 strictEqual(reverse(120), 21);
 
 strictEqual(reverse(1534236469), 0);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
