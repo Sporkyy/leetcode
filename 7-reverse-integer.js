@@ -247,15 +247,22 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// const rev = (ob, re = 0) =>
-//   0 === ob ? re : rev(Math.trunc(ob / 10), re * 10 + (ob % 10));
+// Runtime: 76 ms, faster than 67.22% of JavaScript online submissions
+// Memory Usage: 35.4 MB, less than 100.00% of JavaScript online submissions
 
-// console.log(rev(12));
-// console.log(rev(112));
-// console.log(rev(123));
-// console.log(rev(-123));
-// console.log(rev(1234));
-// console.log(rev(-1234));
+// /**
+//  * @param {number} x
+//  * @param {number} [y=0]
+//  * @returns {number}
+//  */
+// const rev = (x, y = 0) => (0 === x ? y : rev(~~(x / 10), y * 10 + (x % 10)));
+
+// /**
+//  * @param {number} x
+//  * @return {number}
+//  */
+// const reverse = (x, revX = rev(x)) =>
+//   -(2 ** 31) <= revX && revX <= 2 ** 31 - 1 ? revX : 0;
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
