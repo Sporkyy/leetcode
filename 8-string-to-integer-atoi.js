@@ -3,10 +3,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+//  Runtime: 88 ms, faster than 25.98% of JavaScript online submissions
+//  Memory Usage: 35.7 MB, less than 100.00% of JavaScript online submissions
+
 // /**
-//  * Runtime: 88 ms, faster than 25.98% of JavaScript online submissions
-//  * Memory Usage: 35.7 MB, less than 100.00% of JavaScript online submissions
-//  *
 //  * @param {string} str
 //  * @return {number}
 //  */
@@ -22,10 +22,10 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+//  Runtime: 84 ms, faster than 38.00% of JavaScript online submissions
+//  Memory Usage: 35.6 MB, less than 100.00% of JavaScript online submissions
+
 // /**
-//  * Runtime: 84 ms, faster than 38.00% of JavaScript online submissions
-//  * Memory Usage: 35.6 MB, less than 100.00% of JavaScript online submissions
-//  *
 //  * @param {string} str
 //  * @param {number} [int=Number.parseInt(str)]
 //  * @return {number}
@@ -41,12 +41,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+//  Runtime: 100 ms, faster than 10.80% of JavaScript online submissions
+//  Memory Usage: 37.8 MB, less than 14.29% of JavaScript online submissions
+
 // /**
-//  * Runtime: 100 ms, faster than 10.80% of JavaScript online submissions
-//  * Memory Usage: 37.8 MB, less than 14.29% of JavaScript online submissions
-//  *
 //  * @param {string} str
-//  * @param {number} [int=Number.parseInt(str)]
 //  * @return {number}
 //  */
 // const myAtoi = str => {
@@ -76,12 +75,11 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 84 ms, faster than 39.02% of JavaScript online submissions
+// Memory Usage: 37 MB, less than 14.29% of JavaScript online submissions
+
 /**
- * Runtime: 84 ms, faster than 39.02% of JavaScript online submissions
- * Memory Usage: 37 MB, less than 14.29% of JavaScript online submissions
- *
  * @param {string} str
- * @param {number} [int=Number.parseInt(str)]
  * @return {number}
  */
 const myAtoi = str => {
