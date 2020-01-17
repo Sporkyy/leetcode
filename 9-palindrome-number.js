@@ -188,8 +188,8 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 176 ms, faster than 91.32% of JavaScript online submissions
-// Memory Usage: 45 MB, less than 92.24% of JavaScript online submissions
+// Runtime: 172 ms, faster than 94.87% of JavaScript online submissions
+// Memory Usage: 44.7 MB, less than 98.28% of JavaScript online submissions
 
 /**
  * @param {number} x
