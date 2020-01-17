@@ -191,13 +191,33 @@
 // Runtime: 172 ms, faster than 94.87% of JavaScript online submissions
 // Memory Usage: 44.7 MB, less than 98.28% of JavaScript online submissions
 
+// /**
+//  * @param {number} x
+//  * @return {boolean}
+//  */
+// const isPalindrome = x => {
+//   if (x < 0) return false;
+//   let left = 10 ** ((Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0) + 1 - 1);
+//   while (0 < x) {
+//     if (Math.trunc(x / left) !== x % 10) return false;
+//     x = Math.trunc((x % left) / 10);
+//     left /= 100;
+//   }
+//   return true;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 184 ms, faster than 81.12% of JavaScript online submissions
+// Memory Usage: 44.7 MB, less than 98.28% of JavaScript online submissions
+
 /**
  * @param {number} x
  * @return {boolean}
  */
 const isPalindrome = x => {
   if (x < 0) return false;
-  let left = 10 ** ((Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0) + 1 - 1);
+  let left = 10 ** (Math.trunc(Math.log10(Math.abs(x))) + 1 - 1);
   while (0 < x) {
     if (Math.trunc(x / left) !== x % 10) return false;
     x = Math.trunc((x % left) / 10);
@@ -219,6 +239,10 @@ ok(!isPalindrome(-121));
 ok(!isPalindrome(10));
 
 ok(!isPalindrome(1000021));
+
+ok(!isPalindrome(10000021));
+ok(!isPalindrome(1200001));
+ok(!isPalindrome(12000001));
 
 ok(isPalindrome(11));
 
