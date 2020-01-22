@@ -56,23 +56,57 @@
 // Runtime: 156 ms, faster than 78.85% of JavaScript online submissions
 // Memory Usage: 40.2 MB, less than 63.66% of JavaScript online submissions
 
+// /**
+//  * @param {number} num
+//  * @return {string}
+//  */
+// const intToRoman = num => {
+//   const dict = [
+//     ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+//     ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
+//     ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'],
+//     ['', 'M', 'MM', 'MMM'],
+//   ];
+//   return (
+//     dict[3][Math.trunc(num / 1000)] +
+//     dict[2][Math.trunc((num % 1000) / 100)] +
+//     dict[1][Math.trunc((num % 100) / 10)] +
+//     dict[0][num % 10]
+//   );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 320 ms, faster than 5.29% of JavaScript online submissions
+// Memory Usage: 44 MB, less than 10.00% of JavaScript online submissions
+
 /**
- * @param {number} num
- * @return {string}
+ * @param {number} int
+ * @param {string} [rom='']
+ * @param {number} [f=1000]
+ * @returns {string}
  */
-const intToRoman = num => {
-  const dict = [
-    ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
-    ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
-    ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'],
-    ['', 'M', 'MM', 'MMM'],
-  ];
-  return (
-    dict[3][Math.trunc(num / 1000)] +
-    dict[2][Math.trunc((num % 1000) / 100)] +
-    dict[1][Math.trunc((num % 100) / 10)] +
-    dict[0][num % 10]
-  );
+const intToRoman = (int, rom = '', f = 1000) => {
+  if (f < 1) return rom;
+  let [i, j, k] = {
+    1: ['I', 'V', 'X'],
+    10: ['X', 'L', 'C'],
+    100: ['C', 'D', 'M'],
+    1000: ['M'],
+  }[f];
+  const letters = [
+    /* 0 */ [],
+    /* 1 */ [i],
+    /* 2 */ [i, i],
+    /* 3 */ [i, i, i],
+    /* 4 */ [i, j],
+    /* 5 */ [j],
+    /* 6 */ [j, i],
+    /* 7 */ [j, i, i],
+    /* 8 */ [j, i, i, i],
+    /* 9 */ [i, k],
+  ][Math.trunc(int / f)];
+  return intToRoman(int % f, `${rom}${letters.join('')}`, f / 10);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
