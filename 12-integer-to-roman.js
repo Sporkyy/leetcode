@@ -77,8 +77,8 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 320 ms, faster than 5.29% of JavaScript online submissions
-// Memory Usage: 44 MB, less than 10.00% of JavaScript online submissions
+// Runtime: 272 ms, faster than 5.29% of JavaScript online submissions
+// Memory Usage: 44.9 MB, less than 10.00% of JavaScript online submissions
 
 /**
  * @param {number} int
@@ -106,7 +106,7 @@ const intToRoman = (int, rom = '', f = 1000) => {
     /* 8 */ [j, i, i, i],
     /* 9 */ [i, k],
   ][Math.trunc(int / f)];
-  return intToRoman(int % f, `${rom}${letters.join('')}`, f / 10);
+  return intToRoman(int % f, rom.concat(...letters), f / 10);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
