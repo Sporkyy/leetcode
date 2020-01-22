@@ -55,16 +55,37 @@
 // Runtime: 76 ms, faster than 42.91% of JavaScript online submissions
 // Memory Usage: 35.3 MB, less than 96.97% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} heights
+//  * @return {number}
+//  */
+// const maxArea = heights => {
+//   let [l, r, maxArea] = [0, heights.length - 1, 0];
+//   while (l < r) {
+//     maxArea = Math.max(maxArea, (r - l) * Math.min(heights[l], heights[r]));
+//     if (heights[l] < heights[r]) l++;
+//     else r--;
+//   }
+//   return maxArea;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 136 ms, faster than 41.18% of JavaScript online submissions
+// Memory Usage: 37.3 MB, less than 9.09% of JavaScript online submissions
+
 /**
  * @param {number[]} heights
  * @return {number}
  */
 const maxArea = heights => {
-  let [l, r, maxArea] = [0, heights.length - 1, 0];
-  while (l < r) {
-    maxArea = Math.max(maxArea, (r - l) * Math.min(heights[l], heights[r]));
-    if (heights[l] < heights[r]) l++;
-    else r--;
+  let [lPos, rPos, maxArea] = [0, heights.length - 1, 0];
+  while (lPos < rPos) {
+    const [lHeight, rHeight] = [heights[lPos], heights[rPos]];
+    const [width, height] = [rPos - lPos, Math.min(lHeight, rHeight)];
+    const area = width * height;
+    maxArea = Math.max(maxArea, area);
+    heights[lPos] < heights[rPos] ? lPos++ : rPos--;
   }
   return maxArea;
 };
