@@ -80,33 +80,133 @@
 // Runtime: 272 ms, faster than 5.29% of JavaScript online submissions
 // Memory Usage: 44.9 MB, less than 10.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} int
+//  * @param {string} [rom='']
+//  * @param {number} [f=1000]
+//  * @returns {string} Roman numeral equivalent of integer
+//  */
+// const intToRoman = (int, rom = '', f = 1000) => {
+//   if (f < 1) return rom;
+//   let [i, j, k] = {
+//     1: ['I', 'V', 'X'],
+//     10: ['X', 'L', 'C'],
+//     100: ['C', 'D', 'M'],
+//     1000: ['M'],
+//   }[f];
+//   const letters = [
+//     /* 0 */ [],
+//     /* 1 */ [i],
+//     /* 2 */ [i, i],
+//     /* 3 */ [i, i, i],
+//     /* 4 */ [i, j],
+//     /* 5 */ [j],
+//     /* 6 */ [j, i],
+//     /* 7 */ [j, i, i],
+//     /* 8 */ [j, i, i, i],
+//     /* 9 */ [i, k],
+//   ][Math.trunc(int / f)];
+//   return intToRoman(int % f, rom.concat(...letters), f / 10);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {number} int
+//  * @param {string} [rom='']
+//  * @param {number} [f=1000]
+//  * @returns {string} Roman numeral equivalent of integer
+//  */
+// const intToRoman = (int, rom = '', f = 1000) => {
+//   if (f < 1) return rom;
+//   let [i, j, k] = {
+//     1: ['I', 'V', 'X'],
+//     10: ['X', 'L', 'C'],
+//     100: ['C', 'D', 'M'],
+//     1000: ['M'],
+//   }[f];
+//   const letters = [
+//     /* 0 */ ``,
+//     /* 1 */ `${i}`,
+//     /* 2 */ `${i}${i}`,
+//     /* 3 */ `${i}${i}${i}`,
+//     /* 4 */ `${i}${j}`,
+//     /* 5 */ `${j}`,
+//     /* 6 */ `${j}${i}`,
+//     /* 7 */ `${j}${i}${i}`,
+//     /* 8 */ `${j}${i}${i}${i}`,
+//     /* 9 */ `${i}${k}`,
+//   ][Math.trunc(int / f)];
+//   return intToRoman(int % f, rom + letters, f / 10);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 144 ms, faster than 61.21% of JavaScript online submissions
+// Memory Usage: 43.7 MB, less than 20.00% of JavaScript online submissions
+
+// /**
+//  * @param {number} int
+//  * @param {string} [rom='']
+//  * @param {number} [f=1000]
+//  * @returns {string} Roman numeral equivalent of integer
+//  */
+// const intToRoman = (int, rom = '', f = 1000) => {
+//   if (f < 1) return rom;
+//   let [i, j, k] = {
+//     1: ['I', 'V', 'X'],
+//     10: ['X', 'L', 'C'],
+//     100: ['C', 'D', 'M'],
+//     1000: ['M'],
+//   }[f];
+//   const letters = [
+//     /* 0 */ ``,
+//     /* 1 */ i,
+//     /* 2 */ i + i,
+//     /* 3 */ i + i + i,
+//     /* 4 */ i + j,
+//     /* 5 */ j,
+//     /* 6 */ j + i,
+//     /* 7 */ j + i + i,
+//     /* 8 */ j + i + i + i,
+//     /* 9 */ i + k,
+//   ][Math.trunc(int / f)];
+//   return intToRoman(int % f, rom + letters, f / 10);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 236 ms, faster than 5.16% of JavaScript online submissions
+// Memory Usage: 44 MB, less than 10.00% of JavaScript online submissions
+
 /**
  * @param {number} int
  * @param {string} [rom='']
- * @param {number} [f=1000]
- * @returns {string}
+ * @returns {string} Roman numeral equivalent of integer
  */
-const intToRoman = (int, rom = '', f = 1000) => {
-  if (f < 1) return rom;
-  let [i, j, k] = {
+const intToRoman = (int, rom = '') => {
+  if (int < 1) return rom;
+  const digitCnt = Math.trunc(Math.log10(Math.abs(int))) + 1;
+  const [i, j, k] = {
     1: ['I', 'V', 'X'],
-    10: ['X', 'L', 'C'],
-    100: ['C', 'D', 'M'],
-    1000: ['M'],
-  }[f];
-  const letters = [
-    /* 0 */ [],
-    /* 1 */ [i],
-    /* 2 */ [i, i],
-    /* 3 */ [i, i, i],
-    /* 4 */ [i, j],
-    /* 5 */ [j],
-    /* 6 */ [j, i],
-    /* 7 */ [j, i, i],
-    /* 8 */ [j, i, i, i],
-    /* 9 */ [i, k],
-  ][Math.trunc(int / f)];
-  return intToRoman(int % f, rom.concat(...letters), f / 10);
+    2: ['X', 'L', 'C'],
+    3: ['C', 'D', 'M'],
+    4: ['M', '', ''],
+  }[digitCnt];
+  const leftDigit = Math.trunc((int / 10 ** (digitCnt - 1)) % 10);
+  const numeral = [
+    /* 0 */ ``,
+    /* 1 */ i,
+    /* 2 */ i + i,
+    /* 3 */ i + i + i,
+    /* 4 */ i + j,
+    /* 5 */ j,
+    /* 6 */ j + i,
+    /* 7 */ j + i + i,
+    /* 8 */ j + i + i + i,
+    /* 9 */ i + k,
+  ][leftDigit];
+  return intToRoman(int % (leftDigit * 10 ** (digitCnt - 1)), rom + numeral);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

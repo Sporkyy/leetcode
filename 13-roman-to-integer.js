@@ -207,9 +207,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 172 ms, faster than 62.65% of JavaScript online submissions
-// for Roman to Integer.
 // Memory Usage: 40.5 MB, less than 25.08% of JavaScript online submissions
-// for Roman to Integer.
 
 /**
  * @param {string} s
@@ -248,9 +246,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 236 ms, faster than 6.20% of JavaScript online submissions
-// for Roman to Integer.
 // Memory Usage: 45.6 MB, less than 5.03% of JavaScript online submissions
-// for Roman to Integer.
 
 /**
  * @param {string} s
@@ -279,9 +275,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 152 ms, faster than 83.04% of JavaScript online submissions
-// for Roman to Integer.
 // Memory Usage: 41.1 MB, less than 16.82% of JavaScript online submissions
-// for Roman to Integer.
 
 /**
  * @param {string} s
@@ -308,26 +302,49 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 152 ms, faster than 82.13% of JavaScript online submissions
-// for Roman to Integer.
 // Memory Usage: 40.8 MB, less than 19.64% of JavaScript online submissions
-// for Roman to Integer.
+
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const romanToInt = s => {
+//   const dict = {
+//     I: next => (1 < next ? -1 : 1),
+//     V: next => (5 < next ? -5 : 5),
+//     X: next => (10 < next ? -10 : 10),
+//     L: next => (50 < next ? -50 : 50),
+//     C: next => (100 < next ? -100 : 100),
+//     D: next => (500 < next ? -500 : 500),
+//     M: next => (1000 < next ? -1000 : 1000),
+//     undefined: () => 0,
+//   };
+//   return s.split('').reduce((a, c, i) => a + dict[c](dict[s[i + 1]]()), 0);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 300 ms, faster than 5.22% of JavaScript online submissions
+// Memory Usage: 42.6 MB, less than 6.38% of JavaScript online submissions
 
 /**
- * @param {string} s
- * @return {number}
+ * @param {string} rom
+ * @param {number} [int=0]
+ * @returns {number} Integer equivalent of roman numeral
  */
-const romanToInt = s => {
-  const dict = {
-    I: next => (1 < next ? -1 : 1),
-    V: next => (5 < next ? -5 : 5),
-    X: next => (10 < next ? -10 : 10),
-    L: next => (50 < next ? -50 : 50),
-    C: next => (100 < next ? -100 : 100),
-    D: next => (500 < next ? -500 : 500),
-    M: next => (1000 < next ? -1000 : 1000),
-    undefined: () => 0,
+const romanToInt = (rom, int = 0) => {
+  if (rom.length < 1) return int;
+  const o = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
   };
-  return s.split('').reduce((a, c, i) => a + dict[c](dict[s[i + 1]]()), 0);
+  const [curr, next] = [o[rom[0]], o[rom[1]] || 0];
+  return romanToInt(rom.slice(1), curr * (curr < next ? -1 : 1) + int);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
