@@ -4,14 +4,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 80.12% of JavaScript online submissions
-// for Longest Common Prefix.
 // Memory Usage: 35 MB, less than 50.54% of JavaScript online submissions
-// for Longest Common Prefix.
 
-/**
- * @param {string[]} strs
- * @return {string}
- */
+// /**
+//  * @param {string[]} strs
+//  * @return {string}
+//  */
 // const longestCommonPrefix = strs => {
 //   let prefix = '';
 
@@ -40,14 +38,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 80.12% of JavaScript online submissions
-// for Longest Common Prefix.
 // Memory Usage: 35.1 MB, less than 44.45% of JavaScript online submissions
-// for Longest Common Prefix.
 
-/**
- * @param {string[]} strs
- * @return {string}
- */
+// /**
+//  * @param {string[]} strs
+//  * @return {string}
+//  */
 // const longestCommonPrefix = strs => {
 //   if (0 === strs.length) return '';
 //   if (1 === strs.length) return strs[0];
@@ -70,9 +66,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 80.12% of JavaScript online submissions
-// for Longest Common Prefix.
 // Memory Usage: 34.9 MB, less than 63.80% of JavaScript online submissions
-// for Longest Common Prefix.
 
 /**
  * @param {string[]} strs
