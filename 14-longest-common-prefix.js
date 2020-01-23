@@ -97,55 +97,23 @@ const longestCommonPrefix = strs => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    name: 'Example 1',
-    input: ['flower', 'flow', 'flight'],
-    expected: 'fl',
-  },
-  {
-    name: 'Example 2',
-    input: ['dog', 'racecar', 'car'],
-    expected: '',
-  },
-  {
-    name: 'Many repeats',
-    input: ['wwwwwww', 'wwwwww', 'wwwww', 'wwww', 'www'],
-    expected: 'www',
-  },
-  {
-    name: 'Empty array',
-    input: [],
-    expected: '',
-  },
-  {
-    name: 'abca, abc',
-    input: ['abca', 'abc'],
-    expected: 'abc',
-  },
-  {
-    name: 'a',
-    input: ['a'],
-    expected: 'a',
-  },
-  {
-    name: 'Two blanks',
-    input: ['', ''],
-    expected: '',
-  },
-  {
-    name: '["c","c"]',
-    input: ['c', 'c'],
-    expected: 'c',
-  },
-];
+import { strictEqual } from 'assert';
 
-tests.forEach(({ name, input, expected }) => {
-  const output = longestCommonPrefix(input);
-  if (expected === output) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
+strictEqual(longestCommonPrefix(['flower', 'flow', 'flight']), 'fl');
+
+strictEqual(longestCommonPrefix(['dog', 'racecar', 'car']), '');
+
+strictEqual(
+  longestCommonPrefix(['wwwwwww', 'wwwwww', 'wwwww', 'wwww', 'www']),
+  'www',
+);
+
+strictEqual(longestCommonPrefix([]), '');
+
+strictEqual(longestCommonPrefix(['abca', 'abc']), 'abc');
+
+strictEqual(longestCommonPrefix(['a']), 'a');
+
+strictEqual(longestCommonPrefix(['', '']), '');
+
+strictEqual(longestCommonPrefix(['c', 'c']), 'c');
