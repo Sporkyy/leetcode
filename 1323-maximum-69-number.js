@@ -21,21 +21,43 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 72 ms, faster than 22.70% of JavaScript online submissions
-// Memory Usage: 33.6 MB, less than 100.00% of JavaScript online submissions
+// Runtime: 96 ms, faster than 11.86% of JavaScript online submissions
+// Memory Usage: 33.4 MB, less than 100.00% of JavaScript online submissions
 
 /**
  * @param {number} num
  * @return {number}
  */
 const maximum69Number = num => {
-  let x = 10 ** (Math.trunc(Math.log10(Math.abs(num))) | 0);
+  let x = 10 ** Math.trunc(Math.log10(Math.abs(num)));
   while (0 < x) {
     if (num % (x * 10) < 9 * x) return num + 3 * x;
     x = Math.trunc(x / 10);
   }
   return num;
 };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 76 ms, faster than 20.04% of JavaScript online submissions
+// Memory Usage: 33.7 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number} num
+//  * @return {number}
+//  */
+// const maximum69Number = num => +('' + num).replace('6', '9');
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 72 ms, faster than 22.70% of JavaScript online submissions
+// Memory Usage: 33.5 MB, less than 100.00% of JavaScript online submissions
+
+/**
+ * @param {number} num
+ * @return {number}
+ */
+const maximum69Number = num => +('' + num).replace(6, 9);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
