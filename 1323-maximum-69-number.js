@@ -53,11 +53,11 @@ const maximum69Number = num => {
 // Runtime: 72 ms, faster than 22.70% of JavaScript online submissions
 // Memory Usage: 33.5 MB, less than 100.00% of JavaScript online submissions
 
-/**
- * @param {number} num
- * @return {number}
- */
-const maximum69Number = num => +('' + num).replace(6, 9);
+// /**
+//  * @param {number} num
+//  * @return {number}
+//  */
+// const maximum69Number = num => +('' + num).replace(6, 9);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
