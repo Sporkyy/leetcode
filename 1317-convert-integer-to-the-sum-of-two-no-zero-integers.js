@@ -59,25 +59,71 @@
 // Runtime: 96 ms, faster than 7.37% of JavaScript online submissions
 // Memory Usage: 33.6 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} x
+//  * @returns {boolean}
+//  */
+// const hasZeros = x => {
+//   if (x < -1 || (0 < x && x < 10)) return false;
+//   if (0 === x % 10) return true;
+//   else return hasZeros(Math.trunc(x / 10));
+// };
+
+// /**
+//  * @param {number} n
+//  * @return {number[]}
+//  */
+// const getNoZeroIntegers = (x, y = 0) => {
+//   if (x < y) return false;
+//   if (!hasZeros(x) && !hasZeros(y)) return [Math.min(x, y), Math.max(x, y)];
+//   else return getNoZeroIntegers(x - 1, y + 1);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {number} x
+//  * @returns {boolean}
+//  */
+// const hasZeros = x =>
+//   0 < Math.abs(x) && Math.abs(x) < 10
+//     ? false
+//     : 0 === x % 10
+//     ? true
+//     : hasZeros(Math.trunc(x / 10));
+
+// /**
+//  * @param {number} n
+//  * @return {number[]}
+//  */
+// const getNoZeroIntegers = (x, y = 0) =>
+//   x < y
+//     ? false
+//     : !hasZeros(x) && !hasZeros(y)
+//     ? [Math.min(x, y), Math.max(x, y)]
+//     : getNoZeroIntegers(x - 1, y + 1);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 56 ms, faster than 73.40% of JavaScript online submissions
+// Memory Usage: 33.3 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number} x
  * @returns {boolean}
  */
-const hasZeros = x => {
-  if (x < -1 || (0 < x && x < 10)) return false;
-  if (0 === x % 10) return true;
-  else return hasZeros(Math.trunc(x / 10));
-};
+const hasZeros = x =>
+  0 === x % 10 ? true : 10 < Math.abs(x) ? hasZeros(Math.trunc(x / 10)) : false;
 
 /**
- * @param {number} n
+ * @param {number} x
+ * @param {number} [y=0]
  * @return {number[]}
  */
-const getNoZeroIntegers = (x, y = 0) => {
-  if (x < y) return false;
-  if (!hasZeros(x) && !hasZeros(y)) return [Math.min(x, y), Math.max(x, y)];
-  else return getNoZeroIntegers(x - 1, y + 1);
-};
+const getNoZeroIntegers = (x, y = 0) =>
+  !hasZeros(x) && !hasZeros(y)
+    ? [Math.min(x, y), Math.max(x, y)]
+    : getNoZeroIntegers(x - 1, y + 1);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
