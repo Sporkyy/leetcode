@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 56 ms, faster than 94.90% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 // Memory Usage: 34 MB, less than 19.13% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 
 /**
  * @param {number} a
@@ -39,9 +37,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 94.27% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 // Memory Usage: 33.7 MB, less than 95.65% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 
 /**
  * @param {number} a
@@ -68,9 +64,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 94.27% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 // Memory Usage: 34.1 MB, less than 10.43% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 
 /**
  * @param {number} a
@@ -92,9 +86,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 80 ms, faster than 7.64% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 // Memory Usage: 33.7 MB, less than 95.65% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 
 /**
  * @param {number} a
@@ -118,14 +110,11 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 56 ms, faster than 94.90% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 // Memory Usage: 33.9 MB, less than 32.17% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 
 // var minMax = (...arr) => {
 //   let min = (max = arr[0]),
 //     x;
-//   for (let i = 1, n = arr.length; i < n; ++i) {
 //     x = arr[i];
 //     if (x < min) min = x;
 //     if (x > max) max = x;
@@ -148,9 +137,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 94.27% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 // Memory Usage: 33.8 MB, less than 80.87% of JavaScript online submissions
-// for Moving Stones Until Consecutive.
 
 /**
  * @param {number} a
@@ -166,78 +153,47 @@ const numMovesStones = (a, b, c) => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-tests = [
-  {
-    name: 'a=1, b=2, c=5]',
-    input: { a: 1, b: 2, c: 5 },
-    expected: [1, 2],
-    // Explanation: Move the stone from 5 to 3, or move the stone from 5 to 4 to 3.
-    //       | 1 | 2 | 3 | 4 | 5 |
-    // init  | a | b | - | - | c |
-    // min 1 | a | b | c | - | - |
-    // max 1 | a | b | - | c | - |
-    // max 2 | a | b | c | - | - |
-  },
-  {
-    name: 'a=4, b=3, c=2',
-    input: { a: 4, b: 3, c: 2 },
-    expected: [0, 0],
-    // Explanation: We cannot make any moves.
-    //     | 1 | 2 | 3 | 4 |
-    // init | - | c | b | a |
-  },
-  {
-    name: 'a=3, b=5, c=1',
-    input: { a: 3, b: 5, c: 1 },
-    expected: [1, 2],
-    // Explanation: Move the stone from 1 to 4; or move the stone from 1 to 2 to 4.
-    //       | 1 | 2 | 3 | 4 | 5 |
-    // init  | c | - | a | - | b |
-    // min 1 | - | - | a | c | b |
-    // max 1 | - | c | a | - | b |
-    // max 2 | - | c | a | b | - |
-  },
-  {
-    name: 'a=1, b=3, c=6',
-    input: { a: 1, b: 3, c: 6 },
-    expected: [1, 3],
-    //       | 1 | 2 | 3 | 4 | 5 | 6 |
-    // init  | a | - | b | - | - | c |
-    // min 1 | a | c | b | - | - | - |
-    // max 1 | - | a | b | - | - | c |
-    // max 2 | - | a | b | - | c | - |
-    // max 3 | - | a | b | c | - | - |
-  },
-  {
-    name: 'a=2, b=4, c=1',
-    input: { a: 2, b: 4, c: 1 },
-    expected: [1, 1],
-    //       | 1 | 2 | 3 | 4 |
-    // init  | c | a | - | b |
-    // min 1 | - | a | c | b |
-    // max 1 | c | a | b | - |
-  },
-  {
-    name: 'a=1, b=4, c=5',
-    input: { a: 1, b: 4, c: 5 },
-    expected: [1, 2],
-    // Explanation: Move the stone from 1 to 4; or move the stone from 1 to 2 to 4.
-    //       | 1 | 2 | 3 | 4 | 5 |
-    // init  | a | - | - | b | c |
-    // min 1 | - | - | a | b | c |
-    // max 1 | - | a | - | b | c |
-    // max 2 | - | - | a | b | c |
-  },
-];
+import { deepStrictEqual } from 'assert';
 
-const numericalArraysAreEqual = (a, b) => a && b && a.join() === b.join();
+deepStrictEqual(numMovesStones(1, 2, 5), [1, 2]);
+// Explanation: Move the stone from 5 to 3, or move the stone from 5 to 4 to 3.
+//       | 1 | 2 | 3 | 4 | 5 |
+// init  | a | b | - | - | c |
+// min 1 | a | b | c | - | - |
+// max 1 | a | b | - | c | - |
+// max 2 | a | b | c | - | - |
 
-tests.forEach(({ name, input: { a, b, c }, expected }) => {
-  output = numMovesStones(a, b, c);
-  if (numericalArraysAreEqual(expected, output)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}" but got "${output}"`);
-  }
-});
+deepStrictEqual(numMovesStones(4, 3, 2), [0, 0]);
+// Explanation: We cannot make any moves.
+//      | 1 | 2 | 3 | 4 |
+// init | - | c | b | a |
+
+deepStrictEqual(numMovesStones(3, 5, 1), [1, 2]);
+// Explanation: Move the stone from 1 to 4; or move the stone from 1 to 2 to 4.
+//       | 1 | 2 | 3 | 4 | 5 |
+// init  | c | - | a | - | b |
+// min 1 | - | - | a | c | b |
+// max 1 | - | c | a | - | b |
+// max 2 | - | c | a | b | - |
+
+deepStrictEqual(numMovesStones(1, 3, 6), [1, 3]);
+//       | 1 | 2 | 3 | 4 | 5 | 6 |
+// init  | a | - | b | - | - | c |
+// min 1 | a | c | b | - | - | - |
+// max 1 | - | a | b | - | - | c |
+// max 2 | - | a | b | - | c | - |
+// max 3 | - | a | b | c | - | - |
+
+deepStrictEqual(numMovesStones(2, 4, 1), [1, 1]);
+//       | 1 | 2 | 3 | 4 |
+// init  | c | a | - | b |
+// min 1 | - | a | c | b |
+// max 1 | c | a | b | - |
+
+deepStrictEqual(numMovesStones(1, 4, 5), [1, 2]);
+// Explanation: Move the stone from 1 to 4; or move the stone from 1 to 2 to 4.
+//       | 1 | 2 | 3 | 4 | 5 |
+// init  | a | - | - | b | c |
+// min 1 | - | - | a | b | c |
+// max 1 | - | a | - | b | c |
+// max 2 | - | - | a | b | c |
