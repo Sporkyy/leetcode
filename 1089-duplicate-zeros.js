@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 72 ms, faster than 60.48% of JavaScript online submissions
-// for Duplicate Zeros.
 // Memory Usage: 35.4 MB, less than 100.00% of JavaScript online submissions
-// for Duplicate Zeros.
 
 /**
  * @param {number[]} arr
@@ -23,37 +21,26 @@ const duplicateZeros = arr => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-tests = [
-  {
-    input: [1, 0, 2, 3, 0, 4, 5, 0],
-    expected: [1, 0, 0, 2, 3, 0, 0, 4],
-  },
-  {
-    input: [1, 2, 3],
-    expected: [1, 2, 3],
-  },
-  {
-    input: [1, 0, 1],
-    expected: [1, 0, 0],
-  },
-  {
-    input: [1, 0, 0],
-    expected: [1, 0, 0],
-  },
-  {
-    input: [1, 0, 1, 2],
-    expected: [1, 0, 0, 1],
-  },
-];
+import { deepStrictEqual } from 'assert';
 
-const areArraysEqual = (a1, a2) => a1.length === a2.length && a1.join() === a2.join();
+let a;
 
-tests.forEach(({ input, expected }) => {
-  duplicateZeros(input);
-  if (areArraysEqual(input, expected)) {
-    console.log(`✅ ${input.join(', ')}`);
-  } else {
-    console.log(`🔴 ${input.join(', ')}`);
-    console.log(`Expected "${expected.join(', ')}", but got "${input.join(', ')}"`);
-  }
-});
+a = [1, 0, 2, 3, 0, 4, 5, 0];
+duplicateZeros(a);
+deepStrictEqual(a, [1, 0, 0, 2, 3, 0, 0, 4]);
+
+a = [1, 2, 3];
+duplicateZeros(a);
+deepStrictEqual(a, [1, 2, 3]);
+
+a = [1, 0, 1];
+duplicateZeros(a);
+deepStrictEqual(a, [1, 0, 0]);
+
+a = [1, 0, 0];
+duplicateZeros(a);
+deepStrictEqual(a, [1, 0, 0]);
+
+a = [1, 0, 1, 2];
+duplicateZeros(a);
+deepStrictEqual(a, [1, 0, 0, 1]);
