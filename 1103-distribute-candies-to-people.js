@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 52 ms, faster than 78.95% of JavaScript online submissions
-// for Distribute Candies to People.
 // Memory Usage: 34.6 MB, less than 100.00% of JavaScript online submissions
-// for Distribute Candies to People.
 
 /**
  * @param {number} candies
@@ -29,9 +27,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 40.22% of JavaScript online submissions
-// for Distribute Candies to People.
 // Memory Usage: 36.6 MB, less than 100.00% of JavaScript online submissions
-// for Distribute Candies to People.
 
 // 0 |  1  2  3  4  5 =  15
 // 1 |  7  9 11 13 15 =  55
@@ -190,9 +186,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 19.08% of JavaScript online submissions
-// for Distribute Candies to People.
 // Memory Usage: 34.5 MB, less than 100.00% of JavaScript online submissions
-// for Distribute Candies to People.
 
 /**
  * @param {number} candies
@@ -208,79 +202,36 @@ const distributeCandies = (candies, num_people) => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  // {
-  //   input: {
-  //     candies: 7,
-  //     num_people: 4,
-  //   },
-  //   expected: [1, 2, 3, 1],
-  // },
+import { deepStrictEqual } from 'assert';
 
-  // 0 |  0   0   0  (0+1) =  0 ( 1,  3,  6)
-  // 1 | (1) (2) (3)  4    = 10 (15, 21, 28)
+deepStrictEqual(distributeCandies(7, 4), [1, 2, 3, 1]);
 
-  // {
-  //   input: {
-  //     candies: 10,
-  //     num_people: 3,
-  //   },
-  //   expected: [5, 2, 3],
-  // },
+// 0 |  0   0   0  (0+1) =  0 ( 1,  3,  6)
+// 1 | (1) (2) (3)  4    = 10 (15, 21, 28)
 
-  // 0 |  0   0   0  =  0 ( 1,  3)
-  // 1 |  1  (2) (3) =  6 (10, 15)
-  // 2 | (5)  7   9  = 21 (28, 36)
+deepStrictEqual(distributeCandies(10, 3), [5, 2, 3]);
 
-  // {
-  //   input: {
-  //     candies: 60,
-  //     num_people: 4,
-  //   },
-  //   expected: [15, 18, 15, 12],
-  // },
+// 0 |  0   0   0  =  0 ( 1,  3)
+// 1 |  1  (2) (3) =  6 (10, 15)
+// 2 | (5)  7   9  = 21 (28, 36)
 
-  // 0 |   0    0    0      0  =  0 ( 1,   3,   6)
-  // 1 |   1    2    3      4  = 10 (15,  21,  28)
-  // 2 |   6    8  (10+5) (12) = 36 (45,  55,  66)
-  // 3 | (15) (18)  21     24  = 78 (91, 105, 120)
+deepStrictEqual(distributeCandies(60, 4), [15, 18, 15, 12]);
 
-  // {
-  //   input: {
-  //     candies: 1,
-  //     num_people: 2,
-  //   },
-  //   expected: [1, 0],
-  // },
+// 0 |   0    0    0      0  =  0 ( 1,   3,   6)
+// 1 |   1    2    3      4  = 10 (15,  21,  28)
+// 2 |   6    8  (10+5) (12) = 36 (45,  55,  66)
+// 3 | (15) (18)  21     24  = 78 (91, 105, 120)
 
-  // 0 | (0+1) 0 = 0 (1)
+deepStrictEqual(distributeCandies(1, 2), [1, 0]);
 
-  {
-    input: {
-      candies: 80,
-      num_people: 4,
-    },
-    expected: [17, 18, 21, 24],
-  },
+// 0 | (0+1) 0 = 0 (1)
 
-  // 0 |   0      0     0    0  =  0 ( 1,   3,   6)
-  // 1 |   1      2     3    4  = 10 (15,  21,  28)
-  // 2 |   6      8    10   12  = 36 (45,  55,  66)
-  // 3 | (15+2) (18)  (21) (24) = 78 (91, 105, 120)
-];
+deepStrictEqual(distributeCandies(80, 4), [17, 18, 21, 24]);
 
-const areArraysEqual = (a, b) => a.length === b.length && a.join() === b.join();
-
-tests.forEach(({ input: { candies, num_people }, expected }) => {
-  const output = distributeCandies(candies, num_people);
-  const name = `candies = ${candies}, num_people = ${num_people}`;
-  if (areArraysEqual(expected, output)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected.join(', ')}", but got "${output.join(', ')}"`);
-  }
-});
+// 0 |   0      0     0    0  =  0 ( 1,   3,   6)
+// 1 |   1      2     3    4  = 10 (15,  21,  28)
+// 2 |   6      8    10   12  = 36 (45,  55,  66)
+// 3 | (15+2) (18)  (21) (24) = 78 (91, 105, 120)
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
