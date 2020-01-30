@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 56 ms, faster than 70.42% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 // Memory Usage: 34 MB, less than 100.00% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 
 /**
  * @param {string} str1
@@ -27,9 +25,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 49.30% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 // Memory Usage: 35.3 MB, less than 100.00% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 
 /**
  * @param {string} str1
@@ -51,9 +47,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 49.30% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 // Memory Usage: 35.3 MB, less than 100.00% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 
 /**
  * @param {string} str1
@@ -77,9 +71,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 25.35% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 // Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 
 /**
  * @param {string} str1
@@ -97,9 +89,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 52 ms, faster than 91.55% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 // Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 
 /**
  * @param {string} str1
@@ -119,9 +109,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 49.30% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 // Memory Usage: 33.7 MB, less than 100.00% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 
 /**
  * @param {string} str1
@@ -145,82 +133,59 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 48 ms, faster than 95.77% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
 // Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
-// for Greatest Common Divisor of Strings.
+
+// /**
+//  * @param {string} str1
+//  * @param {string} str2
+//  * @return {string}
+//  */
+// const gcdOfStrings = (str1, str2) => {
+//   if (str1 + str2 !== str2 + str1) return '';
+//   const gcd = (a, b) => (0 === b ? a : gcd(b, a % b));
+//   return str1.substring(0, gcd(str1.length, str2.length));
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 112 ms, faster than 7.43% of JavaScript online submissions
+// Memory Usage: 33.6 MB, less than 100.00% of JavaScript online submissions
+
+/**
+ * @param {number} x
+ * @param {number} y
+ * @return {number} The greatest common denominator
+ */
+const gcd = (x, y) => (0 === y ? x : gcd(y, x % y));
 
 /**
  * @param {string} str1
  * @param {string} str2
  * @return {string}
  */
-const gcdOfStrings = (str1, str2) => {
-  if (str1 + str2 !== str2 + str1) return '';
-  const gcd = (a, b) => (0 === b ? a : gcd(b, a % b));
-  return str1.substring(0, gcd(str1.length, str2.length));
-};
+const gcdOfStrings = (str1, str2) =>
+  str1 + str2 !== str2 + str1
+    ? ''
+    : str1.substring(0, gcd(str1.length, str2.length));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    name: 'ABCABC, ABC',
-    input: {
-      str1: 'ABCABC',
-      str2: 'ABC',
-    },
-    expected: 'ABC',
-  },
-  {
-    name: 'ABABAB, ABAB',
-    input: {
-      str1: 'ABABAB',
-      str2: 'ABAB',
-    },
-    expected: 'AB',
-  },
-  {
-    name: 'LEET, CODE',
-    input: {
-      str1: 'LEET',
-      str2: 'CODE',
-    },
-    expected: '',
-  },
-  {
-    name: 'Wrong Anwer 1',
-    input: {
-      str1: 'TAUXXTAUXXTAUXXTAUXXTAUXX',
-      str2: 'TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX',
-    },
-    expected: 'TAUXX',
-  },
-  {
-    name: 'ABABAB, ABCD',
-    input: {
-      str1: 'ABABAB',
-      str2: 'ABCD',
-    },
-    expected: '',
-  },
-  {
-    name: 'ABCD, ABABAB',
-    input: {
-      str1: 'ABCD',
-      str2: 'ABABAB',
-    },
-    expected: '',
-  },
-];
+import { strictEqual } from 'assert';
 
-console.time();
-tests.forEach(({ name, input: { str1, str2 }, expected }) => {
-  const output = gcdOfStrings(str1, str2);
-  if (expected === output) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
-console.timeEnd();
+strictEqual(gcdOfStrings('ABCABC', 'ABC'), 'ABC');
+
+strictEqual(gcdOfStrings('ABABAB', 'ABAB'), 'AB');
+
+strictEqual(gcdOfStrings('LEET', 'CODE'), '');
+
+strictEqual(
+  gcdOfStrings(
+    'TAUXXTAUXXTAUXXTAUXXTAUXX',
+    'TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX',
+  ),
+  'TAUXX',
+);
+
+strictEqual(gcdOfStrings('ABABAB', 'ABCD'), '');
+
+strictEqual(gcdOfStrings('ABCD', 'ABABAB'), '');
