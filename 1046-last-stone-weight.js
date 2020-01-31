@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 61.28% of JavaScript online submissions
-// for Last Stone Weight.
 // Memory Usage: 35 MB, less than 100.00% of JavaScript online submissions
-// for Last Stone Weight.
 
 /**
  * @param {number[]} stones
@@ -24,9 +22,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 43.26% of JavaScript online submissions
-// for Last Stone Weight.
 // Memory Usage: 34.9 MB, less than 100.00% of JavaScript online submissions
-// for Last Stone Weight.
 
 /**
  * @param {number[]} stones
@@ -42,16 +38,17 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 76 ms, faster than 19.19% of JavaScript online submissions
-// for Last Stone Weight.
 // Memory Usage: 35.8 MB, less than 100.00% of JavaScript online submissions
-// for Last Stone Weight.
 
 /**
  * @param {number[]} stones
  * @return {number}
  */
 const lastStoneWeight = stones => {
-  const arrayDeleteByIndex = (a, i) => [...a.slice(0, i), ...a.slice(i + 1, a.length)];
+  const arrayDeleteByIndex = (a, i) => [
+    ...a.slice(0, i),
+    ...a.slice(i + 1, a.length),
+  ];
   const biggestTwo = a => {
     let fbi = 0;
     for (let i = 0; i < a.length; i++) if (a[fbi] < a[i]) fbi = i;
@@ -73,51 +70,21 @@ const lastStoneWeight = stones => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  // Explanation:
-  // We combine 7 and 8 to get 1 so the array converts to [2,4,1,1,1] then,
-  // we combine 2 and 4 to get 2 so the array converts to [2,1,1,1] then,
-  // we combine 2 and 1 to get 1 so the array converts to [1,1,1] then,
-  // we combine 1 and 1 to get 0 so the array converts to [1] then that's the value of last stone.
+import { strictEqual } from 'assert';
 
-  {
-    input: [2, 7, 4, 1, 8, 1],
-    expected: 1,
-  },
+strictEqual(lastStoneWeight([2, 7, 4, 1, 8, 1]), 1);
+// Explanation:
+// We combine 7 and 8 to get 1 so the array converts to [2,4,1,1,1] then,
+// we combine 2 and 4 to get 2 so the array converts to [2,1,1,1] then,
+// we combine 2 and 1 to get 1 so the array converts to [1,1,1] then,
+// we combine 1 and 1 to get 0 so the array converts to [1] then that's the value of last stone.
 
-  {
-    input: [1],
-    expected: 1,
-  },
+strictEqual(lastStoneWeight([1]), 1);
 
-  {
-    input: [1, 1],
-    expected: 0,
-  },
+strictEqual(lastStoneWeight([1, 1]), 0);
 
-  {
-    input: [1, 2],
-    expected: 1,
-  },
+strictEqual(lastStoneWeight([1, 2]), 1);
 
-  {
-    input: [1, 3],
-    expected: 2,
-  },
+strictEqual(lastStoneWeight([1, 3]), 2);
 
-  {
-    input: [4, 3, 4, 3, 2],
-    expected: 2,
-  },
-];
-
-for (let { input, expected } of tests) {
-  output = lastStoneWeight(input);
-  name = JSON.stringify(input);
-  if (expected === output) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${output}"'`);
-  }
-}
+strictEqual(lastStoneWeight([4, 3, 4, 3, 2]), 2);
