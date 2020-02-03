@@ -3,23 +3,27 @@
 
 /*
 
-You have N gardens, labelled 1 to N.  In each garden, you want to plant one of 4 types of flowers.
+You have N gardens, labelled 1 to N.  In each garden, you want to plant
+one of 4 types of flowers.
 
-paths[i] = [x, y] describes the existence of a bidirectional path from garden x to garden y.
+paths[i] = [x, y] describes the existence of a bidirectional path
+from garden x to garden y.
 
 Also, there is no garden that has more than 3 paths coming into or leaving it.
 
-Your task is to choose a flower type for each garden such that, for any two gardens connected by a path, they have different types of flowers.
+Your task is to choose a flower type for each garden such that,
+for any two gardens connected by a path, they have different types of flowers.
 
-Return any such a choice as an array answer, where answer[i] is the type of flower planted in the (i+1)-th garden.
+Return any such a choice as an array answer, where answer[i] is
+the type of flower planted in the (i+1)-th garden.
 The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 
 */
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 144 ms, faster than 66.67% of JavaScript online submissions for Flower Planting With No Adjacent.
-// Memory Usage: 56.4 MB, less than 100.00% of JavaScript online submissions for Flower Planting With No Adjacent.
+// Runtime: 144 ms, faster than 66.67% of JavaScript online submissions
+// Memory Usage: 56.4 MB, less than 100.00% of JavaScript online submissions
 
 // class Garden {
 //   constructor() {
@@ -83,10 +87,8 @@ The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 140 ms, faster than 65.00% of JavaScript online submissions for
-// Flower Planting With No Adjacent.
-// Memory Usage: 47.1 MB, less than 100.00% of JavaScript online submissions for
-// Flower Planting With No Adjacent.
+// Runtime: 140 ms, faster than 65.00% of JavaScript online submissions
+// Memory Usage: 47.1 MB, less than 100.00% of JavaScript online submissions
 
 /**
  * @param {number} N
@@ -124,36 +126,36 @@ const gardenNoAdj = (N, paths) => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  // G1: G2, G3
-  // G2: G1, G3
-  // G3: G1, G2
-  {
-    name: 'Example 1',
-    input: {
-      N: 3,
-      paths: [[1, 2], [2, 3], [3, 1]],
-    },
-    expected: [1, 2, 3],
-  },
-  {
-    name: 'Example 2',
-    input: {
-      N: 4,
-      paths: [[1, 2], [3, 4]],
-    },
-    expected: [1, 2, 1, 2],
-  },
-  {
-    name: 'Example 3',
-    input: {
-      N: 4,
-      paths: [[1, 2], [2, 3], [3, 4], [4, 1], [1, 3], [2, 4]],
-    },
-    expected: [1, 2, 3, 4],
-  },
-];
+import { deepStrictEqual } from 'assert';
 
-tests.forEach(({ name, input: { N, paths }, expected }) => {
-  console.log(gardenNoAdj(N, paths));
-});
+deepStrictEqual(
+  gardenNoAdj(3, [
+    [1, 2],
+    [2, 3],
+    [3, 1],
+  ]),
+  [1, 2, 3],
+);
+// G1: G2, G3
+// G2: G1, G3
+// G3: G1, G2
+
+deepStrictEqual(
+  gardenNoAdj(4, [
+    [1, 2],
+    [3, 4],
+  ]),
+  [1, 2, 1, 2],
+);
+
+deepStrictEqual(
+  gardenNoAdj(4, [
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [4, 1],
+    [1, 3],
+    [2, 4],
+  ]),
+  [1, 2, 3, 4],
+);
