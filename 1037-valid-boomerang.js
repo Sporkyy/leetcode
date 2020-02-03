@@ -1,12 +1,20 @@
 // 1037. Valid Boomerang
 // https://leetcode.com/problems/valid-boomerang/
 
+/*
+
+A boomerang is a set of 3 points that are all distinct and not in a
+straight line.
+
+Given a list of three points in the plane, return whether these points are
+a boomerang.
+
+*/
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 52 ms, faster than 96.23% of JavaScript online submissions
-// for Valid Boomerang.
 // Memory Usage: 33.9 MB, less than 100.00% of JavaScript online submissions
-// for Valid Boomerang.
 
 /**
  * @param {number[][]} points
@@ -48,9 +56,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 56 ms, faster than 88.70% of JavaScript online submissions
-// for Valid Boomerang.
 // Memory Usage: 33.7 MB, less than 100.00% of JavaScript online submissions
-// for Valid Boomerang.
 
 /**
  * @param {number[][]} points
@@ -74,67 +80,80 @@ var isBoomerang = points =>
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    // |X|-|-|
-    // |-|-|X|
-    // |-|X|-|
-    name: '[[1, 1], [2, 3], [3, 2]]',
-    input: [[1, 1], [2, 3], [3, 2]],
-    expected: true,
-  },
-  {
-    // |X|-|-|
-    // |-|X|-|
-    // |-|-|X|
-    name: '[[1, 1], [2, 2], [3, 3]]',
-    input: [[1, 1], [2, 2], [3, 3]],
-    expected: false,
-  },
-  {
-    // |-|-|-|-|-|
-    // |X|-|-|-|-|
-    // |-|X|-|-|-|
-    // |-|-|-|-|-|
-    // |-|-|-|X|-|
-    name: '[[1, 2], [2, 3], [4, 5]]',
-    input: [[1, 2], [2, 3], [4, 5]],
-    expected: false,
-  },
-  {
-    // |-|-|-|-|-|
-    // |X|-|-|-|-|
-    // |-|X|-|-|-|
-    // |-|-|-|-|-|
-    // |-|-|-|-|X|
-    name: '[[1, 2], [2, 3], [4, 5]]',
-    input: [[1, 2], [2, 3], [5, 5]],
-    expected: true,
-  },
-  {
-    // |X|-|-|
-    // |-|-|X|
-    // |X|-|-|
-    name: '[[0, 0], [0, 2], [2, 1]]',
-    input: [[0, 0], [0, 2], [2, 1]],
-    expected: true,
-  },
-  {
-    // |X|-|-|
-    // |-|X|-|
-    // |-|-|-|
-    name: '[[0, 0], [2, 1], [2, 1]]',
-    input: [[0, 0], [2, 1], [2, 1]],
-    expected: false,
-  },
-];
+import { strictEqual } from 'assert';
 
-tests.forEach(({ name, input, expected }) => {
-  const output = isBoomerang(input);
-  if (expected === output) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
+strictEqual(
+  isBoomerang([
+    [1, 1],
+    [2, 3],
+    [3, 2],
+  ]),
+  true,
+);
+// ??????
+// ??????
+// ??????
+
+strictEqual(
+  isBoomerang([
+    [1, 1],
+    [2, 2],
+    [3, 3],
+  ]),
+  false,
+);
+// ??????
+// ??????
+// ??????
+
+strictEqual(
+  isBoomerang([
+    [1, 2],
+    [2, 3],
+    [4, 5],
+  ]),
+  false,
+);
+// ??????????
+// ??????????
+// ??????????
+// ??????????
+// ??????????
+
+strictEqual(
+  isBoomerang([
+    [1, 2],
+    [2, 3],
+    [5, 5],
+  ]),
+  true,
+);
+// ??????????
+// ??????????
+// ??????????
+// ??????????
+// ??????????
+
+strictEqual(
+  isBoomerang([
+    [0, 0],
+    [0, 2],
+    [2, 1],
+  ]),
+  true,
+);
+// ??????
+// ??????
+// ??????
+
+strictEqual(
+  isBoomerang([
+    [0, 0],
+    [2, 1],
+    [2, 1],
+  ]),
+  false,
+);
+// ??????
+// ??????
+// ??????
