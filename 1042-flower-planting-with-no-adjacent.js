@@ -129,33 +129,33 @@ The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 // Runtime: 144 ms, faster than 89.01% of JavaScript online submissions
 // Memory Usage: 54.6 MB, less than 100.00% of JavaScript online submissions
 
-// /**
-//  * @param {number} N
-//  * @param {number[][]} paths
-//  * @return {number[]}
-//  */
-// const gardenNoAdj = (N, paths) => {
-//   const gardens = new Array(N + 1).fill().map(_ => ({
-//     flower: '',
-//     connectedGardens: [],
-//   }));
+/**
+ * @param {number} N
+ * @param {number[][]} paths
+ * @return {number[]}
+ */
+const gardenNoAdj = (N, paths) => {
+  const gardens = new Array(N + 1).fill().map(_ => ({
+    flower: '',
+    connectedGardens: [],
+  }));
 
-//   for (const [a, b] of paths) {
-//     gardens[a].connectedGardens.push(gardens[b]);
-//     gardens[b].connectedGardens.push(gardens[a]);
-//   }
+  for (const [a, b] of paths) {
+    gardens[a].connectedGardens.push(gardens[b]);
+    gardens[b].connectedGardens.push(gardens[a]);
+  }
 
-//   const flowers = [...new Array(4).keys()].map(f => f + 1);
+  const flowers = [...new Array(4).keys()].map(f => f + 1);
 
-//   for (const garden of gardens.slice(1))
-//     for (const flower of flowers)
-//       if (!garden.connectedGardens.map(g => g.flower).includes(flower)) {
-//         garden.flower = flower;
-//         break;
-//       }
+  for (const garden of gardens.slice(1))
+    for (const flower of flowers)
+      if (!garden.connectedGardens.map(g => g.flower).includes(flower)) {
+        garden.flower = flower;
+        break;
+      }
 
-//   return gardens.slice(1).map(g => g.flower);
-// };
+  return gardens.slice(1).map(g => g.flower);
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -198,38 +198,38 @@ The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 // Runtime: 232 ms, faster than 25.27% of JavaScript online submissions
 // Memory Usage: 74.1 MB, less than 100.00% of JavaScript online submissions
 
-/**
- * @param {number} N
- * @param {number[][]} paths
- * @return {number[]}
- */
-const gardenNoAdj = (N, paths) => {
-  const gardens = new Map(
-    [...new Array(N).keys()].map(g => [
-      g + 1,
-      {
-        flower: '',
-        connectedGardens: [],
-      },
-    ]),
-  );
+// /**
+//  * @param {number} N
+//  * @param {number[][]} paths
+//  * @return {number[]}
+//  */
+// const gardenNoAdj = (N, paths) => {
+//   const gardens = new Map(
+//     [...new Array(N).keys()].map(g => [
+//       g + 1,
+//       {
+//         flower: '',
+//         connectedGardens: [],
+//       },
+//     ]),
+//   );
 
-  for (const [a, b] of paths) {
-    gardens.get(a).connectedGardens.push(gardens.get(b));
-    gardens.get(b).connectedGardens.push(gardens.get(a));
-  }
+//   for (const [a, b] of paths) {
+//     gardens.get(a).connectedGardens.push(gardens.get(b));
+//     gardens.get(b).connectedGardens.push(gardens.get(a));
+//   }
 
-  const flowers = [...new Array(4).keys()].map(f => f + 1);
+//   const flowers = [...new Array(4).keys()].map(f => f + 1);
 
-  for (const [_, g] of gardens)
-    for (const f of flowers)
-      if (!g.connectedGardens.map(cg => cg.flower).includes(f)) {
-        g.flower = f;
-        break;
-      }
+//   for (const [_, g] of gardens)
+//     for (const f of flowers)
+//       if (!g.connectedGardens.map(cg => cg.flower).includes(f)) {
+//         g.flower = f;
+//         break;
+//       }
 
-  return [...gardens.entries()].map(([_, { flower }]) => flower);
-};
+//   return [...gardens.entries()].map(([_, { flower }]) => flower);
+// };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
