@@ -90,38 +90,71 @@ The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 // Runtime: 140 ms, faster than 65.00% of JavaScript online submissions
 // Memory Usage: 47.1 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} N
+//  * @param {number[][]} paths
+//  * @return {number[]}
+//  */
+// const gardenNoAdj = (N, paths) => {
+//   const gardens = new Array(N);
+
+//   for (let i = 0; i < N; i++) {
+//     gardens[i] = {
+//       flower: '',
+//       connectedGardens: [],
+//     };
+//   }
+
+//   paths.forEach(([gn1, gn2]) => {
+//     const [gi1, gi2] = [gn1 - 1, gn2 - 1];
+//     gardens[gi1].connectedGardens.push(gardens[gi2]);
+//     gardens[gi2].connectedGardens.push(gardens[gi1]);
+//   });
+
+//   for (let i = 0; i < gardens.length; i++) {
+//     const connectedFlowers = gardens[i].connectedGardens.map(g => g.flower);
+//     for (let j = 1; j < 5; j++) {
+//       if (!connectedFlowers.includes(j)) {
+//         gardens[i].flower = j;
+//         break;
+//       }
+//     }
+//   }
+
+//   return gardens.map(g => g.flower);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 144 ms, faster than 89.01% of JavaScript online submissions
+// Memory Usage: 54.6 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number} N
  * @param {number[][]} paths
  * @return {number[]}
  */
 const gardenNoAdj = (N, paths) => {
-  const gardens = new Array(N);
+  const gardens = new Array(N + 1).fill().map(_ => ({
+    flower: '',
+    connectedGardens: [],
+  }));
 
-  for (let i = 0; i < N; i++) {
-    gardens[i] = {
-      flower: '',
-      connectedGardens: [],
-    };
+  for (const [a, b] of paths) {
+    gardens[a].connectedGardens.push(gardens[b]);
+    gardens[b].connectedGardens.push(gardens[a]);
   }
 
-  paths.forEach(([gn1, gn2]) => {
-    const [gi1, gi2] = [gn1 - 1, gn2 - 1];
-    gardens[gi1].connectedGardens.push(gardens[gi2]);
-    gardens[gi2].connectedGardens.push(gardens[gi1]);
-  });
+  const flowers = [...new Array(4).keys()].map(f => f + 1);
 
-  for (let i = 0; i < gardens.length; i++) {
-    const connectedFlowers = gardens[i].connectedGardens.map(g => g.flower);
-    for (let j = 1; j < 5; j++) {
-      if (!connectedFlowers.includes(j)) {
-        gardens[i].flower = j;
+  for (const garden of gardens.slice(1))
+    for (const flower of flowers)
+      if (!garden.connectedGardens.map(g => g.flower).includes(flower)) {
+        garden.flower = flower;
         break;
       }
-    }
-  }
 
-  return gardens.map(g => g.flower);
+  return gardens.slice(1).map(g => g.flower);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
