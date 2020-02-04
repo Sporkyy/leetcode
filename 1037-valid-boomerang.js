@@ -58,24 +58,62 @@ a boomerang.
 // Runtime: 56 ms, faster than 88.70% of JavaScript online submissions
 // Memory Usage: 33.7 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[][]} points
+//  * @return {boolean}
+//  */
+// var isBoomerang = points =>
+//   !(
+//     (points[0][0] === points[1][0] && points[0][1] === points[1][1]) ||
+//     (points[1][0] === points[2][0] && points[1][1] === points[2][1]) ||
+//     (points[2][0] === points[0][0] && points[2][1] === points[0][1]) ||
+//     (points[0][0] === points[1][0] &&
+//       points[1][0] === points[2][0] &&
+//       points[2][0] === points[0][0]) ||
+//     (points[0][1] === points[1][1] &&
+//       points[1][1] === points[2][1] &&
+//       points[2][1] === points[0][1]) ||
+//     (points[0][0] - points[1][0] === points[0][1] - points[1][1] &&
+//       points[1][0] - points[2][0] === points[1][1] - points[2][1] &&
+//       points[2][0] - points[0][0] === points[2][1] - points[0][1])
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 56 ms, faster than 71.64% of JavaScript online submissions
+// Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[][]} points
+//  * @return {boolean}
+//  */
+// const isBoomerang = ([[a, b], [c, d], [e, f]]) =>
+//   !(
+//     (a === c && b === d) ||
+//     (c === e && d === f) ||
+//     (e === a && f === b) ||
+//     (a === c && c === e && e === a) ||
+//     (b === d && d === f && f === b) ||
+//     (a - c === b - d && c - e === d - f && e - a === f - b)
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 56 ms, faster than 71.64% of JavaScript online submissions
+// Memory Usage: 34 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[][]} points
  * @return {boolean}
  */
-var isBoomerang = points =>
+const isBoomerang = ([[ax, ay], [bx, by], [cx, cy]]) =>
   !(
-    (points[0][0] === points[1][0] && points[0][1] === points[1][1]) ||
-    (points[1][0] === points[2][0] && points[1][1] === points[2][1]) ||
-    (points[2][0] === points[0][0] && points[2][1] === points[0][1]) ||
-    (points[0][0] === points[1][0] &&
-      points[1][0] === points[2][0] &&
-      points[2][0] === points[0][0]) ||
-    (points[0][1] === points[1][1] &&
-      points[1][1] === points[2][1] &&
-      points[2][1] === points[0][1]) ||
-    (points[0][0] - points[1][0] === points[0][1] - points[1][1] &&
-      points[1][0] - points[2][0] === points[1][1] - points[2][1] &&
-      points[2][0] - points[0][0] === points[2][1] - points[0][1])
+    (ax === bx && ay === by) ||
+    (bx === cx && by === cy) ||
+    (cx === ax && cy === ay) ||
+    (ax === bx && bx === cx && cx === ax) ||
+    (ay === by && by === cy && cy === ay) ||
+    (ax - bx === ay - by && bx - cx === by - cy && cx - ax === cy - ay)
   );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
