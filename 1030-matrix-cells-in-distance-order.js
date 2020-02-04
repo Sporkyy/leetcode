@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 176 ms, faster than 71.19% of JavaScript online submissions
-// for Matrix Cells in Distance Order.
 // Memory Usage: 48.5 MB, less than 100.00% of JavaScript online submissions
-// for Matrix Cells in Distance Order.
 
 // const distance = (originRow, originCol, hereRow, hereCol) =>
 //   Math.abs(originRow - hereRow) + Math.abs(originCol - hereCol);
@@ -22,8 +20,8 @@
 // };
 
 /**
- * @param {number} R
- * @param {number} C
+ * @param {number} r
+ * @param {number} c
  * @param {number} r0
  * @param {number} c0
  * @return {number[][]}
@@ -38,13 +36,11 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 376 ms, faster than 5.90% of JavaScript online submissions
-// for Matrix Cells in Distance Order.
 // Memory Usage: 52.5 MB, less than 42.36% of JavaScript online submissions
-// for Matrix Cells in Distance Order.
 
 /**
- * @param {number} R
- * @param {number} C
+ * @param {number} r
+ * @param {number} c
  * @param {number} r0
  * @param {number} c0
  * @return {number[][]}
@@ -63,13 +59,11 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 168 ms, faster than 84.59% of JavaScript online submissions
-// for Matrix Cells in Distance Order.
 // Memory Usage: 52.1 MB, less than 45.85% of JavaScript online submissions
-// for Matrix Cells in Distance Order.
 
 /**
- * @param {number} R
- * @param {number} C
+ * @param {number} r
+ * @param {number} c
  * @param {number} r0
  * @param {number} c0
  * @return {number[][]}
@@ -88,13 +82,11 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 196 ms, faster than 33.11% of JavaScript online submissions
-// for Matrix Cells in Distance Order.
 // Memory Usage: 68.4 MB, less than 5.24% of JavaScript online submissions
-// for Matrix Cells in Distance Order.
 
 /**
- * @param {number} R
- * @param {number} C
+ * @param {number} r
+ * @param {number} c
  * @param {number} r0
  * @param {number} c0
  * @return {number[][]}
@@ -116,21 +108,45 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 152 ms, faster than 96.07% of JavaScript online submissions
-// for Matrix Cells in Distance Order.
 // Memory Usage: 50.4 MB, less than 53.27% of JavaScript online submissions
-// for Matrix Cells in Distance Order.
+
+// /**
+//  * @param {number} R
+//  * @param {number} C
+//  * @param {number} r0
+//  * @param {number} c0
+//  * @return {number[][]}
+//  */
+// const allCellsDistOrder = (R, C, r0, c0) => {
+//   const byDistance = new Array(R * C).fill(0).map(x => []);
+//   for (let rI = 0; rI <= R - 1; rI++) {
+//     for (let cI = 0; cI <= C - 1; cI++) {
+//       const distance = Math.abs(r0 - rI) + Math.abs(c0 - cI);
+//       byDistance[distance].push([rI, cI]);
+//     }
+//   }
+//   const result = [];
+//   for (let i = 0; i < byDistance.length; i++) {
+//     for (let j = 0; j < byDistance[i].length; j++) {
+//       result.push(byDistance[i][j]);
+//     }
+//   }
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /**
- * @param {number} R
- * @param {number} C
+ * @param {number} r
+ * @param {number} c
  * @param {number} r0
  * @param {number} c0
  * @return {number[][]}
  */
-const allCellsDistOrder = (R, C, r0, c0) => {
-  const byDistance = new Array(R * C).fill(0).map(x => []);
-  for (let rI = 0; rI <= R - 1; rI++) {
-    for (let cI = 0; cI <= C - 1; cI++) {
+const allCellsDistOrder = (r, c, r0, c0) => {
+  const byDistance = new Array(r * c).fill(0).map(x => []);
+  for (let rI = 0; rI <= r - 1; rI++) {
+    for (let cI = 0; cI <= c - 1; cI++) {
       const distance = Math.abs(r0 - rI) + Math.abs(c0 - cI);
       byDistance[distance].push([rI, cI]);
     }
@@ -146,52 +162,30 @@ const allCellsDistOrder = (R, C, r0, c0) => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    name: 'Example 1',
-    // [0, 0], [0, 1]
-    input: {
-      R: 1,
-      C: 2,
-      r0: 0,
-      c0: 0,
-    },
-    expected: [[0, 0], [0, 1]],
-  },
-  {
-    name: 'Example 2',
-    // [0, 0], [0, 1]
-    // [1, 0], [1, 1]
-    input: {
-      R: 2,
-      C: 2,
-      r0: 0,
-      c0: 1,
-    },
-    expected: [[0, 1], [0, 0], [1, 1], [1, 0]],
-  },
-  {
-    name: 'Example 3',
-    // [0, 0], [0, 1], [0, 2]
-    // [1, 0], [1, 1], [1, 2]
-    input: {
-      R: 2,
-      C: 3,
-      r0: 1,
-      c0: 2,
-    },
-    expected: [[1, 2], [0, 2], [1, 1], [0, 1], [1, 0], [0, 0]],
-  },
-];
+import { deepStrictEqual } from 'assert';
 
-const areArraysEqual = (a1, a2) => a1.length === a2.length && a1.toString() === a2.toString();
+// [0, 0], [0, 1]
+deepStrictEqual(allCellsDistOrder(1, 2, 0, 0), [
+  [0, 0],
+  [0, 1],
+]);
 
-tests.forEach(({ name, input: { R, C, r0, c0 }, expected }) => {
-  const output = allCellsDistOrder(R, C, r0, c0);
-  if (areArraysEqual(expected, output)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
+// [0, 0], [0, 1]
+// [1, 0], [1, 1]
+deepStrictEqual(allCellsDistOrder(2, 2, 0, 1), [
+  [0, 1],
+  [0, 0],
+  [1, 1],
+  [1, 0],
+]);
+
+// [0, 0], [0, 1], [0, 2]
+// [1, 0], [1, 1], [1, 2]
+deepStrictEqual(allCellsDistOrder(2, 3, 1, 2), [
+  [1, 2],
+  [0, 2],
+  [1, 1],
+  [0, 1],
+  [1, 0],
+  [0, 0],
+]);
