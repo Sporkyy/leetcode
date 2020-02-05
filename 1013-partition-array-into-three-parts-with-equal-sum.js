@@ -5,10 +5,10 @@
 
 // Time Limit Exceeded
 
-/**
- * @param {number[]} A
- * @return {boolean}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {boolean}
+//  */
 // const canThreePartsEqualSum = A => {
 //   if (A.length < 3) return false;
 //   const sumArray = a => a.reduce((a, c) => a + c, 0);
@@ -40,10 +40,10 @@
 // Memory Usage: 40.4 MB, less than 28.21% of JavaScript online submissions for
 // Partition Array Into Three Parts With Equal Sum.
 
-/**
- * @param {number[]} A
- * @return {boolean}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {boolean}
+//  */
 // const canThreePartsEqualSum = A => {
 //   const sum = A.reduce((arr, curr) => arr + curr, 0);
 //   if (0 !== sum % 3) return false;
@@ -72,10 +72,10 @@
 // Runtime: 72 ms, faster than 83.23% of JavaScript online submissions
 // Memory Usage: 39.7 MB, less than 67.31% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {boolean}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {boolean}
+//  */
 // const canThreePartsEqualSum = A => {
 //   const total = A.reduce((arr, curr) => arr + curr, 0);
 //   if (0 !== total % 3) return false;
@@ -93,10 +93,10 @@
 // Runtime: 68 ms, faster than 89.31% of JavaScript online submissions
 // Memory Usage: 39.7 MB, less than 69.55% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {boolean}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {boolean}
+//  */
 // const canThreePartsEqualSum = A => {
 //   const target = A.reduce((arr, curr) => arr + curr, 0) / 3;
 //   let sum = 0;
@@ -112,10 +112,10 @@
 // Runtime: 68 ms, faster than 89.31% of JavaScript online submissions
 // Memory Usage: 39.7 MB, less than 68.59% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {boolean}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {boolean}
+//  */
 // const canThreePartsEqualSum = A => {
 //   const target = A.reduce((arr, curr) => arr + curr, 0) / 3;
 //   let [left, right] = [0, A.length - 1];
@@ -147,13 +147,13 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 60 ms, faster than 97.06% of JavaScript online submissions
-// Memory Usage: 39.7 MB, less than 73.08% of JavaScript online submissions
+// Runtime: 96 ms, faster than 7.24% of JavaScript online submissions
+// Memory Usage: 39.7 MB, less than 100.00% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {boolean}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {boolean}
+//  */
 // const canThreePartsEqualSum = A => {
 //   const total = A.reduce((arr, curr) => arr + curr, 0);
 //   if (0 !== total % 3) return false;
@@ -181,8 +181,8 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 80 ms, faster than 31.24% of JavaScript online submissions
-// Memory Usage: 39.9 MB, less than 40.06% of JavaScript online submissions
+// Runtime: 72 ms, faster than 57.01% of JavaScript online submissions
+// Memory Usage: 39.9 MB, less than 100.00% of JavaScript online submissions
 
 /**
  * @param {number[]} A
