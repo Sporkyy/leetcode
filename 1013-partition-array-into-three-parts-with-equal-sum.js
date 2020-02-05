@@ -70,9 +70,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 72 ms, faster than 83.23% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 // Memory Usage: 39.7 MB, less than 67.31% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 
 /**
  * @param {number[]} A
@@ -93,9 +91,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 89.31% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 // Memory Usage: 39.7 MB, less than 69.55% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 
 /**
  * @param {number[]} A
@@ -114,9 +110,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 89.31% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 // Memory Usage: 39.7 MB, less than 68.59% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 
 /**
  * @param {number[]} A
@@ -133,9 +127,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 72 ms, faster than 83.23% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 // Memory Usage: 39.7 MB, less than 70.83% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 
 /**
  * @param {number[]} A
@@ -156,9 +148,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 97.06% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 // Memory Usage: 39.7 MB, less than 73.08% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 
 /**
  * @param {number[]} A
@@ -192,9 +182,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 80 ms, faster than 31.24% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 // Memory Usage: 39.9 MB, less than 40.06% of JavaScript online submissions
-// for Partition Array Into Three Parts With Equal Sum.
 
 /**
  * @param {number[]} A
@@ -214,60 +202,31 @@ const canThreePartsEqualSum = A => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: [0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1],
-    expected: true,
-  },
-  // [0, 2, 1] = 3
-  // [-6, 6, -7, 9, 1] = 3
-  // [2, 0, 1] = 3
-  {
-    input: [0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1],
-    expected: false,
-  },
-  {
-    input: [3, 3, 6, 5, -2, 2, 5, 1, -9, 4],
-    expected: true,
-  },
-  // [3, 3] = 6
-  // [6] = 6
-  // [5, -2, 2, 5, 1, -9, 4] = 6
-  {
-    input: [3, 3, 6, 5, -2, 2, 5, 1, -9, 3],
-    expected: false,
-  },
-  {
-    input: [1, 3, 5],
-    expected: false,
-  },
-  {
-    input: [18, 12, -18, 18, -19, -1, 10, 10],
-    expected: true,
-  },
-  // [18, 12, -18, 18, -19, -1] = 10
-  // [10] = 10
-  // [10] = 10
-  {
-    input: [0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1],
-    expected: false,
-  },
-  {
-    input: [14, 6, -10, 2, 18, -7, -4, 11],
-    expected: false,
-  },
-  {
-    input: [12, -4, 16, -5, 9, -3, 3, 8, 0],
-    expected: true,
-  },
-];
+import { strictEqual } from 'assert';
 
-tests.forEach(({ input, expected }) => {
-  const output = canThreePartsEqualSum(input);
-  if (expected === output) {
-    console.log(`✅ ${input.join(', ')}`);
-  } else {
-    console.log(`🔴 ${input.join(', ')}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
+strictEqual(canThreePartsEqualSum([0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1]), true);
+// [0, 2, 1] = 3
+// [-6, 6, -7, 9, 1] = 3
+// [2, 0, 1] = 3
+
+strictEqual(canThreePartsEqualSum([0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1]), false);
+
+strictEqual(canThreePartsEqualSum([3, 3, 6, 5, -2, 2, 5, 1, -9, 4]), true);
+// [3, 3] = 6
+// [6] = 6
+// [5, -2, 2, 5, 1, -9, 4] = 6
+
+strictEqual(canThreePartsEqualSum([3, 3, 6, 5, -2, 2, 5, 1, -9, 3]), false);
+
+strictEqual(canThreePartsEqualSum([1, 3, 5]), false);
+
+strictEqual(canThreePartsEqualSum([18, 12, -18, 18, -19, -1, 10, 10]), true);
+// [18, 12, -18, 18, -19, -1] = 10
+// [10] = 10
+// [10] = 10
+
+strictEqual(canThreePartsEqualSum([0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1]), false);
+
+strictEqual(canThreePartsEqualSum([14, 6, -10, 2, 18, -7, -4, 11]), false);
+
+strictEqual(canThreePartsEqualSum([12, -4, 16, -5, 9, -3, 3, 8, 0]), true);
