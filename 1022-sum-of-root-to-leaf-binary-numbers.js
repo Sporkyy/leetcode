@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 87.39% of JavaScript online submissions
-// for Sum of Root To Leaf Binary Numbers.
 // Memory Usage: 37.7 MB, less than 9.41% of JavaScript online submissions
-// for Sum of Root To Leaf Binary Numbers.
 
 /**
  * Definition for a binary tree node.
@@ -35,9 +33,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 76 ms, faster than 28.74% of JavaScript online submissions
-// for Sum of Root To Leaf Binary Numbers.
 // Memory Usage: 37.1 MB, less than 21.56% of JavaScript online submissions
-// for Sum of Root To Leaf Binary Numbers.
 
 /**
  * Definition for a binary tree node.
@@ -66,9 +62,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 93.84% of JavaScript online submissions
-// for Sum of Root To Leaf Binary Numbers.
 // Memory Usage: 36 MB, less than 56.47% of JavaScript online submissions
-// for Sum of Root To Leaf Binary Numbers.
 
 /**
  * Definition for a binary tree node.
@@ -89,12 +83,21 @@ const sumRootToLeaf = ({ val, left, right }, acc = '') =>
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+/**
+ * @param {number} val
+ */
 function TreeNode(val) {
   this.val = val;
   this.left = this.right = null;
 }
 
-const deserializeLevelOrderArrayAsBinaryTree = a => {
+/**
+ * Deserialize a Level Order Array as a Binary Tree
+ *
+ * @param {number[]} a
+ * @returns
+ */
+const deserialize = a => {
   const nodeArray = [...a].map(e => new TreeNode(e));
   nodeArray.forEach((e, i) => {
     if ('undefined' === typeof e) return;
@@ -105,41 +108,28 @@ const deserializeLevelOrderArrayAsBinaryTree = a => {
   return nodeArray[0];
 };
 
-const tests = [
-  {
-    //      1
-    //     / \
-    //   0     1
-    //  / \   / \
-    // 0   1 0   1
-    input: [1, 0, 1, 0, 1, 0, 1],
-    expected: 22,
-    // Explanation:
-    // (100) + (101) + (110) + (111)
-    //    4  +    5  +    6  +    7 = 22
-  },
-  {
-    //         1
-    //        / \
-    //      0     1
-    //     / \   / \
-    //    0   1 0   1
-    //  /
-    // 1
-    input: [1, 0, 1, 0, 1, 0, 1, 1],
-    expected: 27,
-    // Explanation:
-    // (1001) + (101) + (110) + (111)
-    //    9  +    5  +    6  +    7 = 27
-  },
-];
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-tests.forEach(({ input, expected }) => {
-  const output = sumRootToLeaf(deserializeLevelOrderArrayAsBinaryTree(input));
-  if (expected === output) {
-    console.log(`✅ ${input.join(', ')}`);
-  } else {
-    console.log(`🔴 ${input.join(', ')}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
+import { strictEqual } from 'assert';
+
+//      1
+//     / \
+//   0     1
+//  / \   / \
+// 0   1 0   1
+strictEqual(sumRootToLeaf(deserialize([1, 0, 1, 0, 1, 0, 1])), 22);
+// Explanation:
+// (100) + (101) + (110) + (111)
+//    4  +    5  +    6  +    7 = 22
+
+//         1
+//        / \
+//      0     1
+//     / \   / \
+//    0   1 0   1
+//  /
+// 1
+strictEqual(sumRootToLeaf(deserialize([1, 0, 1, 0, 1, 0, 1, 1])), 27);
+// Explanation:
+// (1001) + (101) + (110) + (111)
+//    9  +    5  +    6  +    7 = 27
