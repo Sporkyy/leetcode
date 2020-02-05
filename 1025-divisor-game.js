@@ -6,9 +6,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 48 ms, faster than 90.08% of JavaScript online submissions
-// for Divisor Game.
 // Memory Usage: 34 MB, less than 46.67% of JavaScript online submissions
-// for Divisor Game.
 
 /**
  * | N | A | N | B | N | A | N | B | N | A | N | W |
@@ -27,51 +25,22 @@ const divisorGame = N => 0 === N % 2;
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: 1,
-    expected: false,
-  },
-  {
-    input: 2,
-    expected: true,
-  },
-  {
-    input: 3,
-    expected: false,
-  },
-  {
-    input: 4,
-    expected: true,
-  },
-  {
-    input: 5,
-    expected: false,
-  },
-  {
-    input: 6,
-    expected: true,
-  },
-  {
-    input: 7,
-    expected: false,
-  },
-  {
-    input: 8,
-    expected: true,
-  },
-  {
-    input: 9,
-    expected: false,
-  },
-];
+import { strictEqual } from 'assert';
 
-for (let { input, expected } of tests) {
-  const result = divisorGame(input);
-  if (result === expected) {
-    console.log(`✅ ${input}`);
-  } else {
-    console.log(`🔴 ${input}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-}
+strictEqual(divisorGame(1), false);
+
+strictEqual(divisorGame(2), true);
+
+strictEqual(divisorGame(3), false);
+
+strictEqual(divisorGame(4), true);
+
+strictEqual(divisorGame(5), false);
+
+strictEqual(divisorGame(6), true);
+
+strictEqual(divisorGame(7), false);
+
+strictEqual(divisorGame(8), true);
+
+strictEqual(divisorGame(9), false);
