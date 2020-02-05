@@ -1,6 +1,17 @@
 // 1029. Two City Scheduling
 // https://leetcode.com/problems/two-city-scheduling/
 
+/*
+
+There are 2N people a company is planning to interview.
+The cost of flying the i-th person to city A is costs[i][0],
+and the cost of flying the i-th person to city B is costs[i][1].
+
+Return the minimum cost to fly every person to a city such that
+exactly N people arrive in each city.
+
+*/
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 67.97% of JavaScript online submissions
@@ -29,6 +40,14 @@ strictEqual(
   110,
 );
 
+// Explanation:
+//   The first person goes to city A for a cost of 10.
+//   The second person goes to city A for a cost of 30.
+//   The third person goes to city B for a cost of 50.
+//   The fourth person goes to city B for a cost of 20.
+// The total minimum cost is 10 + 30 + 50 + 20 = 110 to have half the people
+// interviewing in each city.
+
 strictEqual(
   twoCitySchedCost([
     [10, 20],
@@ -38,6 +57,11 @@ strictEqual(
   ]),
   130,
 );
+
+// 0: B: 20
+// 1: A: 30
+// 2: A: 50
+// 3: B: 30
 
 strictEqual(
   twoCitySchedCost([
