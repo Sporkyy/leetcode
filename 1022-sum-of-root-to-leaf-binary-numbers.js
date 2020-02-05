@@ -6,17 +6,17 @@
 // Runtime: 64 ms, faster than 87.39% of JavaScript online submissions
 // Memory Usage: 37.7 MB, less than 9.41% of JavaScript online submissions
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number}
- */
+// /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} root
+//  * @return {number}
+//  */
 // var sumRootToLeaf = function(root) {
 //   const stack = [[root, '']];
 //   const binVals = [];
@@ -35,17 +35,17 @@
 // Runtime: 76 ms, faster than 28.74% of JavaScript online submissions
 // Memory Usage: 37.1 MB, less than 21.56% of JavaScript online submissions
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number}
- */
+// /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} root
+//  * @return {number}
+//  */
 // var sumRootToLeaf = function(root) {
 //   let answer = 0;
 //   const stack = [[root, '']];
