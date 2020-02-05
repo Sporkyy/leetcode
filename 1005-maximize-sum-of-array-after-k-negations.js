@@ -4,15 +4,13 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 92 ms, faster than 27.50% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 // Memory Usage: 34.7 MB, less than 100.00% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 
-/**
- * @param {number[]} A
- * @param {number} K
- * @return {number}
- */
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
 // const largestSumAfterKNegations = (A, K) => {
 //   for (let i = 0; i < K; i++) {
 //     const mi = A.reduce((acc, curr, i) => (curr < A[acc] ? i : acc), 0);
@@ -26,15 +24,13 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 66.50% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 // Memory Usage: 35.5 MB, less than 39.43% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 
-/**
- * @param {number[]} A
- * @param {number} K
- * @return {number}
- */
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
 // const largestSumAfterKNegations = (A, K) => {
 //   A.sort((a, b) => a - b);
 //   for (let i = 0; i < A.length && 0 < K; i++) if (A[i] < 0) (A[i] = -A[i]) && K--;
@@ -48,15 +44,13 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 96 ms, faster than 22.50% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 // Memory Usage: 34.8 MB, less than 98.59% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 
-/**
- * @param {number[]} A
- * @param {number} K
- * @return {number}
- */
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
 // const largestSumAfterKNegations = (A, K) => {
 //   const getMindex = () => A.reduce((a, c, i) => (c < A[a] ? i : a), 0);
 //   let mindex = getMindex();
@@ -76,15 +70,13 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 84.50% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 // Memory Usage: 36.8 MB, less than 26.76% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 
-/**
- * @param {number[]} A
- * @param {number} K
- * @return {number}
- */
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
 // const largestSumAfterKNegations = (A, K) => {
 //   const pos = [];
 //   const neg = [];
@@ -102,15 +94,13 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 116 ms, faster than 16.50% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 // Memory Usage: 36.7 MB, less than 26.76% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 
-/**
- * @param {number[]} A
- * @param {number} K
- * @return {number}
- */
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
 // const largestSumAfterKNegations = (A, K) => {
 //   while (K--) {
 //     const mindex = A.reduce((a, c, i) => (c < A[a] ? i : a), 0);
@@ -122,15 +112,13 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 84 ms, faster than 37.00% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 // Memory Usage: 34.8 MB, less than 98.59% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 
-/**
- * @param {number[]} A
- * @param {number} K
- * @return {number}
- */
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
 // const largestSumAfterKNegations = (A, K) => {
 //   while (K--) {
 //     const mindex = A.reduce((a, c, i) => (c < A[a] ? i : a), 0);
@@ -146,15 +134,13 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 84.50% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 // Memory Usage: 35.9 MB, less than 32.39% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 
-/**
- * @param {number[]} A
- * @param {number} K
- * @return {number}
- */
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
 // const largestSumAfterKNegations = (A, K) => {
 //   A.sort((a, b) => a - b);
 //   let sum = 0;
@@ -179,9 +165,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 52 ms, faster than 99.50% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 // Memory Usage: 35.9 MB, less than 33.80% of JavaScript online submissions
-// for Maximize Sum Of Array After K Negations.
 
 /**
  * @param {number[]} A
@@ -208,73 +192,21 @@ const largestSumAfterKNegations = (A, K) => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: {
-      A: [4, 2, 3],
-      K: 1,
-    },
-    expected: 5,
-  },
-  // Explanation: Choose indices (1,) and A becomes [4,-2,3].
+import { strictEqual } from 'assert';
 
-  {
-    input: {
-      A: [3, -1, 0, 2],
-      K: 3,
-    },
-    expected: 6,
-  },
-  // Explanation: Choose indices (1, 2, 2) and A becomes [3,1,0,2].
+strictEqual(largestSumAfterKNegations([4, 2, 3], 1), 5);
+// Explanation: Choose indices (1,) and A becomes [4,-2,3].
 
-  {
-    input: {
-      A: [2, -3, -1, 5, -4],
-      K: 2,
-    },
-    expected: 13,
-  },
-  // Explanation: Choose indices (1, 4) and A becomes [2,3,-1,5,4].
+strictEqual(largestSumAfterKNegations([3, -1, 0, 2], 3), 6);
+// Explanation: Choose indices (1, 2, 2) and A becomes [3,1,0,2].
 
-  {
-    input: {
-      A: [-8, 3, -5, -3, -5, -2],
-      K: 6,
-    },
-    expected: 22,
-  },
+strictEqual(largestSumAfterKNegations([2, -3, -1, 5, -4], 2), 13);
+// Explanation: Choose indices (1, 4) and A becomes [2,3,-1,5,4].
 
-  {
-    input: {
-      A: [8, 3, 5, 3, 5, 2],
-      K: 6,
-    },
-    expected: 26,
-  },
+strictEqual(largestSumAfterKNegations([-8, 3, -5, -3, -5, -2], 6), 22);
 
-  {
-    input: {
-      A: [3, 5, 3, 5, 2],
-      K: 5,
-    },
-    expected: 14,
-  },
+strictEqual(largestSumAfterKNegations([8, 3, 5, 3, 5, 2], 6), 26);
 
-  {
-    input: {
-      A: [-2, 5, 0, 2, -2],
-      K: 3,
-    },
-    expected: 11,
-  },
-];
+strictEqual(largestSumAfterKNegations([3, 5, 3, 5, 2], 5), 14);
 
-tests.forEach(({ input: { A, K }, expected }) => {
-  const output = largestSumAfterKNegations(A, K);
-  if (expected === output) {
-    console.log(`✅ ${A.join(', ')}; ${K}`);
-  } else {
-    console.log(`🔴 ${A.join(', ')}; ${K}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
+strictEqual(largestSumAfterKNegations([-2, 5, 0, 2, -2], 3), 11);
