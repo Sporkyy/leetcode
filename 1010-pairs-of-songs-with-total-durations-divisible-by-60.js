@@ -46,14 +46,33 @@
 // Runtime: 68 ms, faster than 84.43% of JavaScript online submissions
 // Memory Usage: 38.2 MB, less than 21.30% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} time
+//  * @return {number}
+//  */
+// const numPairsDivisibleBy60 = time => {
+//   const modded = time.map(n => n % 60);
+//   const counts = new Array(60).fill(0);
+//   modded.forEach(n => counts[n]++);
+//   let result = 0;
+//   for (let i = 1; i < 30; i++) {
+//     const [x, y] = [counts[i], counts[60 - i]];
+//     if (0 < x && 0 < y) result += x * y;
+//   }
+//   if (1 < counts[0]) result += (counts[0] * (counts[0] - 1)) / 2;
+//   if (1 < counts[30]) result += (counts[30] * (counts[30] - 1)) / 2;
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {number[]} time
  * @return {number}
  */
 const numPairsDivisibleBy60 = time => {
-  const modded = time.map(n => n % 60);
   const counts = new Array(60).fill(0);
-  modded.forEach(n => counts[n]++);
+  time.forEach(t => counts[t % 60]++);
   let result = 0;
   for (let i = 1; i < 30; i++) {
     const [x, y] = [counts[i], counts[60 - i]];
