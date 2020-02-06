@@ -4,14 +4,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 84 ms, faster than 51.34% of JavaScript online submissions
-// for Find Common Characters.
 // Memory Usage: 38 MB, less than 57.14% of JavaScript online submissions
-// for Find Common Characters.
 
-/**
- * @param {string[]} A
- * @return {string[]}
- */
+// /**
+//  * @param {string[]} A
+//  * @return {string[]}
+//  */
 // const commonChars = A => {
 //   const arrayMaps = A.map(word =>
 //     word
@@ -51,9 +49,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 95.12% of JavaScript online submissions
-// for Find Common Characters.
 // Memory Usage: 37 MB, less than 85.71% of JavaScript online submissions
-// for Find Common Characters.
 
 /**
  * @param {string[]} A
@@ -70,47 +66,29 @@ const commonChars = A => {
     commonCnts[i] = Math.min(...instances);
   }
   const result = [];
-  for (let i = 0; i < 26; i++) while (commonCnts[i]--) result.push(String.fromCharCode(i + 97));
+  for (let i = 0; i < 26; i++)
+    while (commonCnts[i]--) result.push(String.fromCharCode(i + 97));
   return result;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    name: 'Example 1:',
-    input: ['bella', 'label', 'roller'],
-    expected: ['e', 'l', 'l'],
-  },
+import { deepStrictEqual } from 'assert';
 
-  {
-    name: 'Example 2',
-    input: ['cool', 'lock', 'cook'],
-    expected: ['c', 'o'],
-  },
+deepStrictEqual(commonChars(['bella', 'label', 'roller']), ['e', 'l', 'l']);
 
-  {
-    name: 'Wrong answer',
-    input: [
-      'bbddabab',
-      'cbcddbdd',
-      'bbcadcab',
-      'dabcacad',
-      'cddcacbc',
-      'ccbdbcba',
-      'cbddaccc',
-      'accdcdbb',
-    ],
-    expected: ['b', 'd'],
-  },
-];
+deepStrictEqual(commonChars(['cool', 'lock', 'cook']), ['c', 'o']);
 
-tests.forEach(({ name, input, expected }) => {
-  const result = commonChars(input);
-  if (JSON.stringify(result.sort()) === JSON.stringify(expected.sort())) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}" instead`);
-  }
-});
+deepStrictEqual(
+  commonChars([
+    'bbddabab',
+    'cbcddbdd',
+    'bbcadcab',
+    'dabcacad',
+    'cddcacbc',
+    'ccbdbcba',
+    'cbddaccc',
+    'accdcdbb',
+  ]),
+  ['b', 'd'],
+);
