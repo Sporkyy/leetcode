@@ -174,49 +174,204 @@ Return the largest possible sum of the array after modifying it in this way.
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 52 ms, faster than 99.50% of JavaScript online submissions
-// Memory Usage: 35.9 MB, less than 33.80% of JavaScript online submissions
+// Runtime: 308 ms, faster than 12.50% of JavaScript online submissions
+// Memory Usage: 53.8 MB, less than 50.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
+// const largestSumAfterKNegations = (A, K) => {
+//   A.sort((a, b) => a - b);
+//   let sum = 0;
+//   for (let i = 0; i < A.length; i++) {
+//     let val = A[i];
+//     if (0 < K) {
+//       if (val < 0) {
+//         let next = A[i + 1];
+//         if (Math.abs(val) < next && 0 === K % 2) K = 0;
+//         else [val, K] = [-val, K - 1];
+//       } else if (0 !== val && 1 === K % 2) [val, K] = [-val, 0];
+//       else K = 0;
+//     }
+//     sum += val;
+//   }
+//   return sum;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
+// const largestSumAfterKNegations = (a, k) => {
+//   console.log({ a, k });
+//   if (0 === k) return a.reduce((acc, curr) => acc + curr);
+//   const mindex = a.indexOf(Math.min(...a));
+//   console.log(mindex);
+//   console.log(`${Math.sign(a[mindex])}${k % 2}`);
+//   ({
+//     // Negative min + odd negations
+//     'negative-odd': () => {
+//       console.log('Negative min + odd negations');
+//       // Negate the min
+//       a[mindex] = -1 * a[mindex];
+//       // And go to penultimate iteration
+//       k--;
+//     },
+//     // Negative min + even negations
+//     'negative-even': () => {
+//       console.log('Negative min + even negations');
+//       // Negate the min
+//       a[mindex] = -1 * a[mindex];
+//       // Go to next iteration
+//       k--;
+//     },
+//     // Postive min + odd negations
+//     'positive-odd': () => {
+//       console.log('Postive min + odd negations');
+//       // Negate the min
+//       a[mindex] = -1 * a[mindex];
+//       // And you're done
+//       k = 0;
+//     },
+//     // Postive min + even negations
+//     'positive-even': () => {
+//       console.log('Postive min + even negations');
+//       // You're done
+//       k = 0;
+//     },
+//   }[
+//     `${a[mindex] < 0 ? 'negative' : 'positive'}-${0 === k % 2 ? 'even' : 'odd'}`
+//   ]());
+//   return largestSumAfterKNegations(a, k);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
+// const largestSumAfterKNegations = (a, k) => {
+//   if (0 === k) return a.reduce((acc, curr) => acc + curr);
+//   const min = Math.min(...a);
+//   const mindex = a.indexOf(min);
+//   ({
+//     no: () => {
+//       [a[mindex], k] = [-1 * a[mindex], k - 1];
+//     },
+//     ne: () => {
+//       [a[mindex], k] = [-1 * a[mindex], k - 1];
+//     },
+//     po: () => {
+//       [a[mindex], k] = [-1 * a[mindex], 0];
+//     },
+//     pe: () => {
+//       k = 0;
+//     },
+//   }[`${a[mindex] < 0 ? 'n' : 'p'}${0 === k % 2 ? 'e' : 'o'}`]());
+//   return largestSumAfterKNegations(a, k);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
+// const largestSumAfterKNegations = (a, k) => {
+//   if (0 === k) return a.reduce((acc, curr) => acc + curr);
+//   const min = Math.min(...a);
+//   const mindex = a.indexOf(min);
+//   if (min < 0) [a[mindex], k] = [-1 * min, k - 1];
+//   else if (0 === k % 2) k = 0;
+//   else [a[mindex], k] = [-1 * a[mindex], 0];
+//   return largestSumAfterKNegations(a, k);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 76 ms, faster than 59.72% of JavaScript online submissions
+// Memory Usage: 40.3 MB, less than 50.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
+// const largestSumAfterKNegations = (a, k) => {
+//   if (0 === k) return a.reduce((acc, curr) => acc + curr);
+//   const min = Math.min(...a);
+//   const mindex = a.indexOf(min);
+//   if (min < 0 || k % 2) a[mindex] = -a[mindex];
+//   return largestSumAfterKNegations(a, min < 0 ? k - 1 : 0);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 72.92% of JavaScript online submissions
+// Memory Usage: 36.3 MB, less than 50.00% of JavaScript online submissions
 
 /**
  * @param {number[]} A
  * @param {number} K
  * @return {number}
  */
-const largestSumAfterKNegations = (A, K) => {
-  A.sort((a, b) => a - b);
-  let sum = 0;
-  for (let i = 0; i < A.length; i++) {
-    let val = A[i];
-    if (0 < K) {
-      if (val < 0) {
-        let next = A[i + 1];
-        if (Math.abs(val) < next && 0 === K % 2) K = 0;
-        else [val, K] = [-val, K - 1];
-      } else if (0 !== val && 1 === K % 2) [val, K] = [-val, 0];
-      else K = 0;
-    }
-    sum += val;
-  }
-  return sum;
+const largestSumAfterKNegations = (a, k) => {
+  if (0 === k) return a.reduce((acc, curr) => acc + curr);
+  let [min, mindex] = [Infinity];
+  for (let i = 0; i < a.length; i++) if (a[i] < min) [min, mindex] = [a[i], i];
+  if (min < 0 || k % 2) a[mindex] = -a[mindex];
+  return largestSumAfterKNegations(a, min < 0 ? k - 1 : 0);
 };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 72.92% of JavaScript online submissions
+// Memory Usage: 36.2 MB, less than 50.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} A
+//  * @param {number} K
+//  * @return {number}
+//  */
+// const largestSumAfterKNegations = (a, k) => {
+//   while (0 < k) {
+//     let [min, mindex] = [Infinity];
+//     for (let i = 0; i < a.length; i++)
+//       if (a[i] < min) [min, mindex] = [a[i], i];
+//     if (min < 0 || k % 2) a[mindex] = -a[mindex];
+//     k = min < 0 ? k - 1 : 0;
+//   }
+//   return a.reduce((acc, curr) => acc + curr);
+// };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 import { strictEqual } from 'assert';
 
 strictEqual(largestSumAfterKNegations([4, 2, 3], 1), 5);
-// Explanation: Choose indices (1,) and A becomes [4,-2,3].
+// 1: [4, -2, 3]
 
 strictEqual(largestSumAfterKNegations([3, -1, 0, 2], 3), 6);
-// Explanation: Choose indices (1, 2, 2) and A becomes [3,1,0,2].
+// [1, 2, 2]: [3, 1, 0, 2]
 
 strictEqual(largestSumAfterKNegations([2, -3, -1, 5, -4], 2), 13);
-// Explanation: Choose indices (1, 4) and A becomes [2,3,-1,5,4].
+// [1, 4]: [2, 3, -1, 5, 4]
 
 strictEqual(largestSumAfterKNegations([-8, 3, -5, -3, -5, -2], 6), 22);
 
 strictEqual(largestSumAfterKNegations([8, 3, 5, 3, 5, 2], 6), 26);
+// // null: [8, 3, 5, 3, 5, 2]
 
 strictEqual(largestSumAfterKNegations([3, 5, 3, 5, 2], 5), 14);
 
 strictEqual(largestSumAfterKNegations([-2, 5, 0, 2, -2], 3), 11);
+
+strictEqual(largestSumAfterKNegations([-2, 9, 9, 8, 4], 5), 32);
