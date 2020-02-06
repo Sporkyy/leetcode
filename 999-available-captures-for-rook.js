@@ -4,14 +4,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 23.02% of JavaScript online submissions
-// for Available Captures for Rook.
 // Memory Usage: 37.3 MB, less than 100.00% of JavaScript online submissions
-// for Available Captures for Rook.
 
-/**
- * @param {character[][]} board
- * @return {number}
- */
+// /**
+//  * @param {character[][]} board
+//  * @return {number}
+//  */
 // const numRookCaptures = board => {
 //   const boardToMap = board =>
 //     board.reduce((map, row, i) => {
@@ -174,14 +172,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 48 ms, faster than 87.83% of JavaScript online submissions
-// for Available Captures for Rook.
 // Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
-// for Available Captures for Rook.
 
-/**
- * @param {character[][]} board
- * @return {number}
- */
+// /**
+//  * @param {character[][]} board
+//  * @return {number}
+//  */
 // const numRookCaptures = board => {
 //   let rookRow;
 //   let rookCol;
@@ -232,9 +228,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 52 ms, faster than 69.31% of JavaScript online submissions
-// for Available Captures for Rook.
 // Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
-// for Available Captures for Rook.
 
 /**
  * @param {character[][]} board
@@ -297,55 +291,46 @@ const numRookCaptures = board => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: [
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-      ['.', '.', '.', 'p', '.', '.', '.', '.'],
-      ['.', '.', '.', 'R', '.', '.', '.', 'p'],
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-      ['.', '.', '.', 'p', '.', '.', '.', '.'],
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-    ],
-    expected: 3,
-  },
-  {
-    input: [
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-      ['.', 'p', 'p', 'p', 'p', 'p', '.', '.'],
-      ['.', 'p', 'p', 'B', 'p', 'p', '.', '.'],
-      ['.', 'p', 'B', 'R', 'B', 'p', '.', '.'],
-      ['.', 'p', 'p', 'B', 'p', 'p', '.', '.'],
-      ['.', 'p', 'p', 'p', 'p', 'p', '.', '.'],
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-    ],
-    expected: 0,
-  },
-  {
-    input: [
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-      ['.', '.', '.', 'p', '.', '.', '.', '.'],
-      ['.', '.', '.', 'p', '.', '.', '.', '.'],
-      ['p', 'p', '.', 'R', '.', 'p', 'B', '.'],
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-      ['.', '.', '.', 'B', '.', '.', '.', '.'],
-      ['.', '.', '.', 'p', '.', '.', '.', '.'],
-      ['.', '.', '.', '.', '.', '.', '.', '.'],
-    ],
-    expected: 3,
-  },
-];
+import { strictEqual } from 'assert';
 
-for (let { input, expected } of tests) {
-  const result = numRookCaptures(input);
-  const name = '\n' + input.map(r => r.join('')).join('\n');
-  if (expected === result) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Got ${result} but expected ${expected}`);
-  }
-}
+strictEqual(
+  numRookCaptures([
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', '.', '.', 'p', '.', '.', '.', '.'],
+    ['.', '.', '.', 'R', '.', '.', '.', 'p'],
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', '.', '.', 'p', '.', '.', '.', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+  ]),
+  3,
+);
+
+strictEqual(
+  numRookCaptures([
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', 'p', 'p', 'p', 'p', 'p', '.', '.'],
+    ['.', 'p', 'p', 'B', 'p', 'p', '.', '.'],
+    ['.', 'p', 'B', 'R', 'B', 'p', '.', '.'],
+    ['.', 'p', 'p', 'B', 'p', 'p', '.', '.'],
+    ['.', 'p', 'p', 'p', 'p', 'p', '.', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+  ]),
+  0,
+);
+
+strictEqual(
+  numRookCaptures([
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', '.', '.', 'p', '.', '.', '.', '.'],
+    ['.', '.', '.', 'p', '.', '.', '.', '.'],
+    ['p', 'p', '.', 'R', '.', 'p', 'B', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', '.', '.', 'B', '.', '.', '.', '.'],
+    ['.', '.', '.', 'p', '.', '.', '.', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.'],
+  ]),
+  3,
+);
