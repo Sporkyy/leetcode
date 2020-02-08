@@ -387,23 +387,99 @@
 // Runtime: 36 ms, faster than 100.00% of JavaScript online submissions
 // Memory Usage: 34.1 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string[][]} board
+//  * @return {number}
+//  */
+// const numRookCaptures = board => {
+//   const flattened = board.reduce((acc, curr) => acc.concat(curr), []);
+//   const rIndex = flattened.indexOf('R');
+//   let [row, col] = ['', ''];
+//   flattened.forEach((curr, idx) => {
+//     if (Math.trunc(idx / 8) === Math.trunc(rIndex / 8)) row += curr;
+//     if (idx % 8 === rIndex % 8) col += curr;
+//   });
+//   let captures = 0;
+//   /* Look left  */ if (/[a-z]\.*R/.test(row)) captures++;
+//   /* Look right */ if (/R\.*[a-z]/.test(row)) captures++;
+//   /* Look up    */ if (/[a-z]\.*R/.test(col)) captures++;
+//   /* Look down  */ if (/R\.*[a-z]/.test(col)) captures++;
+//   return captures;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 48 ms, faster than 88.04% of JavaScript online submissions
+// Memory Usage: 34.2 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {string[][]} board
+//  * @return {number}
+//  */
+// const numRookCaptures = board => {
+//   const flattened = board.reduce((acc, curr) => (acc += curr.join('')), '');
+//   const rIndex = flattened.indexOf('R');
+//   let [row, col] = ['', ''];
+//   for (let i = 0; i < flattened.length; i++) {
+//     if (Math.trunc(i / 8) === Math.trunc(rIndex / 8)) row += flattened[i];
+//     if (i % 8 === rIndex % 8) col += flattened[i];
+//   }
+//   let captures = 0;
+//   /* Look left  */ if (/[a-z]\.*R/.test(row)) captures++;
+//   /* Look right */ if (/R\.*[a-z]/.test(row)) captures++;
+//   /* Look up    */ if (/[a-z]\.*R/.test(col)) captures++;
+//   /* Look down  */ if (/R\.*[a-z]/.test(col)) captures++;
+//   return captures;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 18.48% of JavaScript online submissions
+// Memory Usage: 33.7 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {string[][]} board
+//  * @return {number}
+//  */
+// const numRookCaptures = board => {
+//   const flattened = board.map(r => r.join('')).join('');
+//   const rIndex = flattened.indexOf('R');
+//   let [row, col] = ['', ''];
+//   for (let i = 0; i < flattened.length; i++) {
+//     if (Math.trunc(i / 8) === Math.trunc(rIndex / 8)) row += flattened[i];
+//     if (i % 8 === rIndex % 8) col += flattened[i];
+//   }
+//   let captures = 0;
+//   /* Look left  */ if (/[a-z]\.*R/.test(row)) captures++;
+//   /* Look right */ if (/R\.*[a-z]/.test(row)) captures++;
+//   /* Look up    */ if (/[a-z]\.*R/.test(col)) captures++;
+//   /* Look down  */ if (/R\.*[a-z]/.test(col)) captures++;
+//   return captures;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 48 ms, faster than 88.04% of JavaScript online submissions
+// Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string[][]} board
  * @return {number}
  */
 const numRookCaptures = board => {
-  const flattened = board.reduce((acc, curr) => acc.concat(curr), []);
-  const rIndex = flattened.indexOf('R');
-  let [row, col] = ['', ''];
-  flattened.forEach((curr, idx) => {
-    if (Math.trunc(idx / 8) === Math.trunc(rIndex / 8)) row += curr;
-    if (idx % 8 === rIndex % 8) col += curr;
-  });
+  const [rows, cols] = [new Array(8).fill(''), new Array(8).fill('')];
+  let iRookRow, iRookCol;
+  for (let i = 0; i < 8; i++)
+    for (let j = 0; j < 8; j++) {
+      rows[i] += board[i][j];
+      cols[i] += board[j][i];
+      if ('R' === board[i][j]) [iRookRow, iRookCol] = [i, j];
+    }
   let captures = 0;
-  /* Look left  */ if (/[a-z]\.*R/.test(row)) captures++;
-  /* Look right */ if (/R\.*[a-z]/.test(row)) captures++;
-  /* Look up    */ if (/[a-z]\.*R/.test(col)) captures++;
-  /* Look down  */ if (/R\.*[a-z]/.test(col)) captures++;
+  /* Look left  */ if (/[a-z]\.*R/.test(rows[iRookRow])) captures++;
+  /* Look right */ if (/R\.*[a-z]/.test(rows[iRookRow])) captures++;
+  /* Look up    */ if (/[a-z]\.*R/.test(cols[iRookCol])) captures++;
+  /* Look down  */ if (/R\.*[a-z]/.test(cols[iRookCol])) captures++;
   return captures;
 };
 
