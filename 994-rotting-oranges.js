@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 91.22% of JavaScript online submissions
-// for Rotting Oranges.
 // Memory Usage: 36.4 MB, less than 59.55% of JavaScript online submissions
-// for Rotting Oranges.
 
 // /**
 //  * @param {number[][]} grid
@@ -74,9 +72,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 82.06% of JavaScript online submissions
-// for Rotting Oranges.
 // Memory Usage: 36.8 MB, less than 48.31% of JavaScript online submissions
-// for Rotting Oranges.
 
 // const gridToArray = grid => {
 //   const [w, h] = [grid[0].length, grid.length];
@@ -125,9 +121,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 82.06% of JavaScript online submissions
-// for Rotting Oranges.
 // Memory Usage: 37.2 MB, less than 26.97% of JavaScript online submissions
-// for Rotting Oranges.
 
 /**
  * @param {number[][]} grid
@@ -156,9 +150,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 80 ms, faster than 40.08% of JavaScript online submissions
-// for Rotting Oranges.
 // Memory Usage: 37.2 MB, less than 25.84% of JavaScript online submissions
-// for Rotting Oranges.
 
 /**
  * @param {number[][]} grid
@@ -184,77 +176,71 @@ var orangesRotting = function(grid, minutes = 0) {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  // | 2 | 1 | 1 |
-  // | 1 | 1 | 0 |
-  // | 0 | 1 | 1 |
+import { strictEqual } from 'assert';
 
-  // 0: 2, 1, 1, 1, 1, 0, 0, 1, 1
-  // 1: 3, 2, 1, 2, 1, 0, 0, 1, 1
-  // 2: 4, 3, 2, 3, 2, 0, 0, 1, 1
-  // 3: 5, 4, 3, 4, 3, 0, 0, 2, 1
-  // 4: 6, 5, 4, 5, 4, 0, 0, 3, 2
+// | 2 | 1 | 1 |
+// | 1 | 1 | 0 |
+// | 0 | 1 | 1 |
 
-  {
-    input: [[2, 1, 1], [1, 1, 0], [0, 1, 1]],
-    expected: 4,
-  },
+// 0: 2, 1, 1, 1, 1, 0, 0, 1, 1
+// 1: 3, 2, 1, 2, 1, 0, 0, 1, 1
+// 2: 4, 3, 2, 3, 2, 0, 0, 1, 1
+// 3: 5, 4, 3, 4, 3, 0, 0, 2, 1
+// 4: 6, 5, 4, 5, 4, 0, 0, 3, 2
 
-  // | 2 | 1 | 1 |
-  // | 0 | 1 | 1 |
-  // | 1 | 0 | 1 |
+strictEqual(
+  orangesRotting([
+    [2, 1, 1],
+    [1, 1, 0],
+    [0, 1, 1],
+  ]),
+  4,
+);
 
-  {
-    input: [[2, 1, 1], [0, 1, 1], [1, 0, 1]],
-    expected: -1,
-  },
+// | 2 | 1 | 1 |
+// | 0 | 1 | 1 |
+// | 1 | 0 | 1 |
 
-  // | 0 | 2 |
+strictEqual(
+  orangesRotting([
+    [2, 1, 1],
+    [0, 1, 1],
+    [1, 0, 1],
+  ]),
+  -1,
+);
 
-  {
-    input: [[0, 2]],
-    expected: 0,
-  },
+// | 0 | 2 |
 
-  {
-    input: [[0]],
-    expected: 0,
-  },
+strictEqual(orangesRotting([[0, 2]]), 0);
 
-  // | 1 | 2 |
+strictEqual(orangesRotting([[0]]), 0);
 
-  // 0: 1, 2
-  // 1: 2, 3
+// | 1 | 2 |
 
-  {
-    input: [[1], [2]],
-    expected: 1,
-  },
+// 0: 1, 2
+// 1: 2, 3
 
-  // | 0 | 1 | 2 |
-  // | 3 | 4 | 5 |
+strictEqual(orangesRotting([[1], [2]]), 1);
 
-  {
-    input: [[0, 2, 2], [0, 1, 0]],
-    expected: 1,
-  },
+// | 0 | 1 | 2 |
+// | 3 | 4 | 5 |
 
-  // | 0 | 1 | 2 | 3 |
-  // | 4 | 5 | 6 | 7 |
+strictEqual(
+  orangesRotting([
+    [0, 2, 2],
+    [0, 1, 0],
+  ]),
+  1,
+);
 
-  {
-    input: [[2, 2, 0, 2], [2, 1, 2, 2]],
-    expected: 1,
-  },
-];
+// | 0 | 1 | 2 | 3 |
+// | 4 | 5 | 6 | 7 |
 
-for ({ input, expected } of tests) {
-  const output = orangesRotting(input);
-  const name = input.join(', ');
-  if (expected === output) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-}
+strictEqual(
+  orangesRotting([
+    [2, 2, 0, 2],
+    [2, 1, 2, 2],
+  ]),
+  1,
+);
