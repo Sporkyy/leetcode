@@ -24,11 +24,11 @@ Otherwise, return -1.
 // Runtime: 100 ms, faster than 84.68% of JavaScript online submissions
 // Memory Usage: 42.9 MB, less than 93.24% of JavaScript online submissions
 
-/**
- * @param {number} N
- * @param {number[][]} trust
- * @return {number}
- */
+// /**
+//  * @param {number} N
+//  * @param {number[][]} trust
+//  * @return {number}
+//  */
 // const findJudge = (N, trust) => {
 //   const trusts = new Array(N).fill(0);
 //   const trustedBy = new Array(N).fill(0);
@@ -46,11 +46,11 @@ Otherwise, return -1.
 // Runtime: 104 ms, faster than 74.40% of JavaScript online submissions
 // Memory Usage: 43.7 MB, less than 52.70% of JavaScript online submissions
 
-/**
- * @param {number} N
- * @param {number[][]} trust
- * @return {number}
- */
+// /**
+//  * @param {number} N
+//  * @param {number[][]} trust
+//  * @return {number}
+//  */
 // const findJudge = (N, trust) => {
 //   const p = new Array(N).fill(0);
 //   trust.forEach(([x, y]) => ([p[x - 1], p[y - 1]] = [p[x - 1] + 1, p[y - 1] - 1]));
@@ -62,11 +62,11 @@ Otherwise, return -1.
 // Runtime: 96 ms, faster than 90.81% of JavaScript online submissions
 // Memory Usage: 43.7 MB, less than 52.70% of JavaScript online submissions
 
-/**
- * @param {number} N
- * @param {number[][]} trust
- * @return {number}
- */
+// /**
+//  * @param {number} N
+//  * @param {number[][]} trust
+//  * @return {number}
+//  */
 // const findJudge = (N, trust) => {
 //   const a = new Array(N + 1).fill(0);
 //   for (let [x, y] of trust) [a[x], a[y]] = [a[x] + 1, a[y] - 1];
