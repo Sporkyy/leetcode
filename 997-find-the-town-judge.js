@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 100 ms, faster than 84.68% of JavaScript online submissions
-// for Find the Town Judge.
 // Memory Usage: 42.9 MB, less than 93.24% of JavaScript online submissions
-// for Find the Town Judge.
 
 /**
  * @param {number} N
@@ -28,9 +26,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 104 ms, faster than 74.40% of JavaScript online submissions
-// for Find the Town Judge.
 // Memory Usage: 43.7 MB, less than 52.70% of JavaScript online submissions
-// for Find the Town Judge.
 
 /**
  * @param {number} N
@@ -46,9 +42,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 96 ms, faster than 90.81% of JavaScript online submissions
-// for Find the Town Judge.
 // Memory Usage: 43.7 MB, less than 52.70% of JavaScript online submissions
-// for Find the Town Judge.
 
 /**
  * @param {number} N
@@ -65,9 +59,27 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 104 ms, faster than 74.40% of JavaScript online submissions
-// for Find the Town Judge.
 // Memory Usage: 43.3 MB, less than 82.43% of JavaScript online submissions
-// for Find the Town Judge.
+
+// /**
+//  * @param {number} N
+//  * @param {number[][]} trust
+//  * @return {number}
+//  */
+// const findJudge = (N, trust) => {
+//   const a = new Array(N + 1).fill(0);
+//   for (let [x, y] of trust) {
+//     a[x]++;
+//     a[y]--;
+//   }
+//   for (let i = 1; i <= N; i++) if (-N + 1 === a[i]) return i;
+//   return -1;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 100 ms, faster than 71.60% of JavaScript online submissions
+// Memory Usage: 43.9 MB, less than 20.00% of JavaScript online submissions
 
 /**
  * @param {number} N
@@ -76,81 +88,64 @@
  */
 const findJudge = (N, trust) => {
   const a = new Array(N + 1).fill(0);
-  for (let [x, y] of trust) {
-    a[x]++;
-    a[y]--;
-  }
+  for (let [x, y] of trust) [a[x], a[y]] = [a[x] + 1, a[y] - 1];
   for (let i = 1; i <= N; i++) if (-N + 1 === a[i]) return i;
   return -1;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: {
-      N: 2,
-      trust: [[1, 2]],
-    },
-    expected: 2,
-  },
+import { strictEqual } from 'assert';
 
-  {
-    input: {
-      N: 3,
-      trust: [[1, 3], [2, 3]],
-    },
-    expected: 3,
-  },
+strictEqual(findJudge(2, [[1, 2]]), 2);
 
-  {
-    input: {
-      N: 3,
-      trust: [[1, 3], [2, 3], [3, 1]],
-    },
-    expected: -1,
-  },
+strictEqual(
+  findJudge(3, [
+    [1, 3],
+    [2, 3],
+  ]),
+  3,
+);
 
-  {
-    input: {
-      N: 3,
-      trust: [[1, 2], [2, 3]],
-    },
-    expected: -1,
-  },
+strictEqual(
+  findJudge(3, [
+    [1, 3],
+    [2, 3],
+    [3, 1],
+  ]),
+  -1,
+);
 
-  {
-    input: {
-      N: 4,
-      trust: [[1, 3], [1, 4], [2, 3], [2, 4], [4, 3]],
-    },
-    expected: 3,
-  },
+strictEqual(
+  findJudge(3, [
+    [1, 2],
+    [2, 3],
+  ]),
+  -1,
+);
 
-  {
-    input: {
-      N: 4,
-      trust: [[1, 2], [1, 3], [2, 1], [2, 3], [1, 4], [4, 3], [4, 1]],
-    },
-    expected: 3,
-  },
+strictEqual(
+  findJudge(4, [
+    [1, 3],
+    [1, 4],
+    [2, 3],
+    [2, 4],
+    [4, 3],
+  ]),
+  3,
+);
 
-  {
-    input: {
-      N: 1,
-      trust: [],
-    },
-    expected: 1,
-  },
-];
+strictEqual(
+  findJudge(4, [
+    [1, 2],
+    [1, 3],
+    [2, 1],
+    [2, 3],
+    [1, 4],
+    [4, 3],
+    [4, 1],
+  ]),
+  3,
+);
 
-tests.forEach(({ input: { N, trust }, expected }) => {
-  const output = findJudge(N, trust);
-  const name = `${N}; ${trust.join(', ')}`;
-  if (expected === output) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-});
+strictEqual(findJudge(1, []), 1);
