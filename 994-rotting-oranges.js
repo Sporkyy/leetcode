@@ -1,6 +1,21 @@
 // 994. Rotting Oranges
 // https://leetcode.com/problems/rotting-oranges/
 
+/*
+
+In a given grid, each cell can have one of three values:
+
+- the value 0 representing an empty cell;
+- the value 1 representing a fresh orange;
+  the value 2 representing a rotten orange.
+- Every minute, any fresh orange that is adjacent (4-directionally) to a
+  rotten orange becomes rotten.
+
+Return the minimum number of minutes that must elapse until no cell has a
+fresh orange.  If this is impossible, return -1 instead.
+
+*/
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 91.22% of JavaScript online submissions
@@ -149,29 +164,60 @@
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 80 ms, faster than 40.08% of JavaScript online submissions
-// Memory Usage: 37.2 MB, less than 25.84% of JavaScript online submissions
+// Runtime: 72 ms, faster than 62.62% of JavaScript online submissions
+// Memory Usage: 37.3 MB, less than 42.86% of JavaScript online submissions
+
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
+// const orangesRotting = (grid, minutes = 0) => {
+//   while (JSON.stringify(grid).includes('1') && ++minutes) {
+//     const copy = grid.map(a => a.slice(0));
+//     for (let i = 0; i < copy.length; i++) {
+//       for (let j = 0; j < copy[i].length; j++) {
+//         if (2 !== grid[i][j]) continue;
+//         if (grid[i - 1] && 1 === grid[i - 1][j]) copy[i - 1][j] = 2;
+//         if (grid[i + 1] && 1 === grid[i + 1][j]) copy[i + 1][j] = 2;
+//         if (1 === grid[i][j - 1]) copy[i][j - 1] = 2;
+//         if (1 === grid[i][j + 1]) copy[i][j + 1] = 2;
+//       }
+//     }
+//     if (JSON.stringify(grid) === JSON.stringify(copy)) break;
+//     grid = copy;
+//   }
+//   return JSON.stringify(grid).includes('1') ? -1 : minutes;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 72 ms, faster than 62.27% of JavaScript online submissions
+// Memory Usage: 36.8 MB, less than 50.00% of JavaScript online submissions
 
 /**
  * @param {number[][]} grid
  * @return {number}
  */
-var orangesRotting = function(grid, minutes = 0) {
-  while (JSON.stringify(grid).includes('1') && ++minutes) {
-    const copy = grid.map(a => a.slice(0));
-    for (let i = 0; i < copy.length; i++) {
-      for (let j = 0; j < copy[i].length; j++) {
-        if (2 !== grid[i][j]) continue;
-        if (grid[i - 1] && 1 === grid[i - 1][j]) copy[i - 1][j] = 2;
-        if (grid[i + 1] && 1 === grid[i + 1][j]) copy[i + 1][j] = 2;
-        if (1 === grid[i][j - 1]) copy[i][j - 1] = 2;
-        if (1 === grid[i][j + 1]) copy[i][j + 1] = 2;
+const orangesRotting = (grid, minutes = 0) => {
+  const cpy = JSON.parse(JSON.stringify(grid));
+  let rotted = 0;
+  for (let i = 0; i < grid.length; i++)
+    for (let j = 0; j < grid[0].length; j++)
+      if (
+        1 === grid[i][j] &&
+        ((grid[i - 1] && 2 === grid[i - 1][j]) ||
+          2 === grid[i][j - 1] ||
+          (grid[i + 1] && 2 === grid[i + 1][j]) ||
+          2 === grid[i][j + 1])
+      ) {
+        cpy[i][j] = 2;
+        rotted++;
       }
-    }
-    if (JSON.stringify(grid) === JSON.stringify(copy)) break;
-    grid = copy;
-  }
-  return JSON.stringify(grid).includes('1') ? -1 : minutes;
+  return 0 === rotted
+    ? JSON.stringify(cpy).includes('1')
+      ? -1
+      : minutes
+    : orangesRotting(cpy, minutes + 1);
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
