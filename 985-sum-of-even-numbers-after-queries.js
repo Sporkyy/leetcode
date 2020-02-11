@@ -23,9 +23,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 8348 ms, faster than 27.49% of JavaScript online submissions
-// for Sum of Even Numbers After Queries.
 // Memory Usage: 47.3 MB, less than 60.00% of JavaScript online submissions
-// for Sum of Even Numbers After Queries.
 
 // const sumEvens = a => a.reduce((acc, curr) => (0 === curr % 2 ? acc + curr : acc), 0);
 
@@ -51,9 +49,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 108 ms, faster than 93.05% of JavaScript online submissions
-// for Sum of Even Numbers After Queries.
 // Memory Usage: 47.8 MB, less than 20.00% of JavaScript online submissions
-// for Sum of Even Numbers After Queries.
 
 /**
  * @param {number[]} A
@@ -77,9 +73,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 140 ms, faster than 48.03% of JavaScript online submissions
-// for Sum of Even Numbers After Queries.
 // Memory Usage: 46.6 MB, less than 100.00% of JavaScript online submissions
-// for Sum of Even Numbers After Queries.
 
 /**
  * @param {number[]} A
@@ -100,40 +94,25 @@ const sumEvenAfterQueries = (A, queries) => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  // [ 1,  2, 3, 4] = 6
-  // [ 2,  2, 3, 4] = 8
-  // [ 2, -1, 3, 4] = 6
-  // [-2, -1, 3, 4] = 2
-  // [-2, -1, 3, 6] = 4
+import { deepStrictEqual } from 'assert';
 
-  {
-    input: {
-      A: [1, 2, 3, 4],
-      queries: [[1, 0], [-3, 1], [-4, 0], [2, 3]],
-    },
-    expected: [8, 6, 2, 4],
-  },
+// [ 1,  2, 3, 4] = 6
+// [ 2,  2, 3, 4] = 8
+// [ 2, -1, 3, 4] = 6
+// [-2, -1, 3, 4] = 2
+// [-2, -1, 3, 6] = 4
 
-  {
-    input: {
-      A: [1],
-      queries: [[4, 0]],
-    },
-    expected: [0],
-  },
-];
+deepStrictEqual(
+  sumEvenAfterQueries(
+    [1, 2, 3, 4],
+    [
+      [1, 0],
+      [-3, 1],
+      [-4, 0],
+      [2, 3],
+    ],
+  ),
+  [8, 6, 2, 4],
+);
 
-for ({
-  input: { A, queries },
-  expected,
-} of tests) {
-  const result = sumEvenAfterQueries(A, queries);
-  const name = `A = ${JSON.stringify(A)}, queries = ${JSON.stringify(queries)}`;
-  if (JSON.stringify(expected) === JSON.stringify(result)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}, but got "${result}"`);
-  }
-}
+deepStrictEqual(sumEvenAfterQueries([1], [[4, 0]]), [0]);
