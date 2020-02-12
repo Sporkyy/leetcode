@@ -27,11 +27,11 @@
 
 // const sumEvens = a => a.reduce((acc, curr) => (0 === curr % 2 ? acc + curr : acc), 0);
 
-/**
- * @param {number[]} A
- * @param {number[][]} queries
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @param {number[][]} queries
+//  * @return {number[]}
+//  */
 // const sumEvenAfterQueries = (A, queries) => {
 //   const answer = [];
 //   for (let i = 0; i < queries.length; i++) {
@@ -51,11 +51,11 @@
 // Runtime: 108 ms, faster than 93.05% of JavaScript online submissions
 // Memory Usage: 47.8 MB, less than 20.00% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @param {number[][]} queries
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @param {number[][]} queries
+//  * @return {number[]}
+//  */
 // const sumEvenAfterQueries = (A, queries) => {
 //   const isEven = n => 0 === n % 2;
 //   let acc = A.reduce((acc, curr) => (isEven(curr) ? acc + curr : acc), 0);
