@@ -1,6 +1,15 @@
 // 961. N-Repeated Element in Size 2N Array
 // https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
 
+/*
+
+In a array A of size 2N, there are N+1 unique elements,
+and exactly one of these elements is repeated N times.
+
+Return the element repeated N times.
+
+*/
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 116 ms, faster than 16.78% of JavaScript online submissions
@@ -110,23 +119,54 @@
 // Runtime: 72 ms, faster than 53.53% of JavaScript online submissions
 // Memory Usage: 36.5 MB, less than 50.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} A
+//  * @return {number}
+//  */
+// const repeatedNTimes = A => {
+//   for (let i = 0; i < A.length; i += 4) {
+//     const [a, b] = [A[i], A[i + 1]];
+//     if (a === b) return a;
+//     if (i < A.length - 2) {
+//       const [c, d] = [A[i + 2], A[i + 3]];
+//       if (a === c) return a;
+//       if (a === d) return a;
+//       if (b === c) return b;
+//       if (b === d) return b;
+//       if (c === d) return c;
+//     }
+//   }
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 79.25% of JavaScript online submissions
+// Memory Usage: 36.4 MB, less than 56.25% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} A
+//  * @return {number}
+//  */
+// const repeatedNTimes = a => {
+//   let s = '';
+//   for (const n of a) {
+//     if (s.includes(n)) return n;
+//     s += n;
+//   }
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 79.25% of JavaScript online submissions
+// Memory Usage: 36.7 MB, less than 43.75% of JavaScript online submissions
+
 /**
  * @param {number[]} A
  * @return {number}
  */
-const repeatedNTimes = A => {
-  for (let i = 0; i < A.length; i += 4) {
-    const [a, b] = [A[i], A[i + 1]];
-    if (a === b) return a;
-    if (i < A.length - 2) {
-      const [c, d] = [A[i + 2], A[i + 3]];
-      if (a === c) return a;
-      if (a === d) return a;
-      if (b === c) return b;
-      if (b === d) return b;
-      if (c === d) return c;
-    }
-  }
+const repeatedNTimes = a => {
+  for (let i = 0; i < a.length; i++)
+    if (a.slice(i + 1).includes(a[i])) return a[i];
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
