@@ -124,19 +124,30 @@ also in sorted non-decreasing order.
 // Runtime: 124 ms, faster than 81.08% of JavaScript online submissions
 // Memory Usage: 42.3 MB, less than 92.59% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
+// const sortedSquares = A => {
+//   for (let i = A.length - 1; 0 <= i; i--) A[i] = Math.pow(A[i], 2);
+//   let [p1, p2] = [0, A.length - 1];
+//   const result = [];
+//   while (p1 <= p2)
+//     if (A[p2] < A[p1]) result.push(A[p1++]);
+//     else result.push(A[p2--]);
+//   return result.reverse();
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 136 ms, faster than 62.60% of JavaScript online submissions
+// Memory Usage: 44 MB, less than 11.11% of JavaScript online submissions
+
 /**
  * @param {number[]} A
  * @return {number[]}
  */
-const sortedSquares = A => {
-  for (let i = A.length - 1; 0 <= i; i--) A[i] = Math.pow(A[i], 2);
-  let [p1, p2] = [0, A.length - 1];
-  const result = [];
-  while (p1 <= p2)
-    if (A[p2] < A[p1]) result.push(A[p1++]);
-    else result.push(A[p2--]);
-  return result.reverse();
-};
+const sortedSquares = A => A.map(n => n ** 2).sort((a, b) => a - b);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
