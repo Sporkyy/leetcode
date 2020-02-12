@@ -4,9 +4,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 140 ms, faster than 56.02% of JavaScript online submissions
-// for Squares of a Sorted Array.
 // Memory Usage: 43.1 MB, less than 81.48% of JavaScript online submissions
-// for Squares of a Sorted Array.
 
 /**
  * @param {number[]} A
@@ -17,9 +15,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 120 ms, faster than 83.01% of JavaScript online submissions
-// for Squares of a Sorted Array.
 // Memory Usage: 43.8 MB, less than 22.22% of JavaScript online submissions
-// for Squares of a Sorted Array.
 
 /**
  * @param {number[]} A
@@ -30,9 +26,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 104 ms, faster than 93.96% of JavaScript online submissions
-// for Squares of a Sorted Array.
 // Memory Usage: 42.2 MB, less than 96.30% of JavaScript online submissions
-// for Squares of a Sorted Array.
 
 /**
  * @param {number[]} A
@@ -57,9 +51,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 120 ms, faster than 83.01% of JavaScript online submissions
-// for Squares of a Sorted Array.
 // Memory Usage: 42.6 MB, less than 88.89% of JavaScript online submissions
-// for Squares of a Sorted Array.
 
 /**
  * @param {number[]} A
@@ -84,9 +76,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 100 ms, faster than 97.05% of JavaScript online submissions
-// for Squares of a Sorted Array.
 // Memory Usage: 42.4 MB, less than 92.59% of JavaScript online submissions
-// for Squares of a Sorted Array.
 
 /**
  * @param {number[]} A
@@ -105,9 +95,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 152 ms, faster than 26.68% of JavaScript online submissions
-// for Squares of a Sorted Array.
 // Memory Usage: 42.4 MB, less than 92.59% of JavaScript online submissions
-// for Squares of a Sorted Array.
 
 /**
  * @param {number[]} A
@@ -125,9 +113,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 124 ms, faster than 81.08% of JavaScript online submissions
-// for Squares of a Sorted Array.
 // Memory Usage: 42.3 MB, less than 92.59% of JavaScript online submissions
-// for Squares of a Sorted Array.
 
 /**
  * @param {number[]} A
@@ -145,62 +131,59 @@ const sortedSquares = A => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: [-4, -1, 0, 3, 10],
-    expected: [0, 1, 9, 16, 100],
-  },
+import { deepStrictEqual } from 'assert';
 
-  {
-    input: [-7, -3, 2, 3, 11],
-    expected: [4, 9, 9, 49, 121],
-  },
+deepStrictEqual(sortedSquares([-4, -1, 0, 3, 10]), [0, 1, 9, 16, 100]);
 
-  {
-    input: [-20, -19, -14, -12, -7, -5, 2, 2, 4, 6, 6, 7, 8, 9, 10, 12, 17, 17, 18, 18],
-    expected: [
-      4,
-      4,
-      16,
-      25,
-      36,
-      36,
-      49,
-      49,
-      64,
-      81,
-      100,
-      144,
-      144,
-      196,
-      289,
-      289,
-      324,
-      324,
-      361,
-      400,
-    ],
-  },
+deepStrictEqual(sortedSquares([-7, -3, 2, 3, 11]), [4, 9, 9, 49, 121]);
 
-  {
-    input: [-10000, 0, 10000],
-    expected: [0, 100000000, 100000000],
-  },
+deepStrictEqual(
+  sortedSquares([
+    -20,
+    -19,
+    -14,
+    -12,
+    -7,
+    -5,
+    2,
+    2,
+    4,
+    6,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    17,
+    17,
+    18,
+    18,
+  ]),
+  [
+    4,
+    4,
+    16,
+    25,
+    36,
+    36,
+    49,
+    49,
+    64,
+    81,
+    100,
+    144,
+    144,
+    196,
+    289,
+    289,
+    324,
+    324,
+    361,
+    400,
+  ],
+);
 
-  {
-    input: [-9, -8, -7],
-    expected: [49, 64, 81],
-  },
-];
+deepStrictEqual(sortedSquares([-10000, 0, 10000]), [0, 100000000, 100000000]);
 
-tests.forEach(({ input, expected }) => {
-  const result = sortedSquares(input);
-  const name = JSON.stringify(input);
-  if (JSON.stringify(expected) === JSON.stringify(result)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected ${expected}`);
-    console.log(`'But got ${result}`);
-  }
-});
+deepStrictEqual(sortedSquares([-9, -8, -7]), [49, 64, 81]);
