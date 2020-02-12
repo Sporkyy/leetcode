@@ -1,6 +1,22 @@
 // 985. Sum of Even Numbers After Queries
 // https://leetcode.com/problems/sum-of-even-numbers-after-queries/
 
+/*
+
+We have an array A of integers, and an array queries of queries.
+
+For the i-th query val = queries[i][0], index = queries[i][1],
+we add val to A[index]. Then, the answer to the i-th query is the
+sum of the even values of A.
+
+(Here, the given index = queries[i][1] is a 0-based index, and each
+query permanently modifies the array A.)
+
+Return the answer to all queries. Your answer array should have answer[i]
+as the answer to the i-th query.
+
+*/
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // const sumEvens = a => a.reduce((acc, curr) => (0 === curr % 2 ? acc + curr : acc), 0)
@@ -75,21 +91,40 @@
 // Runtime: 140 ms, faster than 48.03% of JavaScript online submissions
 // Memory Usage: 46.6 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} A
+//  * @param {number[][]} queries
+//  * @return {number[]}
+//  */
+// const sumEvenAfterQueries = (A, queries) => {
+//   let cumSum = A.reduce((acc, curr) => (!(curr & 1) ? acc + curr : acc), 0);
+//   return queries.map(([addend, index]) => {
+//     const oldValue = A[index];
+//     const newValue = oldValue + addend;
+//     if (!(oldValue & 1)) cumSum -= oldValue;
+//     if (!(newValue & 1)) cumSum += newValue;
+//     A[index] = newValue;
+//     return cumSum;
+//   });
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {number[]} A
  * @param {number[][]} queries
  * @return {number[]}
  */
-const sumEvenAfterQueries = (A, queries) => {
-  let cumSum = A.reduce((acc, curr) => (!(curr & 1) ? acc + curr : acc), 0);
-  return queries.map(([addend, index]) => {
-    const oldValue = A[index];
-    const newValue = oldValue + addend;
-    if (!(oldValue & 1)) cumSum -= oldValue;
-    if (!(newValue & 1)) cumSum += newValue;
-    A[index] = newValue;
-    return cumSum;
-  });
+const sumEvenAfterQueries = (A, queries, answer = []) => {
+  if (0 === queries.length) return answer;
+  A[queries[0][1]] += queries[0][0];
+  return sumEvenAfterQueries(
+    A,
+    queries.slice(1),
+    answer.concat(
+      A.reduce((acc, curr) => (0 === curr % 2 ? acc + curr : acc), 0),
+    ),
+  );
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
