@@ -1,26 +1,35 @@
 // 977. Squares of a Sorted Array
 // https://leetcode.com/problems/squares-of-a-sorted-array/
 
+/*
+
+Given an array of integers A sorted in non-decreasing order,
+return an array of the squares of each number,
+also in sorted non-decreasing order.
+
+*/
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 140 ms, faster than 56.02% of JavaScript online submissions
 // Memory Usage: 43.1 MB, less than 81.48% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {number[]}
- */
-// const sortedSquares = A => A.map(n => Math.pow(n, 2)).sort((a, b) => (b < a ? 1 : a < b ? -1 : 0));
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
+// const sortedSquares = A =>
+//   A.map(n => Math.pow(n, 2)).sort((a, b) => (b < a ? 1 : a < b ? -1 : 0));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 120 ms, faster than 83.01% of JavaScript online submissions
 // Memory Usage: 43.8 MB, less than 22.22% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
 // const sortedSquares = A => A.map(n => Math.pow(n, 2)).sort((a, b) => a - b);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -28,10 +37,10 @@
 // Runtime: 104 ms, faster than 93.96% of JavaScript online submissions
 // Memory Usage: 42.2 MB, less than 96.30% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
 // const sortedSquares = A => {
 //   const result = [];
 //   let [p1, p2] = [0, A.length - 1];
@@ -53,10 +62,10 @@
 // Runtime: 120 ms, faster than 83.01% of JavaScript online submissions
 // Memory Usage: 42.6 MB, less than 88.89% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
 // const sortedSquares = A => {
 //   const result = [];
 //   let [p1, p2] = [0, A.length - 1];
@@ -78,10 +87,10 @@
 // Runtime: 100 ms, faster than 97.05% of JavaScript online submissions
 // Memory Usage: 42.4 MB, less than 92.59% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
 // const sortedSquares = A => {
 //   for (let i = 0; A[i] < 0; i++) A[i] = Math.abs(A[i]);
 //   let [p1, p2] = [0, A.length - 1];
@@ -97,10 +106,10 @@
 // Runtime: 152 ms, faster than 26.68% of JavaScript online submissions
 // Memory Usage: 42.4 MB, less than 92.59% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
 // const sortedSquares = A => {
 //   let [p1, p2] = [0, A.length - 1];
 //   const result = [];
