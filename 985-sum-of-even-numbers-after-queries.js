@@ -110,32 +110,58 @@ as the answer to the i-th query.
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * @param {number[]} A
+//  * @param {number[][]} queries
+//  * @return {number[]}
+//  */
+// const sumEvenAfterQueries = (A, queries, answer = []) => {
+//   if (0 === queries.length) return answer;
+//   A[queries[0][1]] += queries[0][0];
+//   return sumEvenAfterQueries(
+//     A,
+//     queries.slice(1),
+//     answer.concat(
+//       A.reduce((acc, curr) => (0 === curr % 2 ? acc + curr : acc), 0),
+//     ),
+//   );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 124 ms, faster than 66.67% of JavaScript online submissions
+// Memory Usage: 47.4 MB, less than 60.00% of JavaScript online submissions
+
 /**
  * @param {number[]} A
  * @param {number[][]} queries
  * @return {number[]}
  */
-const sumEvenAfterQueries = (A, queries, answer = []) => {
-  if (0 === queries.length) return answer;
-  A[queries[0][1]] += queries[0][0];
-  return sumEvenAfterQueries(
-    A,
-    queries.slice(1),
-    answer.concat(
-      A.reduce((acc, curr) => (0 === curr % 2 ? acc + curr : acc), 0),
-    ),
-  );
+const sumEvenAfterQueries = (a, queries) => {
+  let evenSum = a.reduce((acc, curr) => (0 === curr % 2 ? acc + curr : acc), 0);
+  const answer = [];
+  for (const [addend, idx] of queries) {
+    const sum = a[idx] + addend;
+    if (0 === sum % 2) {
+      /* Was even; still even */ if (0 === a[idx] % 2) evenSum += addend;
+      /* Was even; now odd */ else evenSum += sum;
+    } else if (0 === a[idx] % 2) evenSum -= a[idx]; // Was odd; now even
+    a[idx] = sum;
+    answer.push(evenSum);
+  }
+  return answer;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 import { deepStrictEqual } from 'assert';
 
-// [ 1,  2, 3, 4] = 6
-// [ 2,  2, 3, 4] = 8
-// [ 2, -1, 3, 4] = 6
-// [-2, -1, 3, 4] = 2
-// [-2, -1, 3, 6] = 4
+//           [ 1,  2, 3, 4] = 6
+// ----------------------------
+// [ 1, 0] | [ 2,  2, 3, 4] = 8
+// [-3, 1] | [ 2, -1, 3, 4] = 6
+// [-4, 0] | [-2, -1, 3, 4] = 2
+// [ 2, 3] | [-2, -1, 3, 6] = 4
 
 deepStrictEqual(
   sumEvenAfterQueries(
