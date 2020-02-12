@@ -1,17 +1,35 @@
 // 944. Delete Columns to Make Sorted
 // https://leetcode.com/problems/delete-columns-to-make-sorted/
 
+/*
+
+We are given an array A of N lowercase letter strings, all of the same length.
+
+Now, we may choose any set of deletion indices, and for each string,
+we delete all the characters in those indices.
+
+For example, if we have an array A = ["abcdef","uvwxyz"] and
+deletion indices {0, 2, 3}, then the final array after deletions is
+["bef", "vyz"], and the remaining columns of A are ["b","v"], ["e","y"],
+and ["f","z"].
+(Formally, the c-th column is [A[0][c], A[1][c], ..., A[A.length-1][c]].)
+
+Suppose we chose a set of deletion indices D such that after deletions,
+each remaining column in A is in non-decreasing sorted order.
+
+Return the minimum possible value of D.length.
+
+*/
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 432 ms, faster than 5.11% of JavaScript online submissions
-// for Delete Columns to Make Sorted.
 // Memory Usage: 43.4 MB, less than 20.00% of JavaScript online submissions
-// for Delete Columns to Make Sorted.
 
-/**
- * @param {string[]} A
- * @return {number}
- */
+// /**
+//  * @param {string[]} A
+//  * @return {number}
+//  */
 // const minDeletionSize = A => {
 //   if (0 == A.length) return undefined;
 //   const colCount = A[0].length;
@@ -41,14 +59,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 160 ms, faster than 12.77% of JavaScript online submissions
-// for Delete Columns to Make Sorted.
 // Memory Usage: 53.5 MB, less than 20.00% of JavaScript online submissions
-// for Delete Columns to Make Sorted.
 
-/**
- * @param {string[]} A
- * @return {number}
- */
+// /**
+//  * @param {string[]} A
+//  * @return {number}
+//  */
 // const minDeletionSize = A => {
 //   const rotated = unrotatedArray => {
 //     const rotatedArray = new Array(unrotatedArray[0].length).fill('');
@@ -70,9 +86,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 72 ms, faster than 69.74% of JavaScript online submissions
-// for Delete Columns to Make Sorted.
 // Memory Usage: 39.6 MB, less than 40.00% of JavaScript online submissions
-// for Delete Columns to Make Sorted.
 
 /**
  * @param {string[]} A
@@ -93,92 +107,86 @@ const minDeletionSize = A => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// 3 x 3
+import { strictEqual } from 'assert';
 
-// [0, 0] [0, 1] [0, 2]
-// [1, 0] [1, 1] [1, 2]
-// [2, 0] [2, 1] [2, 2]
+// + | c d g
+// - | b a h
+// + | a f i
 
-// <0, 0> <1, 0> <2, 0>
-// <0, 1> <1, 1> <2, 1>
-// <0, 2> <1, 2> <2, 2>
+strictEqual(minDeletionSize(['cba', 'daf', 'ghi']), 1);
 
-// 6 x 3
+// + | a
+// + | b
 
-// [0, 0] [0, 1] [0, 2] [0, 3] [0, 4] [0, 5]
-// [1, 0] [1, 1] [1, 2] [1, 3] [1, 4] [1, 5]
-// [2, 0] [2, 1] [2, 2] [2, 3] [2, 4] [2, 5]
+strictEqual(minDeletionSize(['a', 'b']), 0);
 
-// <0, 0> <1, 0> <2, 0>
-// <0, 1> <1, 1> <2, 1>
-// <0, 2> <1, 2> <2, 2>
-// <0, 3> <1, 3> <2, 3>
-// <0, 4> <1, 4> <2, 4>
-// <0, 5> <1, 5> <2, 5>
+// - | z w t
+// - | y v s
+// - | x u r
 
-// 4 x 3
+strictEqual(minDeletionSize(['zyx', 'wvu', 'tsr']), 3);
 
-// [0, 0] [0, 1] [0, 2] [0, 3]
-// [1, 0] [1, 1] [1, 2] [1, 3]
-// [2, 0] [2, 1] [2, 2] [2, 3]
+// + | a a a
+// + | b b b
+// + | c c c
+// + | d d d
+// + | e e e
+// + | f f f
 
-// <0, 0> <1, 0> <2, 0>
-// <0, 1> <1, 1> <2, 1>
-// <0, 2> <1, 2> <2, 2>
-// <0, 3> <1, 3> <2, 3>
+strictEqual(minDeletionSize(['abcdef', 'abcdef', 'abcdef']), 0);
 
-// 2 x 3
+// - | r f g
+// + | r u u
+// + | j r z
+// - | k t m
 
-// [0, 0] [0, 1]
-// [1, 0] [1, 1]
-// [2, 0] [2, 1]
+strictEqual(minDeletionSize(['rrjk', 'furt', 'guzm']), 2);
 
-// <0, 0> <1, 0> <2, 0>
-// <0, 1> <1, 1> <2, 1>
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  // + | c d g
-  // - | b a h
-  // + | a f i
+/*
 
-  { input: ['cba', 'daf', 'ghi'], expected: 1 },
+3 x 3
 
-  // + | a
-  // + | b
+[0, 0] [0, 1] [0, 2]
+[1, 0] [1, 1] [1, 2]
+[2, 0] [2, 1] [2, 2]
 
-  { input: ['a', 'b'], expected: 0 },
+<0, 0> <1, 0> <2, 0>
+<0, 1> <1, 1> <2, 1>
+<0, 2> <1, 2> <2, 2>
 
-  // - | z w t
-  // - | y v s
-  // - | x u r
+6 x 3
 
-  { input: ['zyx', 'wvu', 'tsr'], expected: 3 },
+[0, 0] [0, 1] [0, 2] [0, 3] [0, 4] [0, 5]
+[1, 0] [1, 1] [1, 2] [1, 3] [1, 4] [1, 5]
+[2, 0] [2, 1] [2, 2] [2, 3] [2, 4] [2, 5]
 
-  // + | a a a
-  // + | b b b
-  // + | c c c
-  // + | d d d
-  // + | e e e
-  // + | f f f
+<0, 0> <1, 0> <2, 0>
+<0, 1> <1, 1> <2, 1>
+<0, 2> <1, 2> <2, 2>
+<0, 3> <1, 3> <2, 3>
+<0, 4> <1, 4> <2, 4>
+<0, 5> <1, 5> <2, 5>
 
-  { input: ['abcdef', 'abcdef', 'abcdef'], expected: 0 },
+4 x 3
 
-  // - | r f g
-  // + | r u u
-  // + | j r z
-  // - | k t m
+[0, 0] [0, 1] [0, 2] [0, 3]
+[1, 0] [1, 1] [1, 2] [1, 3]
+[2, 0] [2, 1] [2, 2] [2, 3]
 
-  { input: ['rrjk', 'furt', 'guzm'], expected: 2 },
-];
+<0, 0> <1, 0> <2, 0>
+<0, 1> <1, 1> <2, 1>
+<0, 2> <1, 2> <2, 2>
+<0, 3> <1, 3> <2, 3>
 
-for ({ input, expected } of tests) {
-  const name = JSON.stringify(input);
-  const result = minDeletionSize(input);
-  if (expected === result) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-  // console.log(inColumns(input));
-}
+2 x 3
+
+[0, 0] [0, 1]
+[1, 0] [1, 1]
+[2, 0] [2, 1]
+
+<0, 0> <1, 0> <2, 0>
+<0, 1> <1, 1> <2, 1>
+
+*/
