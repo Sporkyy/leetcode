@@ -1,12 +1,10 @@
 // 937. Reorder Log Files
-// https://leetcode.com/problems/reorder-log-files/
+// https://leetcode.com/problems/reorder-data-in-log-files/
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 87.60% of JavaScript online submissions
-// for Reorder Log Files.
 // Memory Usage: 37.1 MB, less than 50.00% of JavaScript online submissions
-// for Reorder Log Files.
 
 // const logIdentifier = log => log.slice(0, log.indexOf(' '));
 
@@ -16,10 +14,10 @@
 
 // const sortableLog = log => `${logMinusIdentifier(log)} ${logIdentifier(log)}`;
 
-/**
- * @param {string[]} logs
- * @return {string[]}
- */
+// /**
+//  * @param {string[]} logs
+//  * @return {string[]}
+//  */
 // const reorderLogFiles = logs => {
 //   const letterLogs = [];
 //   const digitLogs = [];
@@ -44,14 +42,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 99.61% of JavaScript online submissions
-// for Reorder Log Files.
 // Memory Usage: 36.7 MB, less than 83.33% of JavaScript online submissions
-// for Reorder Log Files.
 
-/**
- * @param {string[]} logs
- * @return {string[]}
- */
+// /**
+//  * @param {string[]} logs
+//  * @return {string[]}
+//  */
 // const reorderLogFiles = logs => {
 //   const logsWithInfo = logs.map(original => {
 //     const identifier = original.slice(0, original.indexOf(' '));
@@ -76,14 +72,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 99.61% of JavaScript online submissions
-// for Reorder Log Files.
 // Memory Usage: 36.5 MB, less than 83.33% of JavaScript online submissions
-// for Reorder Log Files.
 
-/**
- * @param {string[]} logs
- * @return {string[]}
- */
+// /**
+//  * @param {string[]} logs
+//  * @return {string[]}
+//  */
 // const reorderLogFiles = logs => {
 //   const letterLogs = [];
 //   const digitLogs = [];
@@ -109,14 +103,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 80 ms, faster than 24.23% of JavaScript online submissions
-// for Reorder Log Files.
 // Memory Usage: 37.3 MB, less than 71.43% of JavaScript online submissions
-// for Reorder Log Files.
 
-/**
- * @param {string[]} logs
- * @return {string[]}
- */
+// /**
+//  * @param {string[]} logs
+//  * @return {string[]}
+//  */
 // const reorderLogFiles = logs => {
 //   const letterLogs = [];
 //   const digitLogs = [];
@@ -142,9 +134,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 73.59% of JavaScript online submissions
-// for Reorder Log Files.
 // Memory Usage: 38.6 MB, less than 28.57% of JavaScript online submissions
-// for Reorder Log Files.
 
 /**
  * @param {string[]} logs
@@ -159,7 +149,7 @@ const reorderLogFiles = logs => {
     return 71 < log.charCodeAt(iofs + 1, iofs + 2);
   };
 
-  for (log of logs)
+  for (const log of logs)
     if (isLetterLog(log)) letterLogs.push(log);
     else digitLogs.push(log);
 
@@ -176,35 +166,34 @@ const reorderLogFiles = logs => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: ['a1 9 2 3 1', 'g1 act car', 'zo4 4 7', 'ab1 off key dog', 'a8 act zoo'],
-    expected: ['g1 act car', 'a8 act zoo', 'ab1 off key dog', 'a1 9 2 3 1', 'zo4 4 7'],
-  },
+import { deepStrictEqual } from 'assert';
 
-  {
-    input: ['a1 9 2 3 1', 'g1 act car', 'zo4 4 7', 'ab1 off key dog', 'a8 act zoo', 'a2 act car'],
-    expected: [
-      'a2 act car',
-      'g1 act car',
-      'a8 act zoo',
-      'ab1 off key dog',
-      'a1 9 2 3 1',
-      'zo4 4 7',
-    ],
-  },
-];
+deepStrictEqual(
+  reorderLogFiles([
+    'a1 9 2 3 1',
+    'g1 act car',
+    'zo4 4 7',
+    'ab1 off key dog',
+    'a8 act zoo',
+  ]),
+  ['g1 act car', 'a8 act zoo', 'ab1 off key dog', 'a1 9 2 3 1', 'zo4 4 7'],
+);
 
-for ({ input, expected } of tests) {
-  const output = reorderLogFiles(input);
-  const name = JSON.stringify(input);
-  if (JSON.stringify(expected) === JSON.stringify(output)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log('Expected the below');
-    console.log(expected);
-    console.log('But got the below');
-    console.log(output);
-  }
-}
+deepStrictEqual(
+  reorderLogFiles([
+    'a1 9 2 3 1',
+    'g1 act car',
+    'zo4 4 7',
+    'ab1 off key dog',
+    'a8 act zoo',
+    'a2 act car',
+  ]),
+  [
+    'a2 act car',
+    'g1 act car',
+    'a8 act zoo',
+    'ab1 off key dog',
+    'a1 9 2 3 1',
+    'zo4 4 7',
+  ],
+);
