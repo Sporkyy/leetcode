@@ -88,21 +88,60 @@ Return the minimum possible value of D.length.
 // Runtime: 72 ms, faster than 69.74% of JavaScript online submissions
 // Memory Usage: 39.6 MB, less than 40.00% of JavaScript online submissions
 
+// /**
+//  * @param {string[]} A
+//  * @return {number}
+//  */
+// const minDeletionSize = A => {
+//   let result = 0;
+//   loop: for (let i = 0; i < A[0].length; i++) {
+//     for (let j = 0; j < A.length - 1; j++) {
+//       if (A[j + 1][i] < A[j][i]) {
+//         result++;
+//         continue loop;
+//       }
+//     }
+//   }
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {string[]} a
+//  * @return {number}
+//  */
+// const minDeletionSize = a => {
+//   const cols = [...a[0]];
+//   // console.log(cols);
+//   for (let i = 1; i < a.length; i++) {
+//     // console.log(a[i]);
+//     for (let j = 0; j < a[i].length; j++) {
+//       if (cols[j][cols[j].length - 1] <= a[i][j]) cols[j] += a[i][j];
+//     }
+//   }
+//   console.log(cols);
+//   const cnt = a.length - Math.min(...cols.map(c => c.length));
+//   return a.length - 1 === cnt ? a.length : cnt;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 1124 ms, faster than 6.19% of JavaScript online submissions
+// Memory Usage: 72.7 MB, less than 20.00% of JavaScript online submissions
+
 /**
- * @param {string[]} A
+ * @param {string[]} a
  * @return {number}
  */
-const minDeletionSize = A => {
-  let result = 0;
-  loop: for (let i = 0; i < A[0].length; i++) {
-    for (let j = 0; j < A.length - 1; j++) {
-      if (A[j + 1][i] < A[j][i]) {
-        result++;
-        continue loop;
-      }
-    }
-  }
-  return result;
+const minDeletionSize = a => {
+  const cols = [...a[0]];
+  for (let i = 1; i < a.length; i++)
+    for (let j = 0; j < a[i].length; j++) cols[j] += a[i][j];
+  const sorted = cols.map(c =>
+    [...c].sort((a, b) => a.localeCompare(b)).join(''),
+  );
+  return cols.filter((el, idx) => el !== sorted[idx]).length;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
