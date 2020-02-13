@@ -154,36 +154,81 @@ Return the final order of the logs.
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 64 ms, faster than 73.59% of JavaScript online submissions
-// Memory Usage: 38.6 MB, less than 28.57% of JavaScript online submissions
+// Runtime: 60 ms, faster than 91.72% of JavaScript online submissions
+// Memory Usage: 38.4 MB, less than 42.86% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} logs
+//  * @return {string[]}
+//  */
+// const reorderLogFiles = logs => {
+//   const letterLogs = [];
+//   const digitLogs = [];
+
+//   const isLetterLog = log => {
+//     const iofs = log.indexOf(' ');
+//     return 71 < log.charCodeAt(iofs + 1, iofs + 2);
+//   };
+
+//   for (const log of logs)
+//     if (isLetterLog(log)) letterLogs.push(log);
+//     else digitLogs.push(log);
+
+//   const sortLetterLogs = (a, b) => {
+//     const [aPos, bPos] = [a.indexOf(' '), b.indexOf(' ')];
+//     const [aRound1, bRound1] = [a.substring(aPos + 1), b.substring(bPos + 1)];
+//     const cmpResult = aRound1.localeCompare(bRound1);
+//     if (0 !== cmpResult) return cmpResult;
+//     return a.substring(0, aPos).localeCompare(b.substring(0, bPos));
+//   };
+
+//   return letterLogs.sort(sortLetterLogs).concat(digitLogs);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 81.72% of JavaScript online submissions
+// Memory Usage: 37.8 MB, less than 42.86% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} logs
+//  * @return {string[]}
+//  */
+// const reorderLogFiles = logs => {
+//   let letterLogs = [];
+//   const digitLogs = [];
+
+//   for (const log of logs)
+//     if (/\d$/.test(log)) digitLogs.push(log);
+//     else letterLogs.push(log);
+
+//   letterLogs = letterLogs.sort((a, b) =>
+//     a
+//       .replace(/^(\S+)\s(.*)/, '$2$1')
+//       .localeCompare(b.replace(/^(\S+)\s(.*)/, '$2$1')),
+//   );
+
+//   return letterLogs.concat(digitLogs);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 76 ms, faster than 38.75% of JavaScript online submissions
+// Memory Usage: 37.8 MB, less than 42.86% of JavaScript online submissions
 
 /**
  * @param {string[]} logs
  * @return {string[]}
  */
-const reorderLogFiles = logs => {
-  const letterLogs = [];
-  const digitLogs = [];
-
-  const isLetterLog = log => {
-    const iofs = log.indexOf(' ');
-    return 71 < log.charCodeAt(iofs + 1, iofs + 2);
-  };
-
-  for (const log of logs)
-    if (isLetterLog(log)) letterLogs.push(log);
-    else digitLogs.push(log);
-
-  const sortLetterLogs = (a, b) => {
-    const [aPos, bPos] = [a.indexOf(' '), b.indexOf(' ')];
-    const [aRound1, bRound1] = [a.substring(aPos + 1), b.substring(bPos + 1)];
-    const cmpResult = aRound1.localeCompare(bRound1);
-    if (0 !== cmpResult) return cmpResult;
-    return a.substring(0, aPos).localeCompare(b.substring(0, bPos));
-  };
-
-  return letterLogs.sort(sortLetterLogs).concat(digitLogs);
-};
+const reorderLogFiles = logs =>
+  logs
+    .filter(log => /[a-z]$/.test(log))
+    .sort((a, b) =>
+      a
+        .replace(/^(\S+)\s(.*)/, '$2$1')
+        .localeCompare(b.replace(/^(\S+)\s(.*)/, '$2$1')),
+    )
+    .concat(logs.filter(log => /\d$/.test(log)));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
