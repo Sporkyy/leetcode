@@ -107,26 +107,6 @@ Return the minimum possible value of D.length.
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// /**
-//  * @param {string[]} a
-//  * @return {number}
-//  */
-// const minDeletionSize = a => {
-//   const cols = [...a[0]];
-//   // console.log(cols);
-//   for (let i = 1; i < a.length; i++) {
-//     // console.log(a[i]);
-//     for (let j = 0; j < a[i].length; j++) {
-//       if (cols[j][cols[j].length - 1] <= a[i][j]) cols[j] += a[i][j];
-//     }
-//   }
-//   console.log(cols);
-//   const cnt = a.length - Math.min(...cols.map(c => c.length));
-//   return a.length - 1 === cnt ? a.length : cnt;
-// };
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
 // Runtime: 1124 ms, faster than 6.19% of JavaScript online submissions
 // Memory Usage: 72.7 MB, less than 20.00% of JavaScript online submissions
 
