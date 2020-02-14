@@ -79,22 +79,45 @@
 // Runtime: 92 ms, faster than 87.04% of JavaScript online submissions
 // Memory Usage: 38.8 MB, less than 54.55% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
+// const sortArrayByParityII = A => {
+//   let [e, o] = [0, 1];
+//   while (e < A.length && o < A.length) {
+//     if (A[e] & 1 && !(A[o] & 1)) {
+//       [A[e], A[o]] = [A[o], A[e]];
+//       [e, o] = [e + 2, o + 2];
+//     } else {
+//       if (!(A[e] & 1)) e += 2;
+//       if (A[o] & 1) o += 2;
+//     }
+//   }
+//   return A;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 88 ms, faster than 94.53% of JavaScript online submissions
+// Memory Usage: 38.8 MB, less than 54.55% of JavaScript online submissions
+
 /**
- * @param {number[]} A
+ * @param {number[]} a
  * @return {number[]}
  */
-const sortArrayByParityII = A => {
+const sortArrayByParityII = a => {
   let [e, o] = [0, 1];
-  while (e < A.length && o < A.length) {
-    if (A[e] & 1 && !(A[o] & 1)) {
-      [A[e], A[o]] = [A[o], A[e]];
+  while (e < a.length && o < a.length) {
+    if (1 === a[e] % 2 && 0 === a[o] % 2) {
+      [a[e], a[o]] = [a[o], a[e]];
       [e, o] = [e + 2, o + 2];
     } else {
-      if (!(A[e] & 1)) e += 2;
-      if (A[o] & 1) o += 2;
+      if (0 === a[e] % 2) e += 2;
+      if (1 === a[o] % 2) o += 2;
     }
   }
-  return A;
+  return a;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
