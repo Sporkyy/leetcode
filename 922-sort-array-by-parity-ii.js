@@ -4,14 +4,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 124 ms, faster than 10.08% of JavaScript online submissions
-// for Sort Array By Parity II.
 // Memory Usage: 39.1 MB, less than 45.45% of JavaScript online submissions
-// for Sort Array By Parity II.
 
-/**
- * @param {number[]} A
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
 //  const sortArrayByParityII = A => {
 //   let [e, o] = [0, 1];
 //   do {
@@ -29,17 +27,15 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 100 ms, faster than 54.17% of JavaScript online submissions
-// for Sort Array By Parity II.
 // Memory Usage: 42 MB, less than 9.09% of JavaScript online submissions
-// for Sort Array By Parity II.
 
 // const isEven = n => 0 === n % 2;
 // const isOdd = n => 1 === n % 2;
 
-/**
- * @param {number[]} A
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
 // const sortArrayByParityII = A => {
 //   const evens = A.filter(n => isEven(n));
 //   // console.log(evens);
@@ -59,14 +55,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 100 ms, faster than 54.17% of JavaScript online submissions
-// for Sort Array By Parity II.
 // Memory Usage: 38.8 MB, less than 45.45% of JavaScript online submissions
-// for Sort Array By Parity II.
 
-/**
- * @param {number[]} A
- * @return {number[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {number[]}
+//  */
 // const sortArrayByParityII = A => {
 //   const result = new Array(A.length);
 //   for (let i = 0, e = 0, o = 1; i < A.length; i++)
@@ -83,9 +77,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 92 ms, faster than 87.04% of JavaScript online submissions
-// for Sort Array By Parity II.
 // Memory Usage: 38.8 MB, less than 54.55% of JavaScript online submissions
-// for Sort Array By Parity II.
 
 /**
  * @param {number[]} A
@@ -107,42 +99,20 @@ const sortArrayByParityII = A => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: [2, 3],
-  },
-
-  {
-    input: [1, 2],
-  },
-
-  {
-    input: [4, 2, 5, 7],
-  },
-
-  {
-    input: [4, 2, 5, 7],
-  },
-
-  {
-    input: [4, 9, 8, 5, 7, 2],
-  },
-
-  {
-    input: [1, 2, 3, 3, 2, 3, 0, 4],
-  },
-];
-
 const checkParity = a => a.every((n, i) => null !== n && (n & 1) === (i & 1));
 
-for (let { input } of tests) {
-  const name = JSON.stringify([...input]);
-  const result = sortArrayByParityII(input);
-  console.log(result);
-  if (checkParity(result)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Got ${JSON.stringify(result)}`);
-  }
-}
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+import { ok } from 'assert';
+
+assert.ok(checkParity(sortArrayByParityII([2, 3])));
+
+assert.ok(checkParity(sortArrayByParityII([1, 2])));
+
+assert.ok(checkParity(sortArrayByParityII([4, 2, 5, 7])));
+
+assert.ok(checkParity(sortArrayByParityII([4, 2, 5, 7])));
+
+assert.ok(checkParity(sortArrayByParityII([4, 9, 8, 5, 7, 2])));
+
+assert.ok(checkParity(sortArrayByParityII([1, 2, 3, 3, 2, 3, 0, 4])));
