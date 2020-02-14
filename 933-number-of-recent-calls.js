@@ -79,8 +79,29 @@ of `t` than before.
 // Runtime: 352 ms, faster than 24.55% of JavaScript online submissions
 // Memory Usage: 72.8 MB, less than 10.00% of JavaScript online submissions
 
+// const RecentCounter = function() {
+//   this.pings = [];
+// };
+
+// /**
+//  * @param {number} t
+//  * @return {number}
+//  */
+// RecentCounter.prototype.ping = function(t) {
+//   if (null !== t) this.pings.push(t);
+//   let offset = 0;
+//   while (offset < this.pings.length && this.pings[offset] < t - 3000) offset++;
+//   this.pings = this.pings.slice(offset);
+//   return this.pings.length || null;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 248 ms, faster than 90.42% of JavaScript online submissions
+// Memory Usage: 56.2 MB, less than 100.00% of JavaScript online submissions
+
 const RecentCounter = function() {
-  this.pings = [];
+  this.queue = [];
 };
 
 /**
@@ -88,11 +109,9 @@ const RecentCounter = function() {
  * @return {number}
  */
 RecentCounter.prototype.ping = function(t) {
-  if (null !== t) this.pings.push(t);
-  let offset = 0;
-  while (offset < this.pings.length && this.pings[offset] < t - 3000) offset++;
-  this.pings = this.pings.slice(offset);
-  return this.pings.length || null;
+  this.queue.push(t);
+  while (this.queue[0] < t - 3000) this.queue.shift();
+  return this.queue.length;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -100,10 +119,9 @@ RecentCounter.prototype.ping = function(t) {
 import { deepStrictEqual } from 'assert';
 
 const runTest = (pings, times) => {
-  let [result, rc] = [[]];
+  let [result, rc] = [[], new RecentCounter()];
   for (let i = 0; i < pings.length; i++) {
     const [ping, time] = [pings[i], times[i]];
-    if ('RecentCounter' === ping) rc = new RecentCounter();
     result.push(rc.ping(time));
   }
   return result;
@@ -112,17 +130,14 @@ const runTest = (pings, times) => {
 let pings, times;
 
 deepStrictEqual(
-  runTest(
-    ['RecentCounter', 'ping', 'ping', 'ping', 'ping'],
-    [null, 1, 100, 3001, 3002],
-  ),
-  [null, 1, 2, 3, 3],
+  runTest(['ping', 'ping', 'ping', 'ping'], [1, 100, 3001, 3002]),
+  [1, 2, 3, 3],
 );
 
 deepStrictEqual(
   runTest(
-    ['RecentCounter', 'ping', 'ping', 'ping', 'ping', 'ping'],
-    [null, 642, 1849, 4921, 5936, 5957],
+    ['ping', 'ping', 'ping', 'ping', 'ping'],
+    [642, 1849, 4921, 5936, 5957],
   ),
-  [null, 1, 2, 1, 2, 3],
+  [1, 2, 1, 2, 3],
 );
