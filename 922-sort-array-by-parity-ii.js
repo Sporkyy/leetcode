@@ -134,8 +134,6 @@ assert.ok(checkParity(sortArrayByParityII([1, 2])));
 
 assert.ok(checkParity(sortArrayByParityII([4, 2, 5, 7])));
 
-assert.ok(checkParity(sortArrayByParityII([4, 2, 5, 7])));
-
 assert.ok(checkParity(sortArrayByParityII([4, 9, 8, 5, 7, 2])));
 
 assert.ok(checkParity(sortArrayByParityII([1, 2, 3, 3, 2, 3, 0, 4])));
