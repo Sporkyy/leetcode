@@ -20,8 +20,8 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 56 ms, faster than 67.36% of JavaScript online submissions
-// Memory Usage: 35.1 MB, less than 46.15% of JavaScript online submissions
+// Runtime: 52 ms, faster than 88.71% of JavaScript online submissions
+// Memory Usage: 35 MB, less than 70.00% of JavaScript online submissions
 
 /**
  * @param {number[]} A
@@ -43,3 +43,5 @@ strictEqual(peakIndexInMountainArray([3, 1, 2, 0]), 0);
 strictEqual(peakIndexInMountainArray([1, 2, 0, 3]), 3);
 
 strictEqual(peakIndexInMountainArray([999]), 0);
+
+strictEqual(peakIndexInMountainArray([1, 5, 5, 5, 5, 5, 5, 4]), 1);
