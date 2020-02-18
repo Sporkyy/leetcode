@@ -3,6 +3,20 @@
 
 import { deepStrictEqual } from 'assert';
 
+/*
+
+We are given two sentences A and B.  (A sentence is a string of space
+separated words. Each word consists only of lowercase letters.)
+
+A word is uncommon if it appears exactly once in one of the sentences,
+and does not appear in the other sentence.
+
+Return a list of all uncommon words.
+
+You may return the list in any order.
+
+*/
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 76 ms, faster than 20.84% of JavaScript online submissions
@@ -113,26 +127,96 @@ import { deepStrictEqual } from 'assert';
 // Runtime: 56 ms, faster than 100.00% of JavaScript online submissions
 // Memory Usage: 33.9 MB, less than 79.31% of JavaScript online submissions
 
+// /**
+//  * @param {string} A
+//  * @param {string} B
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (A, B) => {
+//   const answer = [];
+//   let haystack = `${A} ${B}`;
+//   const words = haystack.split(' ');
+//   haystack = ` ${haystack} `;
+
+//   for (let i = 0; i < words.length; i++) {
+//     const word = words[i];
+//     const needle = ' ' + word + ' ';
+//     if (haystack.indexOf(needle) !== haystack.lastIndexOf(needle)) continue;
+//     answer.push(word);
+//   }
+
+//   return answer;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (a, b) => {
+//   const tmp = new Map([...new Set(`${a} ${b}`.split(' '))].map(e => [e, 0]));
+//   // console.log(tmp);
+//   for (const [word] of tmp) {
+//     tmp.set(
+//       word,
+//       ` ${a} `.indexOf(` ${word} `) -
+//         ` ${a} `.lastIndexOf(` ${word} `) +
+//         ` ${b} `.indexOf(` ${word} `) -
+//         ` ${b} `.lastIndexOf(` ${word} `) +
+//         ` ${a} ${b} `.indexOf(` ${word} `) -
+//         ` ${a} ${b} `.lastIndexOf(` ${word} `),
+//     );
+//   }
+//   // console.log(tmp);
+//   [...tmp.entries()].filter(([, n]) => 0 === n).map(([word]) => word);
+//   return [...tmp.entries()].filter(([, n]) => 0 === n).map(([word]) => word);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 41.67% of JavaScript online submissions
+// Memory Usage: 37.1 MB, less than 25.00% of JavaScript online submissions
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (a, b) =>
+//   `${a} ${b}`
+//     .split(' ')
+//     .filter(
+//       word =>
+//         0 ===
+//         ` ${a} `.indexOf(` ${word} `) -
+//           ` ${a} `.lastIndexOf(` ${word} `) +
+//           ` ${b} `.indexOf(` ${word} `) -
+//           ` ${b} `.lastIndexOf(` ${word} `) +
+//           ` ${a} ${b} `.indexOf(` ${word} `) -
+//           ` ${a} ${b} `.lastIndexOf(` ${word} `),
+//     );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 41.67% of JavaScript online submissions
+// Memory Usage: 35.5 MB, less than 25.00% of JavaScript online submissions
+
 /**
- * @param {string} A
- * @param {string} B
+ * @param {string} a
+ * @param {string} b
  * @return {string[]}
  */
-const uncommonFromSentences = (A, B) => {
-  const answer = [];
-  let haystack = `${A} ${B}`;
-  const words = haystack.split(' ');
-  haystack = ` ${haystack} `;
-
-  for (let i = 0; i < words.length; i++) {
-    const word = words[i];
-    const needle = ' ' + word + ' ';
-    if (haystack.indexOf(needle) !== haystack.lastIndexOf(needle)) continue;
-    answer.push(word);
-  }
-
-  return answer;
-};
+const uncommonFromSentences = (a, b) =>
+  `${a} ${b}`
+    .split(' ')
+    .filter(
+      word =>
+        0 ===
+        ` ${a} ${b} `.indexOf(` ${word} `) -
+          ` ${a} ${b} `.lastIndexOf(` ${word} `),
+    );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
