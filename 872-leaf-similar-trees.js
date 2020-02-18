@@ -1,12 +1,19 @@
 // 872. Leaf-Similar Trees
 // https://leetcode.com/problems/leaf-similar-trees/
 
+import { strictEqual } from 'assert';
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+function TreeNode(val) {
+  this.val = val;
+  this.left = this.right = null;
+}
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 56 ms, faster than 70.77% of JavaScript online submissions
-// for Leaf-Similar Trees.
 // Memory Usage: 35 MB, less than 25.00% of JavaScript online submissions
-// for Leaf-Similar Trees.
 
 // const leafNodesVals = root => {
 //   const vals = [];
@@ -28,32 +35,30 @@
  *     this.left = this.right = null;
  * }
  */
-/**
- * @param {TreeNode} root1
- * @param {TreeNode} root2
- * @return {boolean}
- */
+// /**
+//  * @param {TreeNode} root1
+//  * @param {TreeNode} root2
+//  * @return {boolean}
+//  */
 // var leafSimilar = (root1, root2) => leafNodesVals(root1).join() === leafNodesVals(root2).join();
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 56 ms, faster than 70.77% of JavaScript online submissions
-// for Leaf-Similar Trees.
 // Memory Usage: 34.8 MB, less than 25.00% of JavaScript online submissions
-// for Leaf-Similar Trees.
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} root1
- * @param {TreeNode} root2
- * @return {boolean}
- */
+// /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} root1
+//  * @param {TreeNode} root2
+//  * @return {boolean}
+//  */
 // var leafSimilar = (root1, root2) => {
 //   const [leaves1, leaves2] = [[], []];
 //   const stk = [root1];
@@ -76,17 +81,8 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 76 ms, faster than 6.47% of JavaScript online submissions
-// for Leaf-Similar Trees.
 // Memory Usage: 35 MB, less than 25.00% of JavaScript online submissions
-// for Leaf-Similar Trees.
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
 /**
  * @param {TreeNode} root1
  * @param {TreeNode} root2
@@ -112,101 +108,77 @@ const leafSimilar = (root1, root2) => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-class TreeNode {
-  constructor(val = null, left = null, right = null) {
-    this.val = val;
-    this.left = left;
-    this.right = right;
-  }
-}
+const fromLevelOrder = vals => {
+  this.root = null;
+  if (0 === vals.length) return this;
+  const nodes = vals.map(val => (val ? new TreeNode(val) : null));
+  nodes.forEach((node, i) => {
+    if (!node) return;
+    node.left = nodes[i * 2 + 1] || null;
+    node.right = nodes[i * 2 + 2] || null;
+  });
+  this.root = nodes[0];
+  return this;
+};
 
-class Tree {
-  constructor(...vals) {
-    this.root = null;
-    if (0 === vals.length) return this;
-    const nodes = vals.map(val => (val ? new TreeNode(val) : null));
-    nodes.forEach((node, i) => {
-      if (!node) return;
-      node.left = nodes[i * 2 + 1] || null;
-      node.right = nodes[i * 2 + 2] || null;
-    });
-    this.root = nodes[0];
-    return this;
-  }
-}
+/*
 
-const tests = [
-  //      3
-  //    /   \
-  //   5     1
-  //  / \   / \
-  // 6  2  9  8
-  //   / \
-  //  7   4
-d
-  //         3
-  //       /   \
-  //     5       1
-  //    / \     / \
-  //   6   7   4   2
-  //              / \
-  //             9   8
+     3      |        3
+   /   \    |      /   \
+  5     1   |    5      1
+ / \   / \  |   / \    / \
+6  2  9  8  |  6  7   4  2
+  / \       |           / \
+ 7   4      |          9   8
 
-  {
-    input: {
-      root1: [3, 5, 1, 6, 2, 9, 8, null, null, 7, 4],
-      root2: [3, 5, 1, 6, 7, 4, 2, null, null, null, null, null, null, 9, 8],
-    },
-    expected: true,
-  },
+ */
 
-  {
-    input: {
-      root1: [3, 5, 1, 6, 2, 9, 8, 7, 4],
-      root2: [3, 5, 1, 6, 2, 9, 8, 4, 7],
-    },
-    expected: false,
-  },
+strictEqual(
+  leafSimilar(
+    fromLevelOrder([3, 5, 1, 6, 2, 9, 8, null, null, 7, 4]),
+    fromLevelOrder([
+      3,
+      5,
+      1,
+      6,
+      7,
+      4,
+      2,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      9,
+      8,
+    ]),
+  ),
+  true,
+);
 
-  {
-    input: {
-      root1: [1, 2],
-      root2: [2, 2],
-    },
-    expected: true,
-  },
+/*
 
-  {
-    input: {
-      root1: [1],
-      root2: [1],
-    },
-    expected: true,
-  },
+        3      |         3
+       / \     |        / \
+      5   1    |       5   1
+    / \  / \   |     / \  / \
+   6  2  9  8  |    6  2  9  8
+ / \           |  / \
+7   4          | 4   7
 
-  {
-    input: {
-      root1: [1],
-      root2: [2],
-    },
-    expected: false,
-  },
-];
+*/
 
-for ({
-  input: { root1, root2 },
-  expected,
-} of tests) {
-  const name = `${root1.join(', ')} and ${root2.join(', ')}`;
-  root1 = new Tree(...root1).root;
-  // console.log(root1);
-  root2 = new Tree(...root2).root;
-  // console.log(root2);
-  const result = leafSimilar(root1, root2);
-  if (expected === result) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-}
+strictEqual(
+  leafSimilar(
+    fromLevelOrder([3, 5, 1, 6, 2, 9, 8, 7, 4]),
+    fromLevelOrder([3, 5, 1, 6, 2, 9, 8, 4, 7]),
+  ),
+  false,
+);
+
+strictEqual(leafSimilar(fromLevelOrder([1, 2]), fromLevelOrder([2, 2])), true);
+
+strictEqual(leafSimilar(fromLevelOrder([1], [1]), fromLevelOrder(true)));
+
+strictEqual(leafSimilar(fromLevelOrder([1]), fromLevelOrder([2])), false);
