@@ -1,12 +1,12 @@
 // 884. Uncommon Words from Two Sentences
 // https://leetcode.com/problems/uncommon-words-from-two-sentences/
 
+import { deepStrictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 76 ms, faster than 20.84% of JavaScript online submissions for
-// Uncommon Words from Two Sentences.
+// Runtime: 76 ms, faster than 20.84% of JavaScript online submissions
 // Memory Usage: 35.1 MB, less than 6.90% of JavaScript online submissions
-// for Uncommon Words from Two Sentences.
 
 // const instances = (haystack, needle) =>
 //   haystack.reduce((count, word) => count + (needle === word ? 1 : 0), 0);
@@ -27,14 +27,13 @@
 //  * @param {string} B
 //  * @return {string[]}
 //  */
-// const uncommonFromSentences = (A, B) => uniqueWords(A, B).filter(word => xorWord(A, B, word));
+// const uncommonFromSentences = (A, B) =>
+//   uniqueWords(A, B).filter(word => xorWord(A, B, word));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 89.18% of JavaScript online submissions
-// for Uncommon Words from Two Sentences.
 // Memory Usage: 34.5 MB, less than 20.69% of JavaScript online submissions
-// for Uncommon Words from Two Sentences.
 
 // /**
 //  * @param {string} A
@@ -69,9 +68,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 89.18% of JavaScript online submissions
-// for Uncommon Words from Two Sentences.
 // Memory Usage: 35 MB, less than 10.34% of JavaScript online submissions
-// for Uncommon Words from Two Sentences.
 
 // /**
 //  * @param {string} A
@@ -114,9 +111,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 56 ms, faster than 100.00% of JavaScript online submissions
-// for Uncommon Words from Two Sentences.
 // Memory Usage: 33.9 MB, less than 79.31% of JavaScript online submissions
-// for Uncommon Words from Two Sentences.
 
 /**
  * @param {string} A
@@ -141,48 +136,18 @@ const uncommonFromSentences = (A, B) => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: {
-      A: 'this apple is sweet',
-      B: 'this apple is sour',
-    },
-    expected: ['sweet', 'sour'],
-  },
-  {
-    input: {
-      A: 'apple apple',
-      B: 'banana',
-    },
-    expected: ['banana'],
-  },
-  {
-    input: {
-      A: 'fd kss fd',
-      B: 'fd fd kss',
-    },
-    expected: [],
-  },
-  {
-    input: {
-      A: 'd b zu d t',
-      B: 'udb zu ap',
-    },
-    expected: ['b', 't', 'udb', 'ap'],
-  },
-];
+deepStrictEqual(
+  uncommonFromSentences('this apple is sweet', 'this apple is sour'),
+  ['sweet', 'sour'],
+);
 
-for (let {
-  input,
-  input: { A, B },
-  expected,
-} of tests) {
-  const result = uncommonFromSentences(A, B);
-  const name = JSON.stringify(input);
-  if (JSON.stringify(result.sort()) === JSON.stringify(expected.sort())) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}" but got "${result}"`);
-  }
-}
+deepStrictEqual(uncommonFromSentences('apple apple', 'banana'), ['banana']);
+
+deepStrictEqual(uncommonFromSentences('fd kss fd', 'fd fd kss'), []);
+
+deepStrictEqual(uncommonFromSentences('d b zu d t', 'udb zu ap'), [
+  'b',
+  't',
+  'udb',
+  'ap',
+]);
