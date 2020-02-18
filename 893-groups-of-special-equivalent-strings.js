@@ -1,6 +1,8 @@
 // 893. Groups of Special-Equivalent Strings
 // https://leetcode.com/problems/groups-of-special-equivalent-strings/
 
+import { strictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 80 ms, faster than 49.68% of JavaScript online submissions
@@ -60,35 +62,13 @@ const numSpecialEquivGroups = A =>
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: ['a', 'b', 'c', 'a', 'c', 'c'],
-    expected: 3,
-  },
+strictEqual(numSpecialEquivGroups(['a', 'b', 'c', 'a', 'c', 'c']), 3);
 
-  {
-    input: ['aa', 'bb', 'ab', 'ba'],
-    expected: 4,
-  },
+strictEqual(numSpecialEquivGroups(['aa', 'bb', 'ab', 'ba']), 4);
 
-  {
-    input: ['abc', 'acb', 'bac', 'bca', 'cab', 'cba'],
-    expected: 3,
-  },
+strictEqual(
+  numSpecialEquivGroups(['abc', 'acb', 'bac', 'bca', 'cab', 'cba']),
+  3,
+);
 
-  {
-    input: ['abcd', 'cdab', 'adcb', 'cbad'],
-    expected: 1,
-  },
-];
-
-for (let { input, expected } of tests) {
-  const result = numSpecialEquivGroups(input);
-  const name = JSON.stringify(input);
-  if (expected === result) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-}
+strictEqual(numSpecialEquivGroups(['abcd', 'cdab', 'adcb', 'cbad']), 1);
