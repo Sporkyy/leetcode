@@ -1,6 +1,26 @@
 // 883. Projection Area of 3D Shapes
 // https://leetcode.com/problems/projection-area-of-3d-shapes/
 
+/*
+
+On a N * N grid, we place some 1 * 1 * 1 cubes that are axis-aligned with
+the x, y, and z axes.
+
+Each value v = grid[i][j] represents a tower of v cubes placed on top of
+grid cell (i, j).
+
+Now we view the projection of these cubes onto the xy, yz, and zx planes.
+
+A projection is like a shadow, that maps our 3 dimensional figure to
+a 2 dimensional plane.
+
+Here, we are viewing the "shadow" when looking at the cubes from the top,
+the front, and the side.
+
+Return the total area of all three projections.
+
+*/
+
 import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -65,24 +85,27 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 56 ms, faster than 77.21% of JavaScript online submissions
-// Memory Usage: 35.2 MB, less than 100.00% of JavaScript online submissions
+// Runtime: 64 ms, faster than 61.22% of JavaScript online submissions
+// Memory Usage: 35.7 MB, less than 100.00% of JavaScript online submissions
 
 /**
  * @param {number[][]} grid
  * @return {number}
  */
 const projectionArea = grid => {
-  const xy = new Array(grid.length * 2).fill(0);
-  let z = 0;
+  const [xy, yz] = [
+    new Array(grid.length).fill(0),
+    new Array(grid.length).fill(0),
+  ];
+  let zx = 0;
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid.length; j++) {
-      xy[i * 2] = Math.max(xy[i * 2], grid[i][j]);
-      xy[i * 2 + 1] = Math.max(xy[i * 2 + 1], grid[j][i]);
-      if (0 < grid[i][j]) z++;
+      xy[i] = Math.max(xy[i], grid[i][j]);
+      yz[i] = Math.max(yz[i], grid[j][i]);
+      if (0 < grid[i][j]) zx++;
     }
   }
-  return xy.reduce((acc, curr) => acc + curr) + z;
+  return xy.concat(yz).reduce((acc, curr) => acc + curr) + zx;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
