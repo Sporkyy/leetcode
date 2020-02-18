@@ -1,12 +1,12 @@
 // 883. Projection Area of 3D Shapes
 // https://leetcode.com/problems/projection-area-of-3d-shapes/
 
+import { strictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 364 ms, faster than 28.23% of JavaScript online submissions
-// for Number of Recent Calls.
 // Memory Usage: 72.8 MB, less than 10.00% of JavaScript online submissions
-// for Number of Recent Calls.
 
 // const flattened = a =>
 //   a.reduce(
@@ -39,9 +39,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 33.09% of JavaScript online submissions
-// for Projection Area of 3D Shapes.
 // Memory Usage: 36.6 MB, less than 100.00% of JavaScript online submissions
-// for Projection Area of 3D Shapes.
 
 /**
  * @param {number[][]} grid
@@ -68,9 +66,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 56 ms, faster than 77.21% of JavaScript online submissions
-// for Projection Area of 3D Shapes.
 // Memory Usage: 35.2 MB, less than 100.00% of JavaScript online submissions
-// for Projection Area of 3D Shapes.
 
 /**
  * @param {number[][]} grid
@@ -91,7 +87,89 @@ const projectionArea = grid => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// | x | y | z |
+// |--:|--:|--:|
+// | 2 | 2 | 1 | = 5
+
+strictEqual(projectionArea([[2]]), 5);
+
+// max(1, 2) = 2
+// max(3, 4) = 4
+// max(1, 3) = 3
+// max(2, 4) = 4
+// +
+// -------------
+// =          13
+//    2 * 2 =  4
+// +
+// -------------
+// =          17
+
+strictEqual(
+  projectionArea([
+    [1, 2],
+    [3, 4],
+  ]),
+  17,
+);
+
+// max(a[0][0], a[0][1], a[0][2])
+// max(      1,       1,       1) = 1
+// max(a[1][0], a[1][1], a[1][2])
+// max(      1,       0,       1) = 1
+// max(a[2][0], a[2][1], a[2][2])
+// max(      1,       1,       1) = 1
+
+// max(a[0][0], a[1][0], a[2][0])
+// max(      1,       1,       1) = 1
+// max(a[0][1], a[1][1], a[2][1])
+// max(      1,       0,       1) = 1
+// max(a[0][2], a[1][2], a[2][2])
+// max(      1,       1,       1) = 1
+
+// 0 < a[0][0] ? 1 : 0 = 1
+// 0 < a[0][1] ? 1 : 0 = 1
+// 0 < a[0][2] ? 1 : 0 = 1
+// 0 < a[1][0] ? 1 : 0 = 1
+// 0 < a[1][1] ? 1 : 0 = 0
+// 0 < a[1][2] ? 1 : 0 = 1
+// 0 < a[2][0] ? 1 : 0 = 1
+// 0 < a[2][1] ? 1 : 0 = 1
+// 0 < a[2][2] ? 1 : 0 = 1
+// +
+// -----------------------
+//                       8
+
+strictEqual(
+  projectionArea([
+    [1, 0],
+    [0, 2],
+  ]),
+  8,
+);
+
+strictEqual(
+  projectionArea([
+    [1, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1],
+  ]),
+  14,
+);
+
+strictEqual(
+  projectionArea([
+    [2, 2, 2],
+    [2, 1, 2],
+    [2, 2, 2],
+  ]),
+  21,
+);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /*
+
 | 1 | 2 | => | 3 | 1 |
 | 3 | 4 | => | 4 | 2 |
 
@@ -113,85 +191,5 @@ const projectionArea = grid => {
 [2][0] => [2][2]
 [2][1] => [1][2]
 [2][2] => [0][2]
+
 */
-
-const tests = [
-  // | x | y | z |
-  // |--:|--:|--:|
-  // | 2 | 2 | 1 | = 5
-
-  {
-    input: [[2]],
-    expected: 5,
-  },
-
-  // max(1, 2) = 2
-  // max(3, 4) = 4
-  // max(1, 3) = 3
-  // max(2, 4) = 4
-  // +
-  // -------------
-  // =          13
-  //    2 * 2 =  4
-  // +
-  // -------------
-  // =          17
-
-  {
-    input: [[1, 2], [3, 4]],
-    expected: 17,
-  },
-
-  {
-    input: [[1, 0], [0, 2]],
-    expected: 8,
-  },
-
-  // max(a[0][0], a[0][1], a[0][2])
-  // max(      1,       1,       1) = 1
-  // max(a[1][0], a[1][1], a[1][2])
-  // max(      1,       0,       1) = 1
-  // max(a[2][0], a[2][1], a[2][2])
-  // max(      1,       1,       1) = 1
-
-  // max(a[0][0], a[1][0], a[2][0])
-  // max(      1,       1,       1) = 1
-  // max(a[0][1], a[1][1], a[2][1])
-  // max(      1,       0,       1) = 1
-  // max(a[0][2], a[1][2], a[2][2])
-  // max(      1,       1,       1) = 1
-
-  // 0 < a[0][0] ? 1 : 0 = 1
-  // 0 < a[0][1] ? 1 : 0 = 1
-  // 0 < a[0][2] ? 1 : 0 = 1
-  // 0 < a[1][0] ? 1 : 0 = 1
-  // 0 < a[1][1] ? 1 : 0 = 0
-  // 0 < a[1][2] ? 1 : 0 = 1
-  // 0 < a[2][0] ? 1 : 0 = 1
-  // 0 < a[2][1] ? 1 : 0 = 1
-  // 0 < a[2][2] ? 1 : 0 = 1
-  // +
-  // -----------------------
-  //                       8
-
-  {
-    input: [[1, 1, 1], [1, 0, 1], [1, 1, 1]],
-    expected: 14,
-  },
-
-  {
-    input: [[2, 2, 2], [2, 1, 2], [2, 2, 2]],
-    expected: 21,
-  },
-];
-
-for ({ input, expected } of tests) {
-  const result = projectionArea(input);
-  const name = JSON.stringify(input);
-  if (result === expected) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-}
