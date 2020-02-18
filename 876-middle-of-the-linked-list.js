@@ -24,42 +24,57 @@ function ListNode(val) {
 // Runtime: 52 ms, faster than 67.88% of JavaScript online submissions
 // Memory Usage: 33.8 MB, less than 33.33% of JavaScript online submissions
 
-const listLength = head => {
-  let length = 0;
-  let tmp = head;
-  while (tmp) {
-    length++;
-    tmp = tmp.next;
-  }
-  return length;
-};
+// const listLength = head => {
+//   let length = 0;
+//   let tmp = head;
+//   while (tmp) {
+//     length++;
+//     tmp = tmp.next;
+//   }
+//   return length;
+// };
 
-const listMiddle = length => Math.floor(length / 2);
+// const listMiddle = length => Math.floor(length / 2);
 
-const listFfwd = (head, begin) => {
-  let pos = 0;
-  let tmp = head;
-  while (tmp) {
-    if (begin === pos) {
-      return tmp;
-    }
-    pos++;
-    tmp = tmp.next;
-  }
-};
+// const listFfwd = (head, begin) => {
+//   let pos = 0;
+//   let tmp = head;
+//   while (tmp) {
+//     if (begin === pos) {
+//       return tmp;
+//     }
+//     pos++;
+//     tmp = tmp.next;
+//   }
+// };
+
+// /**
+//  * @param {ListNode} head
+//  * @return {ListNode}
+//  */
+// const middleNode = head => {
+//   const length = listLength(head);
+//   // console.log(length);
+//   const middle = listMiddle(length);
+//   // console.log(middle);
+//   const answer = listFfwd(head, middle);
+//   // console.log(answer);
+//   return answer;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /**
  * @param {ListNode} head
  * @return {ListNode}
  */
 const middleNode = head => {
-  const length = listLength(head);
-  // console.log(length);
-  const middle = listMiddle(length);
-  // console.log(middle);
-  const answer = listFfwd(head, middle);
-  // console.log(answer);
-  return answer;
+  let [slow, fast] = [head, head];
+  while (null !== fast && null !== fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  return slow;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
