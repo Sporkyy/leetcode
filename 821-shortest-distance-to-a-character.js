@@ -6,9 +6,7 @@ import { deepStrictEqual } from 'assert';
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 72 ms, faster than 45.77% of JavaScript online submissions
-// for Shortest Distance to a Character.
 // Memory Usage: 36.2 MB, less than 25.00% of JavaScript online submissions
-// for Shortest Distance to a Character.
 
 // /**
 //  * @param {string} S
@@ -30,10 +28,8 @@ import { deepStrictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 64 ms, faster than 84.58% of JavaScript online submissions
-// for Shortest Distance to a Character.
-// Memory Usage: 35.2 MB, less than 95.00% of JavaScript online submissions
-// for Shortest Distance to a Character.
+// Runtime: 48 ms, faster than 100.00% of JavaScript online submissions
+// Memory Usage: 35.1 MB, less than 100.00% of JavaScript online submissions
 
 /**
  * @param {string} S
@@ -62,8 +58,6 @@ const shortestToChar = (S, C) => {
       result[i] = forwardCounter++;
     }
   }
-
-  console.log(result);
 
   return result;
 };
