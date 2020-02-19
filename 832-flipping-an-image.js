@@ -30,6 +30,9 @@ import { deepStrictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 64 ms, faster than 83.87% of JavaScript online submissions
+// Memory Usage: 35.2 MB, less than 33.33% of JavaScript online submissions
+
 /**
  * @param {number[][]} a
  * @return {number[][]}
