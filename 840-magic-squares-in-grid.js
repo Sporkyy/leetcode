@@ -1,12 +1,22 @@
 // 840. Magic Squares In Grid
 // https://leetcode.com/problems/magic-squares-in-grid/
 
+/*
+
+A 3 x 3 magic square is a 3 x 3 grid filled with distinct numbers from
+1 to 9 such that each row, column, and both diagonals all have the same sum.
+
+Given a grid of integers, how many 3 x 3 "magic square" subgrids are there?
+(Each subgrid is contiguous).
+
+*/
+
+import { strictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 112 ms, faster than 6.76% of JavaScript online submissions
-// for Magic Squares In Grid.
 // Memory Usage: 39.1 MB, less than 5.88% of JavaScript online submissions
-// for Magic Squares In Grid.
 
 // const sum = a => a.reduce((acc, curr) => acc + curr);
 // const getRow = (g, r) => g[r];
@@ -51,10 +61,10 @@
 // console.log(isUnique([[3, 8, 4], [5, 1, 9], [7, 6, 3]]));
 // console.log(isMagic([[3, 8, 4], [5, 1, 9], [7, 6, 2]]));
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
 // const numMagicSquaresInside = grid => {
 //   let [cols, rows] = [grid[0].length, grid.length];
 //   if (cols < 3 || rows < 3) return 0;
@@ -85,9 +95,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 100 ms, faster than 6.76% of JavaScript online submissions
-// for Magic Squares In Grid.
 // Memory Usage: 39.1 MB, less than 5.88% of JavaScript online submissions
-// for Magic Squares In Grid.
 
 // const sum = a => a.reduce((acc, curr) => acc + curr);
 // const getRow = (g, r) => g[r];
@@ -132,10 +140,10 @@
 // console.log(isUnique([[3, 8, 4], [5, 1, 9], [7, 6, 3]]));
 // console.log(isMagic([[3, 8, 4], [5, 1, 9], [7, 6, 2]]));
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
 // const numMagicSquaresInside = grid => {
 //   let [cols, rows] = [grid[0].length, grid.length];
 //   if (cols < 3 || rows < 3) return 0;
@@ -168,14 +176,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 84 ms, faster than 10.81% of JavaScript online submissions
-// for Magic Squares In Grid.
 // Memory Usage: 37.3 MB, less than 11.76% of JavaScript online submissions
-// for Magic Squares In Grid.
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
 // const numMagicSquaresInside = grid => {
 //   let [cols, rows] = [grid[0].length, grid.length];
 //   if (cols < 3 || rows < 3) return 0;
@@ -213,14 +219,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 33.78% of JavaScript online submissions
-// for Magic Squares In Grid.
 // Memory Usage: 37.9 MB, less than 5.88% of JavaScript online submissions
-// for Magic Squares In Grid.
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
 // const numMagicSquaresInside = grid => {
 //   let [cols, rows] = [grid[0].length, grid.length];
 //   if (cols < 3 || rows < 3) return 0;
@@ -263,14 +267,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 51.35% of JavaScript online submissions
-// for Magic Squares In Grid.
 // Memory Usage: 34 MB, less than 76.47% of JavaScript online submissions
-// for Magic Squares In Grid.
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
 // const numMagicSquaresInside = grid => {
 //   let [cols, rows] = [grid[0].length, grid.length];
 //   if (cols < 3 || rows < 3) return 0;
@@ -307,14 +309,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 84 ms, faster than 10.81% of JavaScript online submissions
-// for Magic Squares In Grid.
 // Memory Usage: 37.3 MB, less than 11.76% of JavaScript online submissions
-// for Magic Squares In Grid.
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
 // const numMagicSquaresInside = grid => {
 //   let [cols, rows] = [grid[0].length, grid.length];
 //   if (cols < 3 || rows < 3) return 0;
@@ -358,14 +358,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 51.35% of JavaScript online submissions
-// for Magic Squares In Grid.
 // Memory Usage: 33.7 MB, less than 94.12% of JavaScript online submissions
-// for Magic Squares In Grid.
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
 // const numMagicSquaresInside = grid => {
 //   let [cols, rows] = [grid[0].length, grid.length];
 //   if (cols < 3 || rows < 3) return 0;
@@ -397,14 +395,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 52 ms, faster than 93.24% of JavaScript online submissions
-// for Magic Squares In Grid.
 // Memory Usage: 36.7 MB, less than 17.65% of JavaScript online submissions
-// for Magic Squares In Grid.
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
 // const numMagicSquaresInside = grid => {
 //   let [cols, rows] = [grid[0].length, grid.length];
 //   if (cols < 3 || rows < 3) return 0;
@@ -441,192 +437,310 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 56 ms, faster than 83.78% of JavaScript online submissions
-// for Magic Squares In Grid.
 // Memory Usage: 35.4 MB, less than 41.18% of JavaScript online submissions
-// for Magic Squares In Grid.
+
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
+// const numMagicSquaresInside = grid => {
+//   let [cols, rows] = [grid[0].length, grid.length];
+//   if (cols < 3 || rows < 3) return 0;
+//   let result = 0;
+//   for (let i = 0; i < rows - 2; i++) {
+//     for (let j = 0; j < cols - 2; j++) {
+//       const s =
+//         '' +
+//         grid[i][j] +
+//         grid[i][j + 1] +
+//         grid[i][j + 2] +
+//         grid[i + 1][j] +
+//         grid[i + 1][j + 1] +
+//         grid[i + 1][j + 2] +
+//         grid[i + 2][j] +
+//         grid[i + 2][j + 1] +
+//         grid[i + 2][j + 2];
+//       if (
+//         s === '294753618' ||
+//         s === '672159834' ||
+//         s === '816357492' ||
+//         s === '438951276' ||
+//         s === '276951438' ||
+//         s === '492357816' ||
+//         s === '834159672' ||
+//         s === '618753294'
+//       )
+//         result++;
+//     }
+//   }
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 55.88% of JavaScript online submissions
+// Memory Usage: 35.6 MB, less than 25.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
+// const numMagicSquaresInside = grid => {
+//   const subgrids = [];
+//   for (let i = 0; i < grid.length - 2; i++)
+//     for (let j = 0; j < grid[0].length - 2; j++)
+//       subgrids.push(
+//         grid
+//           .slice(i, i + 3)
+//           .map(r => r.slice(j, j + 3).join(''))
+//           .join(''),
+//       );
+//   return subgrids.filter(s =>
+//     [
+//       '276951438',
+//       '294753618',
+//       '438951276',
+//       '492357816',
+//       '618753294',
+//       '672159834',
+//       '816357492',
+//       '834159672',
+//     ].includes(s),
+//   ).length;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 44 ms, faster than 100.00% of JavaScript online submissions
+// Memory Usage: 35.2 MB, less than 100.00% of JavaScript online submissions
 
 /**
  * @param {number[][]} grid
  * @return {number}
  */
 const numMagicSquaresInside = grid => {
-  let [cols, rows] = [grid[0].length, grid.length];
-  if (cols < 3 || rows < 3) return 0;
-  let result = 0;
-  for (let i = 0; i < rows - 2; i++) {
-    for (let j = 0; j < cols - 2; j++) {
-      const s =
-        '' +
-        grid[i][j] +
-        grid[i][j + 1] +
-        grid[i][j + 2] +
-        grid[i + 1][j] +
-        grid[i + 1][j + 1] +
-        grid[i + 1][j + 2] +
-        grid[i + 2][j] +
-        grid[i + 2][j + 1] +
-        grid[i + 2][j + 2];
+  const magicSquares = new Set([
+    '276951438',
+    '294753618',
+    '438951276',
+    '492357816',
+    '618753294',
+    '672159834',
+    '816357492',
+    '834159672',
+  ]);
+  let cnt = 0;
+  for (let i = 0; i < grid.length - 2; i++)
+    for (let j = 0; j < grid[0].length - 2; j++)
       if (
-        s === '294753618' ||
-        s === '672159834' ||
-        s === '816357492' ||
-        s === '438951276' ||
-        s === '276951438' ||
-        s === '492357816' ||
-        s === '834159672' ||
-        s === '618753294'
+        magicSquares.has(
+          grid[i][j].toString() +
+            grid[i][j + 1] +
+            grid[i][j + 2] +
+            grid[i + 1][j] +
+            grid[i + 1][j + 1] +
+            grid[i + 1][j + 2] +
+            grid[i + 2][j] +
+            grid[i + 2][j + 1] +
+            grid[i + 2][j + 2],
+        )
       )
-        result++;
-    }
-  }
-  return result;
+        cnt++;
+  return cnt;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  // +---+---+---+---+
-  // | 4 | 3 | 8 | 4 |
-  // | 9 | 5 | 1 | 9 |
-  // | 2 | 7 | 6 | 2 |
-  // +---+---+---+---+
+// numMagicSquaresInside([
+//   [8, 7, 4, 1, 7, 2],
+//   [5, 8, 4, 2, 6, 9],
+//   [4, 2, 1, 4, 2, 8],
+//   [6, 5, 9, 2, 7, 4],
+//   [8, 2, 3, 9, 5, 3],
+//   [3, 9, 5, 6, 8, 1],
+// ]);
 
-  // Yes
-  // +---+---+---+
-  // | 4 | 3 | 8 |
-  // | 9 | 5 | 1 |
-  // | 2 | 7 | 6 |
-  // +---+---+---+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  // No
-  // +---+---+---+
-  // | 3 | 8 | 4 |
-  // | 5 | 1 | 9 |
-  // | 7 | 6 | 2 |
-  // +---+---+---+
+// +---+---+---+---+
+// | 4 | 3 | 8 | 4 |
+// | 9 | 5 | 1 | 9 |
+// | 2 | 7 | 6 | 2 |
+// +---+---+---+---+
 
-  {
-    input: [[4, 3, 8, 4], [9, 5, 1, 9], [2, 7, 6, 2]],
-    expected: 1,
-  },
+// Yes
+// +---+---+---+
+// | 4 | 3 | 8 |
+// | 9 | 5 | 1 |
+// | 2 | 7 | 6 |
+// +---+---+---+
 
-  {
-    input: [[8]],
-    expected: 0,
-  },
+// No
+// +---+---+---+
+// | 3 | 8 | 4 |
+// | 5 | 1 | 9 |
+// | 7 | 6 | 2 |
+// +---+---+---+
 
-  {
-    input: [[5, 5, 5], [5, 5, 5], [5, 5, 5]],
-    expected: 0,
-  },
+strictEqual(
+  numMagicSquaresInside([
+    [4, 3, 8, 4],
+    [9, 5, 1, 9],
+    [2, 7, 6, 2],
+  ]),
+  1,
+);
 
-  {
-    input: [[10, 3, 5], [1, 6, 11], [7, 9, 2]],
-    expected: 0,
-  },
+strictEqual(numMagicSquaresInside([[8]]), 0);
 
-  {
-    input: [[7, 0, 5], [2, 4, 6], [3, 8, 1]],
-    expected: 0,
-  },
+strictEqual(
+  numMagicSquaresInside([
+    [5, 5, 5],
+    [5, 5, 5],
+    [5, 5, 5],
+  ]),
+  0,
+);
 
-  // +---+---+---+
-  // | 8 | 1 | 6 |
-  // | 3 | 5 | 7 |
-  // | 4 | 9 | 2 |
-  // +---+---+---+
+strictEqual(
+  numMagicSquaresInside([
+    [10, 3, 5],
+    [1, 6, 11],
+    [7, 9, 2],
+  ]),
+  0,
+);
 
-  //
+strictEqual(
+  numMagicSquaresInside([
+    [7, 0, 5],
+    [2, 4, 6],
+    [3, 8, 1],
+  ]),
+  0,
+);
 
-  {
-    input: [[8, 1, 6], [3, 5, 7], [4, 9, 2]],
-    expected: 1,
-  },
+// +---+---+---+
+// | 8 | 1 | 6 |
+// | 3 | 5 | 7 |
+// | 4 | 9 | 2 |
+// +---+---+---+
 
-  // +---+---+---+
-  // | 4 | 7 | 8 |
-  // | 9 | 5 | 1 |
-  // | 2 | 3 | 6 |
-  // +---+---+---+
+strictEqual(
+  numMagicSquaresInside([
+    [8, 1, 6],
+    [3, 5, 7],
+    [4, 9, 2],
+  ]),
+  1,
+);
 
-  {
-    input: [[4, 7, 8], [9, 5, 1], [2, 3, 6]],
-    expected: 0,
-  },
+// +---+---+---+
+// | 4 | 7 | 8 |
+// | 9 | 5 | 1 |
+// | 2 | 3 | 6 |
+// +---+---+---+
 
-  // +---+---+---+
-  // | 9 | 5 | 6 |
-  // | 2 | 8 | 7 |
-  // | 1 | 4 | 3 |
-  // +---+---+---+
+strictEqual(
+  numMagicSquaresInside([
+    [4, 7, 8],
+    [9, 5, 1],
+    [2, 3, 6],
+  ]),
+  0,
+);
 
-  {
-    input: [[9, 5, 6], [2, 8, 7], [1, 4, 3]],
-    expected: 0,
-  },
+// +---+---+---+
+// | 9 | 5 | 6 |
+// | 2 | 8 | 7 |
+// | 1 | 4 | 3 |
+// +---+---+---+
 
-  {
-    input: [
-      [8, 7, 4, 1, 7, 2],
-      [5, 8, 4, 2, 6, 9],
-      [4, 2, 1, 4, 2, 8],
-      [6, 5, 9, 2, 7, 4],
-      [8, 2, 3, 9, 5, 3],
-      [3, 9, 5, 6, 8, 1],
-    ],
-    expected: 0,
-  },
-];
+strictEqual(
+  numMagicSquaresInside([
+    [9, 5, 6],
+    [2, 8, 7],
+    [1, 4, 3],
+  ]),
+  0,
+);
 
-for (let { input, expected } of tests) {
-  const output = numMagicSquaresInside(input);
-  const name = JSON.stringify(input);
-  if (output === expected) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${output}"`);
-  }
-}
+strictEqual(
+  numMagicSquaresInside([
+    [8, 7, 4, 1, 7, 2],
+    [5, 8, 4, 2, 6, 9],
+    [4, 2, 1, 4, 2, 8],
+    [6, 5, 9, 2, 7, 4],
+    [8, 2, 3, 9, 5, 3],
+    [3, 9, 5, 6, 8, 1],
+  ]),
+  0,
+);
 
-// 2 9 4
-// 7 5 3
-// 6 1 8
-// 294753618
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// 6 7 2
-// 1 5 9
-// 8 3 4
-// 672159834
+/*
 
-// 8 1 6
-// 3 5 7
-// 4 9 2
-// 816357492
+https://oeis.org/A217568
 
-// 4 3 8
-// 9 5 1
-// 2 7 6
-// 438951276
+276951438
+294753618
+438951276
+492357816
+618753294
+672159834
+816357492
+834159672
 
-// =-=-=-=-=-=-=-=-=
+3x3 = 1
+3x4 = 2
+3x5 = 3
+3x6 = 4
+4x4 = 4
+4x5 = 6
+4x6 = 8
+5x5 = 9
+6x6 = 16
 
-// 2 7 6
-// 9 5 1
-// 4 3 8
-// 276951438
+rows - 2 * cols - 2
 
-// 4 9 2
-// 3 5 7
-// 8 1 6
-// 492357816
+| 4 | 3 | 8 | 4 |
+| 9 | 5 | 1 | 9 |
+| 2 | 7 | 6 | 2 |
 
-// 8 3 4
-// 1 5 9
-// 6 7 2
-// 834159672
+|0|0|0|0|0|0|0|0|0|0|1|1|
+|0|1|2|3|4|5|6|7|8|9|0|1|
+|-|-|-|-|-|-|-|-|-|-|-|-|
+|4|3|8|4|9|5|1|9|2|7|6|2|
+|4|3|8| |9|5|1| |2|7|6| |
+| |3|8|4| |5|1|9| |7|6|2|
 
-// 6 1 8
-// 7 5 3
-// 2 9 4
-// 618753294
+| 8 | 7 | 4 | 1 | 7 | 2 |
+| 5 | 8 | 4 | 2 | 6 | 9 |
+| 4 | 2 | 1 | 4 | 2 | 8 |
+| 6 | 5 | 9 | 2 | 7 | 4 |
+| 8 | 2 | 3 | 9 | 5 | 3 |
+| 3 | 9 | 5 | 6 | 8 | 1 |
+
+|0|0|0|0|0|0|0|0|0|0|1|1|1|1|1|1|1|1|1|1|2|2|2|2|2|2|2|2|2|2|2|3|3|3|3|3|
+|0|1|2|3|4|5|6|7|8|9|0|1|2|3|4|5|6|7|8|9|0|1|2|3|4|5|6|7|8|9|0|1|2|3|4|5|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|8|7|4|1|7|2|5|8|4|2|6|9|4|2|1|4|2|8|6|5|9|2|7|4|8|2|3|9|5|3|3|9|5|6|8|1|
+|8|7|4| | | |5|8|4| | | |4|2|1| | | | | | | | | | | | | | | | | | | | | |
+| |7|4|1| | | |8|4|2| | | |2|1|4| | | | | | | | | | | | | | | | | | | | |
+| | |4|1|7| | | |4|2|6| | | |1|4|2| | | | | | | | | | | | | | | | | | | |
+| | | |1|7|2| | | |2|6|9| | | |4|2|8| | | | | | | | | | | | | | | | | | |
+| | | | | | |5|8|4| | | |4|2|1| | | |6|5|9| | | | | | | | | | | | | | | |
+| | | | | | | |8|4|2| | | |2|1|4| | | |5|9|2| | | | | | | | | | | | | | |
+| | | | | | | | |4|2|6| | | |1|4|2| | | |9|2|7| | | | | | | | | | | | | |
+| | | | | | | | | |2|6|9| | | |4|2|8| | | |2|7|4| | | | | | | | | | | | |
+| | | | | | | | | | | | |4|2|1| | | |6|5|9| | | |8|2|3| | | | | | | | | |
+| | | | | | | | | | | | | |2|1|4| | | |5|9|2| | | |2|3|9| | | | | | | | |
+| | | | | | | | | | | | | | |1|4|2| | | |9|2|7| | | |3|9|5| | | | | | | |
+| | | | | | | | | | | | | | | |4|2|8| | | |2|7|4| | | |9|5|3| | | | | | |
+| | | | | | | | | | | | | | | | | | |6|5|9| | | |8|2|3| | | |3|9|5| | | |
+| | | | | | | | | | | | | | | | | | | |5|9|2| | | |2|3|9| | | |9|5|6| | |
+| | | | | | | | | | | | | | | | | | | | |9|2|7| | | |3|9|5| | | |5|6|8| |
+| | | | | | | | | | | | | | | | | | | | | |2|7|4| | | |9|5|3| | | |6|8|1|
+
+*/
