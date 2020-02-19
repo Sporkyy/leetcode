@@ -1,6 +1,8 @@
 // 821. Shortest Distance to a Character
 // https://leetcode.com/problems/shortest-distance-to-a-character/
 
+import { deepStrictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 72 ms, faster than 45.77% of JavaScript online submissions
@@ -8,11 +10,11 @@
 // Memory Usage: 36.2 MB, less than 25.00% of JavaScript online submissions
 // for Shortest Distance to a Character.
 
-/**
- * @param {string} S
- * @param {character} C
- * @return {number[]}
- */
+// /**
+//  * @param {string} S
+//  * @param {character} C
+//  * @return {number[]}
+//  */
 // const shortestToChar = (S, C) => {
 //   const result = new Array(S.length).fill(Infinity);
 //   for (let i = 0; i < S.length; i++) {
@@ -61,41 +63,32 @@ const shortestToChar = (S, C) => {
     }
   }
 
+  console.log(result);
+
   return result;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: { S: 'a', C: 'a' },
-    expected: [0],
-  },
-  {
-    input: { S: 'ab', C: 'a' },
-    expected: [0, 1],
-  },
-  {
-    input: { S: 'ba', C: 'a' },
-    expected: [1, 0],
-  },
-  {
-    input: { S: 'aba', C: 'a' },
-    expected: [0, 1, 0],
-  },
-  {
-    input: { S: 'loveleetcode', C: 'e' },
-    expected: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0],
-  },
-];
+deepStrictEqual(shortestToChar('a', 'a'), [0]);
 
-tests.forEach(({ input: { S, C }, expected }) => {
-  const result = shortestToChar(S, C);
-  const name = `S = ${S}, C = ${C}`;
-  if (JSON.stringify(result) === JSON.stringify(expected)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-});
+deepStrictEqual(shortestToChar('ab', 'a'), [0, 1]);
+
+deepStrictEqual(shortestToChar('ba', 'a'), [1, 0]);
+
+deepStrictEqual(shortestToChar('aba', 'a'), [0, 1, 0]);
+
+deepStrictEqual(shortestToChar('loveleetcode', 'e'), [
+  3,
+  2,
+  1,
+  0,
+  1,
+  0,
+  0,
+  1,
+  2,
+  2,
+  1,
+  0,
+]);
