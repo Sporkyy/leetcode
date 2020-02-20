@@ -1,12 +1,12 @@
 // 811. Subdomain Visit Count
 // https://leetcode.com/problems/subdomain-visit-count/
 
+import { deepStrictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 620 ms, faster than 5.45% of JavaScript online submissions
-// for Subdomain Visit Count.
 // Memory Usage: 47.2 MB, less than 5.55% of JavaScript online submissions
-// for Subdomain Visit Count.
 
 // const domainHierarchy = domain => {
 //   let a = [];
@@ -56,9 +56,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 76 ms, faster than 82.75% of JavaScript online submissions
-// for Subdomain Visit Count.
 // Memory Usage: 39.3 MB, less than 12.50% of JavaScript online submissions
-// for Subdomain Visit Count.
 
 /**
  * @param {string[]} cpdomains
@@ -83,42 +81,25 @@ const subdomainVisits = cpdomains => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: ['9001 discuss.leetcode.com'],
-    expected: ['9001 discuss.leetcode.com', '9001 leetcode.com', '9001 com'],
-  },
+deepStrictEqual(
+  subdomainVisits(['9001 discuss.leetcode.com']).sort(),
+  ['9001 com', '9001 leetcode.com', '9001 discuss.leetcode.com'].sort(),
+);
 
-  {
-    input: ['900 google.mail.com', '50 yahoo.com', '1 intel.mail.com', '5 wiki.org'],
-    expected: [
-      '901 mail.com',
-      '50 yahoo.com',
-      '900 google.mail.com',
-      '5 wiki.org',
-      '5 org',
-      '1 intel.mail.com',
-      '951 com',
-    ],
-  },
-];
-
-const arraysHaveSameElements = (a1, a2) => {
-  if (a1.length !== a2.length) return false;
-  for (let i = a1.length - 1; 0 <= i; --i) {
-    if (a2.indexOf(a1[i]) < 0) return false;
-    if (a1.indexOf(a2[i]) < 0) return false;
-  }
-  return true;
-};
-
-for ({ input, expected } of tests) {
-  const result = subdomainVisits(input);
-  const name = input.join(', ');
-  if (arraysHaveSameElements(result, expected)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-}
+deepStrictEqual(
+  subdomainVisits([
+    '900 google.mail.com',
+    '50 yahoo.com',
+    '1 intel.mail.com',
+    '5 wiki.org',
+  ]).sort(),
+  [
+    '951 com',
+    '901 mail.com',
+    '900 google.mail.com',
+    '50 yahoo.com',
+    '1 intel.mail.com',
+    '5 org',
+    '5 wiki.org',
+  ].sort(),
+);
