@@ -18,8 +18,13 @@ import { deepStrictEqual } from 'assert';
 //   for (let i = 0; i < S.length; i++) {
 //     if (S[i] === C) {
 //       result[i] = 0;
-//       for (let j = 1; 0 <= i - j && C !== S[i - j] && j < result[i - j]; j++) result[i - j] = j;
-//       for (let j = 1; i + j < S.length && C !== S[i + j] && j < result[i + j]; j++)
+//       for (let j = 1; 0 <= i - j && C !== S[i - j] && j < result[i - j]; j++)
+//         result[i - j] = j;
+//       for (
+//         let j = 1;
+//         i + j < S.length && C !== S[i + j] && j < result[i + j];
+//         j++
+//       )
 //         result[i + j] = j;
 //     }
 //   }
