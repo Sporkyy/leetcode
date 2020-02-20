@@ -58,26 +58,79 @@ import { deepStrictEqual } from 'assert';
 // Runtime: 76 ms, faster than 82.75% of JavaScript online submissions
 // Memory Usage: 39.3 MB, less than 12.50% of JavaScript online submissions
 
+// /**
+//  * @param {string[]} cpdomains
+//  * @return {string[]}
+//  */
+// const subdomainVisits = cpdomains => {
+//   const map = new Map();
+//   for (let cpdomain of cpdomains) {
+//     const [num, hostname] = cpdomain.split(' ');
+//     const domains = hostname.split('.').reverse();
+//     let memo = '';
+//     for (let domain of domains) {
+//       memo = memo.length ? `${domain}.${memo}` : domain;
+//       if (!map.has(memo)) map.set(memo, 0);
+//       map.set(memo, map.get(memo) + parseInt(num, 10));
+//     }
+//   }
+//   const result = [];
+//   map.forEach((value, key) => result.push(`${value} ${key}`));
+//   return result;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 84 ms, faster than 57.91% of JavaScript online submissions
+// Memory Usage: 41.3 MB, less than 5.88% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} cpdomains
+//  * @return {string[]}
+//  */
+// const subdomainVisits = (cpdomains, map = new Map()) => {
+//   if (!cpdomains.length)
+//     return [...map.entries()].map(([hostname, hits]) => `${hits} ${hostname}`);
+//   let [hits, domains] = cpdomains[0].split(' ');
+//   [hits, domains] = [Number.parseInt(hits, 10), domains.split('.')];
+//   domains
+//     .reduce((acc, curr) => [curr].concat(acc.map(el => `${el}.${curr}`)), [])
+//     .forEach(hostname => {
+//       if (map.has(hostname)) map.set(hostname, map.get(hostname) + hits);
+//       else map.set(hostname, hits);
+//     });
+//   return subdomainVisits(cpdomains.slice(1), map);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {string[]} cpdomains
  * @return {string[]}
  */
 const subdomainVisits = cpdomains => {
   const map = new Map();
-  for (let cpdomain of cpdomains) {
-    const [num, hostname] = cpdomain.split(' ');
-    const domains = hostname.split('.').reverse();
-    let memo = '';
-    for (let domain of domains) {
-      memo = memo.length ? `${domain}.${memo}` : domain;
-      if (!map.has(memo)) map.set(memo, 0);
-      map.set(memo, map.get(memo) + parseInt(num, 10));
-    }
+  for (const cpdomain of cpdomains) {
+    let [hits, domains] = cpdomain.split(' ');
+    [hits, domains] = [Number.parseInt(hits, 10), domains.split('.')];
+    domains
+      .reduce((acc, curr) => [curr].concat(acc.map(el => `${el}.${curr}`)), [])
+      .forEach(hostname => {
+        if (map.has(hostname)) map.set(hostname, map.get(hostname) + hits);
+        else map.set(hostname, hits);
+      });
   }
-  const result = [];
-  map.forEach((value, key) => result.push(`${value} ${key}`));
-  return result;
+  return [...map.entries()].map(([hostname, hits]) => `${hits} ${hostname}`);
 };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// console.log(
+//   ['a', 'b', 'c'].reduce(
+//     (acc, curr) => [curr].concat(acc.map(el => `${el}.${curr}`)),
+//     [],
+//   ),
+// );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
