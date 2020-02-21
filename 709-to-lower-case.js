@@ -1,12 +1,12 @@
 // 709. To Lower Case
 // https://leetcode.com/problems/to-lower-case/
 
+import { strictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 48 ms, faster than 88.27% of JavaScript online submissions
-// for To Lower Case.
 // Memory Usage: 33.8 MB, less than 69.79% of JavaScript online submissions
-// for To Lower Case.
 
 /**
  * @param {string} str
@@ -16,49 +16,16 @@ const toLowerCase = str => str.toLowerCase();
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: 'Hello',
-    expected: 'hello',
-  },
+strictEqual(toLowerCase('Hello'), 'hello');
 
-  {
-    input: 'here',
-    expected: 'here',
-  },
+strictEqual(toLowerCase('here'), 'here');
 
-  {
-    input: 'LOVELY',
-    expected: 'lovely',
-  },
+strictEqual(toLowerCase('LOVELY'), 'lovely');
 
-  {
-    input: '',
-    expected: '',
-  },
+strictEqual(toLowerCase(''), '');
 
-  {
-    input: 'a',
-    expected: 'a',
-  },
+strictEqual(toLowerCase('a'), 'a');
 
-  {
-    input: 'A',
-    expected: 'a',
-  },
+strictEqual(toLowerCase('A'), 'a');
 
-  {
-    input: '1',
-    expected: '1',
-  },
-];
-
-for (let { input, expected } of tests) {
-  const output = toLowerCase(input);
-  if (expected === output) {
-    console.log(`✅ ${input}`);
-  } else {
-    console.log(`🔴 ${input}`);
-    console.log(`<i>Expected <b>${expected}</b>, but got <b>${output}</b></i>`);
-  }
-}
+strictEqual(toLowerCase('1'), '1');
