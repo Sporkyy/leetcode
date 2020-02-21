@@ -101,6 +101,7 @@ deepStrictEqual(selfDividingNumbers(1, 22), [
   15,
   22,
 ]);
+
 deepStrictEqual(selfDividingNumbers(1, 1), [1]);
 
 deepStrictEqual(selfDividingNumbers(127, 129), [128]);
