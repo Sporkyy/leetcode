@@ -21,6 +21,8 @@ function TreeNode(val) {
  * @param {number} R
  * @return {TreeNode}
  */
+const trimBST = (root, L, R) => {
+  const recurse = leaf => {
     if (!leaf) return null;
     if (leaf.val < L) return recurse(leaf.right);
     if (R < leaf.val) return recurse(leaf.left);
@@ -33,6 +35,8 @@ function TreeNode(val) {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+const toBinaryTree = (...vals) => {
+  const nodes = vals.map(value =>
     null === value ? null : new TreeNode(value),
   );
   for (let i = 0; 'undefined' !== typeof nodes[i * 2 + 1]; i++)
@@ -43,6 +47,7 @@ function TreeNode(val) {
   return nodes[0];
 };
 
+// const tests = [
 //   1
 //  / \
 // 0   2
