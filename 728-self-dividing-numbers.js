@@ -1,18 +1,18 @@
 // 728. Self Dividing Numbers
 // https://leetcode.com/problems/self-dividing-numbers/
 
+import { deepStrictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 58.03% of JavaScript online submissions
-// for Self Dividing Numbers.
 // Memory Usage: 38.2 MB, less than 6.48% of JavaScript online submissions
-// for Self Dividing Numbers.
 
-/**
- * @param {number} left
- * @param {number} right
- * @return {number[]}
- */
+// /**
+//  * @param {number} left
+//  * @param {number} right
+//  * @return {number[]}
+//  */
 // const selfDividingNumbers = (left, right) => {
 //   const a = [];
 //   for (let i = left, x = 0; i <= right; i++) {
@@ -41,9 +41,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 42.34% of JavaScript online submissions
-// for Self Dividing Numbers.
 // Memory Usage: 38.1 MB, less than 7.41% of JavaScript online submissions
-// for Self Dividing Numbers.
 
 // const isSelfDividing = i =>
 //   String(i)
@@ -64,9 +62,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 52 ms, faster than 95.90% of JavaScript online submissions
-// for Self Dividing Numbers.
 // Memory Usage: 34.8 MB, less than 93.00% of JavaScript online submissions
-// for Self Dividing Numbers.
 
 /**
  * @param {number} left
@@ -89,57 +85,103 @@ const selfDividingNumbers = (left, right) => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    name: 'Example 1',
-    input: {
-      left: 1,
-      right: 22,
-    },
-    expected: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22],
-  },
-  {
-    name: 'One Number',
-    input: {
-      left: 1,
-      right: 1,
-    },
-    expected: [1],
-  },
-  {
-    name: '128',
-    input: {
-      left: 127,
-      right: 129,
-    },
-    expected: [128],
-  },
-  // {
-  //   name: 'From 50 to 100',
-  //   input: {
-  //     left: 1,
-  //     right: 1000
-  //   },
-  //   expected: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22, 24, 33, 36, 44, 48, 55, 66, 77, 88, 99, 111, 112, 115, 122, 124, 126, 128, 132, 135, 144, 155, 162, 168, 175, 184, 212, 216, 222, 224, 244, 248, 264, 288, 312, 315, 324, 333, 336, 366, 384, 396, 412, 424, 432, 444, 448, 488, 515, 555, 612, 624, 636, 648, 666, 672, 728, 735, 777, 784, 816, 824, 848, 864, 888, 936, 999]
-  // }
-];
+deepStrictEqual(selfDividingNumbers(1, 22), [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  11,
+  12,
+  15,
+  22,
+]);
+deepStrictEqual(selfDividingNumbers(1, 1), [1]);
 
-const doArraysHaveSameElements = (a1, a2) => {
-  if (a1.length !== a2.length) return false;
-  for (let i = a1.length - 1; 0 <= i; --i) {
-    if (a2.indexOf(a1[i]) < 0) return false;
-    if (a1.indexOf(a2[i]) < 0) return false;
-  }
-  return true;
-};
+deepStrictEqual(selfDividingNumbers(127, 129), [128]);
 
-tests.forEach(({ name, input: { left, right }, expected }) => {
-  const output = selfDividingNumbers(left, right);
-  // console.log(output);
-  if (doArraysHaveSameElements(expected, output)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Got ${output}, but expected ${expected}`);
-  }
-});
+deepStrictEqual(selfDividingNumbers(1, 1000), [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  11,
+  12,
+  15,
+  22,
+  24,
+  33,
+  36,
+  44,
+  48,
+  55,
+  66,
+  77,
+  88,
+  99,
+  111,
+  112,
+  115,
+  122,
+  124,
+  126,
+  128,
+  132,
+  135,
+  144,
+  155,
+  162,
+  168,
+  175,
+  184,
+  212,
+  216,
+  222,
+  224,
+  244,
+  248,
+  264,
+  288,
+  312,
+  315,
+  324,
+  333,
+  336,
+  366,
+  384,
+  396,
+  412,
+  424,
+  432,
+  444,
+  448,
+  488,
+  515,
+  555,
+  612,
+  624,
+  636,
+  648,
+  666,
+  672,
+  728,
+  735,
+  777,
+  784,
+  816,
+  824,
+  848,
+  864,
+  888,
+  936,
+  999,
+]);
