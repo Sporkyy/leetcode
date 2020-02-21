@@ -14,8 +14,8 @@ import { ok } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 68 ms, faster than 60.57% of JavaScript online submissions
-// Memory Usage: 35.7 MB, less than 34.54% of JavaScript online submissions
+// Runtime: 56 ms, faster than 97.24% of JavaScript online submissions
+// Memory Usage: 35.6 MB, less than 100.00% of JavaScript online submissions
 
 /**
  * @param {number[][]} matrix
@@ -101,3 +101,20 @@ ok(
     [15, 0, 36, 59, 71, 15, 26],
   ]),
 );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/*
+
+| 1 | 2 | 3 | 4 |
+| 9 | 1 | 2 | 3 |
+| 9 | 9 | 1 | 2 |
+| 9 | 9 | 9 | 1 |
+
+[0, 0], [1, 1], [2, 2], [3, 3]
+[0, 1], [1, 2], [2, 3]
+[0, 2], [1, 3]
+[1, 0], [2, 1], [3, 2]
+[2, 0], [3, 1]
+
+*/
