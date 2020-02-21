@@ -49,7 +49,8 @@ import { deepStrictEqual } from 'assert';
 //     .map(s => parseInt(s, 10))
 //     .reduce((answer, digit) => answer && 0 !== digit && 0 === i % digit, true);
 
-// const arraryRange = (start, end) => Array.from(Array(end - start + 1), (x, i) => start + i);
+// const arraryRange = (start, end) =>
+// Array.from(Array(end - start + 1), (x, i) => start + i);
 
 // /**
 //  * @param {number} left
