@@ -15,11 +15,11 @@ function TreeNode(val) {
 // Runtime: 92 ms, faster than 61.58% of JavaScript online submissions
 // Memory Usage: 41.5 MB, less than 13.69% of JavaScript online submissions
 
-/**
- * @param {TreeNode} t1
- * @param {TreeNode} t2
- * @return {TreeNode}
- */
+// /**
+//  * @param {TreeNode} t1
+//  * @param {TreeNode} t2
+//  * @return {TreeNode}
+//  */
 // const mergeTrees = (t1, t2) => {
 //   // console.log(t1);
 //   // console.log(t2);
