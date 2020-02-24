@@ -8,10 +8,10 @@ import { ok } from 'assert';
 // Runtime: 72 ms, faster than 35.63% of JavaScript online submissions
 // Memory Usage: 41.6 MB, less than 5.59% of JavaScript online submissions
 
-/**
- * @param {string} moves
- * @return {boolean}
- */
+// /**
+//  * @param {string} moves
+//  * @return {boolean}
+//  */
 // const judgeCircle = moves => {
 //   if (0 === moves.length) return true;
 //   if (1 === moves.length % 2) return false;
@@ -44,10 +44,10 @@ import { ok } from 'assert';
 // Runtime: 68 ms, faster than 51.16% of JavaScript online submissions
 // Memory Usage: 37.2 MB, less than 39.09% of JavaScript online submissions
 
-/**
- * @param {string} moves
- * @return {boolean}
- */
+// /**
+//  * @param {string} moves
+//  * @return {boolean}
+//  */
 // const judgeCircle = moves => {
 //   return (
 //     0 ===
@@ -97,10 +97,10 @@ import { ok } from 'assert';
 // Runtime: 68 ms, faster than 51.03% of JavaScript online submissions
 // Memory Usage: 35.7 MB, less than 91.55% of JavaScript online submissions
 
-/**
- * @param {string} moves
- * @return {boolean}
- */
+// /**
+//  * @param {string} moves
+//  * @return {boolean}
+//  */
 // const judgeCircle = moves => {
 //   let n = 0;
 //   for (let i = moves.length; 0 < i; i--) {
@@ -129,10 +129,10 @@ import { ok } from 'assert';
 // Runtime: 60 ms, faster than 84.18% of JavaScript online submissions
 // Memory Usage: 36 MB, less than 76.06% of JavaScript online submissions
 
-/**
- * @param {string} moves
- * @return {boolean}
- */
+// /**
+//  * @param {string} moves
+//  * @return {boolean}
+//  */
 // const judgeCircle = moves => {
 //   const len = moves.length;
 //   if (1 === len % 2) return false;
@@ -175,10 +175,10 @@ import { ok } from 'assert';
 // Runtime: 72 ms, faster than 35.57% of JavaScript online submissions
 // Memory Usage: 40.8 MB, less than 9.86% of JavaScript online submissions
 
-/**
- * @param {string} moves
- * @return {boolean}
- */
+// /**
+//  * @param {string} moves
+//  * @return {boolean}
+//  */
 // const judgeCircle = moves =>
 //   moves.replace(/[^DLR]/g, '').length === moves.replace(/[^ULR]/g, '').length &&
 //   moves.replace(/[^UDR]/g, '').length === moves.replace(/[^UDL]/g, '').length;
@@ -188,10 +188,10 @@ import { ok } from 'assert';
 // Runtime: 68 ms, faster than 51.16% of JavaScript online submissions
 // Memory Usage: 38.6 MB, less than 12.19% of JavaScript online submissions
 
-/**
- * @param {string} moves
- * @return {boolean}
- */
+// /**
+//  * @param {string} moves
+//  * @return {boolean}
+//  */
 // const judgeCircle = moves => {
 //   const len = moves.length;
 //   if (0 === len) return true;
@@ -224,10 +224,10 @@ import { ok } from 'assert';
 // Runtime: 80 ms, faster than 20.15% of JavaScript online submissions
 // Memory Usage: 39.8 MB, less than 12.19% of JavaScript online submissions
 
-/**
- * @param {string} moves
- * @return {boolean}
- */
+// /**
+//  * @param {string} moves
+//  * @return {boolean}
+//  */
 // const judgeCircle = moves =>
 //   (moves.match(/U/g) || '').length === (moves.match(/D/g) || '').length &&
 //   (moves.match(/R/g) || '').length === (moves.match(/L/g) || '').length;
@@ -237,10 +237,10 @@ import { ok } from 'assert';
 // Runtime: 64 ms, faster than 69.87% of JavaScript online submissions
 // Memory Usage: 40.8 MB, less than 9.14% of JavaScript online submissions
 
-/**
- * @param {string} moves
- * @return {boolean}
- */
+// /**
+//  * @param {string} moves
+//  * @return {boolean}
+//  */
 // const judgeCircle = moves =>
 //   moves.replace(/U/g, '').length === moves.replace(/D/g, '').length &&
 //   moves.replace(/R/g, '').length === moves.replace(/L/g, '').length;
@@ -250,10 +250,10 @@ import { ok } from 'assert';
 // Runtime: 60 ms, faster than 84.11% of JavaScript online submissions
 // Memory Usage: 38.5 MB, less than 12.69% of JavaScript online submissions
 
-/**
- * @param {string} moves
- * @return {boolean}
- */
+// /**
+//  * @param {string} moves
+//  * @return {boolean}
+//  */
 // const judgeCircle = moves => {
 //   const len = moves.length;
 //   if (1 === len % 2) return false;
@@ -300,63 +300,92 @@ import { ok } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 68 ms, faster than 51.16% of JavaScript online submissions
-// Memory Usage: 38.6 MB, less than 12.19% of JavaScript online submissions
+// Runtime: 60 ms, faster than 89.08% of JavaScript online submissions
+// Memory Usage: 38.7 MB, less than 16.67% of JavaScript online submissions
+
+// /**
+//  * @param {string} moves
+//  * @return {boolean}
+//  */
+// const judgeCircle = moves => {
+//   const len = moves.length;
+//   if (0 === len) return true;
+//   if (1 === len % 2) return false;
+//   let n = 0;
+//   for (let i = 0; i < len; i += 2) {
+//     switch (moves[i] + moves[i + 1]) {
+//       case 'DD':
+//         n += -4;
+//         break;
+//       case 'DL':
+//       case 'LD':
+//         n += -3;
+//         break;
+//       case 'LL':
+//         n += -2;
+//         break;
+//       case 'RD':
+//       case 'DR':
+//         n += -1;
+//         break;
+//       case 'UD':
+//       case 'DU':
+//       case 'RL':
+//       case 'LR':
+//         break;
+//       case 'UL':
+//       case 'LU':
+//         n += 1;
+//         break;
+//       case 'RR':
+//         n += 2;
+//         break;
+//       case 'UR':
+//       case 'RU':
+//         n += 3;
+//         break;
+//       case 'UU':
+//         n += 4;
+//         break;
+//     }
+//   }
+//   return 0 === n;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 56.62% of JavaScript online submissions
+// Memory Usage: 41.8 MB, less than 16.67% of JavaScript online submissions
 
 /**
  * @param {string} moves
  * @return {boolean}
  */
-const judgeCircle = moves => {
-  const len = moves.length;
-  if (0 === len) return true;
-  if (1 === len % 2) return false;
-  let n = 0;
-  for (let i = 0; i < len; i += 2) {
-    switch (moves[i] + moves[i + 1]) {
-      case 'DD':
-        n += -4;
-        break;
-      case 'DL':
-      case 'LD':
-        n += -3;
-        break;
-      case 'LL':
-        n += -2;
-        break;
-      case 'RD':
-      case 'DR':
-        n += -1;
-        break;
-      case 'UD':
-      case 'DU':
-      case 'RL':
-      case 'LR':
-        break;
-      case 'UL':
-      case 'LU':
-        n += 1;
-        break;
-      case 'RR':
-        n += 2;
-        break;
-      case 'UR':
-      case 'RU':
-        n += 3;
-        break;
-      case 'UU':
-        n += 4;
-        break;
-    }
-  }
-  return 0 === n;
-};
+const judgeCircle = moves =>
+  '0,0' ===
+  [...moves]
+    .reduce(
+      (sum, move) => [
+        sum[0] + ({ U: 1, D: -1 }[move] || 0),
+        sum[1] + ({ R: 1, L: -1 }[move] || 0),
+      ],
+      [0, 0],
+    )
+    .toString();
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ok(judgeCircle('UD'));
 
+ok(!judgeCircle('UL'));
+
+ok(!judgeCircle('RD'));
+
 ok(!judgeCircle('LL'));
+
+ok(judgeCircle('LR'));
+
+ok(!judgeCircle('LLLL'));
 
 ok(judgeCircle('LDRRUULLDR'));
 
@@ -367,3 +396,9 @@ ok(!judgeCircle('U'));
 ok(!judgeCircle('LDRRLRUULR'));
 
 ok(judgeCircle('RLUURDDDLU'));
+
+ok(
+  !judgeCircle(
+    'UDDUURLRLLRRUDUDLLRLURLRLRLUUDLULRULRLDDDUDDDDLRRDDRDRLRLURRLLRUDURULULRDRDLURLUDRRLRLDDLUUULUDUUUUL',
+  ),
+);
