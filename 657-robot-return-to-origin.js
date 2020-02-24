@@ -1,12 +1,12 @@
 // 657. Robot Return to Origin
 // https://leetcode.com/problems/robot-return-to-origin/
 
+import { ok } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 72 ms, faster than 35.63% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 41.6 MB, less than 5.59% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -42,9 +42,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 51.16% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 37.2 MB, less than 39.09% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -71,9 +69,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 51.16% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 36.2 MB, less than 67.01% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -99,9 +95,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 51.03% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 35.7 MB, less than 91.55% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -133,9 +127,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 84.18% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 36 MB, less than 76.06% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -181,9 +173,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 72 ms, faster than 35.57% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 40.8 MB, less than 9.86% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -196,9 +186,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 51.16% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 38.6 MB, less than 12.19% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -234,9 +222,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 80 ms, faster than 20.15% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 39.8 MB, less than 12.19% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -249,9 +235,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 69.87% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 40.8 MB, less than 9.14% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -264,9 +248,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 84.11% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 38.5 MB, less than 12.69% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -319,9 +301,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 51.16% of JavaScript online submissions
-// for Robot Return to Origin.
 // Memory Usage: 38.6 MB, less than 12.19% of JavaScript online submissions
-// for Robot Return to Origin.
 
 /**
  * @param {string} moves
@@ -374,44 +354,16 @@ const judgeCircle = moves => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    input: 'UD',
-    expected: true,
-  },
-  {
-    input: 'LL',
-    expected: false,
-  },
-  {
-    input: 'LDRRUULLDR',
-    expected: true,
-  },
-  {
-    input: '',
-    expected: true,
-  },
-  {
-    input: 'U',
-    expected: false,
-  },
-  {
-    input: 'LDRRLRUULR',
-    expected: false,
-  },
-  {
-    input: 'RLUURDDDLU',
-    expected: true,
-  },
-];
+ok(judgeCircle('UD'));
 
-tests.forEach(({ name, input, expected }) => {
-  const result = judgeCircle(input);
-  console.log(`if (${expected} === ${result}) {`);
-  if (expected === result) {
-    console.log(`✅ ${input}`);
-  } else {
-    console.log(`🔴 ${input}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-});
+ok(!judgeCircle('LL'));
+
+ok(judgeCircle('LDRRUULLDR'));
+
+ok(judgeCircle(''));
+
+ok(!judgeCircle('U'));
+
+ok(!judgeCircle('LDRRLRUULR'));
+
+ok(judgeCircle('RLUURDDDLU'));
