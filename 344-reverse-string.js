@@ -1,6 +1,8 @@
 // 344. Reverse String
 // https://leetcode.com/problems/reverse-string/
 
+import { deepStrictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /**
@@ -24,23 +26,19 @@ const reverseString = s => s.reverse();
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  { name: 'Example 1', input: ['h', 'e', 'l', 'l', 'o'], expected: ['o', 'l', 'l', 'e', 'h'] },
-  {
-    name: 'Example 2',
-    input: ['H', 'a', 'n', 'n', 'a', 'h'],
-    expected: ['h', 'a', 'n', 'n', 'a', 'H'],
-  },
-];
+deepStrictEqual(reverseString(['h', 'e', 'l', 'l', 'o']), [
+  'o',
+  'l',
+  'l',
+  'e',
+  'h',
+]);
 
-const areArraysEqual = (a1, a2) => a1.length === a2.length && a1.join() === a2.join();
-
-tests.forEach(({ name, input, expected }) => {
-  const result = reverseString(input);
-  if (areArraysEqual(result, expected)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-});
+deepStrictEqual(reverseString(['H', 'a', 'n', 'n', 'a', 'h']), [
+  'h',
+  'a',
+  'n',
+  'n',
+  'a',
+  'H',
+]);
