@@ -1,6 +1,8 @@
 // 412. Fizz Buzz
 // https://leetcode.com/problems/fizz-buzz/
 
+import { deepStrictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 90.08% of JavaScript online submissions for Fizz Buzz.
@@ -225,78 +227,56 @@
 const fizzBuzz = n =>
   new Array(n + 1)
     .fill('Fizz')
-    .map((v, i) => (0 == i % 15 ? 'FizzBuzz' : 0 === i % 5 ? 'Buzz' : 0 !== i % 3 ? `${i}` : v))
+    .map((v, i) =>
+      0 == i % 15
+        ? 'FizzBuzz'
+        : 0 === i % 5
+        ? 'Buzz'
+        : 0 !== i % 3
+        ? `${i}`
+        : v,
+    )
     .slice(1);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    name: '15',
-    input: 15,
-    expected: [
-      '1',
-      '2',
-      'Fizz',
-      '4',
-      'Buzz',
-      'Fizz',
-      '7',
-      '8',
-      'Fizz',
-      'Buzz',
-      '11',
-      'Fizz',
-      '13',
-      '14',
-      'FizzBuzz',
-    ],
-  },
-  {
-    name: '1',
-    input: 1,
-    expected: ['1'],
-  },
-  {
-    name: '3',
-    input: 3,
-    expected: ['1', '2', 'Fizz'],
-  },
-  {
-    name: '16',
-    input: 16,
-    expected: [
-      '1',
-      '2',
-      'Fizz',
-      '4',
-      'Buzz',
-      'Fizz',
-      '7',
-      '8',
-      'Fizz',
-      'Buzz',
-      '11',
-      'Fizz',
-      '13',
-      '14',
-      'FizzBuzz',
-      '16',
-    ],
-  },
-];
+deepStrictEqual(fizzBuzz(15), [
+  '1',
+  '2',
+  'Fizz',
+  '4',
+  'Buzz',
+  'Fizz',
+  '7',
+  '8',
+  'Fizz',
+  'Buzz',
+  '11',
+  'Fizz',
+  '13',
+  '14',
+  'FizzBuzz',
+]);
 
-const areArraysEqual = (a, b) => a.length === b.length && a.join() === b.join();
+deepStrictEqual(fizzBuzz(1), ['1']);
 
-tests.forEach(({ name, input, expected }) => {
-  const output = fizzBuzz(input);
-  if (areArraysEqual(expected, output)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log('Expected the below');
-    console.log(expected);
-    console.log('But got the below instead');
-    console.log(output);
-  }
-});
+deepStrictEqual(fizzBuzz(3), ['1', '2', 'Fizz']);
+
+deepStrictEqual(fizzBuzz(16), [
+  '1',
+  '2',
+  'Fizz',
+  '4',
+  'Buzz',
+  'Fizz',
+  '7',
+  '8',
+  'Fizz',
+  'Buzz',
+  '11',
+  'Fizz',
+  '13',
+  '14',
+  'FizzBuzz',
+  '16',
+]);
