@@ -1,12 +1,12 @@
 // 463. Island Perimeter
 // https://leetcode.com/problems/island-perimeter/
 
+import { strictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 216 ms, faster than 31.88% of JavaScript online submissions
-// for Island Perimeter.
 // Memory Usage: 45.4 MB, less than 27.27% of JavaScript online submissions
-// for Island Perimeter.
 
 // const up = (row, col, grid) => (0 === row ? 0 : grid[row - 1][col]);
 // const right = (row, col, grid) => (grid[0].length - 1 === col ? 0 : grid[row][col + 1]);
@@ -38,9 +38,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 184 ms, faster than 71.47% of JavaScript online submissions
-// for Island Perimeter.
 // Memory Usage: 44.2 MB, less than 50.00% of JavaScript online submissions
-// for Island Perimeter.
 
 /**
  * @param {number[][]} grid
@@ -64,14 +62,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 164 ms, faster than 95.92% of JavaScript online submissions
-// for Island Perimeter.
 // Memory Usage: 43.9 MB, less than 76.62% of JavaScript online submissions
-// for Island Perimeter.
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
 // const islandPerimeter = grid => {
 //   let edges = 0;
 //   for (let r = 0; r < grid.length; r++) {
@@ -86,14 +82,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 196 ms, faster than 53.25% of JavaScript online submissions
-// for Island Perimeter.
 // Memory Usage: 43.9 MB, less than 80.14% of JavaScript online submissions
-// for Island Perimeter.
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
 // const islandPerimeter = grid => {
 //   let perimiter = 0;
 //   for (let r = 0; r < grid.length; r++) {
@@ -111,9 +105,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 180 ms, faster than 78.21% of JavaScript online submissions
-// for Island Perimeter.
 // Memory Usage: 43.7 MB, less than 92.91% of JavaScript online submissions
-// for Island Perimeter.
 
 /**
  * @param {number[][]} grid
@@ -133,111 +125,107 @@ const islandPerimeter = grid => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  // +---+===+---+---+
-  // | 0 [ 1 ] 0 | 0 |
-  // +===+---+===+---+
-  // [ 1 | 1 | 1 ] 0 |
-  // +===+---+===+---+
-  // | 0 [ 1 ] 0 | 0 |
-  // +===+---+---+---+
-  // [ 1 | 1 ] 0 | 0 |
-  // +===+===+---+---+
+// +---+===+---+---+
+// | 0 [ 1 ] 0 | 0 |
+// +===+---+===+---+
+// [ 1 | 1 | 1 ] 0 |
+// +===+---+===+---+
+// | 0 [ 1 ] 0 | 0 |
+// +===+---+---+---+
+// [ 1 | 1 ] 0 | 0 |
+// +===+===+---+---+
 
-  {
-    input: [[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]],
-    expected: 16,
-  },
+strictEqual(
+  islandPerimeter([
+    [0, 1, 0, 0],
+    [1, 1, 1, 0],
+    [0, 1, 0, 0],
+    [1, 1, 0, 0],
+  ]),
+  16,
+);
 
-  // +===+===+
-  // [ 1 | 1 ]
-  // +---+---+
-  // [ 1 | 1 ]
-  // +===+===+
+// +===+===+
+// [ 1 | 1 ]
+// +---+---+
+// [ 1 | 1 ]
+// +===+===+
 
-  {
-    input: [[1, 1], [1, 1]],
-    expected: 8,
-  },
+strictEqual(
+  islandPerimeter([
+    [1, 1],
+    [1, 1],
+  ]),
+  8,
+);
 
-  // +===+
-  // [ 1 ]
-  // +---+
-  // [ 1 ]
-  // +===+
+// +===+
+// [ 1 ]
+// +---+
+// [ 1 ]
+// +===+
 
-  {
-    input: [[1], [1]],
-    expected: 6,
-  },
+strictEqual(islandPerimeter([[1], [1]]), 6);
 
-  // +===+
-  // [ 1 ]
-  // +---+
-  // [ 1 ]
-  // +---+
-  // [ 1 ]
-  // +===+
+// +===+
+// [ 1 ]
+// +---+
+// [ 1 ]
+// +---+
+// [ 1 ]
+// +===+
 
-  {
-    input: [[1], [1], [1]],
-    expected: 8,
-  },
+strictEqual(islandPerimeter([[1], [1], [1]]), 8);
 
-  // +===+
-  // [ 1 ]
-  // +===+
-  // [ 0 ]
-  // +---+
+// +===+
+// [ 1 ]
+// +===+
+// [ 0 ]
+// +---+
 
-  {
-    input: [[1], [0]],
-    expected: 4,
-  },
+strictEqual(islandPerimeter([[1], [0]]), 4);
 
-  // +---+===+---+
-  // | 0 [ 1 ] 0 |
-  // |===+---+===|
-  // [ 1 | 1 | 1 ]
-  // |===+---+===|
-  // | 0 [ 1 ] 0 |
-  // +---+===+---+
+// +---+===+---+
+// | 0 [ 1 ] 0 |
+// |===+---+===|
+// [ 1 | 1 | 1 ]
+// |===+---+===|
+// | 0 [ 1 ] 0 |
+// +---+===+---+
 
-  {
-    input: [[0, 1, 0], [1, 1, 1], [0, 1, 0]],
-    expected: 12,
-  },
+strictEqual(
+  islandPerimeter([
+    [0, 1, 0],
+    [1, 1, 1],
+    [0, 1, 0],
+  ]),
+  12,
+);
 
-  // +---+===+===+
-  // | 0 [ 1 | 1 ]
-  // |===+---+===|
-  // [ 1 | 1 ] 0 |
-  // +===+===+---+
+// +---+===+===+
+// | 0 [ 1 | 1 ]
+// |===+---+===|
+// [ 1 | 1 ] 0 |
+// +===+===+---+
 
-  {
-    input: [[0, 1, 1], [1, 1, 0]],
-    expected: 10,
-  },
+strictEqual(
+  islandPerimeter([
+    [0, 1, 1],
+    [1, 1, 0],
+  ]),
+  10,
+);
 
-  // +===+===+===+
-  // [ 1 | 1 | 1 ]
-  // |---+===+---|
-  // [ 1 ] 0 [ 1 ]
-  // +===+---+===+
+// +===+===+===+
+// [ 1 | 1 | 1 ]
+// |---+===+---|
+// [ 1 ] 0 [ 1 ]
+// +===+---+===+
 
-  {
-    input: [[1, 1, 1], [1, 0, 1]],
-    expected: 12,
-  },
-];
-
-tests.forEach(({ input, expected }) => {
-  const result = islandPerimeter(input);
-  const name = JSON.stringify(input);
-  if (result === expected) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-});
+strictEqual(
+  islandPerimeter([
+    [1, 1, 1],
+    [1, 0, 1],
+  ]),
+  12,
+);
