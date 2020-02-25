@@ -1,17 +1,17 @@
 // 500. Keyboard Row
 // https://leetcode.com/problems/keyboard-row/
 
+import { deepStrictEqual } from 'assert';
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 76 ms, faster than 7.93% of JavaScript online submissions
-// for Keyboard Row.
 // Memory Usage: 35.3 MB, less than 5.08% of JavaScript online submissions
-// for Keyboard Row.
 
-/**
- * @param {string[]} words
- * @return {string[]}
- */
+// /**
+//  * @param {string[]} words
+//  * @return {string[]}
+//  */
 // const findWords = words => {
 //   const keyboard = [
 //     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
@@ -77,9 +77,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 48 ms, faster than 92.07% of JavaScript online submissions
-// for Keyboard Row.
 // Memory Usage: 33.9 MB, less than 16.95% of JavaScript online submissions
-// for Keyboard Row.
 
 // const rows = ['qwertyuiop'.split(''), 'asdfghjkl'.split(''), 'zxcvbnm'.split('')];
 
@@ -95,14 +93,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 52 ms, faster than 76.38% of JavaScript online submissions
-// for Keyboard Row.
 // Memory Usage: 33.8 MB, less than 46.61% of JavaScript online submissions
-// for Keyboard Row.
 
-/**
- * @param {string[]} words
- * @return {string[]}
- */
+// /**
+//  * @param {string[]} words
+//  * @return {string[]}
+//  */
 // const findWords = words => {
 //   const rowMasks = [2232170, 39698560, 25178133];
 //   return words.filter(word => {
@@ -122,14 +118,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 48 ms, faster than 92.07% of JavaScript online submissions
-// for Keyboard Row.
 // Memory Usage: 33.7 MB, less than 88.14% of JavaScript online submissions
-// for Keyboard Row.
 
-/**
- * @param {string[]} words
- * @return {string[]}
- */
+// /**
+//  * @param {string[]} words
+//  * @return {string[]}
+//  */
 // const findWords = words =>
 //   words.filter(word => {
 //     word = word.toLowerCase();
@@ -142,14 +136,12 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 44 ms, faster than 97.42% of JavaScript online submissions
-// for Keyboard Row.
 // Memory Usage: 33.7 MB, less than 97.46% of JavaScript online submissions
-// for Keyboard Row.
 
-/**
- * @param {string[]} words
- * @return {string[]}
- */
+// /**
+//  * @param {string[]} words
+//  * @return {string[]}
+//  */
 // const findWords = words =>
 //   words.filter(word => {
 //     word = word.toLowerCase();
@@ -192,9 +184,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 56 ms, faster than 57.99% of JavaScript online submissions
-// for Keyboard Row.
 // Memory Usage: 33.9 MB, less than 20.75% of JavaScript online submissions
-// for Keyboard Row.
 
 /**
  * @param {string[]} words
@@ -240,36 +230,9 @@ const findWords = words =>
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// const wordToBits = word => {
-//   let bits = new Array(26).fill(0);
-//   for (let i = 0; i < word.length; i++) bits[word.charCodeAt(i) - 97] = 1;
-//   bits = bits.join('');
-//   bits = parseInt(bits, 2);
-//   return bits;
-// };
+deepStrictEqual(findWords(['Hello', 'Alaska', 'Dad', 'Peace']), [
+  'Alaska',
+  'Dad',
+]);
 
-// console.log(wordToBits('abc'));
-// console.log(wordToBits('a'));
-// console.log(wordToBits('a') & ~wordToBits('abc'));
-
-const tests = [
-  {
-    input: ['Hello', 'Alaska', 'Dad', 'Peace'],
-    expected: ['Alaska', 'Dad'],
-  },
-  {
-    input: ['abdfs', 'cccd', 'a', 'qwwewm'],
-    expected: ['a'],
-  },
-];
-
-tests.forEach(({ input, expected }) => {
-  const result = findWords(input);
-  const name = JSON.stringify(input);
-  if (JSON.stringify(expected) === JSON.stringify(result)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-});
+deepStrictEqual(findWords(['abdfs', 'cccd', 'a', 'qwwewm']), ['a']);
