@@ -5,13 +5,13 @@ import { deepStrictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 68 ms, faster than 90.08% of JavaScript online submissions for Fizz Buzz.
-// Memory Usage: 37.1 MB, less than 90.63% of JavaScript online submissions for Fizz Buzz.
+// Runtime: 68 ms, faster than 90.08% of JavaScript online submissions
+// Memory Usage: 37.1 MB, less than 90.63% of JavaScript online submissions
 
-/**
- * @param {number} n
- * @return {string[]}
- */
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
 // const fizzBuzz = n => {
 //   const result = new Array(n);
 //   for (let i = 1; i <= n; i++) {
@@ -30,13 +30,13 @@ import { deepStrictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 84 ms, faster than 24.56% of JavaScript online submissions for Fizz Buzz.
-// Memory Usage: 37.1 MB, less than 89.06% of JavaScript online submissions for Fizz Buzz.
+// Runtime: 84 ms, faster than 24.56% of JavaScript online submissions
+// Memory Usage: 37.1 MB, less than 89.06% of JavaScript online submissions
 
-/**
- * @param {number} n
- * @return {string[]}
- */
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
 // const fizzBuzz = n => {
 //   const result = new Array(n);
 //   while (0 < n) {
@@ -49,13 +49,13 @@ import { deepStrictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 84 ms, faster than 24.56% of JavaScript online submissions for Fizz Buzz.
-// Memory Usage: 37.3 MB, less than 70.31% of JavaScript online submissions for Fizz Buzz.
+// Runtime: 84 ms, faster than 24.56% of JavaScript online submissions
+// Memory Usage: 37.3 MB, less than 70.31% of JavaScript online submissions
 
-/**
- * @param {number} n
- * @return {string[]}
- */
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
 // const fizzBuzz = n => {
 //   const result = new Array(n).fill().map(e => '');
 //   while (0 < n) {
@@ -75,8 +75,8 @@ import { deepStrictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 68 ms, faster than 90.08% of JavaScript online submissions for Fizz Buzz.
-// Memory Usage: 37.6 MB, less than 5.47% of JavaScript online submissions for Fizz Buzz.
+// Runtime: 68 ms, faster than 90.08% of JavaScript online submissions
+// Memory Usage: 37.6 MB, less than 5.47% of JavaScript online submissions
 
 // const answerKey = new Array(10001);
 // for (let i = 1; i < 10000; i++) {
@@ -91,16 +91,16 @@ import { deepStrictEqual } from 'assert';
 //   }
 // }
 
-/**
- * @param {number} n
- * @return {string[]}
- */
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
 // const fizzBuzz = n => answerKey.slice(1, n + 1);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 92 ms, faster than 9.87% of JavaScript online submissions for Fizz Buzz.
-// Memory Usage: 37 MB, less than 91.41% of JavaScript online submissions for Fizz Buzz.
+// Runtime: 92 ms, faster than 9.87% of JavaScript online submissions
+// Memory Usage: 37 MB, less than 91.41% of JavaScript online submissions
 
 // const key = [
 //   'FizzBuzz', // ... 0 (15)
@@ -120,10 +120,10 @@ import { deepStrictEqual } from 'assert';
 //   undefined, // ... 14
 // ];
 
-/**
- * @param {number} n
- * @return {string[]}
- */
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
 // const fizzBuzz = n => {
 //   const result = new Array(n);
 //   for (let i = 1; i <= n; i++) {
@@ -134,8 +134,8 @@ import { deepStrictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 68 ms, faster than 90.08% of JavaScript online submissions for Fizz Buzz.
-// Memory Usage: 37.2 MB, less than 82.81% of JavaScript online submissions for Fizz Buzz.
+// Runtime: 68 ms, faster than 90.08% of JavaScript online submissions
+// Memory Usage: 37.2 MB, less than 82.81% of JavaScript online submissions
 
 // const key = {
 //   0: 'FizzBuzz',
@@ -147,16 +147,16 @@ import { deepStrictEqual } from 'assert';
 //   12: 'Fizz',
 // };
 
-/**
- * @param {number} n
- * @return {string[]}
- */
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
 // const fizzBuzz = n => new Array(n).fill().map((e, i) => key[(1 + i) % 15] || '' + (i + 1));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 68 ms, faster than 90.08% of JavaScript online submissions for Fizz Buzz.
-// Memory Usage: 37.3 MB, less than 78.13% of JavaScript online submissions for Fizz Buzz.
+// Runtime: 68 ms, faster than 90.08% of JavaScript online submissions
+// Memory Usage: 37.3 MB, less than 78.13% of JavaScript online submissions
 
 // const key = {
 //   0: 'FizzBuzz',
@@ -168,10 +168,10 @@ import { deepStrictEqual } from 'assert';
 //   12: 'Fizz',
 // };
 
-/**
- * @param {number} n
- * @return {string[]}
- */
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
 // const fizzBuzz = n => {
 //   const result = new Array(n);
 //   while (0 < n) {
@@ -183,8 +183,8 @@ import { deepStrictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 64 ms, faster than 100.00% of JavaScript online submissions for Fizz Buzz.
-// Memory Usage: 37 MB, less than 91.41% of JavaScript online submissions for Fizz Buzz.
+// Runtime: 64 ms, faster than 100.00% of JavaScript online submissions
+// Memory Usage: 37 MB, less than 91.41% of JavaScript online submissions
 
 // const key = {
 //   3: 'Fizz',
@@ -215,10 +215,8 @@ import { deepStrictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 80 ms, faster than 13.25% of JavaScript online submissions
-// for Fizz Buzz.
-// Memory Usage: 37 MB, less than 96.30% of JavaScript online submissions
-// for Fizz Buzz.
+// Runtime: 56 ms, faster than 93.91% of JavaScript online submissions
+// Memory Usage: 37.3 MB, less than 70.00% of JavaScript online submissions
 
 /**
  * @param {number} n
