@@ -104,8 +104,8 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 180 ms, faster than 78.21% of JavaScript online submissions
-// Memory Usage: 43.7 MB, less than 92.91% of JavaScript online submissions
+// Runtime: 176 ms, faster than 84.44% of JavaScript online submissions
+// Memory Usage: 43.9 MB, less than 75.00% of JavaScript online submissions
 
 /**
  * @param {number[][]} grid
