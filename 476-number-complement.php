@@ -44,7 +44,6 @@ $tests = [
 
 $s = new Solution();
 
-//   tests.forEach(({ name, input, expected }) => {
 foreach ($tests as $test) {
     extract($test);
     $result = $s->findComplement($input);
