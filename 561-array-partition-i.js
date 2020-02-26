@@ -31,6 +31,21 @@ import { strictEqual } from 'assert';
 // Runtime: 120 ms, faster than 56.49% of JavaScript online submissions
 // Memory Usage: 40.4 MB, less than 10.83% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const arrayPairSum = nums =>
+//   nums
+//     .sort((a, b) => a - b)
+//     .filter((n, i) => 0 === i % 2)
+//     .reduce((acc, curr) => acc + curr);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 116 ms, faster than 71.14% of JavaScript online submissions
+// Memory Usage: 40.3 MB, less than 11.11% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
@@ -38,7 +53,7 @@ import { strictEqual } from 'assert';
 const arrayPairSum = nums =>
   nums
     .sort((a, b) => a - b)
-    .filter((n, i) => 0 === i % 2)
+    .filter((_, i) => 0 === i % 2)
     .reduce((acc, curr) => acc + curr);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
