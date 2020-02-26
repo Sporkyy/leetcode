@@ -16,10 +16,10 @@ function Node(val, children) {
 // Runtime: 612 ms, faster than 37.87% of JavaScript online submissions
 // Memory Usage: 81 MB, less than 28.95% of JavaScript online submissions
 
-/**
- * @param {Node} root
- * @return {number}
- */
+// /**
+//  * @param {Node} root
+//  * @return {number}
+//  */
 // const maxDepth = root =>
 //   !root
 //     ? 0
