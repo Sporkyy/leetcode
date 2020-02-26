@@ -1,6 +1,16 @@
 // 589. N-ary Tree Preorder Traversal
 // https://leetcode.com/problems/n-ary-tree-preorder-traversal/
 
+import { deepStrictEqual } from 'assert';
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Definition for a Node.
+function Node(val, children) {
+  this.val = val;
+  this.children = children;
+}
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 const preorderNested = root =>
@@ -12,17 +22,11 @@ const preorderNested = root =>
 
 const flattened = a =>
   a.reduce(
-    (acc, curr) => (Array.isArray(curr) ? [...acc, ...flattened(curr)] : [...acc, curr]),
+    (acc, curr) =>
+      Array.isArray(curr) ? [...acc, ...flattened(curr)] : [...acc, curr],
     [],
   );
 
-/**
- * // Definition for a Node.
- * function Node(val,children) {
- *    this.val = val;
- *    this.children = children;
- * };
- */
 /**
  * @param {Node} root
  * @return {number[]}
@@ -31,73 +35,28 @@ const preorder = root => flattened(preorderNested(root));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const tests = [
-  {
-    name: 'Example 1',
-    input: {
-      $id: '1',
-      children: [
-        {
-          $id: '2',
-          children: [
-            {
-              $id: '5',
-              children: [],
-              val: 5,
-            },
-            {
-              $id: '6',
-              children: [],
-              val: 6,
-            },
-          ],
-          val: 3,
-        },
-        {
-          $id: '3',
-          children: [],
-          val: 2,
-        },
-        {
-          $id: '4',
-          children: [],
-          val: 4,
-        },
-      ],
-      val: 1,
-    },
-    expected: [1, 3, 5, 6, 2, 4],
-  },
-  {
-    name: 'No children',
-    input: {
-      $id: '1',
-      children: [],
-      val: 44,
-    },
-    expected: [44],
-  },
-  {
-    name: 'Null',
-    input: null,
-    expected: [],
-  },
-];
+deepStrictEqual(
+  preorder(
+    new Node(1, [
+      new Node(3, [new Node(5, []), new Node(6, [])]),
+      new Node(2, []),
+      new Node(4, []),
+    ]),
+  ),
+  [1, 3, 5, 6, 2, 4],
+);
 
-const areArraysEqual = (a1, a2) => {
-  if (a1.length !== a2.length) return false;
-  for (let i = 0; i < a1.length; i++) {
-    if (a1[i] !== a2[i]) return false;
-  }
-  return true;
-};
-
-tests.forEach(({ name, input, expected }) => {
-  const result = preorder(input);
-  if (areArraysEqual(result, expected)) {
-    console.log(`✅ ${name}`);
-  } else {
-    console.log(`🔴 ${name}`);
-    console.log(`Expected "${expected}", but got "${result}"`);
-  }
-});
+deepStrictEqual(
+  preorder(
+    new Node(1, [
+      new Node(2, []),
+      new Node(3, [
+        new Node(6, []),
+        new Node(7, [new Node(11, [new Node(14, [])])]),
+      ]),
+      new Node(4, [new Node(8, [new Node(12, [])])]),
+      new Node(5, [new Node(9, [new Node(13, [])]), new Node(10, [])]),
+    ]),
+  ),
+  [1, 2, 3, 6, 7, 11, 14, 4, 8, 12, 5, 9, 13, 10],
+);
