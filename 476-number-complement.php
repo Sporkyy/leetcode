@@ -6,9 +6,7 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 0 ms, faster than 100.00% of PHP online submissions
-// for Number Complement.
 // Memory Usage: 14.7 MB, less than 100.00% of PHP online submissions
-// for Number Complement.
 
 class Solution
 {
