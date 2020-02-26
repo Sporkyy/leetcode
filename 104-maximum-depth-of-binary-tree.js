@@ -79,7 +79,9 @@ function TreeNode(val) {
 //  * @return {number}
 //  */
 // const maxDepth = (root, depth = 0) =>
-//   root ? Math.max(maxDepth(root.left, depth + 1), maxDepth(root.right, depth + 1)) : depth;
+//   root
+//     ? Math.max(maxDepth(root.left, depth + 1), maxDepth(root.right, depth + 1))
+//     : depth;
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -90,7 +92,8 @@ function TreeNode(val) {
 //  * @param {TreeNode} root
 //  * @return {number}
 //  */
-// const maxDepth = root => (root ? 1 + Math.max(maxDepth(root.left), maxDepth(root.right)) : 0);
+// const maxDepth = root =>
+//   root ? 1 + Math.max(maxDepth(root.left), maxDepth(root.right)) : 0;
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
