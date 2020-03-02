@@ -31,12 +31,23 @@ import { strictEqual } from 'assert';
 // Runtime: 64 ms, faster than 44.12% of JavaScript online submissions
 // Memory Usage: 35.6 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} n
+//  * @return {number[]}
+//  */
+// const sumZero = n =>
+//   [...new Array(n - 1).keys()].concat([0 - ((n - 1) * (n - 2)) / 2]);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 69.72% of JavaScript online submissions
+// Memory Usage: 35.7 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number} n
  * @return {number[]}
  */
-const sumZero = n =>
-  [...new Array(n - 1).keys()].concat([0 - ((n - 1) * (n - 2)) / 2]);
+const sumZero = n => [...new Array(n - 1).keys(), 0 - ((n - 1) * (n - 2)) / 2];
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
