@@ -25,12 +25,36 @@ function ListNode(val) {
 // Runtime: 52 ms, faster than 84.38% of JavaScript online submissions
 // Memory Usage: 33.9 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {ListNode} head
+//  * @return {number}
+//  */
+// const getDecimalValue = (head, s = '') =>
+//   !head ? Number.parseInt(s, 2) : getDecimalValue(head.next, s + head.val);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 48 ms, faster than 95.43% of JavaScript online submissions
+// Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {ListNode} head
+//  * @return {number}
+//  */
+// const getDecimalValue = (head, str = '0b') =>
+//   !head ? Number(str) : getDecimalValue(head.next, str + head.val);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 48 ms, faster than 95.43% of JavaScript online submissions
+// Memory Usage: 33.7 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {ListNode} head
  * @return {number}
  */
-const getDecimalValue = (head, s = '') =>
-  !head ? Number.parseInt(s, 2) : getDecimalValue(head.next, s + head.val);
+const getDecimalValue = (head, dec = 0) =>
+  !head ? dec : getDecimalValue(head.next, dec * 2 + head.val);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
