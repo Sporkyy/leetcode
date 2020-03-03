@@ -15,13 +15,31 @@ import { strictEqual } from 'assert';
 // Runtime: 52 ms, faster than 82.72% of JavaScript online submissions
 // Memory Usage: 34 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  */
+// const subtractProductAndSum = n =>
+//   [...`${n}`].reduce((acc, curr) => acc * Number(curr), 1) -
+//   [...`${n}`].reduce((acc, curr) => acc + Number(curr), 0);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 48 ms, faster than 94.38% of JavaScript online submissions
+// Memory Usage: 33.9 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number} n
  * @return {number}
  */
 const subtractProductAndSum = n =>
-  [...`${n}`].reduce((acc, curr) => acc * Number(curr), 1) -
-  [...`${n}`].reduce((acc, curr) => acc + Number(curr), 0);
+  [...`${n}`]
+    .reduce((acc, curr) => [acc[0] * Number(curr), acc[1] + Number(curr)], [
+      1,
+      0,
+    ])
+    .reduce((acc, curr) => acc - curr);
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Example 1:
