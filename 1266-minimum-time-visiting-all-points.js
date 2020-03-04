@@ -22,22 +22,44 @@ import { strictEqual } from 'assert';
 // Runtime: 64 ms, faster than 50.00% of JavaScript online submissions
 // Memory Usage: 35.1 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[][]} points
+//  * @return {number}
+//  */
+// const minTimeToVisitAllPoints = points =>
+//   points.reduce(
+//     (acc, [x, y], idx) =>
+//       points.length - 1 === idx
+//         ? acc
+//         : acc +
+//           Math.max(
+//             Math.abs(x - points[idx + 1][0]),
+//             Math.abs(y - points[idx + 1][1]),
+//           ),
+//     0,
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 56 ms, faster than 87.31% of JavaScript online submissions
+// Memory Usage: 35 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[][]} points
  * @return {number}
  */
 const minTimeToVisitAllPoints = points =>
-  points.reduce(
-    (acc, [x, y], idx) =>
-      points.length - 1 === idx
-        ? acc
-        : acc +
-          Math.max(
-            Math.abs(x - points[idx + 1][0]),
-            Math.abs(y - points[idx + 1][1]),
-          ),
-    0,
-  );
+  points
+    .slice(0, points.length - 1)
+    .reduce(
+      (acc, [x, y], idx) =>
+        acc +
+        Math.max(
+          Math.abs(x - points[idx + 1][0]),
+          Math.abs(y - points[idx + 1][1]),
+        ),
+      0,
+    );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
