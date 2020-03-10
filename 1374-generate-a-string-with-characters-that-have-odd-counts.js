@@ -44,14 +44,25 @@ import { ok } from 'assert';
 // Runtime: 56 ms, faster than 70.35% of JavaScript online submissions
 // Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} n
+//  * @return {string}
+//  */
+// const generateTheString = n =>
+//   0 === n % 2
+//     ? `a${'b'.repeat(n - 1)}`
+//     : `a${1 < n ? 'b' : ''}${2 < n ? 'c'.repeat(n - 2) : ''}`;
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 56 ms, faster than 70.35% of JavaScript online submissions
+// Memory Usage: 33.6 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number} n
  * @return {string}
  */
-const generateTheString = n =>
-  0 === n % 2
-    ? `a${'b'.repeat(n - 1)}`
-    : `a${1 < n ? 'b' : ''}${2 < n ? 'c'.repeat(n - 2) : ''}`;
+const generateTheString = n => `${'a'.repeat(n - 1)}${n % 2 ? 'a' : 'b'}`;
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
