@@ -66,31 +66,40 @@ const generateTheString = n => `${'a'.repeat(n - 1)}${n % 2 ? 'a' : 'b'}`;
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-console.log(generateTheString(1));
-console.log(generateTheString(2));
-console.log(generateTheString(3));
-console.log(generateTheString(4));
-console.log(generateTheString(5));
-console.log(generateTheString(6));
-console.log(generateTheString(7));
-console.log(generateTheString(8));
-console.log(generateTheString(9));
-console.log(generateTheString(10));
-console.log(generateTheString(26));
-console.log(generateTheString(27));
-console.log(generateTheString(28));
-console.log(generateTheString(29));
-console.log(generateTheString(30));
+// console.log(generateTheString(1));
+// console.log(generateTheString(2));
+// console.log(generateTheString(3));
+// console.log(generateTheString(4));
+// console.log(generateTheString(5));
+// console.log(generateTheString(6));
+// console.log(generateTheString(7));
+// console.log(generateTheString(8));
+// console.log(generateTheString(9));
+// console.log(generateTheString(10));
+// console.log(generateTheString(26));
+// console.log(generateTheString(27));
+// console.log(generateTheString(28));
+// console.log(generateTheString(29));
+// console.log(generateTheString(30));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// // Example 1:
-// ok(generateTheString(4));
-// // Explanation: "pppz" is a valid string since the character 'p' occurs three times and the character 'z' occurs once. Note that there are many other valid strings such as "ohhh" and "love".
+const check = s => s.match(/(\w)\1*/g).every(s => 1 === s.length % 2);
 
-// // Example 2:
-// ok(generateTheString(2));
-// // Explanation: "xy" is a valid string since the characters 'x' and 'y' occur once. Note that there are many other valid strings such as "ag" and "ur".
+// console.log(check('a'));
+// console.log(check('aa'));
+// console.log(check('ab'));
+// console.log(check('abb'));
+// console.log(check('aabb'));
+// console.log(check('abc'));
 
-// // Example 3:
-// ok(generateTheString(7));
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Example 1:
+ok(check(generateTheString(4)));
+
+// Example 2:
+ok(check(generateTheString(2)));
+
+// Example 3:
+ok(check(generateTheString(7)));
