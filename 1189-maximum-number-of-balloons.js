@@ -46,17 +46,44 @@ import { strictEqual } from 'assert';
 // Runtime: 60 ms, faster than 75.14% of JavaScript online submissions
 // Memory Usage: 34.2 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string} text
+//  * @return {number}
+//  */
+// const maxNumberOfBalloons = text =>
+//   Math.min(
+//     /* b  */ (text.match(/(b)/g) || '').length,
+//     /* a  */ (text.match(/(a)/g) || '').length,
+//     /* ll */ Math.trunc((text.match(/(l)/g) || '').length / 2),
+//     /* oo */ Math.trunc((text.match(/(o)/g) || '').length / 2),
+//     /* n  */ (text.match(/(n)/g) || '').length,
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 34.25% of JavaScript online submissions
+// Memory Usage: 37.6 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string} text
  * @return {number}
  */
 const maxNumberOfBalloons = text =>
-  Math.min(
-    /* b  */ (text.match(/(b)/g) || '').length,
-    /* a  */ (text.match(/(a)/g) || '').length,
-    /* ll */ Math.trunc((text.match(/(l)/g) || '').length / 2),
-    /* oo */ Math.trunc((text.match(/(o)/g) || '').length / 2),
-    /* n  */ (text.match(/(n)/g) || '').length,
+  [
+    ...[...text].reduce(
+      (acc, curr) => (acc.has(curr) ? acc.set(curr, acc.get(curr) + 1) : acc),
+      new Map([
+        ['b', 0],
+        ['a', 0],
+        ['l', 0],
+        ['o', 0],
+        ['n', 0],
+      ]),
+    ),
+  ].reduce(
+    (acc, [c, cnt]) =>
+      Math.min(acc, Math.trunc(cnt / (/[lo]/.test(c) ? 2 : 1)) || 0),
+    Infinity,
   );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
