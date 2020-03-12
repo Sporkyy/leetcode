@@ -26,10 +26,42 @@ import { deepStrictEqual } from 'assert';
 // Runtime: 1796 ms, faster than 10.87% of JavaScript online submissions
 // Memory Usage: 51.4 MB, less than 100.00% of JavaScript online submissions
 
+// const f = s => {
+//   const cnts = new Array(26).fill(0);
+//   for (const c of s) cnts[c.charCodeAt(0) - 97]++;
+//   for (const cnt of cnts) if (0 < cnt) return cnt;
+// };
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (queries, words) =>
+//   queries.map(f).map(q => words.map(f).filter(w => q < w).length);
+
+// console.log(words.map(f));
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 224 ms, faster than 35.51% of JavaScript online submissions
+// Memory Usage: 43.5 MB, less than 100.00% of JavaScript online submissions
+
+const memo = new Map();
+
+/**
+ * @param {string} s
+ * @returns
+ */
 const f = s => {
+  if (memo.has(s)) return memo.get(s);
   const cnts = new Array(26).fill(0);
   for (const c of s) cnts[c.charCodeAt(0) - 97]++;
-  for (const cnt of cnts) if (0 < cnt) return cnt;
+  for (const cnt of cnts)
+    if (0 < cnt) {
+      memo.set(s, cnt);
+      return cnt;
+    }
 };
 
 /**
@@ -37,10 +69,10 @@ const f = s => {
  * @param {string[]} words
  * @return {number[]}
  */
-const numSmallerByFrequency = (queries, words) =>
-  queries.map(f).map(q => words.map(f).filter(w => q < w).length);
-
-// console.log(words.map(f));
+const numSmallerByFrequency = (queries, words) => {
+  [queries, words] = [queries.map(f), words.map(f)];
+  return queries.map(q => words.filter(w => q < w).length);
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
