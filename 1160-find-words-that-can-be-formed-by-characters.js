@@ -24,6 +24,22 @@ import { strictEqual } from 'assert';
 // Runtime: 184 ms, faster than 66.24% of JavaScript online submissions
 // Memory Usage: 43.9 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string[]} words
+//  * @param {string} chars
+//  * @return {number}
+//  */
+// const countCharacters = (words, chars) =>
+//   words.reduce((cnt, word, idx) => {
+//     for (const c of [...chars]) word = word.replace(c, '');
+//     return 0 === word.length ? cnt + words[idx].length : cnt;
+//   }, 0);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 188 ms, faster than 63.52% of JavaScript online submissions
+// Memory Usage: 43.9 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string[]} words
  * @param {string} chars
@@ -32,7 +48,7 @@ import { strictEqual } from 'assert';
 const countCharacters = (words, chars) =>
   words.reduce((cnt, word, idx) => {
     for (const c of [...chars]) word = word.replace(c, '');
-    return 0 === word.length ? cnt + words[idx].length : cnt;
+    return cnt + (0 === word.length ? words[idx].length : 0);
   }, 0);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -49,3 +65,32 @@ strictEqual(
 );
 // Explanation:
 // The strings that can be formed are "hello" and "world" so the answer is 5 + 5 = 10.
+
+strictEqual(
+  countCharacters(
+    [
+      'dyiclysmffuhibgfvapygkorkqllqlvokosagyelotobicwcmebnpznjbirzrzsrtzjxhsfpiwyfhzyonmuabtlwin',
+      'ndqeyhhcquplmznwslewjzuyfgklssvkqxmqjpwhrshycmvrb',
+      'ulrrbpspyudncdlbkxkrqpivfftrggemkpyjl',
+      'boygirdlggnh',
+      'xmqohbyqwagkjzpyawsydmdaattthmuvjbzwpyopyafphx',
+      'nulvimegcsiwvhwuiyednoxpugfeimnnyeoczuzxgxbqjvegcxeqnjbwnbvowastqhojepisusvsidhqmszbrnynkyop',
+      'hiefuovybkpgzygprmndrkyspoiyapdwkxebgsmodhzpx',
+      'juldqdzeskpffaoqcyyxiqqowsalqumddcufhouhrskozhlmobiwzxnhdkidr',
+      'lnnvsdcrvzfmrvurucrzlfyigcycffpiuoo',
+      'oxgaskztzroxuntiwlfyufddl',
+      'tfspedteabxatkaypitjfkhkkigdwdkctqbczcugripkgcyfezpuklfqfcsccboarbfbjfrkxp',
+      'qnagrpfzlyrouolqquytwnwnsqnmuzphne',
+      'eeilfdaookieawrrbvtnqfzcricvhpiv',
+      'sisvsjzyrbdsjcwwygdnxcjhzhsxhpceqz',
+      'yhouqhjevqxtecomahbwoptzlkyvjexhzcbccusbjjdgcfzlkoqwiwue',
+      'hwxxighzvceaplsycajkhynkhzkwkouszwaiuzqcleyflqrxgjsvlegvupzqijbornbfwpefhxekgpuvgiyeudhncv',
+      'cpwcjwgbcquirnsazumgjjcltitmeyfaudbnbqhflvecjsupjmgwfbjo',
+      'teyygdmmyadppuopvqdodaczob',
+      'qaeowuwqsqffvibrtxnjnzvzuuonrkwpysyxvkijemmpdmtnqxwekbpfzs',
+      'qqxpxpmemkldghbmbyxpkwgkaykaerhmwwjonrhcsubchs',
+    ],
+    'usdruypficfbpfbivlrhutcgvyjenlxzeovdyjtgvvfdjzcmikjraspdfp',
+  ),
+  0,
+);
