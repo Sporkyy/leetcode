@@ -61,6 +61,23 @@ import { strictEqual } from 'assert';
 // Runtime: 104 ms, faster than 53.74% of JavaScript online submissions
 // Memory Usage: 39.4 MB, less than 12.50% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const findUnsortedSubarray = nums =>
+//   nums
+//     .slice()
+//     .sort((a, b) => a - b)
+//     .map((n, idx) => (0 === n - nums[idx] ? ' ' : 'x'))
+//     .join('')
+//     .trim().length;
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 104 ms, faster than 53.61% of JavaScript online submissions
+// Memory Usage: 41.4 MB, less than 12.50% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
@@ -69,8 +86,7 @@ const findUnsortedSubarray = nums =>
   nums
     .slice()
     .sort((a, b) => a - b)
-    .map((n, idx) => (0 === n - nums[idx] ? ' ' : 'x'))
-    .join('')
+    .reduce((acc, curr, idx) => acc + (curr === nums[idx] ? ' ' : 'x'), '')
     .trim().length;
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
