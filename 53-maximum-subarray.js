@@ -55,8 +55,8 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 56 ms, faster than 86.09% of JavaScript online submissions
-// Memory Usage: 37.7 MB, less than 5.55% of JavaScript online submissions
+// Runtime: 60 ms, faster than 67.95% of JavaScript online submissions
+// Memory Usage: 38 MB, less than 5.55% of JavaScript online submissions
 
 /**
  * @param {number[]} nums
@@ -68,8 +68,43 @@ const maxSubArray = nums =>
       Math.max(curr, localMax + curr),
       Math.max(curr, localMax + curr, globalMax),
     ],
-    [0, -Infinity],
+    [-Infinity, -Infinity],
   )[1];
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 67.95% of JavaScript online submissions
+// Memory Usage: 36.2 MB, less than 5.55% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const maxSubArray = nums =>
+//   nums.slice(1).reduce(
+//     ({ localMax, globalMax }, curr) => ({
+//       localMax: Math.max(curr, localMax + curr),
+//       globalMax: Math.max(curr, localMax + curr, globalMax),
+//     }),
+//     { localMax: nums[0], globalMax: nums[0] },
+//   ).globalMax;
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 168 ms, faster than 11.98% of JavaScript online submissions
+// Memory Usage: 64.9 MB, less than 5.55% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const maxSubArray = nums =>
+//   Math.max(
+//     ...nums.reduce(
+//       (acc, curr) => acc.concat([Math.max(curr, acc[acc.length - 1] + curr)]),
+//       [-Infinity],
+//     ),
+//   );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
