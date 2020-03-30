@@ -50,18 +50,30 @@ import { strictEqual } from 'assert';
 // Runtime: 52 ms, faster than 68.86% of JavaScript online submissions
 // Memory Usage: 33.7 MB, less than 92.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  */
+// const climbStairs = n =>
+//   new Array(n)
+//     .fill()
+//     .reduce((acc, _, idx) => acc.concat([acc[idx + 2] + acc[idx + 1]]), [
+//       0,
+//       1,
+//       2,
+//     ])[n];
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 56 ms, faster than 39.57% of JavaScript online submissions
+// Memory Usage: 36.3 MB, less than 12.00% of JavaScript online submissions
+
 /**
  * @param {number} n
  * @return {number}
  */
-const climbStairs = n =>
-  new Array(n)
-    .fill()
-    .reduce((acc, _, idx) => acc.concat([acc[idx + 2] + acc[idx + 1]]), [
-      0,
-      1,
-      2,
-    ])[n];
+const climbStairs = (n, i = 0, seq = [0, 1, 2]) =>
+  n < i ? seq[n] : climbStairs(n, i + 1, [...seq, seq.pop() + seq.pop()]);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
