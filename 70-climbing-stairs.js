@@ -35,15 +35,33 @@ import { strictEqual } from 'assert';
 // Runtime: 52 ms, faster than 68.86% of JavaScript online submissions
 // Memory Usage: 33.9 MB, less than 48.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  */
+// const climbStairs = n =>
+//   [...new Array(n).keys()].reduce(
+//     (acc, curr) => acc.concat([acc[curr + 2] + acc[curr + 1]]),
+//     [0, 1, 2],
+//   )[n];
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 52 ms, faster than 68.86% of JavaScript online submissions
+// Memory Usage: 33.7 MB, less than 92.00% of JavaScript online submissions
+
 /**
  * @param {number} n
  * @return {number}
  */
 const climbStairs = n =>
-  [...new Array(n).keys()].reduce(
-    (acc, curr) => acc.concat([acc[curr + 2] + acc[curr + 1]]),
-    [0, 1, 2],
-  )[n];
+  new Array(n)
+    .fill()
+    .reduce((acc, _, idx) => acc.concat([acc[idx + 2] + acc[idx + 1]]), [
+      0,
+      1,
+      2,
+    ])[n];
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
