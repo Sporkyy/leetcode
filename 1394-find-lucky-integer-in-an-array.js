@@ -22,14 +22,48 @@ import { strictEqual } from 'assert';
 // Runtime: 116 ms, faster than 18.18% of JavaScript online submissions
 // Memory Usage: 35.4 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} arr
+//  * @return {number}
+//  */
+// const findLucky = arr => {
+//   const cnts = new Array(arr.length + 1).fill(0);
+//   for (const num of arr) if (0 < num && num < arr.length + 1) cnts[num]++;
+//   for (let i = cnts.length - 1; 0 < i; i--) if (i === cnts[i]) return i;
+//   return -1;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 75.65% of JavaScript online submissions
+// Memory Usage: 35.3 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} arr
+//  * @return {number}
+//  */
+// const findLucky = arr => {
+//   const cnts = new Array(arr.length + 1).fill(0);
+//   for (const num of arr) if (num < arr.length + 1) cnts[num]++;
+//   for (let i = cnts.length - 1; 0 < i; i--) if (i === cnts[i]) return i;
+//   return -1;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 108 ms, faster than 23.38% of JavaScript online submissions
+// Memory Usage: 36.6 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} arr
  * @return {number}
  */
 const findLucky = arr => {
-  const cnts = new Array(arr.length + 1).fill(0);
-  for (const num of arr) if (0 < num && num < arr.length + 1) cnts[num]++;
-  for (let i = cnts.length - 1; 0 < i; i--) if (i === cnts[i]) return i;
+  const poss = new Map(
+    [...new Set(arr)].sort((a, b) => b - a).map(n => [n, 0]),
+  );
+  for (const num of arr) poss.set(num, poss.get(num) + 1);
+  for (const [x, y] of poss) if (x === y) return x;
   return -1;
 };
 
