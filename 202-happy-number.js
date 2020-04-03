@@ -20,17 +20,52 @@ this process ends in 1 are happy numbers.
 // Runtime: 124 ms, faster than 8.87% of JavaScript online submissions
 // Memory Usage: 38.1 MB, less than 7.69% of JavaScript online submissions
 
+// /**
+//  * @param {number} n
+//  * @return {boolean}
+//  */
+// const isHappy = (n, i = 0) => {
+//   const digits = [...`${n}`].map(Number);
+//   // console.log(digits);
+//   const x = digits.reduce((acc, curr) => acc + curr ** 2, 0);
+//   // console.log(x);
+//   return 1 === x ? true : 999 < i ? false : isHappy(x, i + 1);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 65.98% of JavaScript online submissions
+// Memory Usage: 36.8 MB, less than 23.08% of JavaScript online submissions
+
+// /**
+//  * @param {number} n
+//  * @return {boolean}
+//  */
+// const isHappy = (n, seen = new Set()) => {
+//   n = [...`${n}`].reduce((acc, curr) => acc + curr ** 2, 0);
+//   if (seen.has(n)) return false;
+//   seen.add(n);
+//   return 1 === n ? true : isHappy(n, seen);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 43.09% of JavaScript online submissions
+// Memory Usage: 36.8 MB, less than 23.08% of JavaScript online submissions
+
 /**
  * @param {number} n
  * @return {boolean}
  */
-const isHappy = (n, i = 0) => {
-  const digits = [...`${n}`].map(Number);
-  // console.log(digits);
-  const x = digits.reduce((acc, curr) => acc + curr ** 2, 0);
-  // console.log(x);
-  return 1 === x ? true : 999 < i ? false : isHappy(x, i + 1);
-};
+const isHappy = (n, seen = new Set()) =>
+  seen.has(1)
+    ? true
+    : seen.has(n)
+    ? false
+    : isHappy(
+        [...`${n}`].reduce((acc, curr) => acc + curr ** 2, 0),
+        seen.add(n),
+      );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
