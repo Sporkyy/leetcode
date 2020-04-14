@@ -87,6 +87,24 @@ const maxProfit = prices =>
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of
+// memory
+
+// /**
+//  * @param {number[]} prices
+//  * @return {number}
+//  */
+// const maxProfit = (prices, min = Infinity, profit = 0) =>
+//   !prices.length
+//     ? profit
+//     : maxProfit(
+//         prices.slice(1),
+//         Math.min(min, prices[0]),
+//         Math.max(profit, prices[0] - min),
+//       );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 // Example 1:
 strictEqual(maxProfit([7, 1, 5, 3, 6, 4]), 5);
 // Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
