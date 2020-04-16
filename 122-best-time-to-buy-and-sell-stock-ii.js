@@ -26,17 +26,62 @@ import { strictEqual } from 'assert';
 // Runtime: 56 ms, faster than 84.11% of JavaScript online submissions
 // Memory Usage: 36.3 MB, less than 23.81% of JavaScript online submissions
 
-const maxProfit = prices => {
-  let profit = 0;
-  for (let i = 0, lo = Infinity, hi = -Infinity; i < prices.length; i++) {
-    [lo, hi] = [Math.min(lo, prices[i]), Math.max(hi, prices[i])];
-    if (prices[i + 1] < prices[i] || i === prices.length - 1) {
-      profit += hi - lo;
-      [lo, hi] = [Infinity, -Infinity];
-    }
-  }
-  return profit;
-};
+// /**
+//  * @param {number[]} prices
+//  * @return {number}
+//  */
+// const maxProfit = prices => {
+//   let profit = 0;
+//   for (let i = 0, lo = Infinity, hi = -Infinity; i < prices.length; i++) {
+//     [lo, hi] = [Math.min(lo, prices[i]), Math.max(hi, prices[i])];
+//     if (prices[i + 1] < prices[i] || i === prices.length - 1) {
+//       profit += hi - lo;
+//       [lo, hi] = [Infinity, -Infinity];
+//     }
+//   }
+//   return profit;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 64.98% of JavaScript online submissions
+// Memory Usage: 36.5 MB, less than 23.81% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} prices
+//  * @return {number}
+//  */
+// const maxProfit = prices =>
+//   prices
+//     .map((price, idx) => prices[idx + 1] - price)
+//     .filter(n => 0 < n)
+//     .reduce((acc, curr) => acc + curr, 0);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {number[]} prices
+//  * @return {number}
+//  */
+// const maxProfit = prices =>
+//   prices
+//     .map((price, idx) => prices[idx + 1] - price)
+//     .filter(n => 0 < n)
+//     .reduce((acc, curr) => acc + curr, 0);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+const maxProfit = prices =>
+  prices.reduce(
+    (profit, priceToday, idx) =>
+      profit +
+      (priceToday < prices[idx + 1] ? prices[idx + 1] - priceToday : 0),
+    0,
+  );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
