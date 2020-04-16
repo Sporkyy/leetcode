@@ -71,17 +71,46 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * @param {number[]} prices
+//  * @return {number}
+//  */
+// const maxProfit = prices =>
+//   prices.reduce(
+//     (profit, priceToday, idx) =>
+//       profit +
+//       (priceToday < prices[idx + 1] ? prices[idx + 1] - priceToday : 0),
+//     0,
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 32.11% of JavaScript online submissions
+// Memory Usage: 36.6 MB, less than 23.81% of JavaScript online submissions
+
 /**
+ * You have a time travel machine that can only go back 1 day.
+ * You will use it to exploit the stock market.
+ * But somehow had infinite money to start with. (Whatever.)
+ *
  * @param {number[]} prices
  * @return {number}
  */
-const maxProfit = prices =>
-  prices.reduce(
-    (profit, priceToday, idx) =>
-      profit +
-      (priceToday < prices[idx + 1] ? prices[idx + 1] - priceToday : 0),
-    0,
-  );
+const maxProfit = prices => {
+  // Start with nothing and take every profitable opportunity from time travel
+  let profit = 0;
+  // Start from the second day (because that is the first day you could sell)
+  for (let i = 1; i < prices.length; i++) {
+    // Our Delorean only goes back 1 day, but that is all we need
+    const [priceYesterday, priceToday] = [prices[i - 1], prices[i]];
+    // Whenever there is profit, engage that Flux Capacitor!
+    if (priceYesterday < priceToday) profit += priceToday - priceYesterday;
+    // Buy yesterday; sell today
+  }
+  // Take every Monday off!
+  return profit;
+  // Time travel trading makes every weekend is a three-day weekend!
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
