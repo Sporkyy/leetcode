@@ -22,20 +22,40 @@ import { strictEqual } from 'assert';
 // Runtime: 60 ms, faster than 87.42% of JavaScript online submissions
 // Memory Usage: 35.4 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const maxScore = s => {
+//   let lScore = 0 == s[0] ? 1 : 0;
+//   let rScore = [...s.slice(1)].filter(c => 1 == c).length;
+//   // console.log(lScore, rScore);
+//   let maxScore = lScore + rScore;
+//   for (let i = 1; i < s.length - 1; i++) {
+//     // console.log(s[i]);
+//     if (0 == s[i]) lScore++;
+//     if (1 == s[i]) rScore--;
+//     // console.log(lScore, rScore);
+//     maxScore = Math.max(lScore + rScore, maxScore);
+//   }
+//   return maxScore;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 87.42% of JavaScript online submissions
+// Memory Usage: 35.2 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {number}
  */
 const maxScore = s => {
   let lScore = 0 == s[0] ? 1 : 0;
-  let rScore = [...s.slice(1)].filter(c => 1 == c).length;
-  // console.log(lScore, rScore);
+  let rScore = s.slice(1).replace(/0/g, '').length;
   let maxScore = lScore + rScore;
   for (let i = 1; i < s.length - 1; i++) {
-    // console.log(s[i]);
-    if (0 == s[i]) lScore++;
-    if (1 == s[i]) rScore--;
-    // console.log(lScore, rScore);
+    0 == s[i] ? lScore++ : rScore--;
     maxScore = Math.max(lScore + rScore, maxScore);
   }
   return maxScore;
