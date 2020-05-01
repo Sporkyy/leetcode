@@ -121,3 +121,7 @@ strictEqual(maxScore('00111'), 5);
 
 // Example 3:
 strictEqual(maxScore('1111'), 3);
+
+strictEqual(maxScore('00'), 1);
+
+strictEqual(maxScore('01001'), 4);
