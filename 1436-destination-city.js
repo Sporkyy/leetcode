@@ -27,17 +27,31 @@ import { strictEqual } from 'assert';
 // Runtime: 64 ms, faster than 76.71% of JavaScript online submissions
 // Memory Usage: 37.4 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string[][]} paths
+//  * @return {string}
+//  */
+// const destCity = paths => {
+//   const [from, to] = [new Set(), new Set()];
+//   for (const [f, t] of paths) {
+//     from.add(f);
+//     to.add(t);
+//   }
+//   for (const dest of to) if (!from.has(dest)) return dest;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 86.64% of JavaScript online submissions
+// Memory Usage: 36.4 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string[][]} paths
  * @return {string}
  */
 const destCity = paths => {
-  const [from, to] = [new Set(), new Set()];
-  for (const [f, t] of paths) {
-    from.add(f);
-    to.add(t);
-  }
-  for (const dest of to) if (!from.has(dest)) return dest;
+  const from = new Set(paths.map(([f]) => f));
+  return paths.filter(([, to]) => !from.has(to))[0][1];
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
