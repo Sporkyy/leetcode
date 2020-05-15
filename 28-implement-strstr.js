@@ -44,8 +44,8 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 3184 ms, faster than 5.15% of JavaScript online submissions
-// Memory Usage: 35.1 MB, less than 39.29% of JavaScript online submissions
+// Runtime: 60 ms, faster than 44.80% of JavaScript online submissions
+// Memory Usage: 34.7 MB, less than 67.86% of JavaScript online submissions
 
 /**
  * @param {string} haystack
