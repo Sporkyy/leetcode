@@ -38,17 +38,35 @@ import { deepStrictEqual, strictEqual } from 'assert';
 // Runtime: 56 ms, faster than 59.78% of JavaScript online submissions
 // Memory Usage: 34 MB, less than 5.55% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @param {number} val
+//  * @return {number}
+//  */
+// const removeElement = (nums, val) => {
+//   const cnt = nums.length;
+//   for (let i = 0; i < cnt; i++)
+//     if (val === nums[0]) nums.shift();
+//     else nums.push(nums.shift());
+//   return nums.length;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 56 ms, faster than 59.78% of JavaScript online submissions
+// Memory Usage: 34 MB, less than 5.55% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @param {number} val
  * @return {number}
  */
 const removeElement = (nums, val) => {
-  const cnt = nums.length;
-  for (let i = 0; i < cnt; i++)
-    if (val === nums[0]) nums.shift();
-    else nums.push(nums.shift());
-  return nums.length;
+  let write = 0;
+  for (let read = 0; read < nums.length; read++)
+    if (nums[read] !== val) nums[write++] = nums[read];
+  nums.length = write;
+  return write;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -68,4 +86,12 @@ deepStrictEqual(nums2, [0, 1, 3, 0, 4]);
 
 const nums3 = [3, 3, 2, 2];
 strictEqual(removeElement(nums3, 3), 2);
-deepStrictEqual(nums1, [2, 2]);
+deepStrictEqual(nums3, [2, 2]);
+
+const nums4 = [2];
+strictEqual(removeElement(nums4, 3), 1);
+deepStrictEqual(nums4, [2]);
+
+const nums5 = [4, 2, 0, 2, 2, 1, 4, 4, 1, 4, 3, 2];
+strictEqual(removeElement(nums5, 4), 8);
+deepStrictEqual(nums5.slice().sort(), [2, 2, 0, 2, 2, 1, 3, 1].slice().sort());
