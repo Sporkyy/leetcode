@@ -69,23 +69,23 @@ const reformat = s => {
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Example 1:
-// strictEqual(reformat('a0b1c2'), '0a1b2c');
+strictEqual(reformat('a0b1c2'), '0a1b2c');
 // Explanation: No two adjacent characters have the same type in "0a1b2c". "a0b1c2", "0a1b2c", "0c2a1b" are also valid permutations.
 
 // Example 2:
-// strictEqual(reformat('leetcode'), '');
+strictEqual(reformat('leetcode'), '');
 // Explanation: "leetcode" has only characters so we cannot separate them by digits.
 
 // Example 3:
-// strictEqual(reformat('1229857369'), '');
+strictEqual(reformat('1229857369'), '');
 // Explanation: "1229857369" has only digits so we cannot separate them by characters.
 
 // Example 4:
 strictEqual(reformat('covid2019'), 'c2o0v1i9d');
 
 // Example 5:
-// strictEqual(reformat('ab123'), '1a2b3');
+strictEqual(reformat('ab123'), '1a2b3');
 
-// strictEqual(reformat('j'), 'j');
+strictEqual(reformat('j'), 'j');
 
-// strictEqual(reformat('ec'), '');
+strictEqual(reformat('ec'), '');
