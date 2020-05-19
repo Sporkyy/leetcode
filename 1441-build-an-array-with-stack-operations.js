@@ -33,20 +33,37 @@ import { deepStrictEqual } from 'assert';
 // Runtime: 72 ms, faster than 45.40% of JavaScript online submissions
 // Memory Usage: 34 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} target
+//  * @param {number} n
+//  * @return {string[]}
+//  */
+// const buildArray = (target, n) => {
+//   const set = new Set(target);
+//   const ans = [];
+//   for (let i = 1; i < target[target.length - 1] + 1; i++) {
+//     ans.push('Push');
+//     if (!set.has(i)) ans.push('Pop');
+//   }
+//   return ans;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 104 ms, faster than 7.62% of JavaScript online submissions
+// Memory Usage: 34.4 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} target
  * @param {number} n
  * @return {string[]}
  */
-const buildArray = (target, n) => {
-  const set = new Set(target);
-  const ans = [];
-  for (let i = 1; i < target[target.length - 1] + 1; i++) {
-    ans.push('Push');
-    if (!set.has(i)) ans.push('Pop');
-  }
-  return ans;
-};
+const buildArray = (target, n) =>
+  [...new Array(target[target.length - 1])].reduce(
+    (arr, _, idx) =>
+      target.includes(idx + 1) ? arr.concat('Push') : arr.concat('Push', 'Pop'),
+    [],
+  );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
