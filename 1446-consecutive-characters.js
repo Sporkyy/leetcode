@@ -51,3 +51,5 @@ strictEqual(maxPower('hooraaaaaaaaaaay'), 11);
 
 // Example 5:
 strictEqual(maxPower('tourist'), 1);
+
+strictEqual(maxPower(''), 0);
