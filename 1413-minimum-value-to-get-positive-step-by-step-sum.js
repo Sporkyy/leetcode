@@ -67,14 +67,31 @@ import { strictEqual } from 'assert';
 // Runtime: 120 ms, faster than 5.97% of JavaScript online submissions
 // Memory Usage: 36.9 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const minStartValue = nums => {
+//   for (let startVal = 1, acc = 1; true; startVal++, acc = startVal)
+//     if (nums.map(n => (acc += n)).every(n => 0 < n)) return startVal;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 620 ms, faster than 5.97% of JavaScript online submissions
+// Memory Usage: 50.6 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
  */
-const minStartValue = nums => {
-  for (let startVal = 1, acc = 1; true; startVal++, acc = startVal)
-    if (nums.map(n => (acc += n)).every(n => 0 < n)) return startVal;
-};
+const minStartValue = (nums, startVal = 1) =>
+  0 <
+  Math.min(
+    ...nums.reduce((acc, curr, idx) => acc.concat(acc[idx] + curr), [startVal]),
+  )
+    ? startVal
+    : minStartValue(nums, startVal + 1);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -97,11 +114,3 @@ strictEqual(minStartValue([1, 2]), 1);
 strictEqual(minStartValue([1, -2, -3]), 5);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-/*
-
--3, 2, -3, 4, 2 = 5
-1, 2 = 1
-1, -2, -3 = 5
-
-*/
