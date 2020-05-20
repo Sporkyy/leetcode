@@ -25,25 +25,41 @@ import { strictEqual } from 'assert';
 // Runtime: 104 ms, faster than 8.18% of JavaScript online submissions
 // Memory Usage: 34.4 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const minStartValue = nums => {
+//   let startValue = 1;
+//   let tmp = startValue;
+//   for (let i = 0; i < nums.length; i++) {
+//     // console.log(startValue);
+//     // console.log(`(${startValue}) ${tmp} + ${nums[i]} = ${tmp + nums[i]}`);
+//     tmp += nums[i];
+//     if (tmp < 1) {
+//       // console.log('again');
+//       tmp = ++startValue;
+//       i = -1;
+//     }
+//   }
+//   // console.log(startValue);
+//   return startValue;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 100 ms, faster than 10.69% of JavaScript online submissions
+// Memory Usage: 36.1 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
  */
 const minStartValue = nums => {
-  let startValue = 1;
-  let tmp = startValue;
-  for (let i = 0; i < nums.length; i++) {
-    // console.log(startValue);
-    // console.log(`(${startValue}) ${tmp} + ${nums[i]} = ${tmp + nums[i]}`);
-    tmp += nums[i];
-    if (tmp < 1) {
-      // console.log('again');
-      tmp = ++startValue;
-      i = -1;
-    }
+  loop: for (let startVal = 1, acc = 1; true; startVal++, acc = startVal) {
+    for (const n of nums) if ((acc += n) < 1) continue loop;
+    return startVal;
   }
-  // console.log(startValue);
-  return startValue;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -65,3 +81,13 @@ strictEqual(minStartValue([1, 2]), 1);
 
 // Example 3:
 strictEqual(minStartValue([1, -2, -3]), 5);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/*
+
+-3, 2, -3, 4, 2 = 5
+1, 2 = 1
+1, -2, -3 = 5
+
+*/
