@@ -51,15 +51,29 @@ import { strictEqual } from 'assert';
 // Runtime: 100 ms, faster than 10.69% of JavaScript online submissions
 // Memory Usage: 36.1 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const minStartValue = nums => {
+//   loop: for (let startVal = 1, acc = 1; true; startVal++, acc = startVal) {
+//     for (const n of nums) if ((acc += n) < 1) continue loop;
+//     return startVal;
+//   }
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 120 ms, faster than 5.97% of JavaScript online submissions
+// Memory Usage: 36.9 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
  */
 const minStartValue = nums => {
-  loop: for (let startVal = 1, acc = 1; true; startVal++, acc = startVal) {
-    for (const n of nums) if ((acc += n) < 1) continue loop;
-    return startVal;
-  }
+  for (let startVal = 1, acc = 1; true; startVal++, acc = startVal)
+    if (nums.map(n => (acc += n)).every(n => 0 < n)) return startVal;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
