@@ -27,23 +27,60 @@ import { deepStrictEqual } from 'assert';
 // Runtime: 96 ms, faster than 35.65% of JavaScript online submissions
 // Memory Usage: 35.6 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// const minSubsequence = nums => {
+//   nums.sort((a, b) => a - b);
+//   // console.log(nums);
+//   let sum = nums.reduce((acc, curr) => acc + curr);
+//   // console.log(sum);
+//   let subSum = 0;
+//   const sub = [];
+//   while (subSum <= sum) {
+//     const n = nums.pop();
+//     sub.push(n);
+//     (subSum += n), (sum -= n);
+//   }
+//   // console.log(sub);
+//   return sub;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 96 ms, faster than 35.65% of JavaScript online submissions
+// Memory Usage: 35.6 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// const minSubsequence = nums => {
+//   nums.sort((a, b) => a - b);
+//   let [sum, subSum] = [nums.reduce((acc, curr) => acc + curr), 0];
+//   const sub = [];
+//   while (subSum <= sum) {
+//     const n = nums.pop();
+//     sub.push(n), (subSum += n), (sum -= n);
+//   }
+//   return sub;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {number[]} nums
  * @return {number[]}
  */
 const minSubsequence = nums => {
   nums.sort((a, b) => a - b);
-  // console.log(nums);
-  let sum = nums.reduce((acc, curr) => acc + curr);
-  // console.log(sum);
-  let subSum = 0;
+  let [sum, subSum] = [nums.reduce((acc, curr) => acc + curr), 0];
   const sub = [];
   while (subSum <= sum) {
     const n = nums.pop();
-    sub.push(n);
-    (subSum += n), (sum -= n);
+    sub.push(n), (subSum += n), (sum -= n);
   }
-  // console.log(sub);
   return sub;
 };
 
