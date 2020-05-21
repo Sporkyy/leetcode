@@ -69,25 +69,43 @@ import { deepStrictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// const minSubsequence = nums => {
+//   nums.sort((a, b) => a - b);
+//   let [sum, subSum] = [nums.reduce((acc, curr) => acc + curr), 0];
+//   const sub = [];
+//   while (subSum <= sum) {
+//     const n = nums.pop();
+//     sub.push(n), (subSum += n), (sum -= n);
+//   }
+//   return sub;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 84.39% of JavaScript online submissions
+// Memory Usage: 35.6 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number[]}
  */
 const minSubsequence = nums => {
   nums.sort((a, b) => a - b);
-  let [sum, subSum] = [nums.reduce((acc, curr) => acc + curr), 0];
-  const sub = [];
-  while (subSum <= sum) {
-    const n = nums.pop();
-    sub.push(n), (subSum += n), (sum -= n);
-  }
-  return sub;
+  const half = nums.reduce((acc, curr) => acc + curr) / 2;
+  const res = [];
+  for (let sum = 0, n = nums.pop(); sum <= half; n = nums.pop())
+    (sum += n), res.push(n);
+  return res;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Example 1:
-// deepStrictEqual(minSubsequence([4, 3, 10, 9, 8]), [10, 9]);
+deepStrictEqual(minSubsequence([4, 3, 10, 9, 8]), [10, 9]);
 // Explanation: The subsequences [10,9] and [10,8] are minimal such that the sum
 // of their elements is strictly greater than the sum of elements not included,
 // however, the subsequence [10,9] has the maximum total sum of its elements.
