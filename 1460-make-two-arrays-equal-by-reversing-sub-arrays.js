@@ -22,8 +22,8 @@ import { ok } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 80 ms, faster than 58.08% of JavaScript online submissions
-// Memory Usage: 37.6 MB, less than 100.00% of JavaScript online submissions
+// Runtime: 72 ms, faster than 88.08% of JavaScript online submissions
+// Memory Usage: 37.3 MB, less than 100.00% of JavaScript online submissions
 
 /**
  * @param {number[]} target
@@ -31,8 +31,8 @@ import { ok } from 'assert';
  * @return {boolean}
  */
 const canBeEqual = (target, arr) =>
-  JSON.stringify(target.slice().sort((a, b) => a - b)) ===
-  JSON.stringify(arr.slice().sort((a, b) => a - b));
+  JSON.stringify(target.sort((a, b) => a - b)) ===
+  JSON.stringify(arr.sort((a, b) => a - b));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
