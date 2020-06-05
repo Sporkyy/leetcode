@@ -57,18 +57,128 @@ import { deepStrictEqual } from 'assert';
 // Runtime: 96 ms, faster than 28.57% of JavaScript online submissions
 // Memory Usage: 43.3 MB, less than 5.17% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} groupSizes
+//  * @return {number[][]}
+//  */
+// const groupThePeople = groupSizes => {
+//   const grouped = new Array(500).fill().map(_ => []);
+//   for (let i = 0; i < groupSizes.length; i++) grouped[groupSizes[i]].push(i);
+//   const res = [];
+//   for (let i = 0; i < grouped.length; i++)
+//     while (grouped[i].length) res.push(grouped[i].splice(0, i));
+//   return res;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 92 ms, faster than 33.43% of JavaScript online submissions
+// Memory Usage: 43 MB, less than 5.45% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} groupSizes
+//  * @return {number[][]}
+//  */
+// const groupThePeople = groupSizes => {
+//   const sorted = groupSizes
+//     .map((size, id) => [size, id])
+//     .sort(([aSize], [bSize]) => aSize - bSize);
+//   const res = [];
+//   while (sorted.length)
+//     res.push(sorted.splice(0, sorted[0][0]).map(([, id]) => id));
+//   return res;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 96 ms, faster than 28.57% of JavaScript online submissions
+// Memory Usage: 42.3 MB, less than 6.60% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} groupSizes
+//  * @return {number[][]}
+//  */
+// const groupThePeople = groupSizes =>
+//   groupSizes
+//     .map((size, id) => [size, id])
+//     .sort(([aSize], [bSize]) => aSize - bSize)
+//     .reduce(
+//       (acc, [size, id], idx) => {
+//         acc[0].push(id);
+//         if (idx < groupSizes.length - 1 && acc[0].length === size)
+//           acc.unshift([]);
+//         return acc;
+//       },
+//       [[]],
+//     );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 96 ms, faster than 28.57% of JavaScript online submissions
+// Memory Usage: 42.4 MB, less than 6.32% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} groupSizes
+//  * @return {number[][]}
+//  */
+// const groupThePeople = groupSizes =>
+//   groupSizes
+//     .map((size, id) => [size, id])
+//     .sort(([aSize], [bSize]) => aSize - bSize)
+//     .reduce(
+//       (acc, [size, id], idx) => {
+//         acc[acc.length - 1].push(id);
+//         if (idx < groupSizes.length - 1 && acc[acc.length - 1].length === size)
+//           acc.push([]);
+//         return acc;
+//       },
+//       [[]],
+//     );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 104 ms, faster than 20.29% of JavaScript online submissions
+// Memory Usage: 41.7 MB, less than 13.79% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} groupSizes
+//  * @return {number[][]}
+//  */
+// const groupThePeople = groupSizes =>
+//   [
+//     ...groupSizes
+//       .reduce((groups, size, id) => {
+//         groups.get(size).push(id);
+//         return groups;
+//       }, new Map([...new Set(groupSizes)].map(size => [size, []])))
+//       .entries(),
+//   ].reduce((groups, [size, ids]) => {
+//     while (ids.length) groups.push(ids.splice(0, size));
+//     return groups;
+//   }, []);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 84 ms, faster than 52.86% of JavaScript online submissions
+// Memory Usage: 42.2 MB, less than 6.89% of JavaScript online submissions
+
 /**
  * @param {number[]} groupSizes
  * @return {number[][]}
  */
-const groupThePeople = groupSizes => {
-  const grouped = new Array(500).fill().map(_ => []);
-  for (let i = 0; i < groupSizes.length; i++) grouped[groupSizes[i]].push(i);
-  const res = [];
-  for (let i = 0; i < grouped.length; i++)
-    while (grouped[i].length) res.push(grouped[i].splice(0, i));
-  return res;
-};
+const groupThePeople = groupSizes =>
+  [
+    ...groupSizes
+      .reduce((groups, size, id) => {
+        if (groups.has(size)) groups.get(size).push(id);
+        else groups.set(size, [id]);
+        return groups;
+      }, new Map())
+      .entries(),
+  ].reduce((groups, [size, ids]) => {
+    while (ids.length) groups.push(ids.splice(0, size));
+    return groups;
+  }, []);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
