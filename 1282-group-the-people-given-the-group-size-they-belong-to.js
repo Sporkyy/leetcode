@@ -25,30 +25,48 @@ import { deepStrictEqual } from 'assert';
 // Runtime: 100 ms, faster than 23.71% of JavaScript online submissions
 // Memory Usage: 41.2 MB, less than 18.96% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} groupSizes
+//  * @return {number[][]}
+//  */
+// const groupThePeople = groupSizes => {
+//   // console.log(groupSizes);
+//   // const ids = [...new Array(groupSizes.length).keys()].slice(1);
+//   // console.log(ids);
+//   const largest = Math.max(...groupSizes);
+//   // console.log(largest);
+//   // const groupedGroups = new Array(largest + 1).fill(0);
+//   // console.log(groupedGroups);
+//   // for (const size of groupSizes) groupedGroups[size]++;
+//   // console.log(groupedGroups);
+//   const grouped = new Array(largest + 1).fill().map(_ => []);
+//   // console.log(grouped);
+//   for (let i = 0; i < groupSizes.length; i++) grouped[groupSizes[i]].push(i);
+//   // console.log(grouped);
+//   const res = [];
+//   for (let i = 0; i < grouped.length; i++) {
+//     if (!grouped[i].length) continue;
+//     // console.log(i);
+//     while (grouped[i].length) res.push(grouped[i].splice(0, i));
+//   }
+//   return res;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 96 ms, faster than 28.57% of JavaScript online submissions
+// Memory Usage: 43.3 MB, less than 5.17% of JavaScript online submissions
+
 /**
  * @param {number[]} groupSizes
  * @return {number[][]}
  */
 const groupThePeople = groupSizes => {
-  // console.log(groupSizes);
-  // const ids = [...new Array(groupSizes.length).keys()].slice(1);
-  // console.log(ids);
-  const largest = Math.max(...groupSizes);
-  // console.log(largest);
-  // const groupedGroups = new Array(largest + 1).fill(0);
-  // console.log(groupedGroups);
-  // for (const size of groupSizes) groupedGroups[size]++;
-  // console.log(groupedGroups);
-  const grouped = new Array(largest + 1).fill().map(_ => []);
-  // console.log(grouped);
+  const grouped = new Array(500).fill().map(_ => []);
   for (let i = 0; i < groupSizes.length; i++) grouped[groupSizes[i]].push(i);
-  // console.log(grouped);
   const res = [];
-  for (let i = 0; i < grouped.length; i++) {
-    if (!grouped[i].length) continue;
-    // console.log(i);
+  for (let i = 0; i < grouped.length; i++)
     while (grouped[i].length) res.push(grouped[i].splice(0, i));
-  }
   return res;
 };
 
