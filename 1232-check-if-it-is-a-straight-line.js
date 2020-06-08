@@ -47,16 +47,36 @@ import { ok } from 'assert';
 // Runtime: 112 ms, faster than 5.20% of JavaScript online submissions
 // Memory Usage: 38.6 MB, less than 5.02% of JavaScript online submissions
 
+// /**
+//  * @param {number[][]} coordinates
+//  * @return {boolean}
+//  */
+// const checkStraightLine = coordinates => {
+//   const [ix, iy] = [coordinates[0][0], coordinates[0][1]];
+//   for (let i = 1; i < coordinates.length - 1; i++) {
+//     const [ax, ay] = [coordinates[i][0], coordinates[i][1]];
+//     const [bx, by] = [coordinates[i + 1][0], coordinates[i + 1][1]];
+//     if ((ix - ax) * (ay - by) !== (ax - bx) * (iy - ay)) return false;
+//   }
+//   return true;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 104 ms, faster than 5.20% of JavaScript online submissions
+// Memory Usage: 39.2 MB, less than 5.02% of JavaScript online submissions
+
 /**
  * @param {number[][]} coordinates
  * @return {boolean}
  */
 const checkStraightLine = coordinates => {
-  const [ix, iy] = [coordinates[0][0], coordinates[0][1]];
-  for (let i = 1; i < coordinates.length - 1; i++) {
-    const [ax, ay] = [coordinates[i][0], coordinates[i][1]];
-    const [bx, by] = [coordinates[i + 1][0], coordinates[i + 1][1]];
-    if ((ix - ax) * (ay - by) !== (ax - bx) * (iy - ay)) return false;
+  if (2 === coordinates.length) return true;
+  const [ax, ay] = coordinates.pop().reduce((x, y) => [x, y]);
+  const [bx, by] = coordinates.pop().reduce((x, y) => [x, y]);
+  for (let i = 0; i < coordinates.length; i++) {
+    const [cx, cy] = [coordinates[i][0], coordinates[i][1]];
+    if ((ax - bx) * (by - cy) !== (bx - cx) * (ay - by)) return false;
   }
   return true;
 };
