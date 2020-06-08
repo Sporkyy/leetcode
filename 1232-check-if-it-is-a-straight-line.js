@@ -186,44 +186,83 @@ import { ok } from 'assert';
 // Runtime: 68 ms, faster than 10.97% of JavaScript online submissions
 // Memory Usage: 38.4 MB, less than 5.02% of JavaScript online submissions
 
+// /**
+//  * @param {number[][]} coords
+//  * @return {boolean}
+//  */
+// const checkStraightLine = coords => {
+//   if (coords.every(([x]) => x === coords[0][0])) return true;
+//   if (coords.every(([, y]) => y === coords[0][1])) return true;
+//   const [x1, y1] = coords.pop();
+//   const calcSlope = (x1, y1, x2, y2) => (y2 - y1) / (x2 - x1);
+//   const slope = coords.pop().reduce((x2, y2) => calcSlope(x1, y1, x2, y2));
+//   return coords.every(([x2, y2]) => slope === calcSlope(x1, y1, x2, y2));
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 108 ms, faster than 5.20% of JavaScript online submissions
+// Memory Usage: 37.8 MB, less than 5.17% of JavaScript online submissions
+
+// /**
+//  * @param {number[][]} coords
+//  * @return {boolean}
+//  */
+// const checkStraightLine = coords => {
+//   // const calcSlope = (x1, y1, x2, y2) => (y2 - y1) / (x2 - x1);
+//   // const slope = calcSlope(...coords.pop(), ...coords[0]);
+//   // console.log(slope);
+//   const [x1, y1] = coords.pop();
+//   // console.log(x1, y1);
+//   const slopes = coords.map(([x2, y2]) => (y2 - y1) / (x2 - x1));
+//   // console.log(slopes);
+//   return slopes.every(s => slopes[0] === s);
+
+//   // const slope = coords.pop().reduce((x2, y2) => calcSlope(x1, y1, x2, y2));
+//   // return coords.every(([x2, y2]) => slope === calcSlope(x1, y1, x2, y2));
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 72 ms, faster than 9.12% of JavaScript online submissions
+// Memory Usage: 37.7 MB, less than 5.17% of JavaScript online submissions
+
 /**
  * @param {number[][]} coords
  * @return {boolean}
  */
 const checkStraightLine = coords => {
-  if (coords.every(([x]) => x === coords[0][0])) return true;
-  if (coords.every(([, y]) => y === coords[0][1])) return true;
-  const [x1, y1] = coords.pop();
   const calcSlope = (x1, y1, x2, y2) => (y2 - y1) / (x2 - x1);
-  const slope = coords.pop().reduce((x2, y2) => calcSlope(x1, y1, x2, y2));
+  const [x1, y1] = coords.pop();
+  const slope = calcSlope(x1, y1, ...coords.pop());
   return coords.every(([x2, y2]) => slope === calcSlope(x1, y1, x2, y2));
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Example 1:
-// ok(
-//   checkStraightLine([
-//     [1, 2],
-//     [2, 3],
-//     [3, 4],
-//     [4, 5],
-//     [5, 6],
-//     [6, 7],
-//   ]),
-// );
+ok(
+  checkStraightLine([
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [4, 5],
+    [5, 6],
+    [6, 7],
+  ]),
+);
 
 // Example 2:
-// ok(
-//   !checkStraightLine([
-//     [1, 1],
-//     [2, 2],
-//     [3, 4],
-//     [4, 5],
-//     [5, 6],
-//     [7, 7],
-//   ]),
-// );
+ok(
+  !checkStraightLine([
+    [1, 1],
+    [2, 2],
+    [3, 4],
+    [4, 5],
+    [5, 6],
+    [7, 7],
+  ]),
+);
 
 ok(
   checkStraightLine([
@@ -233,34 +272,34 @@ ok(
   ]),
 );
 
-// ok(
-//   checkStraightLine([
-//     [1, 2],
-//     [2, 3],
-//   ]),
-// );
+ok(
+  checkStraightLine([
+    [1, 2],
+    [2, 3],
+  ]),
+);
 
-// ok(
-//   checkStraightLine([
-//     [2, 1],
-//     [4, 2],
-//     [6, 3],
-//   ]),
-// );
+ok(
+  checkStraightLine([
+    [2, 1],
+    [4, 2],
+    [6, 3],
+  ]),
+);
 
-// ok(
-//   checkStraightLine([
-//     [0, 1],
-//     [1, 3],
-//     [-4, -7],
-//     [5, 11],
-//   ]),
-// );
+ok(
+  checkStraightLine([
+    [0, 1],
+    [1, 3],
+    [-4, -7],
+    [5, 11],
+  ]),
+);
 
-// ok(
-//   !checkStraightLine([
-//     [1, 2],
-//     [2, 3],
-//     [3, 5],
-//   ]),
-// );
+ok(
+  !checkStraightLine([
+    [1, 2],
+    [2, 3],
+    [3, 5],
+  ]),
+);
