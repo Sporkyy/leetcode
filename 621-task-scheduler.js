@@ -113,25 +113,45 @@ import { strictEqual } from 'assert';
 // Runtime: 92 ms, faster than 90.12% of JavaScript online submissions
 // Memory Usage: 41.8 MB, less than 29.67% of JavaScript online submissions
 
+// /**
+//  * @param {character[]} tasks
+//  * @param {number} n
+//  * @return {number}
+//  */
+// const leastInterval = (tasks, n) => {
+//   // if (0 === n) return tasks.length;
+//   const cnts = new Array(26).fill(0);
+//   for (const task of tasks) cnts[task.charCodeAt(0) - 65]++;
+//   const max = Math.max(...cnts);
+//   // console.log(max);
+//   const maxCnt = cnts.filter(cnt => max === cnt).length;
+//   // console.log(maxCnt);
+//   let intervals = max * maxCnt;
+//   // console.log(intervals);
+//   const [rows, cols] = [max - 1, n - maxCnt + 1];
+//   // console.log(rows, cols);
+//   intervals += rows * cols;
+//   // console.log(intervals);
+//   if (intervals < tasks.length) intervals += tasks.length - intervals;
+//   return intervals;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 120 ms, faster than 34.30% of JavaScript online submissions
+// Memory Usage: 41.7 MB, less than 29.88% of JavaScript online submissions
+
 /**
  * @param {character[]} tasks
  * @param {number} n
  * @return {number}
  */
 const leastInterval = (tasks, n) => {
-  // if (0 === n) return tasks.length;
   const cnts = new Array(26).fill(0);
   for (const task of tasks) cnts[task.charCodeAt(0) - 65]++;
   const max = Math.max(...cnts);
-  // console.log(max);
   const maxCnt = cnts.filter(cnt => max === cnt).length;
-  // console.log(maxCnt);
-  let intervals = max * maxCnt;
-  // console.log(intervals);
-  const [rows, cols] = [max - 1, n - maxCnt + 1];
-  // console.log(rows, cols);
-  intervals += rows * cols;
-  // console.log(intervals);
+  let intervals = max * maxCnt + (max - 1) * (n - maxCnt + 1);
   if (intervals < tasks.length) intervals += tasks.length - intervals;
   return intervals;
 };
