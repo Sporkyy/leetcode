@@ -26,90 +26,6 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// /**
-//  * @param {character[]} tasks
-//  * @param {number} n
-//  * @return {number}
-//  */
-// const leastInterval = (tasks, n) => {
-//   if (0 === n) return tasks.length;
-//   const cnts = new Array(26).fill(0);
-//   for (const task of tasks) cnts[task.charCodeAt(0) - 65]++;
-//   const width = n + 1;
-//   const height = Math.max(...cnts);
-//   console.log(height);
-//   const maxCnt = cnts.filter(cnt => height === cnt).length;
-//   console.log(maxCnt);
-//   let res = height * maxCnt;
-//   console.log(res);
-//   const remainingTasks = tasks.length - res;
-//   console.log(remainingTasks);
-// };
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-// /**
-//  * @param {character[]} tasks
-//  * @param {number} n
-//  * @return {number}
-//  */
-// const leastInterval = (tasks, n) => {
-//   if (0 === n) return tasks.length;
-//   const cnts = new Array(26).fill(0);
-//   for (const task of tasks) cnts[task.charCodeAt(0) - 65]++;
-//   const max = Math.max(...cnts);
-//   const maxCnt = cnts.filter(cnt => max === cnt).length;
-//   console.log(maxCnt);
-//   let intervals = max * maxCnt;
-//   console.log(intervals);
-//   const intervalMax = max * (n + 1);
-//   console.log(intervalMax);
-//   if (intervals === intervalMax) return intervals;
-//   // console.log((max - 1) * n);
-//   // intervals += (max - 1) * n;
-//   // console.log(intervals);
-//   return intervals;
-
-//   // const remainingTasks = tasks.length - max;
-//   // console.log(remainingTasks);
-//   // const width = n + 1;
-//   // console.log(height);
-//   // const maxCnt = cnts.filter(cnt => height === cnt).length;
-//   // console.log(maxCnt);
-//   // let res = height * maxCnt;
-//   // console.log(res);
-//   // const remainingTasks = tasks.length - res;
-//   // console.log(remainingTasks);
-// };
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-// /**
-//  * @param {character[]} tasks
-//  * @param {number} n
-//  * @return {number}
-//  */
-// const leastInterval = (tasks, n) => {
-//   if (0 === n) return tasks.length;
-//   const cnts = new Array(26).fill(0);
-//   for (const task of tasks) cnts[task.charCodeAt(0) - 65]++;
-//   const max = Math.max(...cnts);
-//   console.log(max);
-//   const maxCnt = cnts.filter(cnt => max === cnt).length;
-//   console.log(maxCnt);
-//   let filled = max * maxCnt;
-//   console.log(filled);
-//   let empty = max * (n + 1 - maxCnt);
-//   console.log(empty);
-//   if (!empty) return filled;
-//   console.log(tasks.length - max * maxCnt);
-//   filled += tasks.length - max * maxCnt;
-//   empty -= tasks.length - max * maxCnt;
-//   console.log(`${filled}/${empty}`);
-// };
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
 // Runtime: 92 ms, faster than 90.12% of JavaScript online submissions
 // Memory Usage: 41.8 MB, less than 29.67% of JavaScript online submissions
 
@@ -186,7 +102,7 @@ strictEqual(leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 3), 10);
 | A | B |   |   |
 */
 
-// strictEqual(leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 50), 104);
+strictEqual(leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 50), 104);
 /*
 | A | B | # x 49 |
 | A | B | # x 49 |
@@ -214,4 +130,14 @@ strictEqual(leastInterval(['A', 'A', 'B', 'B', 'C', 'D', 'E'], 2), 7);
 | A | B | C |
 | A | B | D |
 | E |
+*/
+
+strictEqual(
+  leastInterval(['A', 'A', 'A', 'B', 'B', 'B', 'C', 'D', 'D', 'D'], 2),
+  10,
+);
+/*
+| A | B | D | C |
+| A | B | D | # |
+| A | B | D |   |
 */
