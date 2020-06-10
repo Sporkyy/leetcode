@@ -74,8 +74,8 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 164 ms, faster than 19.08% of JavaScript online submissions for Task Scheduler.
-// Memory Usage: 48.9 MB, less than 8.71% of JavaScript online submissions for Task Scheduler.
+// Runtime: 164 ms, faster than 19.08% of JavaScript online submissions
+// Memory Usage: 48.9 MB, less than 8.71% of JavaScript online submissions
 
 /**
  * @param {character[]} tasks
