@@ -77,6 +77,74 @@ import { strictEqual } from 'assert';
 // Runtime: 164 ms, faster than 19.08% of JavaScript online submissions
 // Memory Usage: 48.9 MB, less than 8.71% of JavaScript online submissions
 
+// /**
+//  * @param {character[]} tasks
+//  * @param {number} n
+//  * @return {number}
+//  */
+// const leastInterval = (tasks, n) => {
+//   const map = new Map();
+
+//   for (const task of tasks)
+//     if (map.has(task)) map.get(task).push(task);
+//     else map.set(task, [task]);
+
+//   // console.log(map);
+
+//   const sorted = [...map.values()]
+//     .sort(({ length: a }, { length: b }) => b - a)
+//     .reduce((acc, curr) => acc.concat(curr));
+
+//   // console.log(sorted);
+
+//   const max = Math.max(...[...map.values()].map(({ length: l }) => l));
+
+//   // console.log(max);
+
+//   const rows = [];
+//   // let rows = [];
+
+//   while (sorted.length) {
+//     const row = sorted.splice(0, max - (sorted[0] === sorted[max - 1] ? 0 : 1));
+//     // if (6 === row.length && row[0] !== row[max - 1]) sorted.push(row.pop());
+//     rows.push(row);
+//   }
+
+//   // console.log(rows);
+//   // rows = [['A', 'A'], ['B'], ['C']];
+
+//   const rotated = new Array(max).fill().map(_ => []);
+
+//   for (let i = 0; i < rows.length; i++) {
+//     for (let j = 0; j < rotated.length; j++) {
+//       rotated[j].push(rows[i][j]);
+//     }
+//   }
+
+//   // console.log(rotated);
+
+//   const joined = rotated.map(r => r.join(''));
+
+//   // console.log(joined);
+
+//   const padded = joined.map((r, i) =>
+//     i === max - 1 ? r : r.padEnd(n + 1, '#'),
+//   );
+
+//   // console.log(padded);
+
+//   const final = padded.join('');
+
+//   // console.log(final);
+
+//   return final.length;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 136 ms, faster than 26.91% of JavaScript online submissions
+// Memory Usage: 46.6 MB, less than 10.45% of JavaScript online submissions
+
 /**
  * @param {character[]} tasks
  * @param {number} n
@@ -84,98 +152,63 @@ import { strictEqual } from 'assert';
  */
 const leastInterval = (tasks, n) => {
   const map = new Map();
+  for (const t of tasks) map.set(t, map.has(t) ? map.get(t) + 1 : 1);
 
-  for (const task of tasks)
-    if (map.has(task)) map.get(task).push(task);
-    else map.set(task, [task]);
+  const sorted = [...map.entries()]
+    .sort(([, a], [, b]) => b - a)
+    .reduce((acc, [task, cnt]) => acc.concat([...task.repeat(cnt)]), []);
 
-  // console.log(map);
+  const max = Math.max(...map.values());
 
-  const sorted = [...map.values()]
-    .sort(({ length: a }, { length: b }) => b - a)
-    .reduce((acc, curr) => acc.concat(curr));
+  const cols = [];
+  while (sorted.length)
+    cols.push(sorted.splice(0, sorted[0] === sorted[max - 1] ? max : max - 1));
 
-  // console.log(sorted);
+  const rows = new Array(max).fill().map(_ => []);
+  for (let i = 0; i < cols.length; i++)
+    for (let j = 0; j < rows.length; j++) rows[j].push(cols[i][j]);
 
-  const max = Math.max(...[...map.values()].map(({ length: l }) => l));
-
-  // console.log(max);
-
-  const rows = [];
-  // let rows = [];
-
-  while (sorted.length) {
-    const row = sorted.splice(0, max - (sorted[0] === sorted[max - 1] ? 0 : 1));
-    // if (6 === row.length && row[0] !== row[max - 1]) sorted.push(row.pop());
-    rows.push(row);
-  }
-
-  // console.log(rows);
-  // rows = [['A', 'A'], ['B'], ['C']];
-
-  const rotated = new Array(max).fill().map(_ => []);
-
-  for (let i = 0; i < rows.length; i++) {
-    for (let j = 0; j < rotated.length; j++) {
-      rotated[j].push(rows[i][j]);
-    }
-  }
-
-  // console.log(rotated);
-
-  const joined = rotated.map(r => r.join(''));
-
-  // console.log(joined);
-
-  const padded = joined.map((r, i) =>
-    i === max - 1 ? r : r.padEnd(n + 1, '#'),
-  );
-
-  // console.log(padded);
-
-  const final = padded.join('');
-
-  // console.log(final);
-
-  return final.length;
+  return rows
+    .map((r, i) => r.join('').padEnd(i < rows.length - 1 ? n + 1 : 0, '#'))
+    .join('').length;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 strictEqual(leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 0), 6);
-// /*
-// | A | B |
-// | A | B |
-// | A | B |
-// */
+/*
+| A | B |
+| A | B |
+| A | B |
+*/
 
 strictEqual(leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 1), 6);
-// /*
-// | A | B |
-// | A | B |
-// | A | B |
-// */
+/*
+| A | B |
+| A | B |
+| A | B |
+*/
 
 strictEqual(leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 2), 8);
-// /*
-// | A | B | # |
-// | A | B | # |
-// | A | B |   |
-// */
+/*
+| A | B | # |
+| A | B | # |
+| A | B |   |
+*/
 
 strictEqual(leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 3), 10);
-// /*
-// | A | B | # | # |
-// | A | B | # | # |
-// | A | B |   |   |
-// */
+/*
+| A | B | # | # |
+| A | B | # | # |
+| A | B |   |   |
+*/
 
 strictEqual(leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 50), 104);
-// /*
-// | A | B | # x 49 |
-// | A | B | # x 49 |
-// | A | B |        |
-// */
+/*
+| A | B | # x 49 |
+| A | B | # x 49 |
+| A | B |        |
+*/
 
 strictEqual(
   leastInterval(
@@ -184,30 +217,30 @@ strictEqual(
   ),
   16,
 );
-// /*
-// | A | B | G |
-// | A | C | # |
-// | A | D | # |
-// | A | E | # |
-// | A | F | # |
-// | A |   |   |
-// */
+/*
+| A | B | G |
+| A | C | # |
+| A | D | # |
+| A | E | # |
+| A | F | # |
+| A |   |   |
+*/
 
 strictEqual(leastInterval(['A', 'A', 'B', 'B', 'C', 'D', 'E'], 2), 7);
-// /*
-// | A | B | C | E |
-// | A | B | D |   |
-// */
+/*
+| A | B | C | E |
+| A | B | D |   |
+*/
 
 strictEqual(
   leastInterval(['A', 'A', 'A', 'B', 'B', 'B', 'C', 'D', 'D', 'D'], 2),
   10,
 );
-// /*
-// | A | B | D | C |
-// | A | B | D |   |
-// | A | B | D |   |
-// */
+/*
+| A | B | D | C |
+| A | B | D |   |
+| A | B | D |   |
+*/
 
 strictEqual(
   leastInterval(
@@ -235,12 +268,12 @@ strictEqual(
   ),
   19,
 );
-// /*
-// | A | B | C | D | E |
-// | A | B | C | D | F |
-// | A | B | C | D | # |
-// | A | B | C | D |   |
-// */
+/*
+| A | B | C | D | E |
+| A | B | C | D | F |
+| A | B | C | D | # |
+| A | B | C | D |   |
+*/
 
 strictEqual(leastInterval(['A', 'B', 'C', 'A'], 2), 4);
 /*
