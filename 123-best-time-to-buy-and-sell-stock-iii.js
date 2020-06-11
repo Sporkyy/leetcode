@@ -29,6 +29,40 @@ import { strictEqual } from 'assert';
 //  8: 0x113c88e v8::internal::Runtime_AllocateInNewSpace(int, v8::internal::Object**, v8::internal::Isolate*) [nodejs run]
 //  9: 0xce2ee2dbe1d
 
+// /**
+//  * @param {number[]} prices
+//  * @return {number}
+//  */
+// const leetcode121 = prices =>
+//   prices.reduce(
+//     ([min, profit], curr) => [
+//       Math.min(min, curr),
+//       Math.max(profit, curr - min),
+//     ],
+//     [Infinity, 0],
+//   )[1];
+
+// /**
+//  * @param {number[]} prices
+//  * @return {number}
+//  */
+// const maxProfit = prices => {
+//   // Partition the prices into two arrays
+//   const partitions = prices.map((_, idx) => [
+//     prices.slice(0, idx),
+//     prices.slice(idx, prices.length),
+//   ]);
+//   // console.log(partitions);
+//   // Get the maximum profit from each half
+//   const maxes = partitions.map(([l, r]) => [leetcode121(l), leetcode121(r)]);
+//   // console.log(maxes);
+//   const sums = maxes.map(([l, r]) => l + r);
+//   // console.log(sums);
+//   return Math.max(0, ...sums);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {number[]} prices
  * @return {number}
@@ -48,10 +82,19 @@ const leetcode121 = prices =>
  */
 const maxProfit = prices => {
   // Partition the prices into two arrays
-  const partitions = prices.map((_, idx) => [
-    prices.slice(0, idx),
-    prices.slice(idx, prices.length),
-  ]);
+  // const partitions = prices.map((_, idx) => [
+  //   prices.slice(0, idx),
+  //   prices.slice(idx, prices.length),
+  // ]);
+  // console.log(partitions);
+  const partitions = new Array(prices.length).fill().map(_ => [[], []]);
+  for (let i = 0; i < prices.length; i++) {
+    for (let j = 0; j < prices.length; j++) {
+      // console.log(i, j);
+      if (j < i) partitions[i][0].push(prices[j]);
+      else partitions[i][1].push(prices[j]);
+    }
+  }
   // console.log(partitions);
   // Get the maximum profit from each half
   const maxes = partitions.map(([l, r]) => [leetcode121(l), leetcode121(r)]);
@@ -79,6 +122,24 @@ strictEqual(maxProfit([7, 6, 4, 3, 1]), 0);
 // Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
 strictEqual(maxProfit([6, 1, 3, 2, 4, 7]), 7);
-// | Buy | Sell | Profit    |
-// |   1 |    2 | 3 - 1 = 2 |
-// |   3 |    5 | 7 - 2 = 5 |
+/*
+
+| Buy | Sell | Profit    |
+|   1 |    2 | 3 - 1 = 2 |
+|   3 |    5 | 7 - 2 = 5 |
+
+| 6 | 1 | 3 | 2 | 4 | 7 |
+| = | = | = | = | = | = |
+| 7 | 3 | 4 | 4 | 7 |   |
+|   | 2 | 7 | 7 |   |   |
+|   | 4 |   |   |   |   |
+|   | 7 |   |   |   |   |
+
+| 6 | 1 | 3 | 2 | 4 | 7 |
+| 1 |   |   |   |   |   |
+| 3 | 3 |   |   |   |   |
+| 2 | 2 | 2 |   |   |   |
+| 4 | 4 | 4 | 4 |   |   |
+| 7 | 7 | 7 | 7 | 7 |   |
+
+*/
