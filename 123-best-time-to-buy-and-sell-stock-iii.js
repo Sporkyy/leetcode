@@ -63,6 +63,25 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+/*
+
+FATAL ERROR: Committing semi space failed. Allocation failed - JavaScript heap out of memory
+ 1: 0xa2afd0 node::Abort() [nodejs run]
+ 2: 0x97a467 node::FatalError(char const*, char const*) [nodejs run]
+ 3: 0xb9e04e v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [nodejs run]
+ 4: 0xb9e3c7 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [nodejs run]
+ 5: 0xd3e7d5  [nodejs run]
+ 6: 0xd4db14  [nodejs run]
+ 7: 0xd4ddc5 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [nodejs run]
+ 8: 0xd5078c v8::internal::Heap::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [nodejs run]
+ 9: 0xd24166  [nodejs run]
+10: 0xe840be  [nodejs run]
+11: 0xe87c1a  [nodejs run]
+12: 0x1028743 v8::internal::Runtime_GrowArrayElements(int, unsigned long*, v8::internal::Isolate*) [nodejs run]
+13: 0x13a9e39  [nodejs run]
+
+*/
+
 /**
  * @param {number[]} prices
  * @return {number}
