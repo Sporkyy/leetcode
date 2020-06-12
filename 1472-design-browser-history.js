@@ -33,8 +33,8 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 216 ms, faster than 89.73% of JavaScript online submissions
-// Memory Usage: 46.6 MB, less than 100.00% of JavaScript online submissions
+// Runtime: 220 ms, faster than 83.48% of JavaScript online submissions
+// Memory Usage: 47.4 MB, less than 100.00% of JavaScript online submissions
 
 /**
  * @param {string} homepage
@@ -42,7 +42,6 @@ import { strictEqual } from 'assert';
 const BrowserHistory = function (homepage) {
   this.hist = [homepage];
   this.curr = 0;
-  return this;
 };
 
 /**
@@ -53,7 +52,6 @@ BrowserHistory.prototype.visit = function (url) {
   this.hist = this.hist.slice(0, this.curr + 1);
   this.hist.push(url);
   this.curr = this.hist.length - 1;
-  return this.hist[this.curr];
 };
 
 /**
