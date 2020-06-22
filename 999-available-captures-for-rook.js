@@ -488,26 +488,147 @@
 // Runtime: 68 ms, faster than 30.67% of JavaScript online submissions
 // Memory Usage: 33 MB, less than 87.93% of JavaScript online submissions
 
+// /**
+//  * @param {string[][]} board
+//  * @return {number}
+//  */
+// const numRookCaptures = board => {
+//   const [rows, cols] = [new Array(8).fill(''), new Array(8).fill('')];
+//   let rookRow, rookCol;
+//   for (let i = 0; i < 8; i++)
+//     for (let j = 0; j < 8; j++) {
+//       rows[i] += board[i][j];
+//       cols[i] += board[j][i];
+//       if ('R' === board[i][j]) [rookRow, rookCol] = [i, j];
+//     }
+//   let captures = 0;
+//   /* Look left  */ if (/p\.*R/.test(rows[rookRow])) captures++;
+//   /* Look right */ if (/R\.*p/.test(rows[rookRow])) captures++;
+//   /* Look up    */ if (/p\.*R/.test(cols[rookCol])) captures++;
+//   /* Look down  */ if (/R\.*p/.test(cols[rookCol])) captures++;
+//   return captures;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 44.79% of JavaScript online submissions
+// Memory Usage: 32.8 MB, less than 99.14% of JavaScript online submissions
+
+// /**
+//  * @param {string[][]} board
+//  * @return {number}
+//  */
+// const numRookCaptures = board => {
+//   const strings = new Array(16).fill('');
+//   for (let i = 0; i < 8; i++)
+//     for (let j = 0; j < 8; j++) {
+//       if ('.' !== board[i][j]) strings[i] += board[i][j];
+//       if ('.' !== board[j][i]) strings[i + 8] += board[j][i];
+//     }
+//   return strings.reduce(
+//     (acc, curr) => acc + (curr.match(/p?Rp?/) || ['❌'])[0].length - 1,
+//     0,
+//   );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 30.67% of JavaScript online submissions
+// Memory Usage: 33.8 MB, less than 45.69% of JavaScript online submissions
+
+// /**
+//  * @param {string[][]} board
+//  * @return {number}
+//  */
+// const numRookCaptures = board => {
+//   const strings = new Array(16).fill('');
+//   for (let i = 0; i < 64; i++)
+//     (strings[Math.trunc(i / 8)] += board[Math.trunc(i / 8)][i % 8]),
+//       (strings[Math.trunc(i / 8) + 8] += board[i % 8][Math.trunc(i / 8)]);
+//   return strings.reduce(
+//     (acc, curr) =>
+//       acc + (curr.replace(/\./g, '').match(/p?Rp?/) || ['❌'])[0].length - 1,
+//     0,
+//   );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 44.79% of JavaScript online submissions
+// Memory Usage: 33.8 MB, less than 51.72% of JavaScript online submissions
+
+// /**
+//  * @param {string[][]} board
+//  * @return {number}
+//  */
+// const numRookCaptures = board => {
+//   const strings = new Array(16).fill('');
+//   for (let i = 0; i < 64; i++)
+//     (strings[Math.trunc(i / 8)] += board[Math.trunc(i / 8)][i % 8]),
+//       (strings[Math.trunc(i / 8) + 8] += board[i % 8][Math.trunc(i / 8)]);
+//   return strings.reduce(
+//     (acc, curr) =>
+//       acc + (/p\.*R\.*p/.test(curr) ? 2 : /(p\.*R|R\.*p)/.test(curr) ? 1 : 0),
+//     0,
+//   );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 30.67% of JavaScript online submissions
+// Memory Usage: 33.3 MB, less than 80.17% of JavaScript online submissions
+
+// /**
+//  * @param {string[][]} board
+//  * @return {number}
+//  */
+// const numRookCaptures = board =>
+//   [
+//     board
+//       .map(row => row.join(''))
+//       .join('')
+//       .indexOf('R'),
+//   ]
+//     .map(rIndex => [
+//       /* Row */ board[Math.trunc(rIndex / 8)].join(''),
+//       /* Col */ board.reduce((col, row) => (col += row[rIndex % 8]), ''),
+//     ])[0]
+//     .reduce(
+//       (acc, curr) =>
+//         acc + (/p\.*R\.*p/.test(curr) ? 2 : /(p\.*R|R\.*p)/.test(curr) ? 1 : 0),
+//       0,
+//     );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 53.99% of JavaScript online submissions
+// Memory Usage: 33.3 MB, less than 80.17% of JavaScript online submissions
+
 /**
  * @param {string[][]} board
  * @return {number}
  */
-const numRookCaptures = board => {
-  const [rows, cols] = [new Array(8).fill(''), new Array(8).fill('')];
-  let rookRow, rookCol;
-  for (let i = 0; i < 8; i++)
-    for (let j = 0; j < 8; j++) {
-      rows[i] += board[i][j];
-      cols[i] += board[j][i];
-      if ('R' === board[i][j]) [rookRow, rookCol] = [i, j];
-    }
-  let captures = 0;
-  /* Look left  */ if (/p\.*R/.test(rows[rookRow])) captures++;
-  /* Look right */ if (/R\.*p/.test(rows[rookRow])) captures++;
-  /* Look up    */ if (/p\.*R/.test(cols[rookCol])) captures++;
-  /* Look down  */ if (/R\.*p/.test(cols[rookCol])) captures++;
-  return captures;
-};
+const numRookCaptures = board =>
+  [
+    board
+      .map(row => row.join(''))
+      .join('')
+      .indexOf('R'),
+  ]
+    .reduce(
+      (_, rIndex) => [
+        ...board[Math.trunc(rIndex / 8)]
+          .join('')
+          .split('R')
+          .reduce((left, right) => [left, [...right].reverse().join('')]),
+        ...board
+          .reduce((col, row) => (col += row[rIndex % 8]), '')
+          .split('R')
+          .reduce((up, down) => [up, [...down].reverse().join('')]),
+      ],
+      null,
+    )
+    .reduce((acc, curr) => acc + (/p\.*$/.test(curr) ? 1 : 0), 0);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
