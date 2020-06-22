@@ -462,24 +462,50 @@
 // Runtime: 48 ms, faster than 88.04% of JavaScript online submissions
 // Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string[][]} board
+//  * @return {number}
+//  */
+// const numRookCaptures = board => {
+//   const [rows, cols] = [new Array(8).fill(''), new Array(8).fill('')];
+//   let iRookRow, iRookCol;
+//   for (let i = 0; i < 8; i++)
+//     for (let j = 0; j < 8; j++) {
+//       rows[i] += board[i][j];
+//       cols[i] += board[j][i];
+//       if ('R' === board[i][j]) [iRookRow, iRookCol] = [i, j];
+//     }
+//   let captures = 0;
+//   /* Look left  */ if (/[a-z]\.*R/.test(rows[iRookRow])) captures++;
+//   /* Look right */ if (/R\.*[a-z]/.test(rows[iRookRow])) captures++;
+//   /* Look up    */ if (/[a-z]\.*R/.test(cols[iRookCol])) captures++;
+//   /* Look down  */ if (/R\.*[a-z]/.test(cols[iRookCol])) captures++;
+//   return captures;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 30.67% of JavaScript online submissions
+// Memory Usage: 33 MB, less than 87.93% of JavaScript online submissions
+
 /**
  * @param {string[][]} board
  * @return {number}
  */
 const numRookCaptures = board => {
   const [rows, cols] = [new Array(8).fill(''), new Array(8).fill('')];
-  let iRookRow, iRookCol;
+  let rookRow, rookCol;
   for (let i = 0; i < 8; i++)
     for (let j = 0; j < 8; j++) {
       rows[i] += board[i][j];
       cols[i] += board[j][i];
-      if ('R' === board[i][j]) [iRookRow, iRookCol] = [i, j];
+      if ('R' === board[i][j]) [rookRow, rookCol] = [i, j];
     }
   let captures = 0;
-  /* Look left  */ if (/[a-z]\.*R/.test(rows[iRookRow])) captures++;
-  /* Look right */ if (/R\.*[a-z]/.test(rows[iRookRow])) captures++;
-  /* Look up    */ if (/[a-z]\.*R/.test(cols[iRookCol])) captures++;
-  /* Look down  */ if (/R\.*[a-z]/.test(cols[iRookCol])) captures++;
+  /* Look left  */ if (/p\.*R/.test(rows[rookRow])) captures++;
+  /* Look right */ if (/R\.*p/.test(rows[rookRow])) captures++;
+  /* Look up    */ if (/p\.*R/.test(cols[rookCol])) captures++;
+  /* Look down  */ if (/R\.*p/.test(cols[rookCol])) captures++;
   return captures;
 };
 
