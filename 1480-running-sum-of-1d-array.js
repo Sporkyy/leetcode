@@ -61,18 +61,16 @@ const runningSum = (nums, sums = [nums.shift()]) =>
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-(() => {
-  for (let i = 0; i < 99999; i++) {
-    // Example 1:
-    deepStrictEqual(runningSum([1, 2, 3, 4]), [1, 3, 6, 10]);
-    // Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
+for (let i = 0; i < 99999; i++) {
+  // Example 1:
+  deepStrictEqual(runningSum([1, 2, 3, 4]), [1, 3, 6, 10]);
+  // Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
 
-    // Example 2:
-    deepStrictEqual(runningSum([1, 1, 1, 1, 1]), [1, 2, 3, 4, 5]);
-    // Explanation: Running sum is obtained as follows:
-    // [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].
+  // Example 2:
+  deepStrictEqual(runningSum([1, 1, 1, 1, 1]), [1, 2, 3, 4, 5]);
+  // Explanation: Running sum is obtained as follows:
+  // [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].
 
-    // Example 3:
-    deepStrictEqual(runningSum([3, 1, 2, 10, 1]), [3, 4, 6, 16, 17]);
-  }
-})(); // ?.
+  // Example 3:
+  deepStrictEqual(runningSum([3, 1, 2, 10, 1]), [3, 4, 6, 16, 17]);
+}
