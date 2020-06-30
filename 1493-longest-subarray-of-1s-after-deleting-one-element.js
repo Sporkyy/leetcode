@@ -66,50 +66,141 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 88 ms, faster than 62.61% of JavaScript online submissions
+// Runtime: 100 ms, faster than 46.96% of JavaScript online submissions
+// Memory Usage: 41.4 MB, less than 50.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const longestSubarray = nums => {
+//   let [cRun, pRun, lRun] = [0, 0, 0];
+//   for (const num of nums)
+//     if (0 === num) [cRun, pRun] = [0, cRun];
+//     else cRun++, (lRun = Math.max(cRun + pRun, lRun));
+//   return 0 === lRun ? 0 : cRun === nums.length ? lRun - 1 : lRun;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 84 ms, faster than 67.83% of JavaScript online submissions
 // Memory Usage: 42.5 MB, less than 50.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const longestSubarray = nums => {
+//   let [cRun, pRun, lRun] = [0, 0, 0];
+//   for (const num of nums)
+//     if (0 === num) [cRun, pRun] = [0, cRun];
+//     else cRun++, (lRun = Math.max(cRun + pRun, lRun));
+//   return cRun === nums.length ? lRun - 1 : lRun;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 84 ms, faster than 64.80% of JavaScript online submissions
+// Memory Usage: 43.4 MB, less than 50.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const longestSubarray = nums => {
+//   let [pRun, cRun, lRun] = [0, 0, 0];
+//   for (const num of nums)
+//     if (num) [cRun, lRun] = [cRun + 1, Math.max(lRun, pRun + cRun + 1)];
+//     else [pRun, cRun] = [cRun, 0];
+//   return Math.min(nums.length - 1, lRun);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// OOM error on Leetcode
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const longestSubarray = (nums, zCnt = 0, cRun = 0, pRun = 0, lRun = 0) =>
+//   0 === nums.length
+//     ? lRun - (0 === zCnt ? 1 : 0)
+//     : 0 === nums.pop()
+//     ? longestSubarray(nums, zCnt + 1, 0, cRun, lRun)
+//     : longestSubarray(nums, zCnt, ++cRun, pRun, Math.max(cRun + pRun, lRun));
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 136 ms, faster than 19.20% of JavaScript online submissions
+// Memory Usage: 46.3 MB, less than 50.00% of JavaScript online submissions
 
 /**
  * @param {number[]} nums
  * @return {number}
  */
-const longestSubarray = nums => {
-  let [cRun, pRun, lRun] = [0, 0, 0];
-  for (const num of nums) {
-    if (0 === num && cRun === 0) pRun = 0;
-    else if (0 === num) [cRun, pRun] = [0, cRun];
-    else cRun++;
-    lRun = Math.max(cRun + pRun, lRun);
-  }
-  return 0 === lRun ? 0 : cRun === nums.length ? lRun - 1 : lRun;
-};
+const longestSubarray = nums =>
+  Math.min(
+    nums.length - 1,
+    Math.max(
+      ...nums.reduce(
+        ([pRun, cRun, lRun], curr) =>
+          curr
+            ? [pRun, cRun + 1, Math.max(lRun, pRun + cRun + 1)]
+            : [cRun, 0, lRun],
+        [0, 0, 0],
+      ),
+    ),
+  );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Example 1:
+// Example 1: [2, 1, 3]
 strictEqual(longestSubarray([1, 1, 0, 1]), 3);
 // Explanation: After deleting the number in position 2, [1,1,1] contains 3
 // numbers with value of 1's.
 
-// Example 2:
+// Example 2: [0, 3, 5]
 strictEqual(longestSubarray([0, 1, 1, 1, 0, 1, 1, 0, 1]), 5);
 // Explanation: After deleting the number in position 4, [0,1,1,1,1,1,0,1]
 // longest subarray with value of 1's is [1,1,1,1,1].
 
-// Example 3:
+// Example 4: [2, 0, 4]
+strictEqual(longestSubarray([1, 1, 0, 0, 1, 1, 1, 0, 1]), 4);
+
+// Example 5: [0, 0, 0]
+strictEqual(longestSubarray([0, 0, 0]), 0);
+
+// 0, 1, 1
+strictEqual(longestSubarray([1, 0]), 1);
+
+// 1, 0, 1
+strictEqual(longestSubarray([0, 1]), 1);
+
+// 0, 1, 1
+strictEqual(longestSubarray([0, 1, 0]), 1);
+
+// Example 3: [3, 0, 3]
 strictEqual(longestSubarray([1, 1, 1]), 2);
 // Explanation: You must delete one element.
 
-// Example 4:
-strictEqual(longestSubarray([1, 1, 0, 0, 1, 1, 1, 0, 1]), 4);
+// 2, 0, 2
+strictEqual(longestSubarray([1, 1]), 1);
 
-// Example 5:
-strictEqual(longestSubarray([0, 0, 0]), 0);
+// 2, 0, 2
+strictEqual(longestSubarray([1, 1, 0, 0, 1, 0, 1, 0, 0, 1]), 2);
 
-strictEqual(longestSubarray([0, 1, 0]), 1);
+// 1, 0, 1
+strictEqual(longestSubarray([1, 0, 0, 1]), 1);
 
+// 1, 0, 1
 strictEqual(longestSubarray([1, 0, 0, 1, 0]), 1);
 
+// 1, 0, 1
+strictEqual(longestSubarray([1, 0, 0, 1, 0, 0]), 1);
+
+// 1, 0, 1
 strictEqual(longestSubarray([1, 0, 0, 0, 0]), 1);
 
+// 0, 0, 2
 strictEqual(longestSubarray([0, 0, 1, 1]), 2);
