@@ -61,30 +61,106 @@ import { strictEqual } from 'assert';
 // Runtime: 144 ms, faster than 94.16% of JavaScript online submissions
 // Memory Usage: 58.7 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} arr
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const findLeastNumOfUniqueInts = (arr, k) => {
+//   const map = new Map();
+//   for (const n of arr) map.set(n, (map.get(n) || 0) + 1);
+//   let res = map.size;
+//   const cnts = [...map.values()].sort((a, b) => a - b);
+//   for (const cnt of cnts)
+//     if (0 <= (k -= cnt)) res--;
+//     else return res;
+//   return res;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 188 ms, faster than 84.19% of JavaScript online submissions
+// Memory Usage: 58.6 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} arr
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const findLeastNumOfUniqueInts = (arr, k) => {
+//   const map = new Map();
+//   for (const n of arr) map.set(n, (map.get(n) || 0) + 1);
+//   const cnts = [...map.values()].sort((a, b) => b - a);
+//   let res = map.size;
+//   while (cnts[cnts.length - 1] <= k && res--) k -= cnts.pop();
+//   return res;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 240 ms, faster than 69.76% of JavaScript online submissions
+// Memory Usage: 76.2 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} arr
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const findLeastNumOfUniqueInts = (arr, k) => {
+//   const map = new Map();
+//   for (const n of arr) map.set(n, (map.get(n) || 0) + 1);
+//   const cnts = [...map.entries()].sort(([, aCnt], [, bCnt]) => aCnt - bCnt);
+//   for (const [n, cnt] of cnts)
+//     if (0 <= (k -= cnt)) map.delete(n);
+//     else break;
+//   return map.size;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 204 ms, faster than 79.73% of JavaScript online submissions
+// Memory Usage: 71 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} arr
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const findLeastNumOfUniqueInts = (arr, k) => {
+//   const map = new Map();
+//   for (const n of arr) map.set(n, (map.get(n) || 0) + 1);
+//   const cnts = [...map.entries()].sort(([, aCnt], [, bCnt]) => aCnt - bCnt);
+//   for (const [n, cnt] of cnts) if (0 <= (k -= cnt)) map.delete(n);
+//   return map.size;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 124 ms, faster than 98.97% of JavaScript online submissions
+// Memory Usage: 58 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} arr
  * @param {number} k
  * @return {number}
  */
-const findLeastNumOfUniqueInts = (arr, k) => {
-  const map = new Map();
-  for (const n of arr) map.set(n, (map.get(n) || 0) + 1);
-  let res = map.size;
-  const cnts = [...map.values()].sort((a, b) => a - b);
-  for (const cnt of cnts)
-    if (0 <= (k -= cnt)) res--;
-    else return res;
-  return res;
-};
+const findLeastNumOfUniqueInts = (arr, k) =>
+  [
+    ...arr
+      .reduce((map, n) => map.set(n, (map.get(n) || 0) + 1) && map, new Map())
+      .values(),
+  ]
+    .sort((a, b) => a - b)
+    .reduce((res, cnt) => res + (0 <= (k -= cnt) ? 0 : 1), 0);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Example 1:
-// strictEqual(findLeastNumOfUniqueInts([5, 5, 4], 1), 1);
+strictEqual(findLeastNumOfUniqueInts([5, 5, 4], 1), 1);
 // Explanation: Remove the single 4, only 5 is left.
 
 // Example 2:
-// strictEqual(findLeastNumOfUniqueInts([4, 3, 1, 1, 3, 3, 2], 3), 2);
+strictEqual(findLeastNumOfUniqueInts([4, 3, 1, 1, 3, 3, 2], 3), 2);
 // Explanation: Remove 4, 2 and either one of the two 1s or three 3s. 1 and 3 will be left.
 
 strictEqual(findLeastNumOfUniqueInts([1], 1), 0);
