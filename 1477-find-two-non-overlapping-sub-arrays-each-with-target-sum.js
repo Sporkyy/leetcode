@@ -25,34 +25,66 @@ import { strictEqual } from 'assert';
 
 // Time Limit Exceeded
 
+// /**
+//  * @param {number[]} arr
+//  * @param {number} target
+//  * @return {number}
+//  */
+// const minSumOfLengths = (arr, target) => {
+//   const groups = [];
+//   for (let i = 0, sum = 0, idxs = []; i < arr.length; i++) {
+//     while (idxs.length && target < sum + arr[i]) sum -= arr[idxs.shift()];
+//     idxs.push(i);
+//     sum += arr[i];
+//     if (target === sum) groups.push([idxs[0], idxs[idxs.length - 1]]);
+//   }
+//   // console.log(groups);
+//   const x = groups.map(([aL, aR]) => {
+//     // console.log(groups.filter(([bL]) => aR < bL));
+//     return (
+//       aR -
+//       aL +
+//       groups.reduce(
+//         (acc, [bL, bR]) => (aR < bL && bR - bL < acc ? bR - bL : acc),
+//         Infinity,
+//       ) +
+//       2
+//     );
+//   });
+//   // console.log(x);
+//   return Infinity === Math.min(...x) ? -1 : Math.min(...x);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 168 ms, faster than 64.84% of JavaScript online submissions
+// Memory Usage: 45.6 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} arr
  * @param {number} target
  * @return {number}
  */
 const minSumOfLengths = (arr, target) => {
-  const groups = [];
-  for (let i = 0, sum = 0, idxs = []; i < arr.length; i++) {
-    while (idxs.length && target < sum + arr[i]) sum -= arr[idxs.shift()];
-    idxs.push(i);
-    sum += arr[i];
-    if (target === sum) groups.push([idxs[0], idxs[idxs.length - 1]]);
+  let [lL, lR, rL, rR] = [0, 0, arr.length - 1, arr.length - 1];
+  const sumIndicies = (l, r) => (l === r ? arr[l] : arr[l] + arr[r]);
+  let [lSum, rSum] = [sumIndicies(lL, lR), sumIndicies(rL, rR)];
+  let [one, two] = [Infinity, Infinity];
+  while (lR < rL) {
+    // console.log(arr.slice(lL, lR + 1), arr.slice(rL, rR + 1));
+    // console.log(lSum, rSum);
+    // console.log(lL, lR, rL, rR);
+    while (target < lSum && lL <= lR) lSum -= arr[lL++];
+    while (target < rSum && rL <= rR) rSum -= arr[rR--];
+    if (lSum === target && lR - lL < one) one = lR - lL;
+    if (rSum === target && rR - rL < two) two = rR - rL;
+    if (one <= two) rSum += arr[--rL];
+    else lSum += arr[++lR];
   }
-  // console.log(groups);
-  const x = groups.map(([aL, aR]) => {
-    // console.log(groups.filter(([bL]) => aR < bL));
-    return (
-      aR -
-      aL +
-      groups.reduce(
-        (acc, [bL, bR]) => (aR < bL && bR - bL < acc ? bR - bL : acc),
-        Infinity,
-      ) +
-      2
-    );
-  });
-  // console.log(x);
-  return Infinity === Math.min(...x) ? -1 : Math.min(...x);
+  // console.log(lL, lR, rL, rR);
+  // console.log(one, two);
+  if (Infinity === one + two) return -1;
+  return one + two + 2;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -94,7 +126,7 @@ strictEqual(minSumOfLengths([3, 1, 1, 1, 5, 1, 2, 1], 3), 3);
 
 */
 
-strictEqual(minSumOfLengths([1, 6, 1], 7), -1);
+// strictEqual(minSumOfLengths([1, 6, 1], 7), -1);
 
 strictEqual(minSumOfLengths([1, 2, 2, 3, 2, 6, 7, 2, 1, 4, 8], 5), 4);
 
@@ -102,7 +134,6 @@ strictEqual(minSumOfLengths([1, 2, 2, 3, 2, 6, 7, 2, 1, 4, 8], 5), 4);
 
 | 1,2 | 2+3 | 2,6,7,2 | 1+4 | 8 |
       | 2-3 |         | 8-9 |
-
 
 */
 
@@ -148,6 +179,16 @@ strictEqual(
 */
 
 strictEqual(minSumOfLengths([1, 1, 2, 1, 1, 3], 4), 5);
+
+/*
+
+| 1+1+2 | 1 | 1+3 |
+| 0---2 |   | 4-5 |
+
+|1,1,2| 1 |1,3|
+|1+1+2| 1 |1+3|
+
+*/
 
 strictEqual(minSumOfLengths([1, 1, 1, 2, 2, 2, 4, 4], 6), 6);
 
