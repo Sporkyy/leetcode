@@ -60,31 +60,81 @@ import { strictEqual } from 'assert';
 // Runtime: 168 ms, faster than 64.84% of JavaScript online submissions
 // Memory Usage: 45.6 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} arr
+//  * @param {number} target
+//  * @return {number}
+//  */
+// const minSumOfLengths = (arr, target) => {
+//   let [lL, lR, rL, rR] = [0, 0, arr.length - 1, arr.length - 1];
+//   const sumIndicies = (l, r) => (l === r ? arr[l] : arr[l] + arr[r]);
+//   let [lSum, rSum] = [sumIndicies(lL, lR), sumIndicies(rL, rR)];
+//   let [one, two] = [Infinity, Infinity];
+//   while (lR < rL) {
+//     // console.log(arr.slice(lL, lR + 1), arr.slice(rL, rR + 1));
+//     // console.log(lSum, rSum);
+//     // console.log(lL, lR, rL, rR);
+//     while (target < lSum && lL <= lR) lSum -= arr[lL++];
+//     while (target < rSum && rL <= rR) rSum -= arr[rR--];
+//     if (lSum === target && lR - lL < one) one = lR - lL;
+//     if (rSum === target && rR - rL < two) two = rR - rL;
+//     if (one <= two) rSum += arr[--rL];
+//     else lSum += arr[++lR];
+//   }
+//   // console.log(lL, lR, rL, rR);
+//   // console.log(one, two);
+//   if (Infinity === one + two) return -1;
+//   return one + two + 2;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 88 ms, faster than 100.00% of JavaScript online submissions
+// Memory Usage: 45.5 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} arr
+//  * @param {number} target
+//  * @return {number}
+//  */
+// const minSumOfLengths = (arr, target) => {
+//   let [iLL, iLR, iRL, iRR] = [0, 0, arr.length - 1, arr.length - 1];
+//   let [lSum, rSum] = [arr[iLL], arr[iRL]];
+//   let [left, right] = [Infinity, Infinity];
+//   while (iLR < iRL) {
+//     while (target < lSum) lSum -= arr[iLL++];
+//     while (target < rSum) rSum -= arr[iRR--];
+//     if (lSum === target && iLR - iLL < left) left = iLR - iLL;
+//     if (rSum === target && iRR - iRL < right) right = iRR - iRL;
+//     if (left <= right) rSum += arr[--iRL];
+//     else lSum += arr[++iLR];
+//   }
+//   return Infinity === left + right ? -1 : left + right + 2;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 116 ms, faster than 95.60% of JavaScript online submissions
+// Memory Usage: 45.5 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} arr
  * @param {number} target
  * @return {number}
  */
 const minSumOfLengths = (arr, target) => {
-  let [lL, lR, rL, rR] = [0, 0, arr.length - 1, arr.length - 1];
-  const sumIndicies = (l, r) => (l === r ? arr[l] : arr[l] + arr[r]);
-  let [lSum, rSum] = [sumIndicies(lL, lR), sumIndicies(rL, rR)];
-  let [one, two] = [Infinity, Infinity];
-  while (lR < rL) {
-    // console.log(arr.slice(lL, lR + 1), arr.slice(rL, rR + 1));
-    // console.log(lSum, rSum);
-    // console.log(lL, lR, rL, rR);
-    while (target < lSum && lL <= lR) lSum -= arr[lL++];
-    while (target < rSum && rL <= rR) rSum -= arr[rR--];
-    if (lSum === target && lR - lL < one) one = lR - lL;
-    if (rSum === target && rR - rL < two) two = rR - rL;
-    if (one <= two) rSum += arr[--rL];
-    else lSum += arr[++lR];
+  let [iLL, iLR, iRL, iRR] = [0, 0, arr.length - 1, arr.length - 1];
+  let [lSum, rSum] = [arr[iLL], arr[iRL]];
+  let [left, right] = [Infinity, Infinity];
+  while (iLR < iRL) {
+    while (target < lSum) lSum -= arr[iLL++];
+    while (target < rSum) rSum -= arr[iRR--];
+    if (lSum === target) left = Math.min(left, iLR - iLL);
+    if (rSum === target) right = Math.min(right, iRR - iRL);
+    if (left <= right) rSum += arr[--iRL];
+    else lSum += arr[++iLR];
   }
-  // console.log(lL, lR, rL, rR);
-  // console.log(one, two);
-  if (Infinity === one + two) return -1;
-  return one + two + 2;
+  return Infinity === left + right ? -1 : left + right + 2;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -195,6 +245,8 @@ strictEqual(minSumOfLengths([1, 1, 1, 2, 2, 2, 4, 4], 6), 6);
 /*
 
 | 1 | 1+1+2+2 | 2+4 | 4 |
-    | 1-----4 | 5-6 |
+| 1-----4 | 5-6 |
 
 */
+
+strictEqual(minSumOfLengths([20, 1, 1, 1, 2, 2, 2, 4, 4], 6), 6);
