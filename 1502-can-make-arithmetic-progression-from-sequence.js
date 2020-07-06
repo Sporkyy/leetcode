@@ -78,6 +78,26 @@ import { ok } from 'assert';
 // Runtime: 88 ms, faster than 59.64% of JavaScript online submissions
 // Memory Usage: 33.5 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} arr
+//  * @return {boolean}
+//  */
+// const canMakeArithmeticProgression = arr => {
+//   if (2 === arr.length) return true;
+//   const [min, max] = [Math.min(...arr), Math.max(...arr)];
+//   const set = new Set(arr);
+//   if (1 === set.size) return true;
+//   set.delete(max);
+//   const step = Math.abs(max - min) / (arr.length - 1);
+//   for (let i = min; i < max; i += step) if (!set.delete(i)) return false;
+//   return 0 === set.size;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 120 ms, faster than 15.66% of JavaScript online submissions
+// Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} arr
  * @return {boolean}
@@ -87,10 +107,11 @@ const canMakeArithmeticProgression = arr => {
   const [min, max] = [Math.min(...arr), Math.max(...arr)];
   const set = new Set(arr);
   if (1 === set.size) return true;
-  set.delete(max);
   const step = Math.abs(max - min) / (arr.length - 1);
-  for (let i = min; i < max; i += step) if (!set.delete(i)) return false;
-  return 0 === set.size;
+  set.delete(min);
+  set.add(max + step);
+  for (const n of arr) if (!set.has(n + step)) return false;
+  return true;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
