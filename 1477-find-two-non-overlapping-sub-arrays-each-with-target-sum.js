@@ -164,9 +164,9 @@ const minSumOfLengths = (arr, target) => {
     /* 🌮 */ while (target < lSum) lSum -= arr[lt++];
     // If the right sub-array sum is too big, contract the right tail
     /* 🌮 */ while (target < rSum) rSum -= arr[rt--];
-    // If the left sub-array sum is correct, remember its length
+    // If the left sub-array sum is correct, remember its length if shorter
     if (lSum === target) lMinLen = Math.min(lMinLen, lh - lt + 1);
-    // If the right sub-array sum is correct, remember its length
+    // If the right sub-array sum is correct, remember its length if shorter
     if (rSum === target) rMinLen = Math.min(rMinLen, rt - rh + 1);
     // If the the right sub-array is bigger, extend the right window head
     if (lMinLen <= rMinLen) rSum += arr[--rh];
