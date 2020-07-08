@@ -117,24 +117,65 @@ import { strictEqual } from 'assert';
 // Runtime: 116 ms, faster than 95.60% of JavaScript online submissions
 // Memory Usage: 45.5 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} arr
+//  * @param {number} target
+//  * @return {number}
+//  */
+// const minSumOfLengths = (arr, target) => {
+//   let [iLL, iLR, iRL, iRR] = [0, 0, arr.length - 1, arr.length - 1];
+//   let [lSum, rSum] = [arr[iLL], arr[iRL]];
+//   let [left, right] = [Infinity, Infinity];
+//   while (iLR < iRL) {
+//     while (target < lSum) lSum -= arr[iLL++];
+//     while (target < rSum) rSum -= arr[iRR--];
+//     if (lSum === target) left = Math.min(left, iLR - iLL);
+//     if (rSum === target) right = Math.min(right, iRR - iRL);
+//     if (left <= right) rSum += arr[--iRL];
+//     else lSum += arr[++iLR];
+//   }
+//   return Infinity === left + right ? -1 : left + right + 2;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
+ * Slide in a sub-array from the left and a sub-array from the right
+ * Slide whichever has seen the longest sub-array with the target sum†‡
+ * Stop when they touch
+ *
+ * † When they're equal, slide the right sub-array
+ * ‡ In order to give that side a chance to find a shorter matching sub-array
+ *
  * @param {number[]} arr
  * @param {number} target
  * @return {number}
  */
 const minSumOfLengths = (arr, target) => {
-  let [iLL, iLR, iRL, iRR] = [0, 0, arr.length - 1, arr.length - 1];
-  let [lSum, rSum] = [arr[iLL], arr[iRL]];
-  let [left, right] = [Infinity, Infinity];
-  while (iLR < iRL) {
-    while (target < lSum) lSum -= arr[iLL++];
-    while (target < rSum) rSum -= arr[iRR--];
-    if (lSum === target) left = Math.min(left, iLR - iLL);
-    if (rSum === target) right = Math.min(right, iRR - iRL);
-    if (left <= right) rSum += arr[--iRL];
-    else lSum += arr[++iLR];
+  // Indices for the heads & tails of the left & right sub-arrays
+  let [lt, lh, rh, rt] = [0, 0, arr.length - 1, arr.length - 1];
+  // Sums for the left & right sub-arrays
+  let [lSum, rSum] = [arr[lh], arr[rh]];
+  // Lengths of of the shortest left & right sub-arrays with the target sum
+  let [lMinLen, rMinLen] = [Infinity, Infinity];
+  // While the left & right sub-arrays (heads) aren't overlapping
+  while (lh < rh) {
+    // If the left sub-array sum is too big, contract the left tail
+    /* 🌮 */ while (target < lSum) lSum -= arr[lt++];
+    // If the right sub-array sum is too big, contract the right tail
+    /* 🌮 */ while (target < rSum) rSum -= arr[rt--];
+    // If the left sub-array sum is correct, remember its length
+    if (lSum === target) lMinLen = Math.min(lMinLen, lh - lt + 1);
+    // If the right sub-array sum is correct, remember its length
+    if (rSum === target) rMinLen = Math.min(rMinLen, rt - rh + 1);
+    // If the the right sub-array is bigger, extend the right window head
+    if (lMinLen <= rMinLen) rSum += arr[--rh];
+    // Else, if the the left sub-array is bigger, extend the left window head
+    else lSum += arr[++lh];
+    // Go back to the lines with tacos (🌮🌮), they will make more sense now
   }
-  return Infinity === left + right ? -1 : left + right + 2;
+  // Return -1 if either sub-array did not find the target sum else the answer
+  return Infinity === lMinLen + rMinLen ? -1 : lMinLen + rMinLen;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
