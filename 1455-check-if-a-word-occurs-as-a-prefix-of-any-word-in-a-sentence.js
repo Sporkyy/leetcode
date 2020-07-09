@@ -31,21 +31,170 @@ import { strictEqual } from 'assert';
 // Runtime: 64 ms, faster than 83.90% of JavaScript online submissions
 // Memory Usage: 33.4 MB, less than 5.51% of JavaScript online submissions
 
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (sentence, searchWord, cnt = 0) =>
+//   !sentence.length
+//     ? -1
+//     : 'string' === typeof sentence
+//     ? isPrefixOfWord(sentence.split(' '), searchWord)
+//     : new RegExp(`^${searchWord}`).test(sentence.shift())
+//     ? cnt + 1
+//     : isPrefixOfWord(sentence, searchWord, cnt + 1);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 83.90% of JavaScript online submissions
+// Memory Usage: 32.3 MB, less than 99.78% of JavaScript online submissions
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (sentence, searchWord, cnt = 0) =>
+//   !sentence.length
+//     ? -1
+//     : 'string' === typeof sentence
+//     ? isPrefixOfWord(sentence.split(' '), searchWord)
+//     : 0 === sentence.shift().indexOf(searchWord)
+//     ? cnt + 1
+//     : isPrefixOfWord(sentence, searchWord, cnt + 1);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (sentence, searchWord) => {
+//   const prefix = sentence.split(new RegExp(`(^| )${searchWord}`)).shift();
+//   return sentence.length === prefix.length
+//     ? -1
+//     : 0 === prefix.length
+//     ? 1
+//     : prefix.split(' ').length + 1;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 96 ms, faster than 7.83% of JavaScript online submissions
+// Memory Usage: 32.5 MB, less than 94.93% of JavaScript online submissions
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (
+//   sentence,
+//   searchWord,
+//   prefix = sentence.split(new RegExp(`(^| )${searchWord}`)).shift(),
+// ) =>
+//   sentence.length === prefix.length
+//     ? -1
+//     : 0 === prefix.length
+//     ? 1
+//     : prefix.split(' ').length + 1;
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 76 ms, faster than 28.95% of JavaScript online submissions
+// Memory Usage: 33.3 MB, less than 5.95% of JavaScript online submissions
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (
+//   sentence,
+//   searchWord,
+//   prefix = sentence.split(new RegExp(`(^| )${searchWord}`))[0],
+// ) =>
+//   sentence.length === prefix.length
+//     ? -1
+//     : 0 === prefix.length
+//     ? 1
+//     : prefix.split(' ').length + 1;
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 72 ms, faster than 38.26% of JavaScript online submissions
+// Memory Usage: 32.8 MB, less than 62.33% of JavaScript online submissions
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (
+//   sentence,
+//   searchWord,
+//   idx = sentence.split(' ').findIndex(word => word.startsWith(searchWord)),
+// ) => (-1 === idx ? idx : idx + 1);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 96 ms, faster than 7.83% of JavaScript online submissions
+// Memory Usage: 32.7 MB, less than 77.53% of JavaScript online submissions
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (sentence, searchWord) =>
+//   sentence
+//     .split(' ')
+//     .reduce(
+//       (acc, curr, idx) =>
+//         -1 < acc ? acc : curr.startsWith(searchWord) ? idx + 1 : -1,
+//       -1,
+//     );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 62.92% of JavaScript online submissions
+// Memory Usage: 32.5 MB, less than 94.71% of JavaScript online submissions
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (sentence, searchWord) => {
+//   const idx = ` ${sentence}`.indexOf(` ${searchWord}`);
+//   if (-1 === idx) return -1;
+//   let cntSpaces = 0;
+//   for (let i = 0; i < idx; i++) if (' ' === sentence[i]) cntSpaces++;
+//   return cntSpaces + 1;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 60 ms, faster than 94.39% of JavaScript online submissions
+// Memory Usage: 33 MB, less than 45.59% of JavaScript online submissions
+
 /**
  * @param {string} sentence
  * @param {string} searchWord
  * @return {number}
  */
-const isPrefixOfWord = (sentence, searchWord, cnt = 0) =>
-  !sentence.length
-    ? -1
-    : 'string' === typeof sentence
-    ? isPrefixOfWord(sentence.split(' '), searchWord)
-    : new RegExp(`^${searchWord}`).test(sentence.shift())
-    ? cnt + 1
-    : isPrefixOfWord(sentence, searchWord, cnt + 1);
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const isPrefixOfWord = (sentence, searchWord) => {
+  [sentence, searchWord] = [` ${sentence}`, ` ${searchWord}`];
+  for (let i = 0, j = 0, cntSpaces = 0; i < sentence.length; i++) {
+    if (sentence[i] !== searchWord[j]) j = 0;
+    if (sentence[i] === searchWord[j]) j++;
+    if (' ' === sentence[i]) cntSpaces++;
+    else if (j === searchWord.length) return cntSpaces;
+  }
+  return -1;
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -68,3 +217,15 @@ strictEqual(isPrefixOfWord('i use triple pillow', 'pill'), 4);
 strictEqual(isPrefixOfWord('hello from the other side', 'they'), -1);
 
 strictEqual(isPrefixOfWord('leetcode corona', 'leetco'), 1);
+
+strictEqual(isPrefixOfWord('hellohello hellohellohello', 'ell'), -1);
+
+strictEqual(
+  isPrefixOfWord(
+    'pillow love winstontang i pillow corona you errichto love',
+    'i',
+  ),
+  4,
+);
+
+strictEqual(isPrefixOfWord('b bu bur burg burger', 'burg'), 4);
