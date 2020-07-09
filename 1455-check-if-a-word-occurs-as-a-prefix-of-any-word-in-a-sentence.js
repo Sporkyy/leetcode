@@ -177,8 +177,92 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// // Runtime: 60 ms, faster than 94.39% of JavaScript online submissions
+// // Memory Usage: 33 MB, less than 45.59% of JavaScript online submissions
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (sentence, searchWord) => {
+//   [sentence, searchWord] = [` ${sentence}`, ` ${searchWord}`];
+//   for (let i = 0, j = 0, cntSpaces = 0; i < sentence.length; i++) {
+//     if (sentence[i] !== searchWord[j]) j = 0;
+//     if (sentence[i] === searchWord[j]) j++;
+//     if (' ' === sentence[i]) cntSpaces++;
+//     else if (j === searchWord.length) return cntSpaces;
+//   }
+//   return -1;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 100 ms, faster than 6.06% of JavaScript online submissions
+// Memory Usage: 33.2 MB, less than 7.27% of JavaScript online submissions
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (sentence, searchWord) => {
+//   [sentence, searchWord] = [` ${sentence}`, ` ${searchWord}`];
+//   for (let i = 0, j = 0, cntSpaces = 0; i < sentence.length; i++) {
+//     if (' ' === sentence[i]) [cntSpaces, j] = [cntSpaces + 1, 0];
+//     j = sentence[i] === searchWord[j] ? j + 1 : 0;
+//     if (j === searchWord.length) return cntSpaces;
+//   }
+//   return -1;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 // Runtime: 60 ms, faster than 94.39% of JavaScript online submissions
-// Memory Usage: 33 MB, less than 45.59% of JavaScript online submissions
+// Memory Usage: 32.8 MB, less than 68.06% of JavaScript online submissions
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (sentence, searchWord) => {
+//   [sentence, searchWord] = [` ${sentence}`, ` ${searchWord}`];
+//   for (let i = 0, j = 0, cntSpaces = 0; i < sentence.length; i++) {
+//     if (' ' === sentence[i]) {
+//       cntSpaces++;
+//       j = 0;
+//     }
+//     if (sentence[i] === searchWord[j]) j++;
+//     else j = 0;
+//     if (j === searchWord.length) return cntSpaces;
+//   }
+//   return -1;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 88 ms, faster than 15.21% of JavaScript online submissions
+// Memory Usage: 32.7 MB, less than 84.58% of JavaScript online submissions
+
+// /**
+//  * @param {string} sentence
+//  * @param {string} searchWord
+//  * @return {number}
+//  */
+// const isPrefixOfWord = (sentence, searchWord) => {
+//   for (let i = 0, j = 0, cntWords = 1; i < sentence.length; i++, j++) {
+//     if (' ' === sentence[i] && cntWords++ && (j = -1)) continue;
+//     if (sentence[i] !== searchWord[j] && (j = Infinity)) continue;
+//     if (j === searchWord.length - 1) return cntWords;
+//   }
+//   return -1;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 88 ms, faster than 15.21% of JavaScript online submissions
+// Memory Usage: 33.3 MB, less than 6.17% of JavaScript online submissions
 
 /**
  * @param {string} sentence
@@ -186,13 +270,10 @@ import { strictEqual } from 'assert';
  * @return {number}
  */
 const isPrefixOfWord = (sentence, searchWord) => {
-  [sentence, searchWord] = [` ${sentence}`, ` ${searchWord}`];
-  for (let i = 0, j = 0, cntSpaces = 0; i < sentence.length; i++) {
-    if (sentence[i] !== searchWord[j]) j = 0;
-    if (sentence[i] === searchWord[j]) j++;
-    if (' ' === sentence[i]) cntSpaces++;
-    else if (j === searchWord.length) return cntSpaces;
-  }
+  for (let i = 0, j = 0, cntWords = 1; i < sentence.length; i++, j++)
+    if (' ' === sentence[i]) cntWords++, (j = -1);
+    else if (sentence[i] !== searchWord[j]) j = Infinity;
+    else if (j === searchWord.length - 1) return cntWords;
   return -1;
 };
 
@@ -229,3 +310,5 @@ strictEqual(
 );
 
 strictEqual(isPrefixOfWord('b bu bur burg burger', 'burg'), 4);
+
+strictEqual(isPrefixOfWord('love errichto jonathan dumb', 'dumb'), 4);
