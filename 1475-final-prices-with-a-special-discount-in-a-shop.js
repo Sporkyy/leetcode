@@ -25,17 +25,32 @@ import { deepStrictEqual } from 'assert';
 // Runtime: 108 ms, faster than 21.97% of JavaScript online submissions
 // Memory Usage: 42.1 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} prices
+//  * @return {number[]}
+//  */
+// const finalPrices = prices =>
+//   prices.map(
+//     (price, idx) =>
+//       price -
+//       prices
+//         .slice(idx + 1)
+//         .reduce((acc, curr) => (0 === acc && curr <= price ? curr : acc), 0),
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 108 ms, faster than 22.18% of JavaScript online submissions
+// Memory Usage: 38.4 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number[]} prices
  * @return {number[]}
  */
 const finalPrices = prices =>
   prices.map(
-    (price, idx) =>
-      price -
-      prices
-        .slice(idx + 1)
-        .reduce((acc, curr) => (0 === acc && curr <= price ? curr : acc), 0),
+    (price, i) =>
+      price - (prices[prices.findIndex((p, j) => i < j && p <= price)] || 0),
   );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
