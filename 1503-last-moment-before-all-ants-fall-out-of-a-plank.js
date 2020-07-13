@@ -34,44 +34,6 @@ import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// /**
-//  * @param {number} n
-//  * @param {number[]} left
-//  * @param {number[]} right
-//  * @return {number}
-//  */
-// const getLastMoment = (n, left, right) => {
-//   const plank = new Array(n).fill('_');
-//   for (const i of left) plank[i] = 'l';
-//   for (const i of right) plank[i] = 'r';
-//   let s = plank.join('');
-//   // console.log(s);
-//   // return Math.max(...left, ...right);
-//   for (let i = 0; i < 50; i++) {
-//     console.log(s);
-//     // Ants falling off the ends of the plank
-//     s = s.replace(/^l/g, '_');
-//     s = s.replace(/r$/g, '_');
-//     // Ants stacking
-//     s = s.replace(/r_l/g, '_X_');
-//     s = s.replace(/rxl/g, 'LXR');
-//     // Ants turning
-//     s = s.replace(/rl/g, 'LR');
-//     // Ants marching (Red and black antennae waving...)
-//     s = s.replace(/(r+)_/g, (a, x) => `_${x.toUpperCase()}`);
-//     s = s.replace(/_(l+)/g, (a, x) => `${x.toUpperCase()}_`);
-//     // Ants unstacking
-//     s = s.replace(/_x_/g, 'L_R');
-//     // console.log(`${i}`.padStart(2), s);
-//     if (!/[LXR]/.test(s)) return i;
-//     // console.log(s);
-//     s = s.toLowerCase();
-//     // console.log(s);
-//   }
-// };
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
 // Runtime: 80 ms, faster than 86.23% of JavaScript online submissions
 // Memory Usage: 40.9 MB, less than 100.00% of JavaScript online submissions
 
@@ -98,12 +60,12 @@ strictEqual(getLastMoment(4, [4, 3], [0, 1]), 4);
 
 /*
 
-   |0|1|2|3|4|
-0: |r|r| |l|l|
-1: | |r|x|l| |
-2: | |l|x|r| |
-3: |l|l| |r|r|
-4: |l| | | |r|
+   01234
+0: rr_ll
+1: _rxl_
+2: _lxr_
+3: ll_rr
+4: l___r
 
 */
 
@@ -112,40 +74,162 @@ strictEqual(getLastMoment(7, [], [0, 1, 2, 3, 4, 5, 6, 7]), 7);
 // Explanation: All ants are going to the right, the ant at index 0 needs 7
 // seconds to fall.
 
+/*
+
+0: rrrrrrrr
+1: _rrrrrrr
+2: __rrrrrr
+3: ___rrrrr
+4: ____rrrr
+5: _____rrr
+6: ______rr
+7: _______r
+
+*/
+
 // Example 3:
 strictEqual(getLastMoment(7, [0, 1, 2, 3, 4, 5, 6, 7], []), 7);
 // Explanation: All ants are going to the left, the ant at index 7 needs 7
 // seconds to fall.
+
+/*
+
+0: llllllll
+1: lllllll_
+2: llllll__
+3: lllll___
+4: llll____
+5: lll_____
+6: ll______
+7: l_______
+
+*/
 
 // Example 4:
 strictEqual(getLastMoment(9, [5], [4]), 5);
 // Explanation: At t = 1 second, both ants will be at the same intial position
 // but with different direction.
 
+/*
+
+0: ____rl___
+1: ____lr___
+2: ___l__r__
+3: __l____r_
+4: _l______r
+5: l________
+
+*/
+
 // Example 5:
 strictEqual(getLastMoment(6, [6], [0]), 6);
+
+/*
+
+0: r_____l
+1: _r___l_
+2: __r_l__
+3: ___x___
+4: __l_r__
+5: _l___r_
+6: l_____r
+
+*/
+
+strictEqual(getLastMoment(18, [12, 16], [4]), 16);
 
 strictEqual(getLastMoment(20, [4, 7, 15], [9, 3, 13, 10]), 17);
 
 /*
 
-    |0|1|2|3|4|5|6|7|8|9|0|1|2|3|4|5|6|7|8|9|
-00: | | | |r|l| | |l| |r|r| | |r| |l| | | | | ​​​​
-01: | | | |l|r| |l| | | |r|r| | |x| | | | | |
-02: | | |l| | |x| | | | | |r|r|l| |r| | | | |
-03: | |l| | |l| |r| | | | |r|l|r| | |r| | | |
-04: |l| | |l| | | |r| | | |l|r| |r| | |r| | |
-05: | | |l| | | | | |r| |l| | |r| |r| | |r| |
-06: | |l| | | | | | | |x| | | | |r| |r| | |r|
-07: |l| | | | | | | |l| |r| | | | |r| |r| | |
-08: | | | | | | | |l| | | |r| | | | |r| |r| |
-09: | | | | | | |l| | | | | |r| | | | |r| |r|
-10: | | | | | |l| | | | | | | |r| | | | |r| |
-11: | | | | |l| | | | | | | | | |r| | | | |r|
-12: | | | |l| | | | | | | | | | | |r| | | | |
-13: | | |l| | | | | | | | | | | | | |r| | | |
-14: | |l| | | | | | | | | | | | | | | |r| | |
-15: |l| | | | | | | | | | | | | | | | | |r| |
-16: | | | | | | | | | | | | | | | | | | | |r|
+    01234567890123456789
+00: ___rl__l_rr__r_l_____ 
+01: ___lr_l___rr__x______ 
+02: __l__x_____rrl_r_____ 
+03: _l__l_r____rlr__r____ 
+04: l__l___r___lr_r__r___ 
+05: __l_____r_l__r_r__r__ 
+06: _l_______x____r_r__r_ 
+07: l_______l_r____r_r__r 
+08: _______l___r____r_r__ 
+09: ______l_____r____r_r_ 
+10: _____l_______r____r_r 
+11: ____l_________r____r_ 
+12: ___l___________r____r 
+13: __l_____________r____ 
+14: _l_______________r___ 
+15: l_________________r__ 
+16: ___________________r_ 
+17: ____________________r 
+
+*/
+
+strictEqual(getLastMoment(20, [9, 3, 13, 10], [4, 7, 15]), 16);
+
+/*
+
+00: ___lr__r_ll__l_r_____ 
+01: __l__r__xl__l___r____ 
+02: _l____rlrr_l_____r___ 
+03: l_____lr_rx_______r__ 
+04: _____l__rllr_______r_ 
+05: ____l___lrl_r_______r 
+06: ___l___l_lr__r_______ 
+07: __l___l_l__r__r______ 
+08: _l___l_l____r__r_____ 
+09: l___l_l______r__r____ 
+10: ___l_l________r__r___ 
+11: __l_l__________r__r__ 
+12: _l_l____________r__r_ 
+13: l_l______________r__r 
+14: _l________________r__ 
+15: l__________________r_ 
+16: ____________________r 
+
+*/
+
+strictEqual(getLastMoment(11, [1, 4, 5, 10, 9], [2, 7, 6, 3]), 10);
+
+/*
+
+00:
+01:
+02:
+03:
+04:
+05:
+06:
+07:
+08:
+09:
+10:
+
+*/
+
+strictEqual(
+  getLastMoment(15, [4, 15, 13, 14, 9, 11, 3], [1, 12, 5, 0, 8, 6, 7]),
+  15,
+);
+
+/*
+
+ 00: rr_llrrrrl_lrlll
+ 01: _rxl_rrrlrl_lrlr
+ 02:
+ 03:
+ 04:
+ 05:
+ 06:
+ 07:
+ 08:
+ 09:
+ 10:
+ 11:
+ 12:
+ 13:
+ 14:
+ 15:
+
+
 
 */
