@@ -23,23 +23,66 @@ import { deepStrictEqual } from 'assert';
 // Runtime: 268 ms, faster than 6.11% of JavaScript online submissions
 // Memory Usage: 47.2 MB, less than 6.27% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxVowels = (s, k) => {
+//   let max = 0;
+//   const map = new Map([
+//     ['a', true],
+//     ['e', true],
+//     ['i', true],
+//     ['o', true],
+//     ['u', true],
+//   ]);
+//   for (let i = 0, cnt = 0; i < s.length; i++) {
+//     if (map.get(s[i])) cnt++;
+//     if (map.get(s[i - k])) cnt--;
+//     max = Math.max(max, cnt);
+//   }
+//   return max;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 180 ms, faster than 10.86% of JavaScript online submissions
+// Memory Usage: 44.5 MB, less than 25.08% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxVowels = (s, k) => {
+//   const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+//   const positions = new Set();
+//   let max = 0;
+//   for (let i = 0, cnt = 0; i < s.length; i++) {
+//     if (vowels.has(s[i])) positions.add(i) && cnt++;
+//     if (positions.has(i - k)) cnt--;
+//     max = Math.max(max, cnt);
+//   }
+//   return max;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 244 ms, faster than 6.33% of JavaScript online submissions
+// Memory Usage: 47.2 MB, less than 6.27% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @param {number} k
  * @return {number}
  */
 const maxVowels = (s, k) => {
+  const vowels = new Set('aeiou');
   let max = 0;
-  const map = new Map([
-    ['a', true],
-    ['e', true],
-    ['i', true],
-    ['o', true],
-    ['u', true],
-  ]);
   for (let i = 0, cnt = 0; i < s.length; i++) {
-    if (map.get(s[i])) cnt++;
-    if (map.get(s[i - k])) cnt--;
+    if (vowels.has(s[i])) cnt++;
+    if (vowels.has(s[i - k])) cnt--;
     max = Math.max(max, cnt);
   }
   return max;
