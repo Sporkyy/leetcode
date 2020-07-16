@@ -184,22 +184,103 @@ import { strictEqual } from 'assert';
 // Runtime: 156 ms, faster than 10.00% of JavaScript online submissions
 // Memory Usage: 55 MB, less than 6.45% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} cardPoints
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxScore = (cardPoints, k) =>
+//   Math.max(
+//     ...cardPoints
+//       .slice(0, k)
+//       .reverse()
+//       .concat(cardPoints.slice(-k).reverse())
+//       .reduce((acc, curr, idx, arr) => {
+//         acc.push(curr + (acc[idx - 1] || 0) - (arr[idx - k] || 0));
+//         return acc;
+//       }, []),
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 216 ms, faster than 8.75% of JavaScript online submissions
+// Memory Usage: 55.2 MB, less than 6.45% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} cardPoints
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxScore = (cardPoints, k) =>
+//   Math.max(
+//     ...cardPoints
+//       .slice(-k)
+//       .concat(cardPoints.slice(0, k))
+//       .reduce((acc, curr, idx, arr) => {
+//         acc.push(curr + (acc[idx - 1] || 0) - (arr[idx - k] || 0));
+//         return acc;
+//       }, []),
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 156 ms, faster than 10.00% of JavaScript online submissions
+// Memory Usage: 54.8 MB, less than 6.45% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} cardPoints
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxScore = (cardPoints, k) =>
+//   cardPoints
+//     .slice(-k)
+//     .concat(cardPoints.slice(0, k))
+//     .reduce(
+//       (acc, curr, idx, arr) => [
+//         acc[0] + curr - (arr[idx - k] || 0),
+//         Math.max(acc[1], acc[0] + curr - (arr[idx - k] || 0)),
+//       ],
+//       [0, 0],
+//     )[1];
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 292 ms, faster than 8.75% of JavaScript online submissions
+// Memory Usage: 51 MB, less than 6.45% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} cardPoints
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxScore = (cardPoints, k, sum = 0) =>
+//   Math.max(
+//     ...cardPoints
+//       .slice(-k)
+//       .concat(cardPoints.slice(0, k))
+//       .map((pts, idx, arr) => (sum += pts - (arr[idx - k] || 0))),
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 116 ms, faster than 21.88% of JavaScript online submissions
+// Memory Usage: 50.7 MB, less than 6.45% of JavaScript online submissions
+
 /**
  * @param {number[]} cardPoints
  * @param {number} k
  * @return {number}
  */
-const maxScore = (cardPoints, k) =>
-  Math.max(
-    ...cardPoints
-      .slice(0, k)
-      .reverse()
-      .concat(cardPoints.slice(-k).reverse())
-      .reduce((acc, curr, idx, arr) => {
-        acc.push(curr + (acc[idx - 1] || 0) - (arr[idx - k] || 0));
-        return acc;
-      }, []),
-  );
+const maxScore = (cardPoints, k, sum = 0) =>
+  cardPoints
+    .slice(-k)
+    .concat(cardPoints.slice(0, k))
+    .reduce(
+      (acc, curr, idx, arr) =>
+        Math.max(acc, (sum += curr - (arr[idx - k] || 0))),
+      0,
+    );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
