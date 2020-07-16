@@ -28,29 +28,75 @@ import { strictEqual } from 'assert';
 // Runtime: 9220 ms, faster than 5.00% of JavaScript online submissions
 // Memory Usage: 46.5 MB, less than 9.68% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} cardPoints
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxScore = (cardPoints, k) => {
+//   const window = cardPoints.slice(0, k);
+//   // console.log(window);
+//   let maxSum = Math.max(
+//     window.reduce((acc, curr) => acc + curr),
+//     cardPoints.slice(-k).reduce((acc, curr) => acc + curr),
+//   );
+//   for (let i = 0; i < k; i++) {
+//     window.pop();
+//     window.unshift(cardPoints.pop());
+//     // console.log(window);
+//     maxSum = Math.max(
+//       maxSum,
+//       window.reduce((acc, curr) => acc + curr),
+//     );
+//   }
+//   return maxSum;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// /**
+//  * @param {number[]} cardPoints
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxScore = (cardPoints, k) => {
+//   console.log(cardPoints.slice(0, k));
+//   console.log(cardPoints.slice(-k).reverse());
+//   console.log(
+//     cardPoints.slice(0, k).reverse().concat(cardPoints.slice(-k).reverse()),
+//   );
+//   const x = cardPoints
+//     .slice(0, k)
+//     .reverse()
+//     .concat(cardPoints.slice(-k).reverse());
+
+//   console.log(
+//     x.reduce((acc, curr, i) => {
+//       acc = acc + curr;
+//     }, 0),
+//   );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Time Limit Exceeded
+
 /**
  * @param {number[]} cardPoints
  * @param {number} k
  * @return {number}
  */
-const maxScore = (cardPoints, k) => {
-  const window = cardPoints.slice(0, k);
-  // console.log(window);
-  let maxSum = Math.max(
-    window.reduce((acc, curr) => acc + curr),
-    cardPoints.slice(-k).reduce((acc, curr) => acc + curr),
+const maxScore = (cardPoints, k) =>
+  Math.max(
+    ...cardPoints
+      .slice(-k)
+      .reverse()
+      .reduce(
+        (acc, curr, i) =>
+          acc.concat([acc[acc.length - 1] - cardPoints[k - i - 1] + curr]),
+        [cardPoints.slice(0, k).reduce((acc, curr) => acc + curr)],
+      ),
   );
-  for (let i = 0; i < k; i++) {
-    window.pop();
-    window.unshift(cardPoints.pop());
-    // console.log(window);
-    maxSum = Math.max(
-      maxSum,
-      window.reduce((acc, curr) => acc + curr),
-    );
-  }
-  return maxSum;
-};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
