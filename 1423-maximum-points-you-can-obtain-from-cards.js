@@ -137,23 +137,69 @@ import { strictEqual } from 'assert';
 // Runtime: 144 ms, faster than 12.50% of JavaScript online submissions
 // Memory Usage: 55.9 MB, less than 6.45% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} cardPoints
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxScore = (cardPoints, k) => {
+//   const scores = cardPoints
+//     .slice(0, k)
+//     .reverse()
+//     .concat(cardPoints.slice(-k).reverse());
+//   // console.log(scores);
+//   const sums = [];
+//   for (let i = 0; i < scores.length; i++)
+//     sums[i] = scores[i] + (sums[i - 1] || 0) - (scores[i - k] || 0);
+//   // console.log(sums);
+//   return Math.max(...sums);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Time Limit Exceeded
+
+// /**
+//  * @param {number[]} cardPoints
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxScore = (cardPoints, k) =>
+//   Math.max(
+//     ...cardPoints
+//       .slice(0, k)
+//       .reverse()
+//       .concat(cardPoints.slice(-k).reverse())
+//       .reduce(
+//         (acc, curr, idx, arr) => [
+//           ...acc,
+//           curr + (acc[idx - 1] || 0) - (arr[idx - k] || 0),
+//         ],
+//         [],
+//       ),
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 156 ms, faster than 10.00% of JavaScript online submissions
+// Memory Usage: 55 MB, less than 6.45% of JavaScript online submissions
+
 /**
  * @param {number[]} cardPoints
  * @param {number} k
  * @return {number}
  */
-const maxScore = (cardPoints, k) => {
-  const scores = cardPoints
-    .slice(0, k)
-    .reverse()
-    .concat(cardPoints.slice(-k).reverse());
-  // console.log(scores);
-  const sums = [];
-  for (let i = 0; i < scores.length; i++)
-    sums[i] = scores[i] + (sums[i - 1] || 0) - (scores[i - k] || 0);
-  // console.log(sums);
-  return Math.max(...sums);
-};
+const maxScore = (cardPoints, k) =>
+  Math.max(
+    ...cardPoints
+      .slice(0, k)
+      .reverse()
+      .concat(cardPoints.slice(-k).reverse())
+      .reduce((acc, curr, idx, arr) => {
+        acc.push(curr + (acc[idx - 1] || 0) - (arr[idx - k] || 0));
+        return acc;
+      }, []),
+  );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
