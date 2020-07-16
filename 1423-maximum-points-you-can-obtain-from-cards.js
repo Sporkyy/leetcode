@@ -103,31 +103,54 @@ import { strictEqual } from 'assert';
 // Runtime: 204 ms, faster than 8.75% of JavaScript online submissions
 // Memory Usage: 57.3 MB, less than 6.45% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} cardPoints
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxScore = (cardPoints, k) => {
+//   let indices = [...new Array(k).keys()].reverse();
+//   indices = indices.concat(
+//     indices
+//       .slice()
+//       .reverse()
+//       .map(i => cardPoints.length - 1 - i),
+//   );
+//   // console.log(indices);
+//   const values = indices.map(i => cardPoints[i]);
+//   // console.log(values);
+//   const sums = [];
+//   for (let i = 0, sum = 0; i < values.length; i++) {
+//     if (k <= i) {
+//       // console.log(i);
+//       sum -= values[i - k];
+//     }
+//     sum += values[i];
+//     sums.push(sum);
+//   }
+//   // console.log(sums);
+//   return Math.max(...sums);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 144 ms, faster than 12.50% of JavaScript online submissions
+// Memory Usage: 55.9 MB, less than 6.45% of JavaScript online submissions
+
 /**
  * @param {number[]} cardPoints
  * @param {number} k
  * @return {number}
  */
 const maxScore = (cardPoints, k) => {
-  let indices = [...new Array(k).keys()].reverse();
-  indices = indices.concat(
-    indices
-      .slice()
-      .reverse()
-      .map(i => cardPoints.length - 1 - i),
-  );
-  // console.log(indices);
-  const values = indices.map(i => cardPoints[i]);
-  // console.log(values);
+  const scores = cardPoints
+    .slice(0, k)
+    .reverse()
+    .concat(cardPoints.slice(-k).reverse());
+  // console.log(scores);
   const sums = [];
-  for (let i = 0, sum = 0; i < values.length; i++) {
-    if (k <= i) {
-      // console.log(i);
-      sum -= values[i - k];
-    }
-    sum += values[i];
-    sums.push(sum);
-  }
+  for (let i = 0; i < scores.length; i++)
+    sums[i] = scores[i] + (sums[i - 1] || 0) - (scores[i - k] || 0);
   // console.log(sums);
   return Math.max(...sums);
 };
