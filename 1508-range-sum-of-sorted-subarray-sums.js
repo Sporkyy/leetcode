@@ -36,10 +36,7 @@ import { strictEqual } from 'assert';
 const rangeSum = (nums, n, left, right) => {
   for (let i = 0, sum = nums[i]; i < n; i++, sum = nums[i])
     for (let j = i + 1; j < n; j++) nums.push((sum += nums[j]));
-  // console.log(nums);
   nums.sort((a, b) => a - b);
-  // console.log(nums);
-  // console.log(nums.slice(left - 1, right));
   return (
     nums.slice(left - 1, right).reduce((acc, curr) => acc + curr) %
     (10 ** 9 + 7)
