@@ -39,6 +39,8 @@ const arrangeWords = text =>
     .join(' ')
     .replace(/^./, firstLetter => firstLetter.toUpperCase());
 
+// console.log('Version: ' + process.version);
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Example 1:
@@ -56,4 +58,6 @@ strictEqual(arrangeWords('Keep calm and code on'), 'On and keep calm code');
 // "code" 4 letters.
 
 // Example 3:
+strictEqual(arrangeWords('To be or not to be'), 'To be or to be not');
+
 strictEqual(arrangeWords('To be or not to be'), 'To be or to be not');
