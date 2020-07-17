@@ -45,6 +45,70 @@ const rangeSum = (nums, n, left, right) => {
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 620 ms, faster than 10.85% of JavaScript online submissions
+// Memory Usage: 83 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @param {number} n
+//  * @param {number} left
+//  * @param {number} right
+//  * @return {number}
+//  */
+// const rangeSum = (nums, n, left, right) => {
+//   for (
+//     let i = 0, sum = nums[i], sums = [sum];
+//     i < n;
+//     i++, sum = nums[i], sums = [sum]
+//   ) {
+//     for (let j = i + 1; j < n; j++) {
+//       sums.push((sum += nums[j]));
+//     }
+//     nums[i] = sums.sort((a, b) => a - b);
+//   }
+//   nums = nums.flat().sort((a, b) => a - b);
+//   return (
+//     nums.slice(left - 1, right).reduce((acc, curr) => acc + curr) %
+//     (10 ** 9 + 7)
+//   );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Time Limit Exceeded
+
+// /**
+//  * @param {number[]} nums
+//  * @param {number} n
+//  * @param {number} left
+//  * @param {number} right
+//  * @return {number}
+//  */
+// const rangeSum = (nums, n, left, right) => {
+//   const spliced = nums.slice().sort((a, b) => a - b);
+
+//   console.log(nums);
+//   for (let i = 0, sum = nums[i]; i < n; i++, sum = nums[i])
+//     for (let j = i + 1; j < n; j++) {
+//       sum += nums[j];
+//       // console.log(sum);
+//       spliced.splice(
+//         spliced.findIndex(n => sum <= n),
+//         0,
+//         sum,
+//       );
+//     }
+//   // console.log(spliced.sort((a, b) => a - b));
+
+//   spliced.sort((a, b) => a - b);
+//   return (
+//     spliced.slice(left - 1, right).reduce((acc, curr) => acc + curr) %
+//     (10 ** 9 + 7)
+//   );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 // Example 1:
 strictEqual(rangeSum([1, 2, 3, 4], 4, 1, 5), 13);
 // Explanation: All subarray sums are 1, 3, 6, 10, 2, 5, 9, 3, 7, 4. After
