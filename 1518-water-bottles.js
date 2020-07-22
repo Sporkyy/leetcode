@@ -40,9 +40,17 @@ const numWaterBottles = (numBottles, numExchange, drank = numBottles) =>
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Example 1:
-// strictEqual(numWaterBottles(9, 3), 13);
+strictEqual(numWaterBottles(9, 3), 13);
 // Explanation: You can exchange 3 empty bottles to get 1 full water bottle.
 // Number of water bottles you can drink: 9 + 3 + 1 = 13.
+
+/*
+
+eeeeeeeee
+eee
+e
+
+*/
 
 // Example 2:
 strictEqual(numWaterBottles(15, 4), 19);
@@ -54,3 +62,14 @@ strictEqual(numWaterBottles(5, 5), 6);
 
 // Example 4:
 strictEqual(numWaterBottles(2, 3), 2);
+
+strictEqual(numWaterBottles(10, 2));
+
+/*
+
+bbbbbbbbbb
+bbbb b
+bb   b
+b    b
+
+*/
