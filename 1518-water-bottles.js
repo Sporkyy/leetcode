@@ -59,7 +59,7 @@ const numWaterBottles = (cntBot, xchan) => {
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Example 1:
-// strictEqual(numWaterBottles(9, 3), 13);
+strictEqual(numWaterBottles(9, 3), 13);
 // Explanation: You can exchange 3 empty bottles to get 1 full water bottle.
 // Number of water bottles you can drink: 9 + 3 + 1 = 13.
 
@@ -72,30 +72,42 @@ e
 */
 
 // Example 2:
-// strictEqual(numWaterBottles(15, 4), 19);
+strictEqual(numWaterBottles(15, 4), 19);
 // Explanation: You can exchange 4 empty bottles to get 1 full water bottle.
 // Number of water bottles you can drink: 15 + 3 + 1 = 19.
 
 // Example 3:
-// strictEqual(numWaterBottles(5, 5), 6);
+strictEqual(numWaterBottles(5, 5), 6);
 
 // Example 4:
-// strictEqual(numWaterBottles(2, 3), 2);
+strictEqual(numWaterBottles(2, 3), 2);
 
 strictEqual(numWaterBottles(10, 2), 19);
 
 /*
 
-           |  drinkable | empty | drank |
-bbbbbbbbbb |        10  |     0 |    10 |
- b b b b b |         5  |     0 |     5 |
-   b   b B |         2  |     1 |     2 |
-       b B |         1  |     1 |     1 |
-         B |         1  |     0 |     1 |
----------- + --
-             23
+           |  drank | empty |
+bbbbbbbbbb |     10 |     0 |
+ b b b b b |      5 |     0 |
+   b   b B |      2 |     1 |
+       b B |      1 |     1 |
+         B |      1 |     0 |
+---------- + -------+-------+
+           |     19 |     2 |
 
-10 + 2 = 12 / 1 * 2 = 6
- 6 + 2 =  8 / 8 * 1 = 1
+*/
+
+strictEqual(numWaterBottles(11, 2), 21);
+
+/*
+
+            | drank | empty |
+bbbbbbbbbbb |    11 |     0 |
+ b b b b bB |     5 |     1 |
+   b   b BB |     2 |     2 |
+       b b  |     2 |     0 |
+         B  |     1 |     0 |
+----------- + ------+-------+
+            |    21 |     2 |
 
 */
