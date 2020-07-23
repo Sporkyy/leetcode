@@ -25,14 +25,35 @@ import { ok } from 'assert';
 // Runtime: 472 ms, faster than 12.50% of JavaScript online submissions
 // Memory Usage: 56.1 MB, less than 14.29% of JavaScript online submissions
 
+// /**
+//  * @param {string} s1
+//  * @param {string} s2
+//  * @return {boolean}
+//  */
+// const checkIfCanBreak = (s1, s2) => {
+//   s1 = [...s1].sort().join('');
+//   s2 = [...s2].sort().join('');
+//   let [isXYBroke, isYXBroke] = [true, true];
+//   for (let i = 0; i < s1.length; i++) {
+//     isXYBroke = isXYBroke && s1[i] <= s2[i];
+//     isYXBroke = isYXBroke && s2[i] <= s1[i];
+//   }
+//   return isXYBroke || isYXBroke;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 260 ms, faster than 73.44% of JavaScript online submissions
+// Memory Usage: 50.7 MB, less than 71.43% of JavaScript online submissions
+
 /**
  * @param {string} s1
  * @param {string} s2
  * @return {boolean}
  */
 const checkIfCanBreak = (s1, s2) => {
-  s1 = [...s1].sort().join('');
-  s2 = [...s2].sort().join('');
+  s1 = [...s1].sort();
+  s2 = [...s2].sort();
   let [isXYBroke, isYXBroke] = [true, true];
   for (let i = 0; i < s1.length; i++) {
     isXYBroke = isXYBroke && s1[i] <= s2[i];
