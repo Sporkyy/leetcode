@@ -46,18 +46,39 @@ import { ok } from 'assert';
 // Runtime: 260 ms, faster than 73.44% of JavaScript online submissions
 // Memory Usage: 50.7 MB, less than 71.43% of JavaScript online submissions
 
+// /**
+//  * @param {string} s1
+//  * @param {string} s2
+//  * @return {boolean}
+//  */
+// const checkIfCanBreak = (s1, s2) => {
+//   s1 = [...s1].sort();
+//   s2 = [...s2].sort();
+//   let [isXYBroke, isYXBroke] = [true, true];
+//   for (let i = 0; i < s1.length; i++) {
+//     isXYBroke = isXYBroke && s1[i] <= s2[i];
+//     isYXBroke = isYXBroke && s2[i] <= s1[i];
+//   }
+//   return isXYBroke || isYXBroke;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 396 ms, faster than 29.69% of JavaScript online submissions
+// Memory Usage: 52.5 MB, less than 42.86% of JavaScript online submissions
+
 /**
  * @param {string} s1
  * @param {string} s2
  * @return {boolean}
  */
 const checkIfCanBreak = (s1, s2) => {
-  s1 = [...s1].sort();
-  s2 = [...s2].sort();
+  const a1 = [...s1].sort();
+  const a2 = [...s2].sort();
   let [isXYBroke, isYXBroke] = [true, true];
-  for (let i = 0; i < s1.length; i++) {
-    isXYBroke = isXYBroke && s1[i] <= s2[i];
-    isYXBroke = isYXBroke && s2[i] <= s1[i];
+  for (let i = 0; i < a1.length; i++) {
+    isXYBroke = isXYBroke && a2[i] <= a1[i];
+    isYXBroke = isYXBroke && a1[i] <= a2[i];
   }
   return isXYBroke || isYXBroke;
 };
@@ -65,16 +86,22 @@ const checkIfCanBreak = (s1, s2) => {
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Example 1:
-ok(checkIfCanBreak('abc', 'xya'));
+// ok(checkIfCanBreak('abc', 'xya'));
 // Explanation: "ayx" is a permutation of s2="xya" which can break to string
 // "abc" which is a permutation of s1="abc".
 
 // Example 2:
-ok(!checkIfCanBreak('abe', 'acd'));
+// ok(!checkIfCanBreak('abe', 'acd'));
 // Explanation: All permutations for s1="abe" are: "abe", "aeb", "bae", "bea",
 // "eab" and "eba" and all permutation for s2="acd" are: "acd", "adc", "cad",
 // "cda", "dac" and "dca". However, there is not any permutation from s1 which
 // can break some permutation from s2 and vice-versa.
 
 // Example 3:
-ok(checkIfCanBreak('leetcodee', 'interview'));
+// ok(checkIfCanBreak('leetcodee', 'interview'));
+
+// ok(checkIfCanBreak('yopumzgd', 'pamntyya'));
+
+// ok(!checkIfCanBreak('ixzhsdka', 'aauramvg'));
+
+ok(!checkIfCanBreak('yf', 'qm'));
