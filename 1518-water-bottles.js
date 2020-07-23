@@ -44,16 +44,16 @@ import { strictEqual } from 'assert';
 
 /**
  * @param {number} cntBot
- * @param {number} xchan
+ * @param {number} xChan
  * @return {number}
  */
-const numWaterBottles = (cntBot, xchan) => {
-  let drunk = cntBot;
-  while (xchan <= cntBot) {
-    drunk += Math.trunc(cntBot / xchan);
-    cntBot = Math.trunc(cntBot / xchan) + (cntBot % xchan);
+const numWaterBottles = (cntBot, xChan) => {
+  let cntDrunk = cntBot;
+  while (xChan <= cntBot) {
+    cntDrunk += Math.trunc(cntBot / xChan);
+    cntBot = Math.trunc(cntBot / xChan) + (cntBot % xChan);
   }
-  return drunk;
+  return cntDrunk;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -86,14 +86,14 @@ strictEqual(numWaterBottles(10, 2), 19);
 
 /*
 
-           |  drank | empty |
-bbbbbbbbbb |     10 |     0 |
- b b b b b |      5 |     0 |
-   b   b B |      2 |     1 |
-       b B |      1 |     1 |
-         B |      1 |     0 |
----------- + -------+-------+
-           |     19 |     2 |
+|  drank | empty |
+|     10 |     0 |
+|      5 |     0 |
+|      2 |     1 |
+|      1 |     1 |
+|      1 |     0 |
++ -------+-------+
+|     19 |     2 |
 
 */
 
@@ -101,13 +101,14 @@ strictEqual(numWaterBottles(11, 2), 21);
 
 /*
 
-            | drank | empty |
-bbbbbbbbbbb |    11 |     0 |
- b b b b bB |     5 |     1 |
-   b   b BB |     2 |     2 |
-       b b  |     2 |     0 |
-         B  |     1 |     0 |
------------ + ------+-------+
-            |    21 |     2 |
+11 / 2 = 5
+11 % 2 = 1
+
+| got+drank | Returned | Kept |
+|        11 |       10 |    1 |
+|         5 |        6 |    0 |
+|         3 |        2 |    1 |
+|         1 |        2 |    0 |
+|         1 |        0 |    0 |
 
 */
