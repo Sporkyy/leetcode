@@ -27,6 +27,70 @@ import { strictEqual } from 'assert';
 // Runtime: 80 ms, faster than 61.09% of JavaScript online submissions
 // Memory Usage: 37.1 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string} date
+//  * @return {string}
+//  */
+// const reformatDate = date =>
+//   date
+//     .split(' ')
+//     .map(
+//       (part, i) =>
+//         ({
+//           Jan: '01',
+//           Feb: '02',
+//           Mar: '03',
+//           Apr: '04',
+//           May: '05',
+//           Jun: '06',
+//           Jul: '07',
+//           Aug: '08',
+//           Sep: '09',
+//           Oct: '10',
+//           Nov: '11',
+//           Dec: '12',
+//         }[part] || `${Number.parseInt(part)}`.padStart(2, '0')),
+//     )
+//     .reverse()
+//     .join('-');
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 88 ms, faster than 45.19% of JavaScript online submissions
+// Memory Usage: 36.4 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {string} date
+//  * @return {string}
+//  */
+// const reformatDate = date =>
+//   date
+//     .split(' ')
+//     .map(
+//       part =>
+//         ({
+//           Jan: '01',
+//           Feb: '02',
+//           Mar: '03',
+//           Apr: '04',
+//           May: '05',
+//           Jun: '06',
+//           Jul: '07',
+//           Aug: '08',
+//           Sep: '09',
+//           Oct: '10',
+//           Nov: '11',
+//           Dec: '12',
+//         }[part] || `${Number.parseInt(part)}`.padStart(2, '0')),
+//     )
+//     .reverse()
+//     .join('-');
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 89.96% of JavaScript online submissions
+// Memory Usage: 36.9 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string} date
  * @return {string}
@@ -35,7 +99,7 @@ const reformatDate = date =>
   date
     .split(' ')
     .map(
-      (part, i) =>
+      part =>
         ({
           Jan: '01',
           Feb: '02',
@@ -49,7 +113,7 @@ const reformatDate = date =>
           Oct: '10',
           Nov: '11',
           Dec: '12',
-        }[part] || `${Number.parseInt(part)}`.padStart(2, '0')),
+        }[part] || part.replace(/\D/g, '').padStart(2, '0')),
     )
     .reverse()
     .join('-');
