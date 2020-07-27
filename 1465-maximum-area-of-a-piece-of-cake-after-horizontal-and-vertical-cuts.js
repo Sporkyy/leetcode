@@ -150,6 +150,38 @@ const maxArea = (h, w, horizontalCuts, verticalCuts) =>
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Time Limit Exceeded
+
+// /**
+//  * @param {number} h
+//  * @param {number} w
+//  * @param {number[]} horizontalCuts
+//  * @param {number[]} verticalCuts
+//  * @return {number}
+//  */
+// const maxArea = (h, w, horizontalCuts, verticalCuts) => {
+//   horizontalCuts = new Set([0, ...horizontalCuts, h]);
+//   // console.log(horizontalCuts);
+//   verticalCuts = new Set([0, ...verticalCuts, w]);
+//   // console.log(verticalCuts);
+
+//   let maxVGap = -Infinity;
+//   for (let l = 0, r = 0; r < h + 1; r++)
+//     if (horizontalCuts.has(r)) [l, maxVGap] = [r, Math.max(r - l, maxVGap)];
+//   // console.log(maxVGap);
+
+//   let maxHGap = -Infinity;
+//   for (let l = 0, r = 0; r < w + 1; r++) {
+//     // console.log(l, r);
+//     if (verticalCuts.has(r)) [l, maxHGap] = [r, Math.max(r - l, maxHGap)];
+//   }
+//   // console.log(maxHGap);
+
+//   return (maxHGap * maxVGap) % (10 ** 9 + 7);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 // Example 1:
 strictEqual(maxArea(5, 4, [1, 2, 4], [1, 3]), 4);
 
