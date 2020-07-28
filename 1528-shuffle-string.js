@@ -27,16 +27,46 @@ import { strictEqual } from 'assert';
 // Runtime: 88 ms, faster than 90.53% of JavaScript online submissions
 // Memory Usage: 38.6 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @param {number[]} indices
+//  * @return {string}
+//  */
+// const restoreString = (s, indices) =>
+//   [...s]
+//     .map((c, i) => [c, i])
+//     .sort(([, a], [, b]) => indices[a] - indices[b])
+//     .reduce((acc, [c]) => `${acc}${c}`, '');
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// /**
+//  * @param {string} s
+//  * @param {number[]} indices
+//  * @return {string}
+//  */
+// const restoreString = (s, indices) => {
+//   let x = new Array(indices.length);
+//   for (let i = 0; i < indices.length; i++) x[indices[i]] = s[i];
+//   return x.join('');
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 116 ms, faster than 40.83% of JavaScript online submissions
+// Memory Usage: 38.3 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @param {number[]} indices
  * @return {string}
  */
 const restoreString = (s, indices) =>
-  [...s]
-    .map((c, i) => [c, i])
-    .sort(([, a], [, b]) => indices[a] - indices[b])
-    .reduce((acc, [c]) => `${acc}${c}`, '');
+  indices
+    .reduce((acc, curr, idx) => {
+      acc[curr] = s[idx];
+      return acc;
+    }, new Array(s.length))
+    .join('');
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
