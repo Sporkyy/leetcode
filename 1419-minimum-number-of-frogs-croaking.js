@@ -25,20 +25,127 @@ import { strictEqual } from 'assert';
 // Runtime: 104 ms, faster than 35.71% of JavaScript online submissions
 // Memory Usage: 44 MB, less than 50.00% of JavaScript online submissions
 
+// /**
+//  * @param {string} croakOfFrogs
+//  * @return {number}
+//  */
+// const minNumberOfFrogs = croakOfFrogs => {
+//   const obj = [...'croak'].reduce((a, c, i) => ({ ...a, [c]: i }), {});
+//   let [cnts, cntMaxSimC] = [new Array(5).fill(0), 0];
+//   for (let i = 0; i < croakOfFrogs.length; i++) {
+//     cnts[obj[croakOfFrogs[i]]]++;
+//     if (!(cnts[4] <= cnts[3] <= cnts[2] <= cnts[1] <= cnts[0])) return -1;
+//     if ('c' === croakOfFrogs[i]) cntMaxSimC = Math.max(cntMaxSimC, cnts[0]);
+//     if ('k' === croakOfFrogs[i]) cnts = cnts.map(cnt => cnt - 1);
+//   }
+//   return cnts.some(n => 0 !== n) ? -1 : cntMaxSimC;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 92 ms, faster than 50.00% of JavaScript online submissions
+// Memory Usage: 40.2 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {string} croakOfFrogs
+//  * @return {number}
+//  */
+// const minNumberOfFrogs = croakOfFrogs => {
+//   let [c, r, o, a, k, maxSimCs] = [0, 0, 0, 0, 0, 0];
+//   const incSound = {
+//     c: () => c++,
+//     r: () => r++,
+//     o: () => o++,
+//     a: () => a++,
+//     k: () => k++,
+//   };
+//   for (const sound of croakOfFrogs) {
+//     incSound[sound]();
+//     if ('c' === sound) maxSimCs = Math.max(maxSimCs, c);
+//     if ('k' === sound) c--, r--, o--, a--, k--;
+//     if (c < r || r < o || o < a || a < k) return -1;
+//   }
+//   return 0 !== c || 0 !== r || 0 !== o || 0 !== a || 0 !== k ? -1 : maxSimCs;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 120 ms, faster than 25.00% of JavaScript online submissions
+// Memory Usage: 39.8 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {string} croakOfFrogs
+//  * @return {number}
+//  */
+// const minNumberOfFrogs = croakOfFrogs => {
+//   let [c, r, o, a, k, maxSimCs] = [0, 0, 0, 0, 0, 0];
+//   for (const sound of croakOfFrogs) {
+//     switch (sound) {
+//       case 'c':
+//         c++;
+//         break;
+//       case 'r':
+//         r++;
+//         break;
+//       case 'o':
+//         o++;
+//         break;
+//       case 'a':
+//         a++;
+//         break;
+//       case 'k':
+//         k++;
+//         break;
+//     }
+//     if ('c' === sound) maxSimCs = Math.max(maxSimCs, c);
+//     if ('k' === sound) c--, r--, o--, a--, k--;
+//     if (c < r || r < o || o < a || a < k) return -1;
+//   }
+//   return 0 !== c + r + o + a + k ? -1 : maxSimCs;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 112 ms, faster than 32.14% of JavaScript online submissions
+// Memory Usage: 39.8 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {string} croakOfFrogs
+//  * @return {number}
+//  */
+// const minNumberOfFrogs = croakOfFrogs => {
+//   let [c, r, o, a, maxSimCs] = [0, 0, 0, 0, 0];
+//   for (const sound of croakOfFrogs) {
+//     if ('c' === sound) [c, maxSimCs] = [c + 1, Math.max(maxSimCs, c + 1)];
+//     else if ('r' === sound) r++;
+//     else if ('o' === sound) o++;
+//     else if ('a' === sound) a++;
+//     else if ('k' === sound) c--, r--, o--, a--;
+//     if (c < r || r < o || o < a) return -1;
+//   }
+//   return 0 !== c + r + o + a ? -1 : maxSimCs;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 88 ms, faster than 60.71% of JavaScript online submissions
+// Memory Usage: 39.8 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string} croakOfFrogs
  * @return {number}
  */
 const minNumberOfFrogs = croakOfFrogs => {
-  const obj = [...'croak'].reduce((a, c, i) => ({ ...a, [c]: i }), {});
-  let [cnts, cntMaxSimC] = [new Array(5).fill(0), 0];
-  for (let i = 0; i < croakOfFrogs.length; i++) {
-    cnts[obj[croakOfFrogs[i]]]++;
-    if (!(cnts[4] <= cnts[3] <= cnts[2] <= cnts[1] <= cnts[0])) return -1;
-    if ('c' === croakOfFrogs[i]) cntMaxSimC = Math.max(cntMaxSimC, cnts[0]);
-    if ('k' === croakOfFrogs[i]) cnts = cnts.map(cnt => cnt - 1);
+  let [c, r, o, a, maxSimCs] = [0, 0, 0, 0, 0];
+  for (const sound of croakOfFrogs) {
+    if ('c' === sound) c++, (maxSimCs = Math.max(maxSimCs, c));
+    else if ('r' === sound) r++;
+    else if ('o' === sound) o++;
+    else if ('a' === sound) a++;
+    else if ('k' === sound) c--, r--, o--, a--;
+    if (c < r || r < o || o < a) return -1;
   }
-  return cnts.some(n => 0 !== n) ? -1 : cntMaxSimC;
+  return c || r || o || a ? -1 : maxSimCs;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -61,3 +168,5 @@ strictEqual(minNumberOfFrogs('croakcrook'), -1);
 strictEqual(minNumberOfFrogs('croakcroa'), -1);
 
 strictEqual(minNumberOfFrogs('aoocrrackk'), -1);
+
+strictEqual(minNumberOfFrogs('crocracokrakoak'), 3);
