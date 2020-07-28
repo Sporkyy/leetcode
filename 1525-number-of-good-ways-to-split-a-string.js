@@ -40,30 +40,71 @@ import { strictEqual } from 'assert';
 // Runtime: 128 ms, faster than 71.15% of JavaScript online submissions
 // Memory Usage: 42.8 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const numSplits = s => {
+//   const fwd = new Array(s.length - 1);
+//   const rev = new Array(s.length - 1);
+//   const sFwd = new Set();
+//   const sRev = new Set();
+//   for (let i = 0; i < s.length - 1; i++) {
+//     // console.log(s[i], s[s.length - i - 1]);
+//     sFwd.add(s[i]);
+//     sRev.add(s[s.length - 1 - i]);
+//     fwd[i] = sFwd.size;
+//     rev[s.length - 2 - i] = sRev.size;
+//   }
+//   // console.log(fwd);
+//   // console.log(rev);
+//   let res = 0;
+//   for (let i = 0; i < fwd.length; i++) {
+//     // console.log(fwd[i], rev[i]);
+//     if (fwd[i] === rev[i]) res++;
+//   }
+//   return res;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 172 ms, faster than 50.00% of JavaScript online submissions
+// Memory Usage: 45.6 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const numSplits = s => {
+//   const [fwd, rev] = [new Array(s.length - 1), new Array(s.length - 1)];
+//   const [sFwd, sRev] = [new Set(), new Set()];
+//   for (let i = 0; i < s.length - 1; i++)
+//     [fwd[i], rev[s.length - 2 - i]] = [
+//       sFwd.add(s[i]).size,
+//       sRev.add(s[s.length - 1 - i]).size,
+//     ];
+//   let res = 0;
+//   for (let i = 0; i < fwd.length; i++) if (fwd[i] === rev[i]) res++;
+//   return res;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 112 ms, faster than 84.62% of JavaScript online submissions
+// Memory Usage: 44.8 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {number}
  */
 const numSplits = s => {
-  const fwd = new Array(s.length - 1);
-  const rev = new Array(s.length - 1);
-  const sFwd = new Set();
-  const sRev = new Set();
+  const arr = new Array(s.length - 1).fill(0);
+  const [setLeft, setRight] = [new Set(), new Set()];
   for (let i = 0; i < s.length - 1; i++) {
-    // console.log(s[i], s[s.length - i - 1]);
-    sFwd.add(s[i]);
-    sRev.add(s[s.length - 1 - i]);
-    fwd[i] = sFwd.size;
-    rev[s.length - 2 - i] = sRev.size;
+    arr[i] += setLeft.add(s[i]).size;
+    arr[s.length - 2 - i] -= setRight.add(s[s.length - 1 - i]).size;
   }
-  // console.log(fwd);
-  // console.log(rev);
-  let res = 0;
-  for (let i = 0; i < fwd.length; i++) {
-    // console.log(fwd[i], rev[i]);
-    if (fwd[i] === rev[i]) res++;
-  }
-  return res;
+  return arr.filter(n => 0 === n).length;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
