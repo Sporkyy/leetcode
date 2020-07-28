@@ -21,19 +21,50 @@ import { strictEqual } from 'assert';
 
 // Time Limit Exceeded
 
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const numSplits = s =>
+//   [...s].reduce(
+//     (acc, _, idx, arr) =>
+//       idx === arr.length - 1 ||
+//       new Set(arr.slice(0, idx + 1)).size !== new Set(arr.slice(idx + 1)).size
+//         ? acc
+//         : acc + 1,
+//     0,
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 128 ms, faster than 71.15% of JavaScript online submissions
+// Memory Usage: 42.8 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {number}
  */
-const numSplits = s =>
-  [...s].reduce(
-    (acc, _, idx, arr) =>
-      idx === arr.length - 1 ||
-      new Set(arr.slice(0, idx + 1)).size !== new Set(arr.slice(idx + 1)).size
-        ? acc
-        : acc + 1,
-    0,
-  );
+const numSplits = s => {
+  const fwd = new Array(s.length - 1);
+  const rev = new Array(s.length - 1);
+  const sFwd = new Set();
+  const sRev = new Set();
+  for (let i = 0; i < s.length - 1; i++) {
+    // console.log(s[i], s[s.length - i - 1]);
+    sFwd.add(s[i]);
+    sRev.add(s[s.length - 1 - i]);
+    fwd[i] = sFwd.size;
+    rev[s.length - 2 - i] = sRev.size;
+  }
+  // console.log(fwd);
+  // console.log(rev);
+  let res = 0;
+  for (let i = 0; i < fwd.length; i++) {
+    // console.log(fwd[i], rev[i]);
+    if (fwd[i] === rev[i]) res++;
+  }
+  return res;
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -51,6 +82,15 @@ strictEqual(numSplits('aacaba'), 2);
 //   letters respectively (good split).
 // - ("aacab", "a") Left string and right string contains 3 and 1 different
 //   letters respectively.
+
+/*
+
+aacaba
+112233
+------
+333221
+
+*/
 
 // Example 2:
 strictEqual(numSplits('abcd'), 1);
