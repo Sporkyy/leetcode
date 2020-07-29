@@ -23,6 +23,50 @@ import { strictEqual } from 'assert';
 // Runtime: 92 ms, faster than 27.59% of JavaScript online submissions
 // Memory Usage: 38.9 MB, less than 25.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} n
+//  * @returns {number}
+//  */
+// const isPrime = n =>
+//   1 < n &&
+//   new Array(Math.trunc(Math.sqrt(n)) - 1)
+//     .fill()
+//     .map((_, i) => i + 2)
+//     .every(i => n % i !== 0);
+
+// /**
+//  * @param {number} n
+//  * @returns {number}
+//  */
+// const factorial = n =>
+//   new Array(n)
+//     .fill()
+//     .map((_, i) => i + 1)
+//     .reduce((a, c) => (a *= BigInt(c)), BigInt(1));
+
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  */
+// const numPrimeArrangements = n => {
+//   let cntPrimes = 0;
+//   for (let i = 1; i <= n; i++) if (isPrime(i)) cntPrimes++;
+//   const cntNonPrimes = n - cntPrimes;
+//   // console.log(cntNonPrimes, cntPrimes);
+//   // 2 * 1  = 2
+//   // 3 * 2 * 1 = 6
+//   // console.log(factorial(cntPrimes));
+//   return +(
+//     (factorial(cntPrimes) * factorial(cntNonPrimes)) %
+//     BigInt(10 ** 9 + 7)
+//   ).toString();
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 84 ms, faster than 37.93% of JavaScript online submissions
+// Memory Usage: 38 MB, less than 25.00% of JavaScript online submissions
+
 /**
  * @param {number} n
  * @returns {number}
@@ -49,17 +93,12 @@ const factorial = n =>
  * @return {number}
  */
 const numPrimeArrangements = n => {
-  let cntPrimes = 0;
-  for (let i = 1; i <= n; i++) if (isPrime(i)) cntPrimes++;
-  const cntNonPrimes = n - cntPrimes;
-  // console.log(cntNonPrimes, cntPrimes);
-  // 2 * 1  = 2
-  // 3 * 2 * 1 = 6
-  // console.log(factorial(cntPrimes));
-  return +(
-    (factorial(cntPrimes) * factorial(cntNonPrimes)) %
-    BigInt(10 ** 9 + 7)
-  ).toString();
+  const cntPrimes = [...new Array(n + 1).keys()]
+    .slice(1)
+    .filter(pc => isPrime(pc)).length;
+  return Number(
+    (factorial(cntPrimes) * factorial(n - cntPrimes)) % BigInt(10 ** 9 + 7),
+  );
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
