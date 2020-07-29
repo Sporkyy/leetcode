@@ -8,11 +8,11 @@ import { strictEqual } from 'assert';
 // Runtime: 64 ms, faster than 22.95% of JavaScript online submissions
 // Memory Usage: 33.8 MB, less than 85.26% of JavaScript online submissions
 
-/**
- * @param {number} x
- * @param {number} y
- * @return {number}
- */
+// /**
+//  * @param {number} x
+//  * @param {number} y
+//  * @return {number}
+//  */
 // const hammingDistance = (x, y) => {
 //   const bin = (x ^ y).toString(2);
 //   let distance = 0;
@@ -25,11 +25,11 @@ import { strictEqual } from 'assert';
 // Runtime: 52 ms, faster than 84.85% of JavaScript online submissions
 // Memory Usage: 33.8 MB, less than 67.73% of JavaScript online submissions
 
-/**
- * @param {number} x
- * @param {number} y
- * @return {number}
- */
+// /**
+//  * @param {number} x
+//  * @param {number} y
+//  * @return {number}
+//  */
 // const hammingDistance = (x, y) =>
 //   (x ^ y)
 //     .toString(2)
@@ -41,11 +41,11 @@ import { strictEqual } from 'assert';
 // Runtime: 52 ms, faster than 84.85% of JavaScript online submissions
 // Memory Usage: 33.7 MB, less than 97.21% of JavaScript online submissions
 
-/**
- * @param {number} x
- * @param {number} y
- * @return {number}
- */
+// /**
+//  * @param {number} x
+//  * @param {number} y
+//  * @return {number}
+//  */
 // const hammingDistance = (x, y) => (x ^ y).toString(2).replace(/0/g, '').length;
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -53,11 +53,11 @@ import { strictEqual } from 'assert';
 // Runtime: 52 ms, faster than 84.85% of JavaScript online submissions
 // Memory Usage: 33.8 MB, less than 80.88% of JavaScript online submissions
 
-/**
- * @param {number} x
- * @param {number} y
- * @return {number}
- */
+// /**
+//  * @param {number} x
+//  * @param {number} y
+//  * @return {number}
+//  */
 // const hammingDistance = (x, y) =>
 //   (x ^ y)
 //     .toString(2)
@@ -69,11 +69,11 @@ import { strictEqual } from 'assert';
 // Runtime: 48 ms, faster than 95.56% of JavaScript online submissions
 // Memory Usage: 33.9 MB, less than 45.42% of JavaScript online submissions
 
-/**
- * @param {number} x
- * @param {number} y
- * @return {number}
- */
+// /**
+//  * @param {number} x
+//  * @param {number} y
+//  * @return {number}
+//  */
 // const hammingDistance = (x, y) =>
 //   (x ^ y)
 //     .toString(2)
