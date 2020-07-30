@@ -67,6 +67,45 @@ import { strictEqual } from 'assert';
 // Runtime: 84 ms, faster than 37.93% of JavaScript online submissions
 // Memory Usage: 38 MB, less than 25.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} n
+//  * @returns {number}
+//  */
+// const isPrime = n =>
+//   1 < n &&
+//   new Array(Math.trunc(Math.sqrt(n)) - 1)
+//     .fill()
+//     .map((_, i) => i + 2)
+//     .every(i => n % i !== 0);
+
+// /**
+//  * @param {number} n
+//  * @returns {number}
+//  */
+// const factorial = n =>
+//   new Array(n)
+//     .fill()
+//     .map((_, i) => i + 1)
+//     .reduce((a, c) => (a *= BigInt(c)), BigInt(1));
+
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  */
+// const numPrimeArrangements = n => {
+//   const cntPrimes = [...new Array(n + 1).keys()]
+//     .slice(1)
+//     .filter(pc => isPrime(pc)).length;
+//   return Number(
+//     (factorial(cntPrimes) * factorial(n - cntPrimes)) % BigInt(10 ** 9 + 7),
+//   );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 84 ms, faster than 37.93% of JavaScript online submissions
+// Memory Usage: 39 MB, less than 25.00% of JavaScript online submissions
+
 /**
  * @param {number} n
  * @returns {number}
@@ -92,14 +131,16 @@ const factorial = n =>
  * @param {number} n
  * @return {number}
  */
-const numPrimeArrangements = n => {
-  const cntPrimes = [...new Array(n + 1).keys()]
-    .slice(1)
-    .filter(pc => isPrime(pc)).length;
-  return Number(
-    (factorial(cntPrimes) * factorial(n - cntPrimes)) % BigInt(10 ** 9 + 7),
+const numPrimeArrangements = n =>
+  [
+    new Array(n)
+      .fill()
+      .map((_, i) => i + 1)
+      .filter(isPrime).length,
+  ].reduce(
+    (_, p) => Number((factorial(p) * factorial(n - p)) % BigInt(10 ** 9 + 7)),
+    1,
   );
-};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -110,7 +151,7 @@ const numPrimeArrangements = n => {
 
 /*
 
-|🚫 | P | P |🚫 | P |
+|(\)| P | P |(\)| P |
 | 1 | 2 | 3 | 4 | 5 |
 | 1 | 2 | 5 | 4 | 3 |
 | 1 | 3 | 2 | 4 | 5 |
