@@ -16,7 +16,7 @@ Constraints:
 
 */
 
-import { ok, strictEqual } from 'assert';
+import { strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
