@@ -16,7 +16,7 @@ Constraints:
 
 */
 
-import { strictEqual } from 'assert';
+import { ok, strictEqual } from 'assert';
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -106,6 +106,47 @@ import { strictEqual } from 'assert';
 // Runtime: 84 ms, faster than 37.93% of JavaScript online submissions
 // Memory Usage: 39 MB, less than 25.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} n
+//  * @returns {number}
+//  */
+// const isPrime = n =>
+//   1 < n &&
+//   new Array(Math.trunc(Math.sqrt(n)) - 1)
+//     .fill()
+//     .map((_, i) => i + 2)
+//     .every(i => n % i !== 0);
+
+// /**
+//  * @param {number} n
+//  * @returns {number}
+//  */
+// const factorial = n =>
+//   new Array(n)
+//     .fill()
+//     .map((_, i) => i + 1)
+//     .reduce((a, c) => (a *= BigInt(c)), BigInt(1));
+
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  */
+// const numPrimeArrangements = n =>
+//   [
+//     new Array(n)
+//       .fill()
+//       .map((_, i) => i + 1)
+//       .filter(isPrime).length,
+//   ].reduce(
+//     (_, p) => Number((factorial(p) * factorial(n - p)) % BigInt(10 ** 9 + 7)),
+//     1,
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 96 ms, faster than 17.24% of JavaScript online submissions
+// Memory Usage: 39 MB, less than 25.00% of JavaScript online submissions
+
 /**
  * @param {number} n
  * @returns {number}
@@ -121,33 +162,34 @@ const isPrime = n =>
  * @param {number} n
  * @returns {number}
  */
-const factorial = n =>
-  new Array(n)
-    .fill()
-    .map((_, i) => i + 1)
-    .reduce((a, c) => (a *= BigInt(c)), BigInt(1));
+const bigFactorial = n =>
+  n <= 1 ? BigInt(1) : BigInt(n) * bigFactorial(n - 1);
 
 /**
  * @param {number} n
  * @return {number}
  */
-const numPrimeArrangements = n =>
-  [
-    new Array(n)
-      .fill()
-      .map((_, i) => i + 1)
-      .filter(isPrime).length,
-  ].reduce(
-    (_, p) => Number((factorial(p) * factorial(n - p)) % BigInt(10 ** 9 + 7)),
-    1,
-  );
+const numPrimeArrangements = (n, cntPrimes = 0, cntNonPrimes = 0) =>
+  !n
+    ? Number(
+        (bigFactorial(cntPrimes) * bigFactorial(cntNonPrimes)) %
+          BigInt(10 ** 9 + 7),
+      )
+    : isPrime(n)
+    ? numPrimeArrangements(n - 1, cntPrimes + 1, cntNonPrimes)
+    : numPrimeArrangements(n - 1, cntPrimes, cntNonPrimes + 1);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Example 1:
-// strictEqual(numPrimeArrangements(5), 12);
+strictEqual(numPrimeArrangements(5), 12);
 // Explanation: For example [1,2,5,4,3] is a valid permutation, but [5,2,3,4,1]
 // is not because the prime number 5 is at index 1.
+
+// Example 2:
+strictEqual(numPrimeArrangements(100), 682289015);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /*
 
@@ -160,6 +202,3 @@ const numPrimeArrangements = n =>
 | 1 | 5 | 3 | 4 | 2 |
 
 */
-
-// Example 2:
-strictEqual(numPrimeArrangements(100), 682289015);
