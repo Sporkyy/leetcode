@@ -29,7 +29,7 @@ don't have to check for null, undefined or similar.
 
 // You have passed all of the tests! :)
 
-minMax = arr => [Math.min(...arr), Math.max(...arr)];
+const minMax = arr => [Math.min(...arr), Math.max(...arr)];
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
