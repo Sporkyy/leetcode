@@ -200,8 +200,147 @@ You may return the list in any order.
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 60 ms, faster than 41.67% of JavaScript online submissions
-// Memory Usage: 35.5 MB, less than 25.00% of JavaScript online submissions
+// Runtime: 72 ms, faster than 78.25% of JavaScript online submissions
+// Memory Usage: 37.4 MB, less than 7.46% of JavaScript online submissions
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (a, b) =>
+//   [
+//     ...`${a} ${b}`
+//       .split(' ')
+//       .reduce(
+//         (acc, curr) => acc.set(curr, (acc.get(curr) || 0) + 1),
+//         new Map(),
+//       ),
+//   ].reduce((acc, [word, cnt]) => {
+//     if (1 === cnt) acc.push(word);
+//     return acc;
+//   }, []);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 76 ms, faster than 63.34% of JavaScript online submissions
+// Memory Usage: 37.2 MB, less than 9.33% of JavaScript online submissions
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (a, b) => {
+//   const mapA = [...a.split(' ')].reduce(
+//     (acc, curr) => acc.set(curr, (acc.get(curr) || 0) + 1),
+//     new Map(),
+//   );
+
+//   const mapB = [...b.split(' ')].reduce(
+//     (acc, curr) =>
+//       acc.set(curr, (acc.get(curr) || 0) + 1 + (mapA.get(curr) || 0)),
+//     new Map(),
+//   );
+
+//   for (const word of mapB.keys()) mapA.delete(word);
+
+//   return [...mapA]
+//     .reduce((acc, [word, cnt]) => {
+//       if (1 === cnt) acc.push(word);
+//       return acc;
+//     }, [])
+//     .concat(
+//       [...mapB].reduce((acc, [word, cnt]) => {
+//         if (1 === cnt) acc.push(word);
+//         return acc;
+//       }, []),
+//     );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 91.00% of JavaScript online submissions
+// Memory Usage: 37.1 MB, less than 13.83% of JavaScript online submissions
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (a, b) => {
+//   const map = new Map();
+//   for (const word of a.split(' ')) map.set(word, (map.get(word) || 0) + 1);
+//   for (const word of b.split(' ')) map.set(word, (map.get(word) || 0) + 1);
+//   for (const [word, cnt] of map) if (1 < cnt) map.delete(word);
+//   return [...map.keys()];
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 72 ms, faster than 78.46% of JavaScript online submissions
+// Memory Usage: 37.1 MB, less than 13.19% of JavaScript online submissions
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (a, b) => {
+//   const map = new Map();
+//   for (const word of a.split(' ')) map.set(word, (map.get(word) || 0) + 1);
+//   for (const word of b.split(' ')) map.set(word, (map.get(word) || 0) + 1);
+//   for (const [word, cnt] of map) if (1 < cnt) map.delete(word);
+//   return [...map].reduce((acc, [word, cnt]) => {
+//     if (1 === cnt) acc.push(word);
+//     return acc;
+//   }, []);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 72 ms, faster than 78.46% of JavaScript online submissions
+// Memory Usage: 38.4 MB, less than 5.15% of JavaScript online submissions
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (a, b) =>
+//   `${a} ${b}`
+//     .split(' ')
+//     .filter(
+//       word =>
+//         0 ===
+//         ` ${a} ${b} `.indexOf(` ${word} `) -
+//           ` ${a} ${b} `.lastIndexOf(` ${word} `),
+//     );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 76 ms, faster than 63.34% of JavaScript online submissions
+// Memory Usage: 37.2 MB, less than 9.98% of JavaScript online submissions
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (a, b) => {
+//   const map = new Map();
+//   for (const word of a.split(' ')) map.set(word, (map.get(word) || 0) + 1);
+//   for (const word of b.split(' ')) map.set(word, (map.get(word) || 0) + 1);
+//   return [...map].reduce((acc, [word, cnt]) => {
+//     if (1 === cnt) acc.push(word);
+//     return acc;
+//   }, []);
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 64 ms, faster than 96.78% of JavaScript online submissions
+// Memory Usage: 37.2 MB, less than 11.58% of JavaScript online submissions
 
 /**
  * @param {string} a
@@ -209,14 +348,37 @@ You may return the list in any order.
  * @return {string[]}
  */
 const uncommonFromSentences = (a, b) =>
-  `${a} ${b}`
-    .split(' ')
-    .filter(
-      word =>
-        0 ===
-        ` ${a} ${b} `.indexOf(` ${word} `) -
-          ` ${a} ${b} `.lastIndexOf(` ${word} `),
-    );
+  [
+    ...`${a} ${b}`
+      .split(' ')
+      .reduce(
+        (map, word) => map.set(word, (map.get(word) || 0) + 1),
+        new Map(),
+      ),
+  ].reduce((acc, [word, cnt]) => {
+    if (1 === cnt) acc.push(word);
+    return acc;
+  }, []);
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 76 ms, faster than 63.34% of JavaScript online submissions
+// Memory Usage: 37.4 MB, less than 7.72% of JavaScript online submissions
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {string[]}
+//  */
+// const uncommonFromSentences = (a, b) =>
+//   [
+//     ...`${a} ${b}`
+//       .split(' ')
+//       .reduce(
+//         (map, word) => map.set(word, (map.get(word) || 0) + 1),
+//         new Map(),
+//       ),
+//   ].reduce((acc, [word, cnt]) => acc.concat(1 === cnt ? [word] : []), []);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -234,4 +396,10 @@ deepStrictEqual(uncommonFromSentences('d b zu d t', 'udb zu ap'), [
   't',
   'udb',
   'ap',
+]);
+
+deepStrictEqual(uncommonFromSentences('d b zu d t', 'udb zu ap ap'), [
+  'b',
+  't',
+  'udb',
 ]);
