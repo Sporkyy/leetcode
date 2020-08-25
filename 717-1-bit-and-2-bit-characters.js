@@ -18,61 +18,47 @@ Note:
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// /**
-//  * @param {number[]} bits
-//  * @return {boolean}
-//  */
-// const isOneBitCharacter = ({ length: l }) => l % 2;
-
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// Runtime: 100 ms, faster than 12.63% of JavaScript online submissions
+// Memory Usage: 38.6 MB, less than 7.90% of JavaScript online submissions
 
 // /**
 //  * @param {number[]} bits
 //  * @return {boolean}
 //  */
 // const isOneBitCharacter = bits => {
-//   let [cntOneBit, cntTwoBit] = [0, 0];
-//   for (let i = bits.length - 1; 0 <= i; i--) {
-//     if (1 === bits[i] || 1 === bits[i - 1]) {
-//       cntTwoBit++;
-//       i--;
-//     } else cntOneBit++;
-//   }
-//   console.log(cntOneBit, cntTwoBit);
-//   return cntOneBit + cntTwoBit;
+//   let i = 0;
+//   let last;
+//   while (i < bits.length)
+//     if (/1[01]/.test(`${bits[i]}${bits[i + 1]}`)) {
+//       i += 2;
+//       last = false;
+//     } else {
+//       i += 1;
+//       last = true;
+//     }
+//   // console.log(i);
+//   // console.log(last);
+//   return last;
 // };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// /**
-//  * @param {number[]} bits
-//  * @return {boolean}
-//  */
-// const isOneBitCharacter = bits => '00' === `${bits.pop()}${bits.pop()}`;
-
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
-
-// Runtime: 100 ms, faster than 12.63% of JavaScript online submissions
-// Memory Usage: 38.6 MB, less than 7.90% of JavaScript online submissions
+// Runtime: 108 ms, faster than 11.05% of JavaScript online submissions
+// Memory Usage: 36.5 MB, less than 67.90% of JavaScript online submissions
 
 /**
  * @param {number[]} bits
  * @return {boolean}
  */
 const isOneBitCharacter = bits => {
-  let i = 0;
-  let last;
-  while (i < bits.length)
-    if (/1[01]/.test(`${bits[i]}${bits[i + 1]}`)) {
-      i += 2;
-      last = false;
-    } else {
-      i += 1;
-      last = true;
-    }
-  // console.log(i);
-  // console.log(last);
-  return last;
+  let res = true;
+  for (let i = 0; i < bits.length; i++) {
+    if (1 === bits[i]) {
+      i++;
+      res = false;
+    } else res = true;
+  }
+  return res;
 };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
