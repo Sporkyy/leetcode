@@ -1,6 +1,24 @@
 // 1051. Height Checker
 // https://leetcode.com/problems/height-checker/
 
+/*
+
+Students are asked to stand in non-decreasing order of heights for an annual
+photo.
+
+Return the minimum number of students that must move in order for all students
+to be standing in non-decreasing order of height.
+
+Notice that when a group of students is selected they can reorder in any
+possible way between themselves and the non selected students remain on their
+seats.
+
+## Constraints
+- 1 <= heights.length <= 100
+- 1 <= heights[i] <= 100
+
+*/
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 73.44% of JavaScript online submissions
@@ -21,18 +39,39 @@
 // Runtime: 56 ms, faster than 86.84% of JavaScript online submissions
 // Memory Usage: 35.1 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} heights
+//  * @return {number}
+//  */
+// const heightChecker = heights => {
+//   let moves = 0;
+//   const counts = new Array(101).fill(0);
+//   for (const h of heights) counts[h]++;
+//   for (let i = 0, z = 0; i < 101; i++)
+//     for (let j = counts[i]; 0 < j; j--, z++) if (heights[z] !== i) moves++;
+//   return moves;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 68 ms, faster than 92.67% of JavaScript online submissions
+// Memory Usage: 38.6 MB, less than 10.27% of JavaScript online submissions
+
 /**
  * @param {number[]} heights
  * @return {number}
  */
-const heightChecker = heights => {
-  let moves = 0;
-  const counts = new Array(101).fill(0);
-  for (const h of heights) counts[h]++;
-  for (let i = 0, z = 0; i < 101; i++)
-    for (let j = counts[i]; 0 < j; j--, z++) if (heights[z] !== i) moves++;
-  return moves;
-};
+const heightChecker = heights =>
+  heights
+    .reduce(
+      (acc, curr) => {
+        acc[curr].push(curr);
+        return acc;
+      },
+      new Array(101).fill().map(_ => []),
+    )
+    .flat()
+    .reduce((acc, curr, idx) => acc + (curr === heights[idx] ? 0 : 1), 0);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
