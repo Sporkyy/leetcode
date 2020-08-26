@@ -19,7 +19,7 @@ Each temperature will be an integer in the range [30, 100].
 
 import { deepStrictEqual } from 'assert';
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 1116 ms, faster than 23.56% of JavaScript online submissions
 // Memory Usage: 41.9 MB, less than 100.00% of JavaScript online submissions
@@ -42,7 +42,7 @@ import { deepStrictEqual } from 'assert';
 //   return res;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 1116 ms, faster than 23.56% of JavaScript online submissions
 // Memory Usage: 41.9 MB, less than 100.00% of JavaScript online submissions
@@ -64,7 +64,7 @@ import { deepStrictEqual } from 'assert';
 //   return res;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 1260 ms, faster than 20.82% of JavaScript online submissions
 // Memory Usage: 41.9 MB, less than 100.00% of JavaScript online submissions
@@ -81,24 +81,56 @@ import { deepStrictEqual } from 'assert';
 //   return res;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 8372 ms, faster than 5.01% of JavaScript online submissions
 // Memory Usage: 86.7 MB, less than 11.11% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} T
+//  * @return {number[]}
+//  */
+// const dailyTemperatures = T =>
+//   // Store the indicies with the temps, for later
+//   T.map((temp, idx) => [idx, temp])
+//     // Find the future temp higher than the current temp
+//     .map(([, cTemp], idx, a) => a.slice(idx).find(([, fTemp]) => cTemp < fTemp))
+//     // Subtract the index of the future temp from the current index
+//     .map((el, idx) => ('undefined' === typeof el ? 0 : el[0] - idx));
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 6304 ms, faster than 5.08% of JavaScript online submissions
+// Memory Usage: 44.4 MB, less than 94.32% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} temps
+//  * @return {number[]}
+//  */
+// const dailyTemperatures = temps => {
+//   const res = new Array(temps.length).fill(0);
+//   for (let i = 0; i < res.length; i++)
+//     for (let j = i; 0 <= j; j--)
+//       if (0 === res[j] && temps[j] < temps[i]) res[j] = i - j;
+//   return res;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 156 ms, faster than 77.39% of JavaScript online submissions
+// Memory Usage: 46.8 MB, less than 44.38% of JavaScript online submissions
+
 /**
- * @param {number[]} T
+ * @param {number[]} temps
  * @return {number[]}
  */
-const dailyTemperatures = T =>
-  // Store the indicies with the temps, for later
-  T.map((temp, idx) => [idx, temp])
-    // Find the future temp higher than the current temp
-    .map(([, cTemp], idx, a) => a.slice(idx).find(([, fTemp]) => cTemp < fTemp))
-    // Subtract the index of the future temp from the current index
-    .map((el, idx) => ('undefined' === typeof el ? 0 : el[0] - idx));
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const dailyTemperatures = temps => {
+  const [res, stk] = [new Array(temps.length).fill(0), []];
+  for (let i = 0; i < temps.length; stk.push(i), i++)
+    while (stk.length && temps[stk[stk.length - 1]] < temps[i])
+      (prevIdx => (res[prevIdx] = i - prevIdx))(stk.pop());
+  return res;
+};
 
 deepStrictEqual(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]), [
   1,
@@ -111,7 +143,7 @@ deepStrictEqual(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]), [
   0,
 ]);
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 /*
 
