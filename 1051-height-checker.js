@@ -36,20 +36,20 @@ seats.
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-// Runtime: 56 ms, faster than 86.84% of JavaScript online submissions
-// Memory Usage: 35.1 MB, less than 100.00% of JavaScript online submissions
+// Runtime: 80 ms, faster than 53.87% of JavaScript online submissions
+// Memory Usage: 37.1 MB, less than 20.67% of JavaScript online submissions
 
 // /**
 //  * @param {number[]} heights
 //  * @return {number}
 //  */
 // const heightChecker = heights => {
-//   let moves = 0;
-//   const counts = new Array(101).fill(0);
-//   for (const h of heights) counts[h]++;
-//   for (let i = 0, z = 0; i < 101; i++)
-//     for (let j = counts[i]; 0 < j; j--, z++) if (heights[z] !== i) moves++;
-//   return moves;
+//   const cnts = new Array(101).fill(0);
+//   for (const h of heights) cnts[h]++;
+//   let oops = 0; // Out Of Place Students
+//   for (let i = 0, x = 0; i < 101; i++)
+//     for (let j = cnts[i]; 0 < j; j--, x++) if (heights[x] !== i) oops++;
+//   return oops;
 // };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
