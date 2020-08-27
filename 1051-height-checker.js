@@ -1,5 +1,6 @@
 // 1051. Height Checker
 // https://leetcode.com/problems/height-checker/
+// https://leetcode.com/problems/height-checker/discuss/814788/JavaScript-Bucket-Sort-%2B-.flat()-Solution
 
 /*
 
