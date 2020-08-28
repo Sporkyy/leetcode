@@ -78,10 +78,58 @@ const maxCoins = piles => {
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Time Limit Exceeded
+
+// /**
+//  * @param {number[]} piles
+//  * @return {number}
+//  */
+// const maxCoins = piles => {
+//   let sum = 0;
+//   for (let i = 0; i < piles.length * 2; i++) {
+//     let max = -Infinity;
+//     const [stkA, stkB] = [[], []];
+//     for (const p of piles) {
+//       if (max < p) max = p;
+//       if (p === max) stkA.push(p);
+//       else stkB.push(p);
+//     }
+//     // console.log(stkB.concat(stkA));
+//     if (1 === i % 2) sum += stkA.pop();
+//     else stkA.pop();
+//     // console.log(stkB);
+//     piles = stkB.concat(stkA);
+//   }
+//   return sum;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Time Limit Exceeded
+
+// /**
+//  * @param {number[]} piles
+//  * @return {number}
+//  */
+// const maxCoins = piles => {
+//   const cnts = new Map();
+//   for (const p of piles) cnts.set(p, (cnts.get(p) || 0) + 1);
+//   let sum = 0;
+//   for (let i = 0; i < (piles.length / 3) * 2; i++) {
+//     let max = 0;
+//     for (const p of piles) if (max < p && cnts.get(p)) max = p;
+//     cnts.set(max, cnts.get(max) - 1);
+//     if (1 === i % 2) sum += max;
+//   }
+//   return sum;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 import { strictEqual } from 'assert';
 
 // Example 1:
-// strictEqual(maxCoins([2, 4, 1, 2, 7, 8]), 9);
+strictEqual(maxCoins([2, 4, 1, 2, 7, 8]), 9);
 // Explanation:
 // - Choose the triplet (2, 7, 8), Alice Pick the pile with 8 coins, you the
 //   pile with 7 coins and Bob the last one.
@@ -92,7 +140,18 @@ import { strictEqual } from 'assert';
 //   only get 2 + 4 = 6 coins which is not optimal.
 
 // Example 2:
-// strictEqual(maxCoins([2, 4, 5]), 4);
+strictEqual(maxCoins([2, 4, 5]), 4);
 
 // Example 3:
 strictEqual(maxCoins([9, 8, 7, 6, 5, 1, 2, 3, 4]), 18);
+strictEqual(maxCoins([1, 2, 3, 4, 5, 6, 7, 8, 9]), 18);
+// 1, 2, 3, 4, 5, 6, 7, | 8 | 9
+//          2, 3, 4, 5, | 6 | 7
+//                   3, | 4 | 5
+
+strictEqual(maxCoins([4, 4, 17, 7, 16, 16, 16, 15, 2, 3, 1, 17, 6, 12, 9]), 63);
+// 1, 2, 3, 4, 4, 6, 7, 9, 12, 15, 16, 16, 16 | 17 | 17
+//            2, 3, 4, 4, 6, 7, 9, 12, 15, 16 | 16 | 16
+//                       3, 4, 4, 6, 7, 9, 12 | 15 | 16
+//                                4, 4, 6,  7 |  9 | 12
+//                                          4 |  6 |  7
