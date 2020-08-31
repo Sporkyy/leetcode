@@ -65,6 +65,19 @@ Constraints:
 // Runtime: 204 ms, faster than 95.81% of JavaScript online submissions
 // Memory Usage: 47.5 MB, less than 43.11% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} piles
+//  * @return {number}
+//  */
+// const maxCoins = piles => {
+//   piles.sort((a, b) => a - b);
+//   let res = 0;
+//   for (let i = piles.length - 2; piles.length / 3 <= i; i -= 2) res += piles[i];
+//   return res;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 /**
  * @param {number[]} piles
  * @return {number}
@@ -72,7 +85,7 @@ Constraints:
 const maxCoins = piles => {
   piles.sort((a, b) => a - b);
   let res = 0;
-  for (let i = piles.length - 2; piles.length / 3 <= i; i -= 2) res += piles[i];
+  for (let i = piles.length / 3; i < piles.length; i += 2) res += piles[i];
   return res;
 };
 
