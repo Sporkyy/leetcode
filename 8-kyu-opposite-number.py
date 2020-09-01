@@ -20,8 +20,7 @@ tests = [
     [-34, 34]
 ]
 
-for test in tests:
-    given, expected = test
+for given, expected in tests:
     print("✅" if opposite(given) == expected else "🛑")
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
