@@ -14,21 +14,19 @@
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-def array_diff(a, b):
-    for n in b:
-        while a.count(n):
-            a.remove(n)
-    return a
+# def array_diff(a, b):
+#     for n in b:
+#         while a.count(n):
+#             a.remove(n)
+#     return a
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+def array_diff(a, b):
+    set_b = set(b)
+    return [n for n in a if n not in set_b]
 
-# tests = [
-#     [[[1, 2], [1]], [2]]
-# ]
-
-# for [a, b], expected in tests:
-#     print(a, b, expected)
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 
 print("✅" if array_diff([1, 2], [1]) == [2]
