@@ -26,6 +26,32 @@ not change.
 // Runtime: 216 ms, faster than 20.00% of JavaScript online submissions
 // Memory Usage: 59 MB, less than 22.50% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @param {number[]} cost
+//  * @return {number}
+//  */
+// const minCost = (s, cost) => {
+//   let res = 0;
+//   for (let i = 0, stk = []; i < s.length; i++) {
+//     stk.push(cost[i]);
+//     if (s[i] !== s[i + 1]) {
+//       if (1 < stk.length)
+//         res += stk
+//           .sort((a, b) => a - b)
+//           .slice(0, -1)
+//           .reduce((acc, curr) => acc + curr);
+//       stk = [];
+//     }
+//   }
+//   return res;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 128 ms, faster than 56.67% of JavaScript online submissions
+// Memory Usage: 57.6 MB, less than 25.00% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @param {number[]} cost
@@ -36,11 +62,10 @@ const minCost = (s, cost) => {
   for (let i = 0, stk = []; i < s.length; i++) {
     stk.push(cost[i]);
     if (s[i] !== s[i + 1]) {
-      if (1 < stk.length)
-        res += stk
-          .sort((a, b) => a - b)
-          .slice(0, -1)
-          .reduce((acc, curr) => acc + curr);
+      if (1 < stk.length) {
+        res += stk.reduce((acc, curr) => acc + curr);
+        res -= Math.max(...stk);
+      }
       stk = [];
     }
   }
