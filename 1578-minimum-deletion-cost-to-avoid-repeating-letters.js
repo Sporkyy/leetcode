@@ -52,6 +52,31 @@ not change.
 // Runtime: 128 ms, faster than 56.67% of JavaScript online submissions
 // Memory Usage: 57.6 MB, less than 25.00% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @param {number[]} cost
+//  * @return {number}
+//  */
+// const minCost = (s, cost) => {
+//   let res = 0;
+//   for (let i = 0, stk = []; i < s.length; i++) {
+//     stk.push(cost[i]);
+//     if (s[i] !== s[i + 1]) {
+//       if (1 < stk.length) {
+//         res += stk.reduce((acc, curr) => acc + curr);
+//         res -= Math.max(...stk);
+//       }
+//       stk = [];
+//     }
+//   }
+//   return res;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 100 ms, faster than 90.83% of JavaScript online submissions
+// Memory Usage: 47.9 MB, less than 77.50% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @param {number[]} cost
@@ -59,14 +84,12 @@ not change.
  */
 const minCost = (s, cost) => {
   let res = 0;
-  for (let i = 0, stk = []; i < s.length; i++) {
-    stk.push(cost[i]);
+  for (let i = 0, max = 0; i < s.length; i++) {
+    res += cost[i];
+    max = Math.max(max, cost[i]);
     if (s[i] !== s[i + 1]) {
-      if (1 < stk.length) {
-        res += stk.reduce((acc, curr) => acc + curr);
-        res -= Math.max(...stk);
-      }
-      stk = [];
+      res -= max;
+      max = 0;
     }
   }
   return res;
@@ -90,3 +113,5 @@ strictEqual(minCost('abc', [1, 2, 3]), 0);
 strictEqual(minCost('aabaa', [1, 2, 3, 4, 1]), 2);
 // Explanation: Delete the first and the last character, getting the string
 // ("aba").
+
+strictEqual(minCost('dbacd', [10, 5, 2, 2, 2]), 0);
