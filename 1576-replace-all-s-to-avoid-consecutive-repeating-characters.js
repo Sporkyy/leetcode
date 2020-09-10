@@ -158,6 +158,51 @@ Constraints:
 // Runtime: 64 ms, faster than 99.39% of JavaScript online submissions
 // Memory Usage: 35.8 MB, less than 99.39% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {string}
+//  */
+// const modifyString = s =>
+//   !s.includes('?')
+//     ? s
+//     : modifyString(
+//         s.replace('?', (_, i) =>
+//           (neighbors =>
+//             neighbors.includes('a') && !neighbors.includes('b')
+//               ? 'b'
+//               : neighbors.includes('b') && !neighbors.includes('c')
+//               ? 'c'
+//               : 'a')(`${s[i - 1] || ''}${s[i + 1] || ''}`),
+//         ),
+//       );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 68 ms, faster than 95.15% of JavaScript online submissions
+// Memory Usage: 36.8 MB, less than 51.51% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {string}
+//  */
+// const modifyString = s =>
+//   !s.includes('?')
+//     ? s
+//     : modifyString(
+//         s.replace(/(.?)\?(.?)/, (_, left, right) =>
+//           'a' !== left && 'a' !== right
+//             ? `${left}a${right}`
+//             : 'b' !== left && 'b' !== right
+//             ? `${left}b${right}`
+//             : `${left}c${right}`,
+//         ),
+//       );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 76 ms, faster than 75.76% of JavaScript online submissions
+// Memory Usage: 36.8 MB, less than 40.00% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {string}
@@ -166,22 +211,75 @@ const modifyString = s =>
   !s.includes('?')
     ? s
     : modifyString(
-        s.replace('?', (_, i) =>
-          (neighbors =>
-            neighbors.includes('a') && !neighbors.includes('b')
-              ? 'b'
-              : neighbors.includes('b') && !neighbors.includes('c')
-              ? 'c'
-              : 'a')(`${s[i - 1] || ''}${s[i + 1] || ''}`),
+        s.replace(
+          /(.?)\?(.?)/,
+          (_, left, right) =>
+            `${left}${
+              'a' !== left && 'a' !== right
+                ? 'a'
+                : 'b' !== left && 'b' !== right
+                ? 'b'
+                : 'c'
+            }${right}`,
         ),
       );
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Runtime: 68 ms, faster than 95.15% of JavaScript online submissions
+// Memory Usage: 37.2 MB, less than 9.69% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {string}
+//  */
+// const modifyString = s =>
+//   !s.includes('?')
+//     ? s
+//     : modifyString(
+//         s.replace('?', (_, idx) =>
+//           ((left, right) =>
+//             'a' !== left && 'a' !== right
+//               ? 'a'
+//               : 'b' !== left && 'b' !== right
+//               ? 'b'
+//               : 'c')(s[idx - 1], s[idx + 1]),
+//         ),
+//       );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 76 ms, faster than 75.76% of JavaScript online submissions
+// Memory Usage: 36.8 MB, less than 47.27% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {string}
+//  */
+// const modifyString = s => {
+//   const a = [...s];
+//   for (let i = 0; i < a.length; i++) {
+//     if ('?' !== a[i]) continue;
+//     const [left, right] = [a[i - 1], a[i + 1]];
+//     a[i] =
+//       'a' !== left && 'a' !== right
+//         ? 'a'
+//         : 'b' !== left && 'b' !== right
+//         ? 'b'
+//         : 'c';
+//   }
+//   return a.join('');
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 import { ok } from 'assert';
 
-const test = s =>
-  (res => !/(.)\1/.test(res) && s.length === res.length)(modifyString(s));
+const test = s => {
+  const res = modifyString(s);
+  console.log(`${s}\n${res}`);
+  return !/(.)\1/.test(res) && s.length === res.length;
+};
 
 // Example 1:
 ok(test('?zs'));
@@ -208,6 +306,17 @@ ok(test('?qe?'));
 ok(test('???'));
 
 ok(test('???cid???c?q?a?d?d'));
+
+ok(test('??????bfi????p?k?'));
+
+ok(test('a?a'));
+ok(test('b?b'));
+ok(test('c?c'));
+ok(test('a?b'));
+ok(test('b?a'));
+ok(test('a?c'));
+ok(test('c?a'));
+ok(test('b?a'));
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
