@@ -19,8 +19,8 @@ row i and column j are 0 (rows and columns are 0-indexed).
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// Runtime: 140 ms, faster than 7.14% of JavaScript online submissions
-// Memory Usage: 39.5 MB, less than 18.25% of JavaScript online submissions
+// Runtime: 80 ms, faster than 89.68% of JavaScript online submissions
+// Memory Usage: 39.4 MB, less than 21.43% of JavaScript online submissions
 
 /**
  * @param {number[][]} mat
@@ -36,17 +36,121 @@ const numSpecial = mat => {
       cols[j] += mat[i][j];
     }
 
-  // console.log(rows, cols);
-
   let res = 0;
   for (let i = 0; i < mat.length; i++)
     for (let j = 0; j < mat[0].length; j++)
       if (1 === mat[i][j] && 1 === rows[i] && 1 === cols[j]) res++;
 
-  // console.log(res);
-
   return res;
 };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 100 ms, faster than 45.24% of JavaScript online submissions
+// Memory Usage: 38.6 MB, less than 84.92% of JavaScript online submissions
+
+// /**
+//  * @param {number[][]} mat
+//  * @return {number}
+//  */
+// const numSpecial = mat => {
+//   const rows = new Array(mat.length).fill(0);
+//   const cols = new Array(mat[0].length).fill(0);
+
+//   for (let i = 0; i < mat.length; i++)
+//     for (let j = 0; j < mat[0].length; j++) {
+//       rows[i] += mat[i][j];
+//       cols[j] += mat[i][j];
+//     }
+
+//   let res = 0;
+//   for (let i = 0; i < mat.length; i++) {
+//     if (1 !== rows[i]) continue;
+//     for (let j = 0; j < mat[0].length; j++) {
+//       if (1 !== cols[j]) continue;
+//       if (1 === mat[i][j]) res++;
+//     }
+//   }
+
+//   return res;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 196 ms, faster than 5.56% of JavaScript online submissions
+// Memory Usage: 41.2 MB, less than 7.93% of JavaScript online submissions
+
+// /**
+//  * @param {number[][]} mat
+//  * @return {number}
+//  */
+// const numSpecial = mat => {
+//   const rows = new Map([...new Array(mat.length).keys()].map(k => [k, 0]));
+//   const cols = new Map([...new Array(mat[0].length).keys()].map(k => [k, 0]));
+
+//   for (let row = 0; row < mat.length; row++)
+//     for (let col = 0; col < mat[0].length; col++) {
+//       if (rows.has(row)) {
+//         let rowCnt = rows.get(row);
+//         rowCnt += mat[row][col];
+//         if (rowCnt < 2) rows.set(row, rowCnt);
+//         else rows.delete(row);
+//       }
+//       if (cols.has(col)) {
+//         let colCnt = cols.get(col);
+//         colCnt += mat[row][col];
+//         if (colCnt < 2) cols.set(col, colCnt);
+//         else cols.delete(col);
+//       }
+//     }
+
+//   let res = 0;
+//   for (const [row, rowCnt] of rows) {
+//     if (0 === rowCnt) continue;
+//     for (const [col, colCnt] of cols) {
+//       if (0 === colCnt) continue;
+//       if (1 === mat[row][col]) res++;
+//     }
+//   }
+
+//   return res;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 81.75% of JavaScript online submissions
+// Memory Usage: 39.1 MB, less than 42.06% of JavaScript online submissions
+
+// /**
+//  * @param {number[][]} mat
+//  * @return {number}
+//  */
+// const numSpecial = mat => {
+//   const rows = new Array(mat.length).fill(0);
+//   const cols = new Array(mat[0].length).fill(0);
+
+//   for (let row = 0; row < mat.length; row++) {
+//     if (1 < rows[row]) continue;
+//     for (let col = 0; col < mat[0].length; col++) {
+//       const val = mat[row][col];
+//       if (!val) continue;
+//       rows[row] += val;
+//       if (1 < cols[col]) continue;
+//       cols[col] += val;
+//     }
+//   }
+
+//   let res = 0;
+//   for (let row = 0; row < mat.length; row++) {
+//     if (1 !== rows[row]) continue;
+//     for (let col = 0; col < mat[0].length; col++) {
+//       if (1 !== cols[col]) continue;
+//       if (1 === mat[row][col]) res++;
+//     }
+//   }
+
+//   return res;
+// };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -117,16 +221,6 @@ strictEqual(
   2,
 );
 
-/*
-
-Row 0, Col 0: [0,0], [0,1], [1,0], [2,0]
-Row 0, Col 1: [0,0], [1,0], [1,1], [2,0]
-Row 1, Col 0: [0,0], [1,0], [2,0], [2,2]
-Row 2: [1,0], [1,1], [0,1], [2,1]
-5: [2,0], [2,1], [0,1], [1,1]
-
-*/
-
 strictEqual(
   numSpecial([
     [0, 0, 1, 0],
@@ -147,24 +241,6 @@ strictEqual(
   2,
 );
 
-/*
-
-[0,0], [0,1], [0,2], [1,0], [2,0], [3,0]
-[0,0], [0,1], [0,2], [1,1], [2,1], [3,1]
-[0,0], [0,1], [0,2], [1,2], [2,2], [3,2]
-
-[0,0], [1,0], [2,0], [3,0], [1,1], [1,2]
-[0,0], [1,0], [2,0], [3,0], [2,1], [2,2]
-[0,0], [1,0], [2,0], [3,0], [3,1], [3,2]
-
-[1,1]
-
-[2,2]
-
-[3,1]
-
-*/
-
 strictEqual(
   numSpecial([
     [0, 0, 1, 0],
@@ -173,24 +249,6 @@ strictEqual(
   ]),
   2,
 );
-
-/*
-
-0010
-0000
-0100
-
-000
-100
-001
-000
-
-0010
-1000
-0110
-0000
-
-*/
 
 strictEqual(
   numSpecial([
