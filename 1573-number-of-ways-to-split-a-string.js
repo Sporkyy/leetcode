@@ -22,27 +22,69 @@ Since the answer may be too large, return it modulo 10^9 + 7.
 // Runtime: 196 ms, faster than 11.84% of JavaScript online submissions
 // Memory Usage: 44.3 MB, less than 27.63% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const numWays = s => {
+//   if (s.length < 3) return 0;
+//   let [l, r] = [0, s.length - 1];
+//   let [l1Cnt, r1Cnt] = [0, 0];
+//   let [l0Map, r0Map] = [new Map([[0, 0]]), new Map([[0, 0]])];
+//   while (l <= r) {
+//     if (l1Cnt <= r1Cnt) {
+//       if ('1' === s[l]) l1Cnt++;
+//       else if (0 < l1Cnt) l0Map.set(l1Cnt, (l0Map.get(l1Cnt) || 0) + 1);
+//       l++;
+//     } else {
+//       if ('1' === s[r]) r1Cnt++;
+//       else if (0 < r1Cnt) r0Map.set(r1Cnt, (r0Map.get(r1Cnt) || 0) + 1);
+//       r--;
+//     }
+//   }
+//   // console.log(`${l1Cnt}|${r1Cnt}`);
+//   if (0 !== (l1Cnt + r1Cnt) % 3) return 0;
+//   if (0 === l1Cnt + r1Cnt)
+//     return (((s.length - 1) ** 2 - (s.length - 1)) / 2) % (10 ** 9 + 7);
+//   const [lGap, rGap] = [
+//     l0Map.get((l1Cnt + r1Cnt) / 3) || 0,
+//     r0Map.get((l1Cnt + r1Cnt) / 3) || 0,
+//   ];
+//   // console.log(`${lGap}|${rGap} `);
+//   // return (lGap ** 2 - lGap) / 2;
+//   // if (!lGap && !rGap) {
+//   //   return ((s.length - 1) ** 2 - (s.length - 1)) / 2;
+//   // }
+//   // if (0 < l1Cnt + r1Cnt && !lGap && !rGap) return s.length - 2;
+//   // if (lGap && rGap) return lGap + rGap + 2;
+//   // if (lGap && !rGap) return lGap + 1;
+//   return ((lGap + 1) * (rGap + 1)) % (10 ** 9 + 7);
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 192 ms, faster than 11.84% of JavaScript online submissions
+// Memory Usage: 45.1 MB, less than 19.74% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {number}
  */
 const numWays = s => {
-  if (s.length < 3) return 0;
   let [l, r] = [0, s.length - 1];
   let [l1Cnt, r1Cnt] = [0, 0];
   let [l0Map, r0Map] = [new Map([[0, 0]]), new Map([[0, 0]])];
   while (l <= r) {
     if (l1Cnt <= r1Cnt) {
       if ('1' === s[l]) l1Cnt++;
-      else if (0 < l1Cnt) l0Map.set(l1Cnt, (l0Map.get(l1Cnt) || 0) + 1);
+      else l0Map.set(l1Cnt, (l0Map.get(l1Cnt) || 0) + 1);
       l++;
     } else {
       if ('1' === s[r]) r1Cnt++;
-      else if (0 < r1Cnt) r0Map.set(r1Cnt, (r0Map.get(r1Cnt) || 0) + 1);
+      else r0Map.set(r1Cnt, (r0Map.get(r1Cnt) || 0) + 1);
       r--;
     }
   }
-  // console.log(`${l1Cnt}|${r1Cnt}`);
   if (0 !== (l1Cnt + r1Cnt) % 3) return 0;
   if (0 === l1Cnt + r1Cnt)
     return (((s.length - 1) ** 2 - (s.length - 1)) / 2) % (10 ** 9 + 7);
@@ -50,14 +92,6 @@ const numWays = s => {
     l0Map.get((l1Cnt + r1Cnt) / 3) || 0,
     r0Map.get((l1Cnt + r1Cnt) / 3) || 0,
   ];
-  // console.log(`${lGap}|${rGap} `);
-  // return (lGap ** 2 - lGap) / 2;
-  // if (!lGap && !rGap) {
-  //   return ((s.length - 1) ** 2 - (s.length - 1)) / 2;
-  // }
-  // if (0 < l1Cnt + r1Cnt && !lGap && !rGap) return s.length - 2;
-  // if (lGap && rGap) return lGap + rGap + 2;
-  // if (lGap && !rGap) return lGap + 1;
   return ((lGap + 1) * (rGap + 1)) % (10 ** 9 + 7);
 };
 
