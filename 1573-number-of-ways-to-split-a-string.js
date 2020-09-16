@@ -66,33 +66,102 @@ Since the answer may be too large, return it modulo 10^9 + 7.
 // Runtime: 192 ms, faster than 11.84% of JavaScript online submissions
 // Memory Usage: 45.1 MB, less than 19.74% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const numWays = s => {
+//   let [l, r] = [0, s.length - 1];
+//   let [l1Cnt, r1Cnt] = [0, 0];
+//   let [l0Map, r0Map] = [new Map([[0, 0]]), new Map([[0, 0]])];
+//   while (l <= r) {
+//     if (l1Cnt <= r1Cnt) {
+//       if ('1' === s[l]) l1Cnt++;
+//       else l0Map.set(l1Cnt, (l0Map.get(l1Cnt) || 0) + 1);
+//       l++;
+//     } else {
+//       if ('1' === s[r]) r1Cnt++;
+//       else r0Map.set(r1Cnt, (r0Map.get(r1Cnt) || 0) + 1);
+//       r--;
+//     }
+//   }
+//   if (0 !== (l1Cnt + r1Cnt) % 3) return 0;
+//   if (0 === l1Cnt + r1Cnt)
+//     return (((s.length - 1) ** 2 - (s.length - 1)) / 2) % (10 ** 9 + 7);
+//   const [lGap, rGap] = [
+//     l0Map.get((l1Cnt + r1Cnt) / 3) || 0,
+//     r0Map.get((l1Cnt + r1Cnt) / 3) || 0,
+//   ];
+//   return ((lGap + 1) * (rGap + 1)) % (10 ** 9 + 7);
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 124 ms, faster than 36.84% of JavaScript online submissions
+// Memory Usage: 42.9 MB, less than 50.00% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const numWays = s => {
+//   let [l, r] = [0, s.length - 1];
+//   let [lCnt, rCnt] = [0, 0];
+//   let [lObj, rObj] = [{ 0: 0 }, { 0: 0 }];
+//   while (l <= r) {
+//     if (lCnt <= rCnt) {
+//       if ('1' === s[l]) {
+//         lCnt++;
+//         lObj[lCnt] = 1;
+//       } else lObj[lCnt]++;
+//       l++;
+//     } else {
+//       if ('1' === s[r]) {
+//         rCnt++;
+//         rObj[rCnt] = 1;
+//       } else rObj[rCnt]++;
+//       r--;
+//     }
+//   }
+//   if (0 !== (lCnt + rCnt) % 3) return 0;
+//   if (0 === lCnt + rCnt)
+//     return (((s.length - 1) ** 2 - (s.length - 1)) / 2) % (10 ** 9 + 7);
+//   const [lGap, rGap] = [
+//     lObj[(lCnt + rCnt) / 3] || 0,
+//     rObj[(lCnt + rCnt) / 3] || 0,
+//   ];
+//   return (lGap * rGap) % (10 ** 9 + 7);
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 204 ms, faster than 11.84% of JavaScript online submissions
+// Memory Usage: 43.1 MB, less than 50.00% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {number}
  */
 const numWays = s => {
   let [l, r] = [0, s.length - 1];
-  let [l1Cnt, r1Cnt] = [0, 0];
-  let [l0Map, r0Map] = [new Map([[0, 0]]), new Map([[0, 0]])];
+  let [lCnt, rCnt] = [0, 0];
+  const [lObj, rObj] = [{}, {}];
   while (l <= r) {
-    if (l1Cnt <= r1Cnt) {
-      if ('1' === s[l]) l1Cnt++;
-      else l0Map.set(l1Cnt, (l0Map.get(l1Cnt) || 0) + 1);
-      l++;
+    if (lCnt <= rCnt) {
+      if ('1' === s[l++]) lObj[++lCnt] = 1;
+      else lObj[lCnt]++;
     } else {
-      if ('1' === s[r]) r1Cnt++;
-      else r0Map.set(r1Cnt, (r0Map.get(r1Cnt) || 0) + 1);
-      r--;
+      if ('1' === s[r--]) rObj[++rCnt] = 1;
+      else rObj[rCnt]++;
     }
   }
-  if (0 !== (l1Cnt + r1Cnt) % 3) return 0;
-  if (0 === l1Cnt + r1Cnt)
-    return (((s.length - 1) ** 2 - (s.length - 1)) / 2) % (10 ** 9 + 7);
-  const [lGap, rGap] = [
-    l0Map.get((l1Cnt + r1Cnt) / 3) || 0,
-    r0Map.get((l1Cnt + r1Cnt) / 3) || 0,
-  ];
-  return ((lGap + 1) * (rGap + 1)) % (10 ** 9 + 7);
+  if (0 !== (lCnt + rCnt) % 3) return 0;
+  const mod = 10 ** 9 + 7;
+  const n = s.length - 1;
+  if (0 === lCnt + rCnt) return ((n ** 2 - n) / 2) % mod;
+  const third = (lCnt + rCnt) / 3;
+  const [lGap, rGap] = [lObj[third] || 0, rObj[third] || 0];
+  return (lGap * rGap) % mod;
 };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
