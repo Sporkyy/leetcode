@@ -73,16 +73,16 @@ Find the kth positive integer that is missing from this array.
 // Runtime: 72 ms, faster than 90.74% of JavaScript online submissions
 // Memory Usage: 36.9 MB, less than 69.26% of JavaScript online submissions
 
-/**
- * @param {number[]} arr
- * @param {number} k
- * @return {number}
- */
-const findKthPositive = (arr, k) => {
-  for (let i = 1, j = 0; ; i++)
-    if (i === arr[j]) j++;
-    else if (k === i - j) return i;
-};
+// /**
+//  * @param {number[]} arr
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const findKthPositive = (arr, k) => {
+//   for (let i = 1, j = 0; ; i++)
+//     if (i === arr[j]) j++;
+//     else if (k === i - j) return i;
+// };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -106,14 +106,33 @@ const findKthPositive = (arr, k) => {
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+/**
+ * @param {number[]} arr
+ * @param {number} k
+ * @return {number}
+ */
+const findKthPositive = (arr, k) => {
+  for (let i = 1, j = 0; ; i++)
+    if (i === arr[j]) j++;
+    else if (k === i - j) return i;
+};
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 import { strictEqual } from 'assert';
 
+console.time();
+
 // Example 1:
-strictEqual(findKthPositive([2, 3, 4, 7, 11], 5), 9);
+// strictEqual(findKthPositive([2, 3, 4, 7, 11], 5), 9);
 // Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The
 // 5th missing positive integer is 9.
 
 // Example 2:
-strictEqual(findKthPositive([1, 2, 3, 4], 2), 6);
+// strictEqual(findKthPositive([1, 2, 3, 4], 2), 6);
 // Explanation: The missing positive integers are [5,6,7,...]. The 2nd missing
 // positive integer is 6.
+
+strictEqual(findKthPositive([1, 2, 5000, 10000000], 2), 4);
+
+console.timeEnd();
