@@ -73,35 +73,81 @@ Return the string after rearranging the spaces.
 // Runtime: 80 ms, faster than 49.05% of JavaScript online submissions
 // Memory Usage: 38.5 MB, less than 5.24% of JavaScript online submissions
 
+// /**
+//  * @param {string} text
+//  * @return {string}
+//  */
+// const reorderSpaces = text => {
+//   let cntSpaces = 0;
+//   let words = [];
+//   for (let i = 0, word = ''; i <= text.length; i++) {
+//     if ('undefined' === typeof text[i] && word.length) words.push(word);
+//     else if (' ' === text[i]) {
+//       cntSpaces++;
+//       if (word.length) {
+//         words.push(word);
+//         word = '';
+//       }
+//     } else word += text[i];
+//   }
+//   // console.log(words, cntSpaces);
+//   let cntWordSpaces = 0;
+//   let cntRemainingSpaces = cntSpaces;
+//   if (1 < words.length) {
+//     cntWordSpaces = Math.trunc(cntSpaces / (words.length - 1));
+//     // console.log(cntWordSpaces);
+//     cntRemainingSpaces = cntSpaces - cntWordSpaces * (words.length - 1);
+//   }
+//   // console.log(cntRemainingSpaces);
+//   const wordSpaces = ' '.repeat(cntWordSpaces);
+//   const remainingSpaces = ' '.repeat(cntRemainingSpaces);
+//   return `${words.join(wordSpaces)}${remainingSpaces}`;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {string} text
+//  * @return {string}
+//  */
+// const reorderSpaces = text => {
+//   let cntSpaces = 0;
+//   const words = new Map();
+//   for (const c of text)
+//     if (' ' === c) cntSpaces++;
+//     else words.set(cntSpaces, `${words.get(cntSpaces) || ''}${c}`);
+//   console.log(cntSpaces, [...words.values()]);
+//   //   let spcsPerWord = Math.trunc(spcCnt / (words.length - 1));
+//   //   const wordSpaces = ' '.repeat(spacesPerWord);
+//   //   const remainingSpaces =
+//   //     1 < words.length
+//   //       ? ' '.repeat(cntSpaces % (words.length - 1 || 0))
+//   //       : ' '.repeat(cntSpaces);
+//   //   return `${words.join(wordSpaces)}${remainingSpaces}`;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 76 ms, faster than 72.38% of JavaScript online submissions
+// Memory Usage: 38.6 MB, less than 5.24% of JavaScript online submissions
+
 /**
  * @param {string} text
  * @return {string}
  */
 const reorderSpaces = text => {
-  let cntSpaces = 0;
-  let words = [];
-  for (let i = 0, word = ''; i <= text.length; i++) {
-    if ('undefined' === typeof text[i] && word.length) words.push(word);
-    else if (' ' === text[i]) {
-      cntSpaces++;
-      if (word.length) {
-        words.push(word);
-        word = '';
-      }
-    } else word += text[i];
+  const regex = /(\w+)/g;
+  const words = [];
+  let execResults;
+  let cntSpaces = text.length; // Decremented in loop below
+  while (null !== (execResults = regex.exec(text))) {
+    words.push(execResults[0]);
+    cntSpaces -= regex.lastIndex - execResults.index; // A mixed-key array‽
   }
-  // console.log(words, cntSpaces);
-  let cntWordSpaces = 0;
-  let cntRemainingSpaces = cntSpaces;
-  if (1 < words.length) {
-    cntWordSpaces = Math.trunc(cntSpaces / (words.length - 1));
-    // console.log(cntWordSpaces);
-    cntRemainingSpaces = cntSpaces - cntWordSpaces * (words.length - 1);
-  }
-  // console.log(cntRemainingSpaces);
-  const wordSpaces = ' '.repeat(cntWordSpaces);
-  const remainingSpaces = ' '.repeat(cntRemainingSpaces);
-  return `${words.join(wordSpaces)}${remainingSpaces}`;
+  if (1 === words.length) return `${words[0]}${' '.repeat(cntSpaces)}`;
+  const spacedWords = words.join(' '.repeat(cntSpaces / (words.length - 1)));
+  const remainingSpaces = ' '.repeat(cntSpaces % (words.length - 1));
+  return `${spacedWords}${remainingSpaces}`;
 };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
