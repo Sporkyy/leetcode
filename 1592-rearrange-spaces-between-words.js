@@ -52,19 +52,55 @@ Return the string after rearranging the spaces.
 // Runtime: 80 ms, faster than 49.05% of JavaScript online submissions
 // Memory Usage: 36.6 MB, less than 82.86% of JavaScript online submissions
 
+// /**
+//  * @param {string} text
+//  * @return {string}
+//  */
+// const reorderSpaces = text => {
+//   const cntSpaces = text.replace(/\S/g, '').length;
+//   const words = text.trim().split(/\s+/g);
+//   const spacesPerWord = 1 < words.length ? cntSpaces / (words.length - 1) : 0;
+//   const wordSpaces = ' '.repeat(spacesPerWord);
+//   const remainingSpaces =
+//     1 < words.length
+//       ? ' '.repeat(cntSpaces % (words.length - 1 || 0))
+//       : ' '.repeat(cntSpaces);
+//   return `${words.join(wordSpaces)}${remainingSpaces}`;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 80 ms, faster than 49.05% of JavaScript online submissions
+// Memory Usage: 38.5 MB, less than 5.24% of JavaScript online submissions
+
 /**
  * @param {string} text
  * @return {string}
  */
 const reorderSpaces = text => {
-  const cntSpaces = text.replace(/\S/g, '').length;
-  const words = text.trim().split(/\s+/g);
-  const spacesPerWord = 1 < words.length ? cntSpaces / (words.length - 1) : 0;
-  const wordSpaces = ' '.repeat(spacesPerWord);
-  const remainingSpaces =
-    1 < words.length
-      ? ' '.repeat(cntSpaces % (words.length - 1 || 0))
-      : ' '.repeat(cntSpaces);
+  let cntSpaces = 0;
+  let words = [];
+  for (let i = 0, word = ''; i <= text.length; i++) {
+    if ('undefined' === typeof text[i] && word.length) words.push(word);
+    else if (' ' === text[i]) {
+      cntSpaces++;
+      if (word.length) {
+        words.push(word);
+        word = '';
+      }
+    } else word += text[i];
+  }
+  // console.log(words, cntSpaces);
+  let cntWordSpaces = 0;
+  let cntRemainingSpaces = cntSpaces;
+  if (1 < words.length) {
+    cntWordSpaces = Math.trunc(cntSpaces / (words.length - 1));
+    // console.log(cntWordSpaces);
+    cntRemainingSpaces = cntSpaces - cntWordSpaces * (words.length - 1);
+  }
+  // console.log(cntRemainingSpaces);
+  const wordSpaces = ' '.repeat(cntWordSpaces);
+  const remainingSpaces = ' '.repeat(cntRemainingSpaces);
   return `${words.join(wordSpaces)}${remainingSpaces}`;
 };
 
@@ -72,32 +108,32 @@ const reorderSpaces = text => {
 
 import { strictEqual } from 'assert';
 
-// // Example 1:
-// strictEqual(
-//   reorderSpaces('  this   is  a sentence '),
-//   'this   is   a   sentence',
-// );
-// // Explanation: There are a total of 9 spaces and 4 words. We can evenly divide
-// // the 9 spaces between the words: 9 / (4-1) = 3 spaces.
+// Example 1:
+strictEqual(
+  reorderSpaces('  this   is  a sentence '),
+  'this   is   a   sentence',
+);
+// Explanation: There are a total of 9 spaces and 4 words. We can evenly divide
+// the 9 spaces between the words: 9 / (4-1) = 3 spaces.
 
-// // Example 2:
-// strictEqual(
-//   reorderSpaces(' practice   makes   perfect'),
-//   'practice   makes   perfect ',
-// );
-// // Explanation: There are a total of 7 spaces and 3 words. 7 / (3-1) = 3 spaces
-// // plus 1 extra space. We place this extra space at the end of the string.
+// Example 2:
+strictEqual(
+  reorderSpaces(' practice   makes   perfect'),
+  'practice   makes   perfect ',
+);
+// Explanation: There are a total of 7 spaces and 3 words. 7 / (3-1) = 3 spaces
+// plus 1 extra space. We place this extra space at the end of the string.
 
-// // Example 3:
-// strictEqual(reorderSpaces('hello   world'), 'hello   world');
+// Example 3:
+strictEqual(reorderSpaces('hello   world'), 'hello   world');
 
-// // Example 4:
-// strictEqual(
-//   reorderSpaces('  walks  udp package   into  bar a'),
-//   'walks  udp  package  into  bar  a ',
-// );
+// Example 4:
+strictEqual(
+  reorderSpaces('  walks  udp package   into  bar a'),
+  'walks  udp  package  into  bar  a ',
+);
 
-// // Example 5:
-// strictEqual(reorderSpaces('a'), 'a');
+// Example 5:
+strictEqual(reorderSpaces('a'), 'a');
 
 strictEqual(reorderSpaces('  hello'), 'hello  ');
