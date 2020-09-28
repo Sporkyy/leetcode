@@ -13,7 +13,7 @@ Return the answer in an array.
 
 */
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 68 ms, faster than 95.48% of JavaScript online submissions
 // Memory Usage: 37 MB, less than 100.00% of JavaScript online submissions
@@ -33,27 +33,66 @@ Return the answer in an array.
 //   return nums.map(n => map.get(n));
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 64 ms, faster than 98.31% of JavaScript online submissions
 // Memory Usage: 37 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// const smallerNumbersThanCurrent = nums => {
+//   const map = new Map(
+//     nums
+//       .slice()
+//       .sort((a, b) => a - b)
+//       .map((val, idx) => [val, idx])
+//       .reverse(),
+//   );
+//   return nums.map(n => map.get(n));
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 100 ms, faster than 49.01% of JavaScript online submissions
+// Memory Usage: 40.3 MB, less than 14.09% of JavaScript online submissions
 
 /**
  * @param {number[]} nums
  * @return {number[]}
  */
-const smallerNumbersThanCurrent = nums => {
-  const map = new Map(
-    nums
-      .slice()
-      .sort((a, b) => a - b)
-      .map((val, idx) => [val, idx])
-      .reverse(),
+const smallerNumbersThanCurrent = nums =>
+  (map => nums.map(n => map.get(n)))(
+    new Map(
+      [...nums]
+        .sort((a, b) => a - b)
+        .map((val, idx) => [val, idx])
+        .reverse(),
+    ),
   );
-  return nums.map(n => map.get(n));
-};
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 88 ms, faster than 88.24% of JavaScript online submissions
+// Memory Usage: 41.1 MB, less than 12.55% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// const smallerNumbersThanCurrent = nums =>
+//   (map => nums.map(n => map.get(n)))(
+//     new Map(
+//       nums
+//         .slice()
+//         .sort((a, b) => a - b)
+//         .map((val, idx) => [val, idx])
+//         .reverse(),
+//     ),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Example 1:
 deepStrictEqual(smallerNumbersThanCurrent([8, 1, 2, 2, 3]), [4, 0, 1, 1, 3]);
