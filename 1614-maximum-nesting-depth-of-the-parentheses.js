@@ -35,26 +35,59 @@ Constraints:
 // Runtime: 124 ms, faster than 5.26% of JavaScript online submissions
 // Memory Usage: 45.7 MB, less than 57.02% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const maxDepth = s => {
+//   const a = new Array(50).fill().map(_ => []);
+//   let max = 0;
+//   console.log(s);
+//   for (let i = 0, d = 0; i < s.length; i++) {
+//     if ('(' === s[i]) d++;
+//     if (')' === s[i]) d--;
+//     const n = Number(s[i]);
+//     if (n) a[d].push(n);
+//     max = Math.max(max, d);
+//   }
+//   console.log(a);
+//   console.log(max);
+//   // return Math.max(...a[max]);
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 76 ms, faster than 95.61% of JavaScript online submissions
+// Memory Usage: 39 MB, less than 57.02% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const maxDepth = s =>
+//   (depth =>
+//     [...s].reduce((acc, curr) => {
+//       if ('(' === curr) depth++;
+//       else if (')' === curr) depth--;
+//       return Math.max(acc, depth);
+//     }, 0))(0);
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 69.30% of JavaScript online submissions
+// Memory Usage: 39.8 MB, less than 57.02% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {number}
  */
-const maxDepth = s => {
-  const a = new Array(50).fill().map(_ => []);
-  let max = 0;
-  console.log(s);
-  for (let i = 0, d = 0; i < s.length; i++) {
-    if ('(' === s[i]) d++;
-    if (')' === s[i]) d--;
-    const n = Number(s[i]);
-    if (n) a[d].push(n);
-    max = Math.max(max, d);
-  }
-  console.log(a);
-  console.log(max);
-  // return Math.max(...a[max]);
-  return max;
-};
+const maxDepth = s =>
+  (depth =>
+    [...s].reduce(
+      (acc, curr) => Math.max(acc, (depth += { '(': 1, ')': -1 }[curr] || 0)),
+      0,
+    ))(0);
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
