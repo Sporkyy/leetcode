@@ -42,21 +42,21 @@ Constraints
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// Runtime: 72 ms, faster than 94.35% of JavaScript online submissions
-// Memory Usage: 39 MB, less than 6.09% of JavaScript online submissions
+// Runtime: 76 ms, faster than 86.96% of JavaScript online submissions
+// Memory Usage: 38.8 MB, less than 6.09% of JavaScript online submissions
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
-const specialArray = nums => {
-  nums.sort((a, b) => a - b);
-  for (let i = 0, j = 0; i <= nums[nums.length - 1]; i++) {
-    while (nums[j] < i) j++;
-    if (i === nums.length - j) return i;
-  }
-  return -1;
-};
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const specialArray = nums => {
+//   nums.sort((a, b) => a - b);
+//   for (let i = 1, j = 0; i <= nums.length; i++) {
+//     while (nums[j] < i) j++;
+//     if (i === nums.length - j) return i;
+//   }
+//   return -1;
+// };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -236,16 +236,16 @@ const specialArray = nums => {
 // Runtime: 80 ms, faster than 72.17% of JavaScript online submissions
 // Memory Usage: 38.8 MB, less than 6.09% of JavaScript online submissions
 
-// /**
-//  * @param {number[]} nums
-//  * @return {number}
-//  */
-// const specialArray = (nums, x = nums.length) =>
-//   0 === x
-//     ? -1
-//     : x === nums.reduce((cnt, n) => cnt + (x <= n ? 1 : 0), 0)
-//     ? x
-//     : specialArray(nums, x - 1);
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+const specialArray = (nums, x = nums.length) =>
+  0 === x
+    ? -1
+    : x === nums.reduce((cnt, n) => cnt + (x <= n ? 1 : 0), 0)
+    ? x
+    : specialArray(nums, x - 1);
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -396,11 +396,11 @@ const specialArray = nums => {
 import { strictEqual } from 'assert';
 
 // Example 1:
-// strictEqual(specialArray([3, 5]), 2);
+strictEqual(specialArray([3, 5]), 2);
 // Explanation: There are 2 values (3 and 5) that are greater than or equal to 2.
 
 // Example 2:
-// strictEqual(specialArray([0, 0]), -1);
+strictEqual(specialArray([0, 0]), -1);
 // Explanation: No numbers fit the criteria for x.
 // If x = 0, there should be 0 numbers >= x, but there are 2.
 // If x = 1, there should be 1 number >= x, but there are 0.
@@ -408,16 +408,16 @@ import { strictEqual } from 'assert';
 // x cannot be greater since there are only 2 numbers in nums.
 
 // Example 3:
-// strictEqual(specialArray([0, 4, 3, 0, 4]), 3);
+strictEqual(specialArray([0, 4, 3, 0, 4]), 3);
 // Explanation: There are 3 values that are greater than or equal to 3.
 
 // Example 4:
-// strictEqual(specialArray([3, 6, 7, 7, 0]), -1);
+strictEqual(specialArray([3, 6, 7, 7, 0]), -1);
 
 strictEqual(specialArray([3, 9, 7, 8, 3, 8, 6, 6]), 6);
 
-// strictEqual(specialArray([0, 5, 0, 1, 8, 3, 0, 1]), 3);
+strictEqual(specialArray([0, 5, 0, 1, 8, 3, 0, 1]), 3);
 
-// strictEqual(specialArray([3]), 1);
+strictEqual(specialArray([3]), 1);
 
 // strictEqual(specialArray([0, 4, 4, 0]), 2);
