@@ -78,16 +78,32 @@ Constraints:
 // Runtime: 84 ms, faster than 69.30% of JavaScript online submissions
 // Memory Usage: 39.8 MB, less than 57.02% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const maxDepth = s =>
+//   (depth =>
+//     [...s].reduce(
+//       (acc, curr) => Math.max(acc, (depth += { '(': 1, ')': -1 }[curr] || 0)),
+//       0,
+//     ))(0);
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 80 ms, faster than 80.70% of JavaScript online submissions
+// Memory Usage: 38.5 MB, less than 57.02% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {number}
  */
 const maxDepth = s =>
-  (depth =>
+  ((depth, obj) =>
     [...s].reduce(
-      (acc, curr) => Math.max(acc, (depth += { '(': 1, ')': -1 }[curr] || 0)),
+      (acc, curr) => Math.max(acc, (depth += obj[curr] || 0)),
       0,
-    ))(0);
+    ))(0, { '(': 1, ')': -1 });
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
