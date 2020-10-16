@@ -102,43 +102,86 @@ Constraints:
 // Runtime: 100 ms, faster than 49.04% of JavaScript online submissions
 // Memory Usage: 48.8 MB, less than 5.37% of JavaScript online submissions
 
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {boolean}
+//  */
+// const checkPalindromeFormation = (a, b) => {
+//   // These are al the candidates to test to see if they're palindromes
+//   const candidates = [];
+//   // Include the source strings as they can form palindromes themselves
+//   candidates.push(a, b);
+
+//   let l, r;
+
+//   // a first
+//   [l, r] = [-1, a.length];
+//   while (l < r && a[l + 1] === b[r - 1]) l++, r--;
+//   if (-1 < l)
+//     candidates.push(
+//       `${a.slice(0, r)}${b.slice(r)}`,
+//       `${a.slice(0, l + 1)}${b.slice(l + 1)}`,
+//     );
+
+//   // b first
+//   [l, r] = [-1, b.length];
+//   while (l < r && b[l + 1] === a[r - 1]) l++, r--;
+//   if (-1 < l) {
+//     candidates.push(
+//       `${b.slice(0, r)}${a.slice(r)}`,
+//       `${b.slice(0, l + 1)}${a.slice(l + 1)}`,
+//     );
+//   }
+
+//   outer: for (const candidate of candidates) {
+//     for (let l = 0, r = candidate.length - 1; l < r; l++, r--)
+//       if (candidate[l] !== candidate[r]) continue outer;
+//     return true;
+//   }
+
+//   return false;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 92 ms, faster than 71.97% of JavaScript online submissions
+// Memory Usage: 49.4 MB, less than 5.37% of JavaScript online submissions
+
+const isPalindrome = s => {
+  for (let l = 0, r = s.length - 1; l < r; l++, r--)
+    if (s[l] !== s[r]) return false;
+  return true;
+};
+
 /**
  * @param {string} a
  * @param {string} b
  * @return {boolean}
  */
 const checkPalindromeFormation = (a, b) => {
-  // These are al the candidates to test to see if they're palindromes
-  const candidates = [];
-  // Include the source strings as they can form palindromes themselves
-  candidates.push(a, b);
+  if (isPalindrome(a)) return true;
+  if (isPalindrome(b)) return true;
 
   let l, r;
 
-  // a first
   [l, r] = [-1, a.length];
   while (l < r && a[l + 1] === b[r - 1]) l++, r--;
-  if (-1 < l)
-    candidates.push(
-      `${a.slice(0, r)}${b.slice(r)}`,
-      `${a.slice(0, l + 1)}${b.slice(l + 1)}`,
-    );
+  if (
+    -1 < l &&
+    (isPalindrome(`${a.slice(0, r)}${b.slice(r)}`) ||
+      isPalindrome(`${a.slice(0, l + 1)}${b.slice(l + 1)}`))
+  )
+    return true;
 
-  // b first
   [l, r] = [-1, b.length];
   while (l < r && b[l + 1] === a[r - 1]) l++, r--;
-  if (-1 < l) {
-    candidates.push(
-      `${b.slice(0, r)}${a.slice(r)}`,
-      `${b.slice(0, l + 1)}${a.slice(l + 1)}`,
-    );
-  }
-
-  outer: for (const candidate of candidates) {
-    for (let l = 0, r = candidate.length - 1; l < r; l++, r--)
-      if (candidate[l] !== candidate[r]) continue outer;
+  if (
+    -1 < l &&
+    (isPalindrome(`${b.slice(0, r)}${a.slice(r)}`) ||
+      isPalindrome(`${b.slice(0, l + 1)}${a.slice(l + 1)}`))
+  )
     return true;
-  }
 
   return false;
 };
