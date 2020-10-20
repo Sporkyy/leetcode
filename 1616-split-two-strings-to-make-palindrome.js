@@ -224,41 +224,8 @@ Constraints:
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// /**
-//  * @param {string} a
-//  * @param {string} b
-//  * @return {boolean}
-//  */
-// const checkPalindromeFormation = (a, b) => {
-//   console.log(
-//     [
-//       [a, b],
-//       [b, a],
-//     ].reduce((acc, [x, y]) => {
-//       console.log(x, y);
-//       let i = -1;
-//       while (x[i + 1] === y[y.length - 2 - i]) i++;
-//       console.log(i);
-//       if (-1 < i) {
-//         acc.push(x.slice(i + 1, x.length - 1 - i));
-//         acc.push(y.slice(i + 1, y.length - 1 - i));
-//       }
-//       return acc;
-//     }, []),
-//   );
-// };
-
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
-
-// /**
-//  * @param {string} s
-//  * @returns {number}
-//  */
-// const getXOver = s => {
-//   let i = -1;
-//   while (i < s.length / 2 && s[i + 1] === s[s.length - 2 - i]) i++;
-//   return i;
-// };
+// Runtime: 100 ms, faster than 47.56% of JavaScript online submissions
+// Memory Usage: 48.3 MB, less than 6.71% of JavaScript online submissions
 
 // /**
 //  * @param {string} a
@@ -266,19 +233,24 @@ Constraints:
 //  * @return {boolean}
 //  */
 // const checkPalindromeFormation = (a, b, d = 0) => {
-//   console.log(getXOver(a), getXOver(b));
-//   if (a.length / 2 < getXOver(a) || b.length / 2 < getXOver(b)) return true;
-//   if (9 < d) return;
-//   console.log(a, b);
-//   const len = a.length;
-//   let i = -1;
-//   while (a[i + 1] === b[len - 2 - i] || b[i + 1] === a[len - 2 - i]) i++;
-//   console.log(i);
-//   return checkPalindromeFormation(
-//     a.slice(i + 1, len - 1 - i),
-//     b.slice(i + 1, len - 1 - i),
-//     d + 1,
-//   );
+//   const stk = [a, b, [a, b], [b, a]];
+//   while (stk.length) {
+//     const curr = stk.pop();
+//     if (Array.isArray(curr)) {
+//       const [x, y] = curr;
+//       let [l, r] = [-1, x.length];
+//       while (l < r && x[l + 1] === y[r - 1]) l++, r--;
+//       if (-1 === l) continue;
+//       stk.push(x.slice(l + 1, r));
+//       stk.push(y.slice(l + 1, r));
+//     } else {
+//       let [l, r] = [-1, curr.length];
+//       while (l < r && curr[l + 1] === curr[r - 1]) l++, r--;
+//       if (-1 === l) continue;
+//       if (r - l < 3) return true;
+//     }
+//   }
+//   return false;
 // };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
@@ -286,31 +258,126 @@ Constraints:
 // Runtime: 100 ms, faster than 47.56% of JavaScript online submissions
 // Memory Usage: 48.3 MB, less than 6.71% of JavaScript online submissions
 
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {boolean}
+//  */
+// const checkPalindromeFormation = (a, b, d = 0) => {
+//   const stk = [a, b, [a, b], [b, a]];
+//   while (stk.length) {
+//     const curr = stk.pop();
+//     if (Array.isArray(curr)) {
+//       const [x, y] = curr;
+//       let [l, r] = [-1, x.length];
+//       while (l < r && x[l + 1] === y[r - 1]) l++, r--;
+//       if (-1 === l) continue;
+//       stk.push(x.slice(l + 1, r));
+//       stk.push(y.slice(l + 1, r));
+//     } else {
+//       let [l, r] = [-1, curr.length];
+//       while (l < r && curr[l + 1] === curr[r - 1]) l++, r--;
+//       if (r - l < 3) return true;
+//     }
+//   }
+//   return false;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 108 ms, faster than 39.02% of JavaScript online submissions
+// Memory Usage: 49.9 MB, less than 6.71% of JavaScript online submissions
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {boolean}
+//  */
+// const checkPalindromeFormation = (a, b, d = 0) => {
+//   const arrays = [
+//     [a, b],
+//     [b, a],
+//   ];
+//   const strings = [a, b];
+//   for (const a of arrays) {
+//     const [x, y] = a;
+//     let [l, r] = [-1, x.length];
+//     while (l < r && x[l + 1] === y[r - 1]) l++, r--;
+//     if (-1 === l) continue;
+//     strings.push(x.slice(l + 1, r));
+//     strings.push(y.slice(l + 1, r));
+//   }
+//   for (const s of strings) {
+//     let [l, r] = [-1, s.length];
+//     while (l < r && s[l + 1] === s[r - 1]) l++, r--;
+//     if (r - l < 3) return true;
+//   }
+//   return false;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 96 ms, faster than 58.54% of JavaScript online submissions
+// Memory Usage: 48.1 MB, less than 6.71% of JavaScript online submissions
+
+/**
+ * @param {string} s
+ * @param {number} [l=0]
+ * @param {number} [r=s.length - 1]
+ * @returns {boolean}
+ */
+const isPalindrome = (s, l = 0, r = s.length - 1) => {
+  while (l < r) if (s[l++] !== s[r--]) return false;
+  return true;
+};
+
 /**
  * @param {string} a
  * @param {string} b
  * @return {boolean}
  */
-const checkPalindromeFormation = (a, b, d = 0) => {
-  const stk = [a, b, [a, b], [b, a]];
-  while (stk.length) {
-    const curr = stk.pop();
-    if (Array.isArray(curr)) {
-      const [x, y] = curr;
-      let [l, r] = [-1, x.length];
-      while (l < r && x[l + 1] === y[r - 1]) l++, r--;
-      if (-1 === l) continue;
-      stk.push(x.slice(l + 1, r));
-      stk.push(y.slice(l + 1, r));
-    } else {
-      let [l, r] = [-1, curr.length];
-      while (l < r && curr[l + 1] === curr[r - 1]) l++, r--;
-      if (-1 === l) continue;
-      if (r - l < 3) return true;
-    }
+const checkPalindromeFormation = (a, b) => {
+  if (isPalindrome(a)) return true;
+  if (isPalindrome(b)) return true;
+  for (const [x, y] of [
+    [a, b],
+    [b, a],
+  ]) {
+    let [l, r] = [-1, x.length];
+    while (l < r && x[l + 1] === y[r - 1]) l++, r--;
+    if (isPalindrome(x, l + 1, r - 1)) return true;
+    if (isPalindrome(y, l + 1, r - 1)) return true;
   }
   return false;
 };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 108 ms, faster than 39.02% of JavaScript online submissions
+// Memory Usage: 49.6 MB, less than 6.71% of JavaScript online submissions
+
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {boolean}
+//  */
+// const checkPalindromeFormation = (a, b) => {
+//   for (const [x, y] of [
+//     [a, b],
+//     [b, a],
+//   ]) {
+//     let [l, r] = [-1, x.length];
+//     while (l < r && x[l + 1] === y[r - 1]) l++, r--;
+//     if (r - l < 3) return true;
+//     let [tl, tr] = [l, r];
+//     while (tl < tr && x[tl + 1] === x[tr - 1]) tl++, tr--;
+//     if (tr - tl < 3) return true;
+//     [tl, tr] = [l, r];
+//     while (tl < tr && y[tl + 1] === y[tr - 1]) tl++, tr--;
+//     if (tr - tl < 3) return true;
+//   }
+//   return false;
+// };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -340,6 +407,9 @@ fecab
 -- | - | --
 fe | c | ab
 ab | d | ef
+-- | - | --
+fe | c | ef
+fe | d | ef
 
 |abdef, |fecab = abdef, fecab
 a|bdef, f|ecab = aecab, fbdef
@@ -362,8 +432,11 @@ ok(checkPalindromeFormation('ulacfd', 'jizalu'));
 /*
 
 012 | 345
+--- | ---
 ula | cfd
 jiz | alu
+--- | ---
+ula | alu
 
 */
 
@@ -402,11 +475,6 @@ ok(
 );
 
 /*
-
-0000 | 000000011111111122
-0123 | 456789012345678901
-pvhm | upgqeltozftlmfjjde
-yjgp | zbezspnnpszebzmhvp
 
 0000 | 00000001111111 | 1122
 0123 | 45678901234567 | 8901
