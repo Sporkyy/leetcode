@@ -320,36 +320,36 @@ Constraints:
 // Runtime: 96 ms, faster than 58.54% of JavaScript online submissions
 // Memory Usage: 48.1 MB, less than 6.71% of JavaScript online submissions
 
-/**
- * @param {string} s
- * @param {number} [l=0]
- * @param {number} [r=s.length - 1]
- * @returns {boolean}
- */
-const isPalindrome = (s, l = 0, r = s.length - 1) => {
-  while (l < r) if (s[l++] !== s[r--]) return false;
-  return true;
-};
+// /**
+//  * @param {string} s
+//  * @param {number} [l=0]
+//  * @param {number} [r=s.length - 1]
+//  * @returns {boolean}
+//  */
+// const isPalindrome = (s, l = 0, r = s.length - 1) => {
+//   while (l < r) if (s[l++] !== s[r--]) return false;
+//   return true;
+// };
 
-/**
- * @param {string} a
- * @param {string} b
- * @return {boolean}
- */
-const checkPalindromeFormation = (a, b) => {
-  if (isPalindrome(a)) return true;
-  if (isPalindrome(b)) return true;
-  for (const [x, y] of [
-    [a, b],
-    [b, a],
-  ]) {
-    let [l, r] = [-1, x.length];
-    while (l < r && x[l + 1] === y[r - 1]) l++, r--;
-    if (isPalindrome(x, l + 1, r - 1)) return true;
-    if (isPalindrome(y, l + 1, r - 1)) return true;
-  }
-  return false;
-};
+// /**
+//  * @param {string} a
+//  * @param {string} b
+//  * @return {boolean}
+//  */
+// const checkPalindromeFormation = (a, b) => {
+//   if (isPalindrome(a)) return true;
+//   if (isPalindrome(b)) return true;
+//   for (const [x, y] of [
+//     [a, b],
+//     [b, a],
+//   ]) {
+//     let [l, r] = [-1, x.length];
+//     while (l < r && x[l + 1] === y[r - 1]) l++, r--;
+//     if (isPalindrome(x, l + 1, r - 1)) return true;
+//     if (isPalindrome(y, l + 1, r - 1)) return true;
+//   }
+//   return false;
+// };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -378,6 +378,40 @@ const checkPalindromeFormation = (a, b) => {
 //   }
 //   return false;
 // };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 100 ms, faster than 47.59% of JavaScript online submissions
+// Memory Usage: 48.2 MB, less than 6.63% of JavaScript online submissions
+
+/**
+ * @param {string} s
+ * @param {number} [l=0]
+ * @param {number} [r=s.length - 1]
+ * @returns {boolean}
+ */
+const checkOne = (s, l = 0, r = s.length - 1) => {
+  while (l < r && s[l + 1] === s[r - 1]) l++, r--;
+  return r - l < 3;
+};
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @returns {boolean}
+ */
+const checkTwo = (a, b) => {
+  let [l, r] = [-1, a.length];
+  while (l < r && a[l + 1] === b[r - 1]) l++, r--;
+  return checkOne(a, l, r) || checkOne(b, l, r);
+};
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {boolean}
+ */
+const checkPalindromeFormation = (a, b) => checkTwo(a, b) || checkTwo(b, a);
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
