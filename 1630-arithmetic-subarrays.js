@@ -67,6 +67,27 @@ Constraints:
 // Runtime: 152 ms, faster than 88.24% of JavaScript online submissions
 // Memory Usage: 44.9 MB, less than 7.56% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @param {number[]} l
+//  * @param {number[]} r
+//  * @return {boolean[]}
+//  */
+// const checkArithmeticSubarrays = (nums, l, r) =>
+//   l.map((start, idx) =>
+//     nums
+//       .slice(start, r[idx] + 1)
+//       .sort((a, b) => a - b)
+//       .every((n, idx, arr, diff = arr[1] - arr[0]) =>
+//         idx < 2 ? true : n - arr[idx - 1] === diff,
+//       ),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 160 ms, faster than 68.07% of JavaScript online submissions
+// Memory Usage: 45 MB, less than 7.56% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @param {number[]} l
@@ -74,12 +95,12 @@ Constraints:
  * @return {boolean[]}
  */
 const checkArithmeticSubarrays = (nums, l, r) =>
-  l.map((start, idx) =>
+  l.map((start, mapIdx) =>
     nums
-      .slice(start, r[idx] + 1)
+      .slice(start, r[mapIdx] + 1)
       .sort((a, b) => a - b)
-      .every((n, idx, arr, diff = arr[1] - arr[0]) =>
-        idx < 2 ? true : diff === n - arr[idx - 1],
+      .every((n, everyIdx, arr, diff = arr[1] - arr[0]) =>
+        everyIdx < 2 ? true : n - arr[everyIdx - 1] === diff,
       ),
   );
 
