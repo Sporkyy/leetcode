@@ -65,6 +65,27 @@ keypresses.
 // Runtime: 120 ms, faster than 8.15% of JavaScript online submissions
 // Memory Usage: 45 MB, less than 5.43% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} releaseTimes
+//  * @param {string} keysPressed
+//  * @return {character}
+//  */
+// const slowestKey = (releaseTimes, keysPressed) =>
+//   releaseTimes
+//     .map(
+//       (t, idx) =>
+//         `${('' + (t - releaseTimes[idx - 1] || t)).padStart(10, 0)}|${
+//           keysPressed[idx]
+//         }`,
+//     )
+//     .sort((a, b) => b.localeCompare(a))[0]
+//     .split('|')[1];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 66.85% of JavaScript online submissions
+// Memory Usage: 45.6 MB, less than 5.43% of JavaScript online submissions
+
 /**
  * @param {number[]} releaseTimes
  * @param {string} keysPressed
@@ -78,7 +99,9 @@ const slowestKey = (releaseTimes, keysPressed) =>
           keysPressed[idx]
         }`,
     )
-    .sort((a, b) => b.localeCompare(a))[0]
+    .reduce((slowest, combo) =>
+      0 < combo.localeCompare(slowest) ? combo : slowest,
+    )
     .split('|')[1];
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
