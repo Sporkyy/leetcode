@@ -86,23 +86,159 @@ keypresses.
 // Runtime: 84 ms, faster than 66.85% of JavaScript online submissions
 // Memory Usage: 45.6 MB, less than 5.43% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} releaseTimes
+//  * @param {string} keysPressed
+//  * @return {character}
+//  */
+// const slowestKey = (releaseTimes, keysPressed) =>
+//   releaseTimes
+//     .map(
+//       (t, idx) =>
+//         `${('' + (t - releaseTimes[idx - 1] || t)).padStart(10, 0)}|${
+//           keysPressed[idx]
+//         }`,
+//     )
+//     .reduce((slowest, combo) =>
+//       0 < combo.localeCompare(slowest) ? combo : slowest,
+//     )
+//     .split('|')[1];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 88 ms, faster than 51.63% of JavaScript online submissions
+// Memory Usage: 45.7 MB, less than 5.43% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} releaseTimes
+//  * @param {string} keysPressed
+//  * @return {character}
+//  */
+// const slowestKey = (releaseTimes, keysPressed) =>
+//   releaseTimes
+//     .reduce(
+//       (slowest, t, idx) =>
+//         0 <
+//         `${('' + (t - releaseTimes[idx - 1] || t)).padStart(10, 0)}|${
+//           keysPressed[idx]
+//         }`.localeCompare(slowest)
+//           ? `${('' + (t - releaseTimes[idx - 1] || t)).padStart(10, 0)}|${
+//               keysPressed[idx]
+//             }`
+//           : slowest,
+//       0,
+//     )
+//     .split('|')
+//     .pop();
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 96 ms, faster than 28.80% of JavaScript online submissions
+// Memory Usage: 45.1 MB, less than 5.43% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} rt
+//  * @param {string} kp
+//  * @return {character}
+//  */
+// const slowestKey = (rt, kp) =>
+//   rt.reduce(
+//     (slowest, t, idx) =>
+//       (combo => (0 < combo.localeCompare(slowest) ? combo : slowest))(
+//         `${t - rt[idx - 1] || t}${kp[idx]}`.padStart(10, 0),
+//       ),
+//     0,
+//   )[9];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 92 ms, faster than 37.50% of JavaScript online submissions
+// Memory Usage: 48.9 MB, less than 5.43% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} releaseTimes
+//  * @param {string} keysPressed
+//  * @return {character}
+//  */
+// const slowestKey = (releaseTimes, keysPressed) =>
+//   releaseTimes.reduce(
+//     (slowest, t, idx) =>
+//       [
+//         slowest,
+//         `${t - releaseTimes[idx - 1] || t}${keysPressed[idx]}`.padStart(10, 0),
+//       ].sort((a, b) => b.localeCompare(a))[0],
+//     '',
+//   )[9];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 88 ms, faster than 51.63% of JavaScript online submissions
+// Memory Usage: 41.1 MB, less than 5.43% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} rt
+//  * @param {string} kp
+//  * @return {character}
+//  */
+// const slowestKey = (rt, kp) =>
+//   String.fromCharCode(
+//     rt.reduce(
+//       (acc, curr, idx) =>
+//         Math.max(
+//           acc,
+//           Number(
+//             (curr - rt[idx - 1] || curr) +
+//               String(kp.charCodeAt(idx)).padStart(3, 0),
+//           ),
+//         ),
+//       0,
+//     ) % 1000,
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 66.85% of JavaScript online submissions
+// Memory Usage: 41.1 MB, less than 5.43% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} releaseTimes
+//  * @param {string} keysPressed
+//  * @return {character}
+//  */
+// const slowestKey = (releaseTimes, keysPressed) =>
+//   String.fromCharCode(
+//     releaseTimes.reduce(
+//       (acc, curr, idx) =>
+//         Math.max(
+//           acc,
+//           (curr - releaseTimes[idx - 1] || curr) +
+//             String(keysPressed.charCodeAt(idx)).padStart(3, 0),
+//         ),
+//       0,
+//     ) % 1000,
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 76 ms, faster than 92.78% of JavaScript online submissions
+// Memory Usage: 41.1 MB, less than 5.67% of JavaScript online submissions
+
 /**
  * @param {number[]} releaseTimes
  * @param {string} keysPressed
  * @return {character}
  */
 const slowestKey = (releaseTimes, keysPressed) =>
-  releaseTimes
-    .map(
-      (t, idx) =>
-        `${('' + (t - releaseTimes[idx - 1] || t)).padStart(10, 0)}|${
-          keysPressed[idx]
-        }`,
-    )
-    .reduce((slowest, combo) =>
-      0 < combo.localeCompare(slowest) ? combo : slowest,
-    )
-    .split('|')[1];
+  String.fromCharCode(
+    Math.max(
+      ...releaseTimes.map(
+        (t, idx) =>
+          `${t - releaseTimes[idx - 1] || t}${String(
+            keysPressed.charCodeAt(idx),
+          ).padStart(3, 0)}`,
+      ),
+    ) % 1000,
+  );
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
