@@ -223,20 +223,37 @@ keypresses.
 // Runtime: 76 ms, faster than 92.78% of JavaScript online submissions
 // Memory Usage: 41.1 MB, less than 5.67% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} releaseTimes
+//  * @param {string} keysPressed
+//  * @return {character}
+//  */
+// const slowestKey = (releaseTimes, keysPressed) =>
+//   String.fromCharCode(
+//     Math.max(
+//       ...releaseTimes.map(
+//         (t, idx) =>
+//           `${t - releaseTimes[idx - 1] || t}${String(
+//             keysPressed.charCodeAt(idx),
+//           ).padStart(3, 0)}`,
+//       ),
+//     ) % 1000,
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 66.49% of JavaScript online submissions
+// Memory Usage: 40.6 MB, less than 5.67% of JavaScript online submissions
+
 /**
- * @param {number[]} releaseTimes
- * @param {string} keysPressed
+ * @param {number[]} rt
+ * @param {string} kp
  * @return {character}
  */
-const slowestKey = (releaseTimes, keysPressed) =>
+const slowestKey = (rt, kp) =>
   String.fromCharCode(
     Math.max(
-      ...releaseTimes.map(
-        (t, idx) =>
-          `${t - releaseTimes[idx - 1] || t}${String(
-            keysPressed.charCodeAt(idx),
-          ).padStart(3, 0)}`,
-      ),
+      ...rt.map((t, idx) => (t - rt[idx - 1] || t) * 1000 + kp.charCodeAt(idx)),
     ) % 1000,
   );
 
