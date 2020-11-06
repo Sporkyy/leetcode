@@ -20,7 +20,7 @@ The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 
 */
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 144 ms, faster than 66.67% of JavaScript online submissions
 // Memory Usage: 56.4 MB, less than 100.00% of JavaScript online submissions
@@ -85,7 +85,7 @@ The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 //   return gardens.map(g => g.flower);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 140 ms, faster than 65.00% of JavaScript online submissions
 // Memory Usage: 47.1 MB, less than 100.00% of JavaScript online submissions
@@ -124,40 +124,40 @@ The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 //   return gardens.map(g => g.flower);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 144 ms, faster than 89.01% of JavaScript online submissions
 // Memory Usage: 54.6 MB, less than 100.00% of JavaScript online submissions
 
-/**
- * @param {number} N
- * @param {number[][]} paths
- * @return {number[]}
- */
-const gardenNoAdj = (N, paths) => {
-  const gardens = new Array(N + 1).fill().map(_ => ({
-    flower: '',
-    connectedGardens: [],
-  }));
+// /**
+//  * @param {number} N
+//  * @param {number[][]} paths
+//  * @return {number[]}
+//  */
+// const gardenNoAdj = (N, paths) => {
+//   const gardens = new Array(N + 1).fill().map(_ => ({
+//     flower: '',
+//     connectedGardens: [],
+//   }));
 
-  for (const [a, b] of paths) {
-    gardens[a].connectedGardens.push(gardens[b]);
-    gardens[b].connectedGardens.push(gardens[a]);
-  }
+//   for (const [a, b] of paths) {
+//     gardens[a].connectedGardens.push(gardens[b]);
+//     gardens[b].connectedGardens.push(gardens[a]);
+//   }
 
-  const flowers = [...new Array(4).keys()].map(f => f + 1);
+//   const flowers = [...new Array(4).keys()].map(f => f + 1);
 
-  for (const garden of gardens.slice(1))
-    for (const flower of flowers)
-      if (!garden.connectedGardens.map(g => g.flower).includes(flower)) {
-        garden.flower = flower;
-        break;
-      }
+//   for (const garden of gardens.slice(1))
+//     for (const flower of flowers)
+//       if (!garden.connectedGardens.map(g => g.flower).includes(flower)) {
+//         garden.flower = flower;
+//         break;
+//       }
 
-  return gardens.slice(1).map(g => g.flower);
-};
+//   return gardens.slice(1).map(g => g.flower);
+// };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 188 ms, faster than 41.76% of JavaScript online submissions
 // Memory Usage: 58.2 MB, less than 100.00% of JavaScript online submissions
@@ -193,7 +193,7 @@ const gardenNoAdj = (N, paths) => {
 //   return Object.entries(gardens).map(([_, { flower }]) => flower);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 232 ms, faster than 25.27% of JavaScript online submissions
 // Memory Usage: 74.1 MB, less than 100.00% of JavaScript online submissions
@@ -231,7 +231,44 @@ const gardenNoAdj = (N, paths) => {
 //   return [...gardens.entries()].map(([_, { flower }]) => flower);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 204 ms, faster than 36.72% of JavaScript online submissions
+// Memory Usage: 60.3 MB, less than 5.65% of JavaScript online submissions
+
+/**
+ * @param {number} N
+ * @param {number[][]} paths
+ * @return {number[]}
+ */
+const gardenNoAdj = (N, paths) => {
+  const gardens = new Array(N).fill().map(_ => ({
+    flower: 0,
+    cg: new Set(),
+  }));
+
+  // console.log(gardens);
+
+  for (const [a, b] of paths) {
+    gardens[a - 1].cg.add(gardens[b - 1]);
+    gardens[b - 1].cg.add(gardens[a - 1]);
+  }
+
+  // console.log(gardens);
+
+  const flowers = [0, 1, 2, 3, 4];
+
+  for (const garden of gardens)
+    for (const flower of flowers)
+      if (!new Set([...garden.cg].map(g => g.flower)).has(flower)) {
+        garden.flower = flower;
+        break;
+      }
+
+  return gardens.map(g => g.flower + 1);
+};
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 import { deepStrictEqual } from 'assert';
 
