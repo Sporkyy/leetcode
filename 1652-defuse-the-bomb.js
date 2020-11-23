@@ -81,6 +81,28 @@ code to defuse the bomb!
 // Runtime: 76 ms, faster than 91.81% of JavaScript online submissions
 // Memory Usage: 38.8 MB, less than 52.63% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} code
+//  * @param {number} k
+//  * @return {number[]}
+//  */
+// const decrypt = (code, k) => {
+//   if (k < 0) return decrypt(code.reverse(), -k).reverse();
+//   const res = new Array(code.length);
+//   for (let i = 0, sum = 0; i < code.length + k; i++) {
+//     sum += code[i % code.length];
+//     if (i < k) continue;
+//     sum -= code[i - k];
+//     res[i - k] = sum;
+//   }
+//   return res;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 80 ms, faster than 81.87% of JavaScript online submissions
+// Memory Usage: 38.9 MB, less than 46.20% of JavaScript online submissions
+
 /**
  * @param {number[]} code
  * @param {number} k
@@ -92,8 +114,7 @@ const decrypt = (code, k) => {
   for (let i = 0, sum = 0; i < code.length + k; i++) {
     sum += code[i % code.length];
     if (i < k) continue;
-    sum -= code[i - k];
-    res[i - k] = sum;
+    res[i - k] = sum -= code[i - k];
   }
   return res;
 };
