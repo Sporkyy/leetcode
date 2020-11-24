@@ -59,28 +59,52 @@ Return the number of indices that you could choose such that after the removal,
 // Runtime: 388 ms, faster than 17.86% of JavaScript online submissions
 // Memory Usage: 74.4 MB, less than 8.93% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums => {
+//   let [cnt, ePreSum, oPreSum, ePostSum, oPostSum] = [0, 0, 0, 0, 0];
+//   const sums = new Array(nums.length).fill().map(_ => [0, 0, 0, 0]);
+//   for (let i = 0; i < nums.length; i++) {
+//     0 === i % 2 ? (ePreSum += nums[i]) : (oPreSum += nums[i]);
+//     0 === (nums.length - 1 - i) % 2
+//       ? (ePostSum += nums[nums.length - 1 - i])
+//       : (oPostSum += nums[nums.length - 1 - i]);
+//     sums[i][0] = ePreSum;
+//     sums[i][1] = oPreSum;
+//     sums[sums.length - 1 - i][2] = ePostSum;
+//     sums[sums.length - 1 - i][3] = oPostSum;
+//     // console.log(ePreSum, oPreSum, ePostSum, oPostSum);
+//   }
+//   // console.log(sums);
+//   for (let i = 0; i < sums.length; i++) {
+//     // console.log(sums[i][3], sums[i][1], sums[i][2], sums[i][0]);
+//     if (sums[i][3] - sums[i][1] === sums[i][2] - sums[i][0]) cnt++;
+//   }
+//   return cnt;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 252 ms, faster than 30.36% of JavaScript online submissions
+// Memory Usage: 69.7 MB, less than 17.86% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
  */
 const waysToMakeFair = nums => {
-  let [cnt, ePreSum, oPreSum, ePostSum, oPostSum] = [0, 0, 0, 0, 0];
-  const sums = new Array(nums.length).fill().map(_ => [0, 0, 0, 0]);
-  for (let i = 0; i < nums.length; i++) {
-    0 === i % 2 ? (ePreSum += nums[i]) : (oPreSum += nums[i]);
-    0 === (nums.length - 1 - i) % 2
-      ? (ePostSum += nums[nums.length - 1 - i])
-      : (oPostSum += nums[nums.length - 1 - i]);
-    sums[i][0] = ePreSum;
-    sums[i][1] = oPreSum;
-    sums[sums.length - 1 - i][2] = ePostSum;
-    sums[sums.length - 1 - i][3] = oPostSum;
-    // console.log(ePreSum, oPreSum, ePostSum, oPostSum);
+  let [cnt, sum] = [0, [0, 0]];
+  const sums = new Array(nums.length);
+  for (let i = nums.length - 1; 0 <= i; i--) {
+    sum[i % 2] += nums[i];
+    sums[i] = [...sum];
   }
-  // console.log(sums);
+  sum = [0, 0];
   for (let i = 0; i < sums.length; i++) {
-    // console.log(sums[i][3], sums[i][1], sums[i][2], sums[i][0]);
-    if (sums[i][3] - sums[i][1] === sums[i][2] - sums[i][0]) cnt++;
+    sum[i % 2] += nums[i];
+    if (sums[i][0] - sum[0] === sums[i][1] - sum[1]) cnt++;
   }
   return cnt;
 };
