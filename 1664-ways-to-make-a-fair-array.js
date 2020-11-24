@@ -90,23 +90,94 @@ Return the number of indices that you could choose such that after the removal,
 // Runtime: 252 ms, faster than 30.36% of JavaScript online submissions
 // Memory Usage: 69.7 MB, less than 17.86% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums => {
+//   let [cnt, sum] = [0, [0, 0]];
+//   const sums = new Array(nums.length);
+//   for (let i = nums.length - 1; 0 <= i; i--) {
+//     sum[i % 2] += nums[i];
+//     sums[i] = [...sum];
+//   }
+//   sum = [0, 0];
+//   for (let i = 0; i < sums.length; i++) {
+//     sum[i % 2] += nums[i];
+//     if (sums[i][0] - sum[0] === sums[i][1] - sum[1]) cnt++;
+//   }
+//   return cnt;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 280 ms, faster than 25.00% of JavaScript online submissions
+// Memory Usage: 77.1 MB, less than 7.14% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums => {
+//   let sum = [0, 0];
+//   const x = nums.reduceRight((sums, n, i) => {
+//     sums[i] = [...sum]; // ?
+//     sum[i % 2] += n;
+//     // console.log(sum);
+//     return sums;
+//   }, new Array(nums.length)); // ?
+//   sum = [0, 0];
+//   const y = nums.reduce((cnt, n, i) => {
+//     // console.log(sum);
+//     // console.log(x[i]);
+//     if (sum[0] + x[i][1] === sum[1] + x[i][0]) cnt++;
+//     sum[i % 2] += n;
+//     return cnt;
+//   }, 0); // ?
+//   return y;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums => {
+//   const x = new Array(nums.length).fill(0);
+//   const y = new Array(nums.length).fill(0);
+//   const len = nums.length;
+//   for (let i = 0; i < len; i++) {
+//     x[i] += (x[i - 2] || 0) + nums[i];
+//     y[len - 1 - i] += (y[len - i + 1] || 0) + nums[nums.length - 1 - i];
+//   }
+//   console.log(nums);
+//   console.log(x);
+//   console.log(y);
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 276 ms, faster than 22.92% of JavaScript online submissions
+// Memory Usage: 69.8 MB, less than 16.67% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
  */
 const waysToMakeFair = nums => {
-  let [cnt, sum] = [0, [0, 0]];
-  const sums = new Array(nums.length);
-  for (let i = nums.length - 1; 0 <= i; i--) {
-    sum[i % 2] += nums[i];
-    sums[i] = [...sum];
-  }
+  let sum = [0, 0];
+  const x = nums.reduceRight((acc, curr, idx) => {
+    sum[idx % 2] += curr;
+    acc[idx] = [...sum];
+    return acc;
+  }, new Array(nums.length).fill()); // ?
   sum = [0, 0];
-  for (let i = 0; i < sums.length; i++) {
-    sum[i % 2] += nums[i];
-    if (sums[i][0] - sum[0] === sums[i][1] - sum[1]) cnt++;
-  }
-  return cnt;
+  return nums.reduce((acc, curr, idx) => {
+    sum[idx % 2] += curr;
+    if (x[idx][0] + sum[1] === x[idx][1] + sum[0]) acc++;
+    return acc;
+  }, 0); // ?
 };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
@@ -130,24 +201,96 @@ strictEqual(waysToMakeFair([2, 1, 6, 4]), 1);
 // Remove index 3: [2,1,6] -> Even sum: 2 + 6 = 8. Odd sum: 1. Not fair.
 // There is 1 index that you can remove to make nums fair.
 
+/*
+
+|    |  ⬇ |    |    |
+|  2 |  1 |  6 |  4 |
+| -: | -: | -: | -: |
+|  2 |  3 |  9 | 13 |
+| 13 | 11 | 10 |  4 |
+
+|    |  ⬇ |    |    |
+|  2 |  1 |  6 |  4 |
+| -: | -: | -: | -: |
+|  2 |  1 |  8 |  5 |
+|  8 |  5 |  6 |  4 |
+
+|    |  ⬇ |    |    |
+|  2 |  1 |  6 |  4 |
+| -: | -: | -: | -: |
+|  0 |  2 |  3 |  9 |
+| 11 | 10 |  4 |  0 |
+
+|    |  ⬇ |    |    |      |
+| -: | -: | -: | -: | ---: |
+|  2 |  1 |  6 |  4 |   13 |
+|  0 |  0 |  2 |  1 | 6, 4 |
+|  6 |  4 |  0 |  0 | 6, 4 |
+
+| -: | -: | -: | ---: |
+|  2 |  6 |  4 |   12 |
+|  0 |  0 |  2 | 6, 6 |
+|  4 |  0 |  0 | 6, 6 |
+
+*/
+
 // Example 2:
 strictEqual(waysToMakeFair([1, 1, 1]), 3);
 // Explanation: You can remove any index and the remaining array is fair.
+
+/*
+
+[ 1, 1, 2 ]
+[ 2, 1, 1 ]
+
+[1, 0], [1, 1], [2, 1]
+[2, 1], [1, 1], [1, 0]
+
+*/
 
 // Example 3:
 strictEqual(waysToMakeFair([1, 2, 3]), 0);
 // Explanation: You cannot make a fair array after removing any index.
 
+/*
+
+[ 1, 2, 4 ]
+[ 4, 2, 3 ]
+
+[1, 0], [1, 2], [4, 2]
+[4, 2], [3, 2], [3, 0]
+
+*/
+
 strictEqual(waysToMakeFair([1, 2, 5, 4, 3]), 2);
 /*
 
-//  |   1 |   2 | (5) |   4 | (3) |
-//  | 1,0 | 1,2 | 6,2 | 6,6 | 9,6 |
-//  | 1,0 | 1,2 |     | 5,2 | 5,5 |
-//  | 1,0 | 1,2 | 6,2 | 6,6 |     |
+|   1 |   2 | (5) |   4 | (3) |
+| 1,0 | 1,2 | 6,2 | 6,6 | 9,6 |
+| 1,0 | 1,2 |     | 5,2 | 5,5 |
+| 1,0 | 1,2 | 6,2 | 6,6 |     |
 
-Even sum = 9
-Odd sum = 6
+|     |     |   ⬇ |     |   ⬇ |
+|   1 |   2 |   5 |   4 |   3 |
+| --: | --: | --: | --: | --: |
+|  15 |  14 |  12 |   7 |   3 |
+|   1 |   3 |   8 |  12 |  15 |
+
+|     |     |   ⬇ |     |   ⬇ |
+|   1 |   2 |   5 |   4 |   3 |
+| --: | --: | --: | --: | --: |
+|   9 |   6 |   8 |   4 |   3 |
+|   1 |   2 |   6 |   6 |   9 |
+
+|      |     |     |   ⬇ |     |   ⬇ |      |
+| e, o |   1 |   2 |   5 |   4 |   3 | e, o |
+| ---: | --: | --: | --: | --: | --: | ---: |
+| 9, 6 |   8 |   4 |   3 |   0 |   0 |      |
+|      |   0 |   0 |   1 |   2 |   6 | 9, 6 |
+
+9 | 6
+----- (9 - 1) - (6 + 2) = 0
+2 |
 
 */
 
@@ -161,5 +304,11 @@ strictEqual(waysToMakeFair([4, 5, 2, 2, 1, 1]), 2);
 | 4,0 | 4,5 | 6,5 |     | 5,5 | 7,5 |
 | 4,0 | 4,5 | 6,5 | 6,7 |     | 7,7 |
 | 4,0 | 4,5 | 6,5 | 6,7 | 7,7 |     |
+
+|     |     |     |     |   ⬇ |   ⬇ |
+|   4 |   5 |   2 |   2 |   1 |   1 |
+| --: | --: | --: | --: | --: | --: |
+|   0 |   0 |   4 |   5 |   5 |   6 |
+|   3 |   3 |   1 |   1 |   0 |   0 |
 
 */
