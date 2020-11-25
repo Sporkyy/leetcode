@@ -185,6 +185,73 @@ Return the number of indices that you could choose such that after the removal,
 // Runtime: 124 ms, faster than 58.33% of JavaScript online submissions
 // Memory Usage: 54.5 MB, less than 48.96% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums =>
+//   nums
+//     .reduce(
+//       (acc, curr, idx) => {
+//         acc.push(acc[idx] + [1, -1][idx % 2] * curr);
+//         return acc;
+//       },
+//       [0],
+//     )
+//     .reduce((acc, curr, idx, src) => {
+//       if (curr === src[nums.length] - src[idx + 1]) acc++;
+//       return acc;
+//     }, 0);
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 136 ms, faster than 45.83% of JavaScript online submissions
+// Memory Usage: 50.5 MB, less than 68.75% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums =>
+//   nums
+//     .reduce((acc, curr, idx) => {
+//       acc[idx + 1] = acc[idx] + [1, -1][idx % 2] * curr;
+//       return acc;
+//     }, new Array(nums.length + 1).fill(0))
+//     .reduce(
+//       (acc, curr, idx, src) =>
+//         acc + (curr === src[nums.length] - src[idx + 1] ? 1 : 0),
+//       0,
+//     );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 148 ms, faster than 38.05% of JavaScript online submissions
+// Memory Usage: 55.3 MB, less than 42.48% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums =>
+//   nums
+//     .reduce(
+//       (acc, curr, idx) => {
+//         acc.push(0 === idx % 2 ? acc[idx] + curr : acc[idx] - curr);
+//         return acc;
+//       },
+//       [0],
+//     )
+//     .reduce(
+//       (acc, curr, idx, src) => acc + (src[nums.length] - src[idx + 1] === curr),
+//       0,
+//     );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 152 ms, faster than 37.17% of JavaScript online submissions
+// Memory Usage: 55.3 MB, less than 42.48% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
@@ -193,15 +260,15 @@ const waysToMakeFair = nums =>
   nums
     .reduce(
       (acc, curr, idx) => {
-        acc.push(acc[idx] + [1, -1][idx % 2] * curr);
+        acc.push(acc[idx] + (idx % 2 ? curr : -curr));
         return acc;
       },
       [0],
     )
-    .reduce((acc, curr, idx, src) => {
-      if (curr === src[nums.length] - src[idx + 1]) acc++;
-      return acc;
-    }, 0);
+    .reduce(
+      (acc, curr, idx, src) => acc + (src[nums.length] - src[idx + 1] === curr),
+      0,
+    );
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -226,34 +293,15 @@ strictEqual(waysToMakeFair([2, 1, 6, 4]), 1);
 
 /*
 
-|    |  ⬇ |    |    |
-|  2 |  1 |  6 |  4 |
-| -: | -: | -: | -: |
-|  2 |  3 |  9 | 13 |
-| 13 | 11 | 10 |  4 |
+| 0 | 2 | 1 | 7 | 3 |
+| + | - | + | - |   |
+| 2 | 1 | 6 | 4 |   |
 
-|    |  ⬇ |    |    |
-|  2 |  1 |  6 |  4 |
-| -: | -: | -: | -: |
-|  2 |  1 |  8 |  5 |
-|  8 |  5 |  6 |  4 |
-
-|    |  ⬇ |    |    |
-|  2 |  1 |  6 |  4 |
-| -: | -: | -: | -: |
-|  0 |  2 |  3 |  9 |
-| 11 | 10 |  4 |  0 |
-
-|    |  ⬇ |    |    |      |
-| -: | -: | -: | -: | ---: |
-|  2 |  1 |  6 |  4 |   13 |
-|  0 |  0 |  2 |  1 | 6, 4 |
-|  6 |  4 |  0 |  0 | 6, 4 |
-
-| -: | -: | -: | ---: |
-|  2 |  6 |  4 |   12 |
-|  0 |  0 |  2 | 6, 6 |
-|  4 |  0 |  0 | 6, 6 |
+0 === 3 - 2 🙅‍♂️
+2 === 3 - 1 ✅
+1 === 3 - 7 🙅‍♂️
+7 === 3 - 3 🙅‍♂️
+3 === 3 - undefined 🙅‍♂️
 
 */
 
@@ -263,11 +311,9 @@ strictEqual(waysToMakeFair([1, 1, 1]), 3);
 
 /*
 
-[ 1, 1, 2 ]
-[ 2, 1, 1 ]
-
-[1, 0], [1, 1], [2, 1]
-[2, 1], [1, 1], [1, 0]
+| 0 | 1 | 0 | 1 |
+| + | - | + |   |
+| 1 | 1 | 1 |   |
 
 */
 
