@@ -161,24 +161,47 @@ Return the number of indices that you could choose such that after the removal,
 // Runtime: 276 ms, faster than 22.92% of JavaScript online submissions
 // Memory Usage: 69.8 MB, less than 16.67% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums => {
+//   let sum = [0, 0];
+//   const x = nums.reduceRight((acc, curr, idx) => {
+//     sum[idx % 2] += curr;
+//     acc[idx] = [...sum];
+//     return acc;
+//   }, new Array(nums.length).fill()); // ?
+//   sum = [0, 0];
+//   return nums.reduce((acc, curr, idx) => {
+//     sum[idx % 2] += curr;
+//     if (x[idx][0] + sum[1] === x[idx][1] + sum[0]) acc++;
+//     return acc;
+//   }, 0); // ?
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 124 ms, faster than 58.33% of JavaScript online submissions
+// Memory Usage: 54.5 MB, less than 48.96% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
  */
-const waysToMakeFair = nums => {
-  let sum = [0, 0];
-  const x = nums.reduceRight((acc, curr, idx) => {
-    sum[idx % 2] += curr;
-    acc[idx] = [...sum];
-    return acc;
-  }, new Array(nums.length).fill()); // ?
-  sum = [0, 0];
-  return nums.reduce((acc, curr, idx) => {
-    sum[idx % 2] += curr;
-    if (x[idx][0] + sum[1] === x[idx][1] + sum[0]) acc++;
-    return acc;
-  }, 0); // ?
-};
+const waysToMakeFair = nums =>
+  nums
+    .reduce(
+      (acc, curr, idx) => {
+        acc.push(acc[idx] + [1, -1][idx % 2] * curr);
+        return acc;
+      },
+      [0],
+    )
+    .reduce((acc, curr, idx, src) => {
+      if (curr === src[nums.length] - src[idx + 1]) acc++;
+      return acc;
+    }, 0);
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
