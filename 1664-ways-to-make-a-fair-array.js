@@ -367,23 +367,98 @@ Return the number of indices that you could choose such that after the removal,
 // Runtime: 124 ms, faster than 51.45% of JavaScript online submissions
 // Memory Usage: 48.1 MB, less than 84.97% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums =>
+//   nums.reduce(
+//     (acc, curr, idx) => {
+//       acc[idx % 2] -= curr;
+//       acc[2] += acc[0] === acc[1];
+//       acc[idx % 2 ? 0 : 1] += curr;
+//       return acc;
+//     },
+//     nums.reduce(
+//       (acc, curr, idx) => {
+//         acc[idx % 2] += curr;
+//         return acc;
+//       },
+//       [0, 0, 0],
+//     ),
+//   )[2];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 308 ms, faster than 14.45% of JavaScript online submissions
+// Memory Usage: 61.9 MB, less than 19.08% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums =>
+//   nums.reduce(
+//     (acc, curr, idx) => [
+//       acc[0] + (idx % 2 ? curr : -curr),
+//       acc[1] + (idx % 2 ? -curr : curr),
+//       acc[2] + (acc[0] === acc[1] + (idx % 2 ? -curr : curr)),
+//     ],
+//     nums.reduce(
+//       (acc, curr, idx) => [
+//         idx % 2 ? acc[0] : acc[0] + curr,
+//         idx % 2 ? acc[1] + curr : acc[1],
+//         acc[2],
+//       ],
+//       [0, 0, 0],
+//     ),
+//   )[2];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums =>
+//   nums.reduce(
+//     (acc, curr, idx) => [
+//       acc[0] + (idx % 2 ? curr : -curr),
+//       acc[1] + (idx % 2 ? -curr : curr),
+//       acc[2] + (acc[0] === acc[1] + (idx % 2 ? -curr : curr)),
+//     ],
+//     nums.reduce(
+//       (acc, curr, idx) => [
+//         acc[0] + (idx % 2 ? 0 : curr),
+//         acc[1] + (idx % 2 ? curr : 0),
+//         acc[2],
+//       ],
+//       [0, 0, 0],
+//     ),
+//   )[2];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 140 ms, faster than 39.88% of JavaScript online submissions
+// Memory Usage: 53.3 MB, less than 44.51% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
  */
 const waysToMakeFair = nums =>
   nums.reduce(
-    (acc, curr, idx) => {
-      acc[idx % 2] -= curr;
-      acc[2] += acc[0] === acc[1];
-      acc[idx % 2 ? 0 : 1] += curr;
-      return acc;
-    },
+    (acc, curr, idx) => [
+      acc[0] + (idx % 2 ? curr : -curr),
+      acc[1] + (idx % 2 ? -curr : curr),
+      acc[2] + (idx % 2 ? acc[0] + curr === acc[1] : acc[0] === acc[1] + curr),
+    ],
     nums.reduce(
-      (acc, curr, idx) => {
-        acc[idx % 2] += curr;
-        return acc;
-      },
+      (acc, curr, idx) => [
+        acc[0] + (idx % 2 ? 0 : curr),
+        acc[1] + (idx % 2 ? curr : 0),
+        acc[2],
+      ],
       [0, 0, 0],
     ),
   )[2];
