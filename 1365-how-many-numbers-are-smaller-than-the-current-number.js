@@ -58,19 +58,19 @@ Return the answer in an array.
 // Runtime: 100 ms, faster than 49.01% of JavaScript online submissions
 // Memory Usage: 40.3 MB, less than 14.09% of JavaScript online submissions
 
-/**
- * @param {number[]} nums
- * @return {number[]}
- */
-const smallerNumbersThanCurrent = nums =>
-  (map => nums.map(n => map.get(n)))(
-    new Map(
-      [...nums]
-        .sort((a, b) => a - b)
-        .map((val, idx) => [val, idx])
-        .reverse(),
-    ),
-  );
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// const smallerNumbersThanCurrent = nums =>
+//   (map => nums.map(n => map.get(n)))(
+//     new Map(
+//       [...nums]
+//         .sort((a, b) => a - b)
+//         .map((val, idx) => [val, idx])
+//         .reverse(),
+//     ),
+//   );
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -91,6 +91,24 @@ const smallerNumbersThanCurrent = nums =>
 //         .reverse(),
 //     ),
 //   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 92 ms, faster than 84.06% of JavaScript online submissions
+// Memory Usage: 41 MB, less than 17.24% of JavaScript online submissions
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+const smallerNumbersThanCurrent = nums =>
+  (map => nums.map(n => map.get(n)))(
+    new Map(
+      [...nums]
+        .sort((a, b) => b - a)
+        .map((val, idx) => [val, nums.length - idx - 1]),
+    ),
+  );
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
