@@ -252,19 +252,39 @@ Return the number of indices that you could choose such that after the removal,
 // Runtime: 152 ms, faster than 37.17% of JavaScript online submissions
 // Memory Usage: 55.3 MB, less than 42.48% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const waysToMakeFair = nums =>
+//   nums
+//     .reduce(
+//       (acc, curr, idx) => {
+//         acc.push(acc[idx] + (idx % 2 ? curr : -curr));
+//         return acc;
+//       },
+//       [0],
+//     )
+//     .reduce(
+//       (acc, curr, idx, src) => acc + (src[nums.length] - src[idx + 1] === curr),
+//       0,
+//     );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 128 ms, faster than 47.40% of JavaScript online submissions
+// Memory Usage: 50.3 MB, less than 56.65% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
  */
 const waysToMakeFair = nums =>
   nums
-    .reduce(
-      (acc, curr, idx) => {
-        acc.push(acc[idx] + (idx % 2 ? curr : -curr));
-        return acc;
-      },
-      [0],
-    )
+    .reduce((acc, curr, idx) => {
+      acc[idx + 1] = acc[idx] + [1, -1][idx % 2] * curr;
+      return acc;
+    }, new Array(nums.length + 1).fill(0))
     .reduce(
       (acc, curr, idx, src) => acc + (src[nums.length] - src[idx + 1] === curr),
       0,
