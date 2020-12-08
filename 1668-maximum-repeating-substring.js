@@ -68,21 +68,6 @@ sequence.
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// Runtime: 80 ms, faster than 75.16% of JavaScript online submissions
-// Memory Usage: 38.7 MB, less than 53.59% of JavaScript online submissions
-
-/**
- * @param {string} sequence
- * @param {string} word
- * @return {number}
- */
-const maxRepeating = (sequence, word, needle = '') =>
-  !sequence.includes(`${needle}${word}`)
-    ? needle.length / word.length
-    : maxRepeating(sequence, word, `${needle}${word}`);
-
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
-
 // Runtime: 92 ms, faster than 30.72% of JavaScript online submissions
 // Memory Usage: 42.5 MB, less than 5.23% of JavaScript online submissions
 
@@ -117,6 +102,77 @@ const maxRepeating = (sequence, word, needle = '') =>
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Runtime: 92 ms, faster than 30.72% of JavaScript online submissions
+// Memory Usage: 42.7 MB, less than 5.23% of JavaScript online submissions
+
+// /**
+//  * @param {string} sequence
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const maxRepeating = (sequence, word) => {
+//   const [sl, wl] = [sequence.length, word.length];
+//   const [se, we] = [sl - 1, wl - 1];
+//   let max = 0;
+//   for (let [fsi, fwi, bwi, fCnt, bCnt] = [0, 0, we, 0, 0]; fsi < sl; fsi++) {
+//     if (sequence[fsi] !== word[fwi]) [fCnt, fwi] = [0, 0];
+//     if (sequence[fsi] === word[fwi]) fwi++;
+//     if (fwi === word.length) [max, fwi] = [Math.max(max, ++fCnt), 0];
+//     if (sequence[se - fsi] !== word[bwi]) [bCnt, bwi] = [0, we];
+//     if (sequence[se - fsi] === word[bwi]) bwi--;
+//     if (-1 === bwi) [max, bwi] = [Math.max(max, ++bCnt), we];
+//   }
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 80 ms, faster than 75.16% of JavaScript online submissions
+// Memory Usage: 38.7 MB, less than 53.59% of JavaScript online submissions
+
+/**
+ * @param {string} sequence
+ * @param {string} word
+ * @return {number}
+ */
+const maxRepeating = (sequence, word, needle = '') =>
+  !sequence.includes(`${needle}${word}`)
+    ? needle.length / word.length
+    : maxRepeating(sequence, word, `${needle}${word}`);
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 80 ms, faster than 75.16% of JavaScript online submissions
+// Memory Usage: 38.7 MB, less than 53.59% of JavaScript online submissions
+
+// /**
+//  * @param {string} sequence
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const maxRepeating = (sequence, word, cnt = 0) =>
+//   !sequence.includes(word.repeat(cnt + 1))
+//     ? cnt
+//     : maxRepeating(sequence, word, cnt + 1);
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 80 ms, faster than 75.16% of JavaScript online submissions
+// Memory Usage: 38.8 MB, less than 41.18% of JavaScript online submissions
+
+// /**
+//  * @param {string} sequence
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const maxRepeating = (sequence, word) => {
+//   let cnt = 0;
+//   while (sequence.includes(word.repeat(cnt + 1))) cnt++;
+//   return cnt;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 import { strictEqual } from 'assert';
 
 // Example 1:
@@ -143,3 +199,5 @@ strictEqual(maxRepeating('aaabaaaabaaabaaaabaaaabaaaabaaaaba', 'aaaba'), 5);
 */
 
 strictEqual(maxRepeating('bbaa', 'ba'), 1);
+
+strictEqual(maxRepeating('ababc', 'ab'), 2);
