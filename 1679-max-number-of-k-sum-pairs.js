@@ -269,14 +269,14 @@ strictEqual(maxOperations([1, 2, 3, 4], 5), 2);
 // There are no more pairs that sum up to 5, hence a total of 2 operations.
 
 // Example 2:
-// strictEqual(maxOperations([3, 1, 3, 4, 3], 6), 1);
+strictEqual(maxOperations([3, 1, 3, 4, 3], 6), 1);
 // Explanation: Starting with nums = [3,1,3,4,3]:
 // - Remove the first two 3's, then nums = [1,4,3]
 // There are no more pairs that sum up to 6, hence a total of 1 operation.
 
-// strictEqual(maxOperations([3, 1, 4], 6), 0);
-// strictEqual(maxOperations([3, 1, 3, 4], 6), 1);
-// strictEqual(maxOperations([3, 1, 3, 4, 3, 3], 6), 2);
+strictEqual(maxOperations([3, 1, 4], 6), 0);
+strictEqual(maxOperations([3, 1, 3, 4], 6), 1);
+strictEqual(maxOperations([3, 1, 3, 4, 3, 3], 6), 2);
 
 strictEqual(
   maxOperations(
