@@ -261,6 +261,35 @@ Return the minimum number of moves required to make nums complementary.
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// /**
+//  * @param {number[]} nums
+//  * @param {number} limit
+//  * @return {number}
+//  */
+// const minMoves = (nums, limit) => {
+//   const sums = new Set();
+//   const mins = new Array(nums.length / 2);
+//   const maxes = new Array(nums.length / 2);
+//   let [min, max] = [Infinity, -Infinity];
+//   for (let i = 0; i < nums.length / 2; i++) {
+//     const [x, y] = [nums[i], nums[nums.length - 1 - i]];
+//     sums.add(x + y);
+//     mins[i] = Math.min(x, y);
+//     maxes[i] = Math.max(x, y);
+//     min = Math.min(min, x, y);
+//     max = Math.max(max, x, y);
+//   }
+//   console.log(sums);
+//   console.log(mins);
+//   console.log(maxes);
+//   console.log(Math.min(...mins));
+//   console.log(Math.max(...mins));
+//   console.log(Math.min(...maxes));
+//   if (Math.max(...mins) - Math.min(...mins) < limit) return nums.length / 2;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 /**
  * @param {number[]} nums
  * @param {number} limit
@@ -270,14 +299,11 @@ const minMoves = (nums, limit) => {
   const sums = new Set();
   const mins = new Array(nums.length / 2);
   const maxes = new Array(nums.length / 2);
-  let [min, max] = [Infinity, -Infinity];
   for (let i = 0; i < nums.length / 2; i++) {
     const [x, y] = [nums[i], nums[nums.length - 1 - i]];
-    sums.add(x, y);
+    sums.add(x + y);
     mins[i] = Math.min(x, y);
     maxes[i] = Math.max(x, y);
-    min = Math.min(min, x, y);
-    max = Math.max(max, x, y);
   }
   console.log(sums);
   console.log(mins);
