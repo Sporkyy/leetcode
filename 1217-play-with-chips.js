@@ -1,7 +1,9 @@
-// 1217. Play with Chips
-// https://leetcode.com/problems/play-with-chips/
-
 /*
+
+# 1217. Play with Chips
+## https://leetcode.com/problems/play-with-chips/
+
+〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 There are some chips, and the i-th chip is at position chips[i].
 
@@ -19,11 +21,11 @@ Constraints:
 - 1 <= chips.length <= 100
 - 1 <= chips[i] <= 10^9
 
+〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 */
 
-import { strictEqual } from 'assert';
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 52 ms, faster than 73.77% of JavaScript online submissions
 // Memory Usage: 35.5 MB, less than 100.00% of JavaScript online submissions
@@ -41,34 +43,80 @@ import { strictEqual } from 'assert';
 //   );
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 52 ms, faster than 73.77% of JavaScript online submissions
 // Memory Usage: 34.1 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} chips
+//  * @return {number}
+//  */
+// const minCostToMoveChips = (chips, evenCnt = 0, oddCnt = 0) =>
+//   !chips.length
+//     ? Math.min(evenCnt, oddCnt)
+//     : minCostToMoveChips(
+//         chips.slice(1),
+//         evenCnt + +(0 === chips[0] % 2),
+//         oddCnt + +(1 === chips[0] % 2),
+//       );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 14.86% of JavaScript online submissions
+// Memory Usage: 38.5 MB, less than 44.25% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} chips
+//  * @return {number}
+//  */
+// const minCostToMoveChips = chips =>
+//   Math.min(
+//     ...chips.reduce(
+//       (acc, curr) => {
+//         acc[curr % 2]++;
+//         return acc;
+//       },
+//       [0, 0],
+//     ),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 76 ms, faster than 76.31% of JavaScript online submissions
+// Memory Usage: 38.6 MB, less than 30.28% of JavaScript online submissions
 
 /**
  * @param {number[]} chips
  * @return {number}
  */
-const minCostToMoveChips = (chips, evenCnt = 0, oddCnt = 0) =>
-  !chips.length
-    ? Math.min(evenCnt, oddCnt)
-    : minCostToMoveChips(
-        chips.slice(1),
-        evenCnt + +(0 === chips[0] % 2),
-        oddCnt + +(1 === chips[0] % 2),
-      );
+const minCostToMoveChips = chips =>
+  Math.min(
+    ...chips
+      .reduce(
+        (acc, curr) => acc.set(curr % 2, acc.get(curr % 2) + 1),
+        new Map([
+          [0, 0],
+          [1, 0],
+        ]),
+      )
+      .values(),
+  );
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+import { strictEqual } from 'assert';
 
 // Example 1:
-strictEqual(minCostToMoveChips([1, 2, 3]), 1);
+// strictEqual(minCostToMoveChips([1, 2, 3]), 1);
 // Explanation: Second chip will be moved to positon 3 with cost 1.
 // First chip will be moved to position 3 with cost 0. Total cost is 1.
 
 // Example 2:
-strictEqual(minCostToMoveChips([2, 2, 2, 3, 3]), 2);
+// strictEqual(minCostToMoveChips([2, 2, 2, 3, 3]), 2);
 // Explanation: Both fourth and fifth chip will be moved to position two
 // with cost 1. Total minimum cost will be 2.
 
-strictEqual(minCostToMoveChips([1, 2, 5]), 1);
+// strictEqual(minCostToMoveChips([1, 2, 5]), 1);
+
+strictEqual(minCostToMoveChips([1, 2, 2, 2, 2]), 1);
