@@ -24,6 +24,7 @@ Return the minimum number of moves required to make nums complementary.
 */
 
 // Time Limit Exceeded
+// 108 / 113 test cases passed.
 
 // /**
 //  * @param {number[]} nums
@@ -75,28 +76,84 @@ Return the minimum number of moves required to make nums complementary.
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Time Limit Exceeded
+// 108 / 113 test cases passed.
+
+// /**
+//  * @param {number[]} nums
+//  * @param {number} limit
+//  * @return {number}
+//  */
+// const minMoves = (nums, limit) => {
+//   const sums = new Set();
+//   const mins = new Array(nums.length / 2);
+//   const maxes = new Array(nums.length / 2);
+//   let [minMin, maxMax] = [Infinity, -Infinity];
+//   for (let i = 0; i < nums.length / 2; i++) {
+//     const [x, y] = [nums[i], nums[nums.length - 1 - i]];
+//     const [min, max] = [x, y].sort((a, b) => a - b);
+//     [mins[i], maxes[i]] = [min, max];
+//     minMin = Math.min(minMin, min);
+//     maxMax = Math.max(maxMax, max);
+//     sums.add(min + max);
+//   }
+//   // console.log(mins, minMin);
+//   // console.log(maxes, maxMax);
+//   // console.log(sums);
+//   let res = Infinity;
+
+//   outer: for (const sum of sums) {
+//     // console.log(sum);
+//     let cnt = 0;
+//     for (let i = 0; i < mins.length; i++) {
+//       const [min, max] = [mins[i], maxes[i]];
+//       if (min + max === sum) continue;
+//       // console.log(sum, [min, max]);
+//       if (
+//         (min < sum && sum <= min + limit) ||
+//         (max < sum && sum <= max + limit)
+//       )
+//         cnt++;
+//       else cnt += 2;
+//       if (res <= cnt) continue outer;
+//     }
+//     // console.log(`sum = ${sum}, cnt = ${cnt}`);
+//     res = Math.min(res, cnt);
+//   }
+//   let fallback = 0;
+//   for (let i = 0; i < mins.length; i++) {
+//     if (Math.max(...mins) < minMin + limit) fallback++;
+//   }
+//   if (mins.length === fallback) return Math.min(res, fallback);
+//   return res;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Time Limit Exceeded
+// 109 / 113 test cases passed.
+
 /**
  * @param {number[]} nums
  * @param {number} limit
  * @return {number}
  */
 const minMoves = (nums, limit) => {
-  const sums = new Set();
   const mins = new Array(nums.length / 2);
   const maxes = new Array(nums.length / 2);
+  const sums = new Set();
+
   let [minMin, maxMax] = [Infinity, -Infinity];
   for (let i = 0; i < nums.length / 2; i++) {
-    const [x, y] = [nums[i], nums[nums.length - 1 - i]];
-    const [min, max] = [x, y].sort((a, b) => a - b);
-    [mins[i], maxes[i]] = [min, max];
-    minMin = Math.min(minMin, min);
-    maxMax = Math.max(maxMax, max);
-    sums.add(min + max);
+    mins[i] = Math.min(nums[i], nums[nums.length - 1 - i]);
+    maxes[i] = Math.max(nums[i], nums[nums.length - 1 - i]);
+    minMin = Math.min(minMin, mins[i]);
+    maxMax = Math.max(maxMax, maxes[i]);
+    sums.add(mins[i] + maxes[i]);
   }
-  // console.log(mins, minMin);
-  // console.log(maxes, maxMax);
-  // console.log(sums);
-  let res = Infinity;
+  // console.log(minMin, maxMax);
+
+  let res = maxMax < minMin + limit ? nums.length / 2 : Infinity;
 
   outer: for (const sum of sums) {
     // console.log(sum);
@@ -116,11 +173,7 @@ const minMoves = (nums, limit) => {
     // console.log(`sum = ${sum}, cnt = ${cnt}`);
     res = Math.min(res, cnt);
   }
-  let fallback = 0;
-  for (let i = 0; i < mins.length; i++) {
-    if (Math.max(...mins) < minMin + limit) fallback++;
-  }
-  if (mins.length === fallback) return Math.min(res, fallback);
+
   return res;
 };
 
@@ -204,6 +257,9 @@ strictEqual(
 min | 15,721 |  3,458 | 16,848 |  2,457 |
 max | 20,744 |  7,642 | 19,090 |  9,992 |
 sum | 36,465 | 11,100 | 35,938 | 12,449 |
+
+min min:  2,457
+max max: 20,744
 
 min |   15,721 |   3,458  |  16,848  |   2,457  |
 max |  (2,147) | (19,433) |  (6,043) | (22,891) |
