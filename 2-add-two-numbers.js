@@ -1,7 +1,24 @@
-// 2. Add Two Numbers
-// https://leetcode.com/problems/add-two-numbers/
+/*
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# 2. Add Two Numbers
+## https://leetcode.com/problems/add-two-numbers/
+
+You are given two non-empty linked lists representing two non-negative integers.
+The digits are stored in reverse order, and each of their nodes contains a
+single digit. Add the two numbers and return the sum as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the
+number 0 itself.
+
+## Constraints:
+- The number of nodes in each linked list is in the range [1, 100].
+- 0 <= Node.val <= 9
+- It is guaranteed that the list represents a number that does not have leading
+  zeros.
+
+*/
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // /**
 //  * Runtime: 104 ms, faster than 100.00% of JavaScript online submissions
@@ -33,7 +50,7 @@
 //   return dummyHead.next;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // /**
 //  * Runtime: 120 ms, faster than 44.38% of JavaScript online submissions
@@ -56,12 +73,12 @@
 //   return node;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 112 ms, faster than 75.84% of JavaScript online submissions
+// Memory Usage: 38.2 MB, less than 80.56% of JavaScript online submissions
 
 /**
- * Runtime: 112 ms, faster than 75.84% of JavaScript online submissions
- * Memory Usage: 38.2 MB, less than 80.56% of JavaScript online submissions
- *
  * @param {ListNode} l1
  * @param {ListNode} l2
  * @param {number} [carry=0]
@@ -79,7 +96,7 @@ const addTwoNumbers = (l1, l2, carry = 0) => {
   return node;
 };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 /**
  * A singly-linked list node
@@ -149,7 +166,7 @@ const stringToListNode = s => {
   return node;
 };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // console.log(JSON.stringify(intToListNode(123)));
 // console.log(JSON.stringify(arrayToListNode([1, 2, 3])));
@@ -301,7 +318,7 @@ const stringToListNode = s => {
 //   ),
 // );
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 import { deepStrictEqual } from 'assert';
 
