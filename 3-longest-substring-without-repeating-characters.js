@@ -1,7 +1,18 @@
-// 3. Longest Substring Without Repeating Characters
-// https://leetcode.com/problems/longest-substring-without-repeating-characters/
+/*
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# 3. Longest Substring Without Repeating Characters
+## https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+Given a string s, find the length of the longest substring without repeating
+characters.
+
+## Constraints
+- 0 <= s.length <= 5 * 104
+- s consists of English letters, digits, symbols and spaces.
+
+*/
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // /**
 //  * Runtime: 96 ms, faster than 87.05% of JavaScript online submissions
@@ -27,7 +38,7 @@
 //   return Math.max(...possibilities.map(p => p.length));
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // /**
 //  * Runtime: 80 ms, faster than 100.00% of JavaScript online submissions
@@ -58,7 +69,7 @@
 //   return longest;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // /**
 //  * Runtime: 68 ms, faster than 100.00% of JavaScript online submissions
@@ -88,7 +99,7 @@
 //   return longest < candidate.length ? candidate.length : longest;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // const beginIndices = (n, a = [...'0'.repeat(n)].map(Number)) =>
 //   n < 1 ? [] : a.concat(beginIndices(n - 1, a.slice(1).map(i => i + 1)));
@@ -124,7 +135,7 @@
 //   return res;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // const lengthOfLongestSubstring = s => {
 //   let [left, right, max, map] = [0, 0, 0, new Map()];
@@ -136,7 +147,34 @@
 //   return max;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 104 ms, faster than 88.68% of JavaScript online submissions
+// Memory Usage: 41.3 MB, less than 92.06% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  */
+// const lengthOfLongestSubstring = s => {
+//   // 1. Track all the characters seen in the current substring
+//   const buckets = new Array(128).fill(false);
+//   // 2. Left qnd right indices and the length of the longest substring
+//   let [left, right, max] = [0, 0, 0];
+//   // 3. Move the right index through all the letters
+//   while (right < s.length) {
+//     // 4. If the character on the right has already been seen,
+//     //    move the left index forward until all the characters
+//     //    in the substring have never been seen before
+//     if (buckets[s.charCodeAt(right)]) buckets[s.charCodeAt(left++)] = false;
+//     // 5. Else keep moving to the right, marking characters seen
+//     else buckets[s.charCodeAt(right++)] = true;
+//     // 6. The left, right substring will always be unique; record if it's longer
+//     max = Math.max(max, right - left);
+//   }
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 /**
  * @param {string} s
@@ -144,11 +182,11 @@
 const lengthOfLongestSubstring = s => {
   // 1. Track all the characters seen in the current substring
   const buckets = new Array(128).fill(false);
-  // 2. Left qnd right indicies and the length of the longest substring
+  // 2. Left qnd right indices and the length of the longest substring
   let [left, right, max] = [0, 0, 0];
   // 3. Move the right index through all the letters
   while (right < s.length) {
-    // 4. If the character on the right has lready been seen,
+    // 4. If the character on the right has already been seen,
     //    move the left index forward until all the characters
     //    in the substring have never been seen before
     if (buckets[s.charCodeAt(right)]) buckets[s.charCodeAt(left++)] = false;
@@ -157,30 +195,11 @@ const lengthOfLongestSubstring = s => {
     // 6. The left, right substring will always be unique; record if it's longer
     max = Math.max(max, right - left);
   }
+  // 7. Return the maximum length of the longest substring found
   return max;
 };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-// console.log(beginIndices(0));
-// console.log(endIndices(0));
-
-// console.log(beginIndices(1));
-// console.log(endIndices(1));
-
-// console.log(beginIndices(2));
-// console.log(endIndices(2));
-
-// console.log(beginIndices(3));
-// console.log(endIndices(3));
-
-// console.log(beginIndices(4));
-// console.log(endIndices(4));
-
-// console.log(beginIndices(5));
-// console.log(endIndices(5));
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 import { strictEqual } from 'assert';
 
@@ -194,6 +213,8 @@ strictEqual(lengthOfLongestSubstring('abcabcbb'), 3);
 
 strictEqual(lengthOfLongestSubstring('bbbbb'), 1);
 
+strictEqual(lengthOfLongestSubstring('abbcdb'), 3);
+
 strictEqual(lengthOfLongestSubstring('pwwkew'), 3);
 
 strictEqual(lengthOfLongestSubstring(''), 0);
@@ -203,6 +224,10 @@ strictEqual(lengthOfLongestSubstring('au'), 2);
 strictEqual(lengthOfLongestSubstring('dvdf'), 3);
 
 strictEqual(lengthOfLongestSubstring('abcdefghijklmnopqrstuvwxyz'), 26);
+
+strictEqual(lengthOfLongestSubstring('abba'), 2);
+
+strictEqual(lengthOfLongestSubstring('uqinntq'), 4);
 
 strictEqual(
   lengthOfLongestSubstring(
@@ -272,7 +297,7 @@ strictEqual(
 );
 console.timeEnd();
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 /*
 
