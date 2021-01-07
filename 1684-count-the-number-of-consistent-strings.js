@@ -41,17 +41,34 @@ Return the number of consistent strings in the array words.
 // Runtime: 116 ms, faster than 75.65% of JavaScript online submissions
 // Memory Usage: 52.2 MB, less than 14.02% of JavaScript online submissions
 
-/**
- * @param {string} allowed
- * @param {string[]} words
- * @return {number}
- */
-const countConsistentStrings = (allowed, words) =>
-  (allowedSet =>
-    words.reduce(
-      (acc, curr) => acc + [...curr].every(char => allowedSet.has(char)),
-      0,
-    ))(new Set([...allowed]));
+// /**
+//  * @param {string} allowed
+//  * @param {string[]} words
+//  * @return {number}
+//  */
+// const countConsistentStrings = (allowed, words) =>
+//   (allowedSet =>
+//     words.reduce(
+//       (acc, curr) => acc + [...curr].every(char => allowedSet.has(char)),
+//       0,
+//     ))(new Set([...allowed]));
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 116 ms, faster than 74.53% of JavaScript online
+// Memory Usage: 52.1 MB, less than 19.57% of JavaScript online
+
+// /**
+//  * @param {string} allowed
+//  * @param {string[]} words
+//  * @return {number}
+//  */
+// const countConsistentStrings = (allowed, words) =>
+//   (allowedSet =>
+//     words.reduce(
+//       (acc, curr) => acc + [...curr].every(char => allowedSet.has(char)),
+//       0,
+//     ))(new Set(allowed));
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -72,6 +89,25 @@ const countConsistentStrings = (allowed, words) =>
 //   }
 //   return cntConsistent;
 // };
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 112 ms, faster than 85.57% of JavaScript online submissions
+// Memory Usage: 47.7 MB, less than 81.96% of JavaScript online submissions
+
+/**
+ * @param {string} allowed
+ * @param {string[]} words
+ * @return {number}
+ */
+const countConsistentStrings = (allowed, words) => {
+  const allowedSet = new Set(allowed);
+  let cntConsistent = 0;
+  outer: for (const word of words) {
+    for (const char of word) if (!allowedSet.has(char)) continue outer;
+    cntConsistent++;
+  }
+  return cntConsistent;
+};
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
