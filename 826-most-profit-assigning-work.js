@@ -102,6 +102,23 @@ What is the most profit we can make?
 // Runtime: 3528 ms, faster than 7.14% of JavaScript online submissions
 // Memory Usage: 43 MB, less than 92.86% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} difficulties
+//  * @param {number[]} profits
+//  * @param {number[]} workers
+//  * @return {number}
+//  */
+// const maxProfitAssignment = (difficulties, profits, workers) => {
+//   const wages = new Array(workers.length).fill(0);
+//   for (let i = 0; i < difficulties.length; i++)
+//     for (let j = 0; j < workers.length; j++)
+//       if (difficulties[i] <= workers[j] && wages[j] < profits[i])
+//         wages[j] = profits[i];
+//   return wages.reduce((acc, curr) => acc + curr);
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 /**
  * @param {number[]} difficulties
  * @param {number[]} profits
@@ -109,12 +126,26 @@ What is the most profit we can make?
  * @return {number}
  */
 const maxProfitAssignment = (difficulties, profits, workers) => {
-  const wages = new Array(workers.length).fill(0);
-  for (let i = 0; i < difficulties.length; i++)
-    for (let j = 0; j < workers.length; j++)
-      if (difficulties[i] <= workers[j] && wages[j] < profits[i])
-        wages[j] = profits[i];
-  return wages.reduce((acc, curr) => acc + curr);
+  const sorted = new Array(difficulties.length);
+  for (let i = 0; i < sorted.length; i++)
+    sorted[i] = [difficulties[i], profits[i]];
+  sorted.sort(([a], [b]) => a - b);
+  // console.log(sorted);
+  let max = 0;
+  for (let i = 0; i < sorted.length; i++)
+    sorted[i][1] = max = Math.max(sorted[i][1], max);
+  // console.log(max);
+  // console.log(sorted);
+  let sum = 0;
+  for (const ability of workers) {
+    let wage = 0;
+    for (let i = 0; i < sorted.length; i++) {
+      if (ability < sorted[i][0]) break;
+      wage = sorted[i][1];
+    }
+    sum += wage;
+  }
+  return sum;
 };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
