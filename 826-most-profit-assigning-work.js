@@ -119,31 +119,62 @@ What is the most profit we can make?
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Runtime: 1096 ms, faster than 25.00% of JavaScript online submissions
+// Memory Usage: 46.1 MB, less than 57.14% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} difficulties
+//  * @param {number[]} profits
+//  * @param {number[]} workers
+//  * @return {number}
+//  */
+// const maxProfitAssignment = (difficulties, profits, workers) => {
+//   const sorted = new Array(difficulties.length);
+//   for (let i = 0; i < sorted.length; i++)
+//     sorted[i] = [difficulties[i], profits[i]];
+//   sorted.sort(([a], [b]) => a - b);
+//   // console.log(sorted);
+//   let max = 0;
+//   for (let i = 0; i < sorted.length; i++)
+//     sorted[i][1] = max = Math.max(sorted[i][1], max);
+//   // console.log(max);
+//   // console.log(sorted);
+//   let sum = 0;
+//   for (const ability of workers) {
+//     let wage = 0;
+//     for (let i = 0; i < sorted.length; i++) {
+//       if (ability < sorted[i][0]) break;
+//       wage = sorted[i][1];
+//     }
+//     sum += wage;
+//   }
+//   return sum;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 604 ms, faster than 28.57% of JavaScript online submissions
+// Memory Usage: 46.3 MB, less than 53.57% of JavaScript online submissions
+
 /**
- * @param {number[]} difficulties
- * @param {number[]} profits
- * @param {number[]} workers
+ * @param {number[]} d
+ * @param {number[]} p
+ * @param {number[]} w
  * @return {number}
  */
-const maxProfitAssignment = (difficulties, profits, workers) => {
-  const sorted = new Array(difficulties.length);
-  for (let i = 0; i < sorted.length; i++)
-    sorted[i] = [difficulties[i], profits[i]];
-  sorted.sort(([a], [b]) => a - b);
-  // console.log(sorted);
-  let max = 0;
-  for (let i = 0; i < sorted.length; i++)
-    sorted[i][1] = max = Math.max(sorted[i][1], max);
-  // console.log(max);
-  // console.log(sorted);
+const maxProfitAssignment = (d, p, w) => {
+  const x = new Array(d.length);
+  for (let i = 0; i < x.length; i++) x[i] = [d[i], p[i]];
+  x.sort(([ad, ap], [bd, bp]) => bp - ap || bd - ad);
+  // console.log(x);
   let sum = 0;
-  for (const ability of workers) {
-    let wage = 0;
-    for (let i = 0; i < sorted.length; i++) {
-      if (ability < sorted[i][0]) break;
-      wage = sorted[i][1];
-    }
-    sum += wage;
+  for (const ability of w) {
+    let i = 0;
+    while (i < x.length && ability < x[i][0]) i++;
+    // console.log(x[i]);
+    if (!x[i]) continue;
+    // console.log(ability, x[i][0]);
+    sum += x[i][1];
   }
   return sum;
 };
