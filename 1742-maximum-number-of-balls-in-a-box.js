@@ -27,6 +27,30 @@ box with the most balls.
 // Runtime: 332 ms, faster than 100.00% of JavaScript online submissions
 // Memory Usage: 55.3 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} lowLimit
+//  * @param {number} highLimit
+//  * @return {number}
+//  */
+// const countBalls = (lowLimit, highLimit) =>
+//   Math.max(
+//     ...new Array(highLimit - lowLimit + 1)
+//       .fill()
+//       .reduce((acc, _, idx) => {
+//         const dSum = [...`${lowLimit + idx}`]
+//           .map(Number)
+//           .reduce((a, c) => a + c);
+//         acc.set(dSum, (acc.get(dSum) || 0) + 1);
+//         return acc;
+//       }, new Map())
+//       .values(),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 344 ms, faster than 100.00% of JavaScript online submissions
+// Memory Usage: 55.8 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number} lowLimit
  * @param {number} highLimit
@@ -36,13 +60,13 @@ const countBalls = (lowLimit, highLimit) =>
   Math.max(
     ...new Array(highLimit - lowLimit + 1)
       .fill()
-      .reduce((acc, _, idx) => {
-        const dSum = [...`${lowLimit + idx}`]
-          .map(Number)
-          .reduce((a, c) => a + c);
-        acc.set(dSum, (acc.get(dSum) || 0) + 1);
-        return acc;
-      }, new Map())
+      .reduce(
+        (acc, _, idx) =>
+          (sum => acc.set(sum, (acc.get(sum) || 0) + 1))(
+            [...`${lowLimit + idx}`].map(Number).reduce((a, c) => a + c),
+          ),
+        new Map(),
+      )
       .values(),
   );
 
