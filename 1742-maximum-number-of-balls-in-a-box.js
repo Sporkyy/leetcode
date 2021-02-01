@@ -51,24 +51,44 @@ box with the most balls.
 // Runtime: 344 ms, faster than 100.00% of JavaScript online submissions
 // Memory Usage: 55.8 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {number} lowLimit
+//  * @param {number} highLimit
+//  * @return {number}
+//  */
+// const countBalls = (lowLimit, highLimit) =>
+//   Math.max(
+//     ...new Array(highLimit - lowLimit + 1)
+//       .fill()
+//       .reduce(
+//         (acc, _, idx) =>
+//           (sum => acc.set(sum, (acc.get(sum) || 0) + 1))(
+//             [...`${lowLimit + idx}`].map(Number).reduce((a, c) => a + c),
+//           ),
+//         new Map(),
+//       )
+//       .values(),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 120 ms, faster than 100.00% of JavaScript online submissions
+// Memory Usage: 38.8 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {number} lowLimit
  * @param {number} highLimit
  * @return {number}
  */
-const countBalls = (lowLimit, highLimit) =>
-  Math.max(
-    ...new Array(highLimit - lowLimit + 1)
-      .fill()
-      .reduce(
-        (acc, _, idx) =>
-          (sum => acc.set(sum, (acc.get(sum) || 0) + 1))(
-            [...`${lowLimit + idx}`].map(Number).reduce((a, c) => a + c),
-          ),
-        new Map(),
-      )
-      .values(),
-  );
+const countBalls = (lowLimit, highLimit) => {
+  const cnts = new Map();
+  for (let i = lowLimit; i <= highLimit; i++) {
+    let sum = 0;
+    for (let j = i; 1 <= j; j = Math.trunc(j / 10)) sum += j % 10;
+    cnts.set(sum, (cnts.get(sum) || 0) + 1);
+  }
+  return Math.max(...cnts.values());
+};
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -94,3 +114,12 @@ strictEqual(countBalls(19, 28), 2);
 // Box Number:  1 2 3 4 5 6 7 8 9 10 11 12 ...
 // Ball Count:  0 1 1 1 1 1 1 1 1 2  0  0  ...
 // Box 10 has the most number of balls with 2 balls.
+
+strictEqual(countBalls(1, 20), 3);
+
+/*
+
+|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|
+|1|2|3|4|5|6|7|8|9| 1| 2| 3| 4| 5| 6| 7| 8| 9|10| 2|
+
+*/
