@@ -67,6 +67,23 @@ const simplifiedFractions = n => {
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Runtime: 116 ms, faster than 94.29% of JavaScript online submissions
+// Memory Usage: 44.7 MB, less than 77.14% of JavaScript online submissions
+
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
+// const simplifiedFractions = n => {
+//   const [gcd, res] = [(x, y) => (!y ? x : gcd(y, x % y)), []];
+//   for (let de = 2; de <= n; de++)
+//     for (let nu = 1; nu < de; nu += 1 + !(de % 2))
+//       if (1 === gcd(nu, de)) res.push(`${nu}/${de}`);
+//   return res;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 import { deepStrictEqual } from 'assert';
 
 deepStrictEqual(simplifiedFractions(1).sort(), [].sort());
