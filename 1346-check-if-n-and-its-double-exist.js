@@ -12,9 +12,7 @@ i != j 0 <= i, j < arr.length arr[i] == 2 * arr[j]
 
 */
 
-import { ok } from 'assert';
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 44 ms, faster than 99.61% of JavaScript online submissions
 // Memory Usage: 33.9 MB, less than 100.00% of JavaScript online submissions
@@ -29,23 +27,71 @@ import { ok } from 'assert';
 //     return -1 < i2n && idx !== i2n;
 //   });
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// Runtime: 52 ms, faster than 91.91% of JavaScript online submissions
-// Memory Usage: 36.1 MB, less than 100.00% of JavaScript online submissions
+// Runtime: 80 ms, faster than 77.79% of JavaScript online submissions
+// Memory Usage: 41.9 MB, less than 7.55% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} arr
+//  * @return {boolean}
+//  */
+// const checkIfExist = arr =>
+//   !arr.length
+//     ? false
+//     : arr.slice(1).includes(arr[0] * 2) || arr.slice(1).includes(arr[0] / 2)
+//     ? true
+//     : checkIfExist(arr.slice(1));
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 68 ms, faster than 99.26% of JavaScript online submissions
+// Memory Usage: 40 MB, less than 48.03% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} arr
+//  * @return {boolean}
+//  */
+// const checkIfExist = arr =>
+//   !arr.length
+//     ? false
+//     : (x => arr.some(n => n === x * 2 || n === x / 2))(arr.pop())
+//     ? true
+//     : checkIfExist(arr);
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 55.69% of JavaScript online submissions
+// Memory Usage: 41.3 MB, less than 9.99% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} arr
+//  * @return {boolean}
+//  */
+// const checkIfExist = (arr, haystack = new Set()) =>
+//   arr.length &&
+//   (n =>
+//     haystack.has(n / 2) ||
+//     haystack.has(n * 2) ||
+//     (haystack.add(n) && checkIfExist(arr, haystack)))(arr.pop());
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 76 ms, faster than 92.03% of JavaScript online submissions
+// Memory Usage: 40.1 MB, less than 48.03% of JavaScript online submissions
 
 /**
  * @param {number[]} arr
  * @return {boolean}
  */
 const checkIfExist = arr =>
-  !arr.length
-    ? false
-    : arr.slice(1).includes(arr[0] * 2) || arr.slice(1).includes(arr[0] / 2)
-    ? true
-    : checkIfExist(arr.slice(1));
+  arr.length &&
+  ((x => arr.some(n => n === x * 2 || n === x / 2))(arr.pop()) ||
+    checkIfExist(arr));
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+import { ok } from 'assert';
 
 // Example 1:
 ok(checkIfExist([10, 2, 5, 3]));
