@@ -52,18 +52,18 @@ can be in any order.
 // Runtime: 116 ms, faster than 94.29% of JavaScript online submissions
 // Memory Usage: 44.6 MB, less than 85.71% of JavaScript online submissions
 
-/**
- * @param {number} n
- * @return {string[]}
- */
-const simplifiedFractions = n => {
-  const gcd = (a, b) => (!b ? a : gcd(b, a % b));
-  const res = [];
-  for (let de = 2; de <= n; de++)
-    for (let nu = 1; nu < de; nu += 1 + !(de % 2))
-      if (1 === gcd(nu, de)) res.push(`${nu}/${de}`);
-  return res;
-};
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
+// const simplifiedFractions = n => {
+//   const gcd = (a, b) => (!b ? a : gcd(b, a % b));
+//   const res = [];
+//   for (let de = 2; de <= n; de++)
+//     for (let nu = 1; nu < de; nu += 1 + !(de % 2))
+//       if (1 === gcd(nu, de)) res.push(`${nu}/${de}`);
+//   return res;
+// };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -81,6 +81,97 @@ const simplifiedFractions = n => {
 //       if (1 === gcd(nu, de)) res.push(`${nu}/${de}`);
 //   return res;
 // };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 124 ms, faster than 85.71% of JavaScript online submissions
+// Memory Usage: 44.9 MB, less than 65.71% of JavaScript online submissions
+
+// /**
+//  * @param {number} de
+//  * @return {string[]}
+//  */
+// const simplifiedFractions = (de, map = new Map()) => {
+//   // console.log(map);
+//   if (1 === de) return [...map.values()];
+//   new Array(de - 1).fill().map((_, idx) => {
+//     // console.log(de - 1 - idx, de);
+//     map.set((de - 1 - idx) / de, `${de - 1 - idx}/${de}`);
+//   });
+//   return simplifiedFractions(de - 1, map);
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 120 ms, faster than 91.43% of JavaScript online submissions
+// Memory Usage: 45.1 MB, less than 57.14% of JavaScript online submissions
+
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
+// const simplifiedFractions = (n, fracs = new Map()) =>
+//   1 === n
+//     ? [...fracs.values()]
+//     : simplifiedFractions(
+//         n - 1,
+//         new Array(n - 1)
+//           .fill()
+//           .reduce(
+//             (acc, _, idx) => acc.set((n - 1 - idx) / n, `${n - 1 - idx}/${n}`),
+//             fracs,
+//           ),
+//       );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 116 ms, faster than 94.29% of JavaScript online submissions
+// Memory Usage: 45.5 MB, less than 45.71% of JavaScript online submissions
+
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
+// const simplifiedFractions = (de, nu = de - 1, fracs = new Map()) =>
+//   1 === de
+//     ? [...fracs.values()]
+//     : !nu
+//     ? simplifiedFractions(de - 1, de - 2, fracs)
+//     : simplifiedFractions(de, nu - 1, fracs.set(nu / de, `${nu}/${de}`));
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 124 ms, faster than 85.71% of JavaScript online submissions
+// Memory Usage: 45.1 MB, less than 62.86% of JavaScript online submissions
+
+// /**
+//  * @param {number} n
+//  * @return {string[]}
+//  */
+// const simplifiedFractions = (de, nu = de - 1, fracs = new Map()) =>
+//   1 === de
+//     ? [...fracs.values()]
+//     : simplifiedFractions(
+//         nu ? de : de - 1,
+//         nu ? nu - 1 : de - 2,
+//         nu ? fracs.set(nu / de, `${nu}/${de}`) : fracs,
+//       );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 128 ms, faster than 80.00% of JavaScript online submissions
+// Memory Usage: 45.8 MB, less than 42.86% of JavaScript online submissions
+
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+const simplifiedFractions = (de, nu = de - 1, fracs = new Map()) =>
+  1 === de
+    ? [...fracs.values()]
+    : nu
+    ? simplifiedFractions(de, nu - 1, fracs.set(nu / de, `${nu}/${de}`))
+    : simplifiedFractions(de - 1, de - 2, fracs);
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
