@@ -112,6 +112,60 @@ const smallerNumbersThanCurrent = nums =>
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Runtime: 92 ms, faster than 85.25% of JavaScript online submissions
+// Memory Usage: 40.9 MB, less than 20.23% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// const smallerNumbersThanCurrent = nums => {
+//   const map = new Map(
+//     [...nums]
+//       .sort((a, b) => b - a)
+//       .map((val, idx) => [val, nums.length - idx - 1]),
+//   );
+//   return nums.map(n => map.get(n));
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 92 ms, faster than 85.25% of JavaScript online submissions
+// Memory Usage: 41.1 MB, less than 17.95% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// const smallerNumbersThanCurrent = (
+//   nums,
+//   map = new Map(
+//     [...nums]
+//       .sort((a, b) => b - a)
+//       .map((val, idx) => [val, nums.length - idx - 1]),
+//   ),
+// ) => nums.map(n => map.get(n));
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// // Runtime: 1004 ms, faster than 5.58% of JavaScript online submissions
+// // Memory Usage: 45.4 MB, less than 5.05% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// const smallerNumbersThanCurrent = nums =>
+//   nums.map(n =>
+//     new Map(
+//       [...nums]
+//         .sort((a, b) => b - a)
+//         .map((val, idx) => [val, nums.length - idx - 1]),
+//     ).get(n),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 // Example 1:
 deepStrictEqual(smallerNumbersThanCurrent([8, 1, 2, 2, 3]), [4, 0, 1, 1, 3]);
 // Explanation:
