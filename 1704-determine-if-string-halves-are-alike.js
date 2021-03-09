@@ -52,20 +52,57 @@ Return true if a and b are alike. Otherwise, return false.
 // Runtime: 80 ms, faster than 85.93% of JavaScript online submissions
 // Memory Usage: 44.4 MB, less than 5.32% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+// const halvesAreAlike = s =>
+//   ![...s].reduce(
+//     (acc, curr, idx) =>
+//       acc +
+//       [
+//         [1, 2],
+//         [-1, -2],
+//       ][+(idx < s.length / 2)][+/[aeiou]/i.test(curr)],
+//     0,
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 88 ms, faster than 45.02% of JavaScript online submissions
+// Memory Usage: 41.5 MB, less than 9.08% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+// const halvesAreAlike = s => {
+//   s = s.replace(/[aeiou]/gi, '1').replace(/[^1aeiou]/gi, '0');
+//   let [l, r] = [0, 0];
+//   for (let i = 0; i < s.length / 2; i++)
+//     [l, r] = [l + +s[i], r + +s[s.length - 1 - i]];
+//   return l === r;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 69.12% of JavaScript online submissions
+// Memory Usage: 43.4 MB, less than 5.21% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {boolean}
  */
-const halvesAreAlike = s =>
-  ![...s].reduce(
-    (acc, curr, idx) =>
-      acc +
-      [
-        [1, 2],
-        [-1, -2],
-      ][+(idx < s.length / 2)][+/[aeiou]/i.test(curr)],
-    0,
-  );
+const halvesAreAlike = s => {
+  s = s.replace(/[aeiou]/gi, '1').replace(/[^1aeiou]/gi, '0');
+  let sum = 0;
+  for (let i = 0; i < s.length / 2; i++)
+    sum += [
+      [0, 1],
+      [-1, 0],
+    ][+s[i]][+s[s.length - 1 - i]];
+  return !sum;
+};
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -90,3 +127,14 @@ ok(halvesAreAlike('AbCdEfGh'));
 //  A b C d | E f G h
 
 ok(halvesAreAlike('Uo'));
+
+ok(halvesAreAlike('Ieai'));
+
+ok(!halvesAreAlike('tkPAdxpMfJiltOerItiv'));
+
+/*
+
+| t | k | P |(A)| d | x | p | M | f | J |
+|(i)| l | t |(O)|(e)| r |(I)| t |(i)| v |
+
+*/
