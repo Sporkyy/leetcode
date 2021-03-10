@@ -89,20 +89,73 @@ Return true if a and b are alike. Otherwise, return false.
 // Runtime: 84 ms, faster than 69.12% of JavaScript online submissions
 // Memory Usage: 43.4 MB, less than 5.21% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+// const halvesAreAlike = s => {
+//   s = s.replace(/[aeiou]/gi, '1').replace(/[^1aeiou]/gi, '0');
+//   let sum = 0;
+//   for (let i = 0; i < s.length / 2; i++)
+//     sum += [
+//       [0, 1],
+//       [-1, 0],
+//     ][+s[i]][+s[s.length - 1 - i]];
+//   return !sum;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 80 ms, faster than 86.65% of JavaScript online submissions
+// Memory Usage: 39.1 MB, less than 85.23% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+// const halvesAreAlike = s => {
+//   let sum = 0;
+//   const vowels = new Set(['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u']);
+//   for (let i = 0; i < s.length / 2; i++)
+//     sum += vowels.has(s[i]) - vowels.has(s[s.length - 1 - i]);
+//   return !sum;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 96 ms, faster than 25.36% of JavaScript online submissions
+// Memory Usage: 45.2 MB, less than 5.21% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+// const halvesAreAlike = (s, sum = 0, vowels = new Set([...'AEIOUaeiou'])) =>
+//   !s.length
+//     ? !sum
+//     : halvesAreAlike(
+//         s.slice(1, s.length - 1),
+//         sum + vowels.has(s[0]) - vowels.has(s[s.length - 1]),
+//       );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 69.12% of JavaScript online submissions
+// Memory Usage: 39.7 MB, less than 47.79% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {boolean}
  */
-const halvesAreAlike = s => {
-  s = s.replace(/[aeiou]/gi, '1').replace(/[^1aeiou]/gi, '0');
-  let sum = 0;
-  for (let i = 0; i < s.length / 2; i++)
-    sum += [
-      [0, 1],
-      [-1, 0],
-    ][+s[i]][+s[s.length - 1 - i]];
-  return !sum;
-};
+const halvesAreAlike = (
+  s,
+  vowels = new Set(['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u']),
+) =>
+  ![...s].reduce(
+    (acc, curr, idx) =>
+      acc + +(vowels.has(curr) ? (idx < s.length / 2 ? 1 : -1) : 0),
+    0,
+  );
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
