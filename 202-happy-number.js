@@ -1,8 +1,6 @@
 // 202. Happy Number
 // https://leetcode.com/problems/happy-number/
 
-import { ok } from 'assert';
-
 /*
 
 Write an algorithm to determine if a number is "happy".
@@ -15,7 +13,7 @@ this process ends in 1 are happy numbers.
 
 */
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 124 ms, faster than 8.87% of JavaScript online submissions
 // Memory Usage: 38.1 MB, less than 7.69% of JavaScript online submissions
@@ -32,7 +30,7 @@ this process ends in 1 are happy numbers.
 //   return 1 === x ? true : 999 < i ? false : isHappy(x, i + 1);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 64 ms, faster than 65.98% of JavaScript online submissions
 // Memory Usage: 36.8 MB, less than 23.08% of JavaScript online submissions
@@ -48,10 +46,10 @@ this process ends in 1 are happy numbers.
 //   return 1 === n ? true : isHappy(n, seen);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// Runtime: 68 ms, faster than 43.09% of JavaScript online submissions
-// Memory Usage: 36.8 MB, less than 23.08% of JavaScript online submissions
+// Runtime: 96 ms, faster than 43.06% of JavaScript online submissions
+// Memory Usage: 41 MB, less than 17.66% of JavaScript online submissions
 
 /**
  * @param {number} n
@@ -67,16 +65,44 @@ const isHappy = (n, seen = new Set()) =>
         seen.add(n),
       );
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 88 ms, faster than 78.24% of JavaScript online submissions
+// Memory Usage: 39.9 MB, less than 76.57% of JavaScript online submissions
+
+// /**
+//  * @param {number} n
+//  * @param {number} [sum=0]
+//  * @returns {number}
+//  */
+// const sumSquaredDigits = (n, sum = 0) =>
+//   !n ? sum : sumSquaredDigits(Math.trunc(n / 10), sum + (n % 10) ** 2);
+
+// /**
+//  * @param {number} n
+//  * @return {boolean}
+//  */
+// const isHappy = (n, seen = new Set()) =>
+//   seen.has(1)
+//     ? true
+//     : seen.has(n)
+//     ? false
+//     : isHappy(sumSquaredDigits(n), seen.add(n));
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+import { ok } from 'assert';
 
 // Example
-ok(isHappy(19));
+// ok(isHappy(19));
 // Explanation:
 // 1 ** 2 + 9 ** 2 = 82
 // 8 ** 2 + 2 ** 2 = 68
 // 6 ** 2 + 8 ** 2 = 100
 // 1 ** 2 + 0 ** 2 + 0 ** 2 = 1
 
-ok(!isHappy(11));
+// ok(!isHappy(11));
 // 1 ** 2 + 1 ** 2 = 2
 // 2 ** 2 = 4
+
+ok(isHappy(7));
