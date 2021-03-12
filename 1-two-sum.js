@@ -146,7 +146,7 @@ const twoSum = (nums, target) =>
   nums.reduce(
     (acc, curr, idx, arr) =>
       acc.has(target - curr)
-        ? arr.splice(0) /* No! */ && [idx, acc.get(target - curr)] // Oops!
+        ? arr.splice(0) && [idx, acc.get(target - curr)]
         : acc.set(curr, idx),
     new Map(),
   );
