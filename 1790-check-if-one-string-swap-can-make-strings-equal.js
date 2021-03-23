@@ -232,22 +232,61 @@ one string swap on exactly one of the strings. Otherwise, return false.
 // Runtime: 80 ms, faster than 100.00% of JavaScript online submissions
 // Memory Usage: 38.6 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string} s1
+//  * @param {string} s2
+//  * @return {boolean}
+//  */
+// const areAlmostEqual = (s1, s2) => {
+//   const [a1, a2] = [[], []];
+//   for (let i = 0; i < s1.length; i++) {
+//     if (s1[i] !== s2[i]) {
+//       if (2 === a1.length) return false;
+//       a1.push(s1[i]);
+//       a2.push(s2[i]);
+//     }
+//   }
+//   return a1[0] === a2[1] && a1[1] === a2[0];
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 80 ms, faster than 100.00% of JavaScript online submissions
+// Memory Usage: 38.6 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {string} s1
+//  * @param {string} s2
+//  * @return {boolean}
+//  */
+// const areAlmostEqual = (s1, s2) => {
+//   const [a1, a2] = [[], []];
+//   for (let i = 0; i < s1.length; i++) {
+//     if (s1[i] === s2[i]) continue;
+//     if (2 === a1.length) return false;
+//     a1.push(s1[i]);
+//     a2.push(s2[i]);
+//   }
+//   return a1[0] === a2[1] && a1[1] === a2[0];
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 100.00% of JavaScript online submissions
+// Memory Usage: 42.3 MB, less than 100.00% of JavaScript online submissions
+
 /**
  * @param {string} s1
  * @param {string} s2
  * @return {boolean}
  */
-const areAlmostEqual = (s1, s2) => {
-  const [a1, a2] = [[], []];
-  for (let i = 0; i < s1.length; i++) {
-    if (s1[i] !== s2[i]) {
-      if (2 === a1.length) return false;
-      a1.push(s1[i]);
-      a2.push(s2[i]);
-    }
-  }
-  return a1[0] === a2[1] && a1[1] === a2[0];
-};
+const areAlmostEqual = (s1, s2) =>
+  ((a, b, c, d, ...e) => !e.length && a === c && b === d)(
+    ...[...s1].reduce(
+      (acc, curr, idx) => (curr === s2[idx] ? acc : [curr, ...acc, s2[idx]]),
+      [],
+    ),
+  );
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
