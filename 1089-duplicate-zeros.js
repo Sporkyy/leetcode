@@ -1,7 +1,7 @@
 // 1089. Duplicate Zeros
 // https://leetcode.com/problems/duplicate-zeros/
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 72 ms, faster than 60.48% of JavaScript online submissions
 // Memory Usage: 35.4 MB, less than 100.00% of JavaScript online submissions
@@ -19,7 +19,7 @@ const duplicateZeros = arr => {
   }
 };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 import { deepStrictEqual } from 'assert';
 
