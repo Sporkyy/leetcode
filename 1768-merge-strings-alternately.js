@@ -210,17 +210,38 @@ Constraints
 // Runtime: 76 ms, faster than 84.10% of JavaScript online submissions
 // Memory Usage: 38.9 MB, less than 66.26% of JavaScript online submissions
 
+// /**
+//  * @param {string} word1
+//  * @param {string} word2
+//  * @return {string}
+//  */
+// const mergeAlternately = (word1, word2) => {
+//   let res = [];
+//   for (let i = 0; i < word1.length + word2.length; i++) {
+//     if (i < word1.length) res.push(word1[i]);
+//     if (i < word2.length) res.push(word2[i]);
+//   }
+//   return res.join('');
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 80 ms, faster than 63.11% of JavaScript online submissions
+// Memory Usage: 39 MB, less than 38.35% of JavaScript online submissions
+
 /**
  * @param {string} word1
  * @param {string} word2
  * @return {string}
  */
 const mergeAlternately = (word1, word2) => {
-  let res = [];
-  for (let i = 0; i < word1.length + word2.length; i++) {
+  let [i, res] = [0, []];
+  while (i < word1.length && i < word2.length) {
     if (i < word1.length) res.push(word1[i]);
     if (i < word2.length) res.push(word2[i]);
+    i++;
   }
+  res.push(word1.slice(i), word2.slice(i));
   return res.join('');
 };
 
