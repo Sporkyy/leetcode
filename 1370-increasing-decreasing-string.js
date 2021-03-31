@@ -28,7 +28,7 @@ Constraints:
 
 import { strictEqual } from 'assert';
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // /**
 //  * @param {string} s
@@ -54,7 +54,7 @@ import { strictEqual } from 'assert';
 //   // return sortString(s.)
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 64 ms, faster than 92.70% of JavaScript online submissions
 // Memory Usage: 37.5 MB, less than 100.00% of JavaScript online submissions
@@ -81,7 +81,7 @@ import { strictEqual } from 'assert';
 //   return res.join('');
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 64 ms, faster than 92.70% of JavaScript online submissions
 // Memory Usage: 37.4 MB, less than 100.00% of JavaScript online submissions
@@ -101,7 +101,7 @@ const sortString = s => {
   return res.join('');
 };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Example 1:
 strictEqual(sortString('aaaabbbbcccc'), 'abccbaabccba');
@@ -112,7 +112,7 @@ strictEqual(sortString('aaaabbbbcccc'), 'abccbaabccba');
 // After steps 4, 5 and 6 of the second iteration, result = "abccbaabccba"
 
 // Example 2:
-// strictEqual(sortString('rat'), 'art');
+strictEqual(sortString('rat'), 'art');
 // Explanation: The word "rat" becomes "art" after re-ordering it with the
 // mentioned algorithm.
 
