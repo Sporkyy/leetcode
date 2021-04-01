@@ -66,17 +66,58 @@ any leading zeros are different.
 // Runtime: 80 ms, faster than 82.30% of JavaScript online submissions
 // Memory Usage: 38.6 MB, less than 88.04% of JavaScript online submissions
 
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const numDifferentIntegers = word =>
+//   new Set(
+//     word
+//       .split(/\D+/g)
+//       .filter(s => s.length)
+//       .map(Number),
+//   ).size;
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 64.44% of JavaScript online submissions
+// Memory Usage: 39.3 MB, less than 57.74% of JavaScript online submissions
+
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const numDifferentIntegers = word => {
+//   const digits = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
+//   const differentIntegers = new Set();
+//   for (let i = 0, temp = ''; i < word.length + 1; i++) {
+//     if (digits.has(word[i])) {
+//       temp += word[i];
+//     } else if (temp.length) {
+//       differentIntegers.add(Number(temp)),
+//       temp = '';
+//     }
+//   }
+//   return differentIntegers.size;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 84 ms, faster than 64.44% of JavaScript online submissions
+// Memory Usage: 39.2 MB, less than 61.51% of JavaScript online submissions
+
 /**
  * @param {string} word
  * @return {number}
  */
-const numDifferentIntegers = word =>
-  new Set(
-    word
-      .split(/\D+/g)
-      .filter(s => s.length)
-      .map(Number),
-  ).size;
+const numDifferentIntegers = word => {
+  const digits = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
+  const differentIntegers = new Set();
+  for (let i = 0, temp = ''; i < word.length + 1; i++)
+    if (digits.has(word[i])) temp += word[i];
+    else if (temp.length) differentIntegers.add(Number(temp)) && (temp = '');
+  return differentIntegers.size;
+};
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
