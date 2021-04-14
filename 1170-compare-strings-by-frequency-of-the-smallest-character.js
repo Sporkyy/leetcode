@@ -3,25 +3,28 @@
 
 /*
 
-Let's define a function f(s) over a non-empty string s, which calculates the
-frequency of the smallest character in s. For example, if s = "dcce" then f(s) =
-2 because the smallest character is "c" and its frequency is 2.
+Let the function `f(s)` be the **frequency of the lexicographically smallest
+character** in a non-empty string `s`. For example, if `s = "dcce"` then `f(s) =
+2` because the lexicographically smallest character is 'c', which has a
+frequency of 2.
 
-Now, given string arrays queries and words, return an integer array answer,
-where each answer[i] is the number of words such that f(queries[i]) < f(W),
-where W is a word in words.
+You are given an array of strings `words` and another array of query strings
+`queries`. For each query `queries[i]`, count the **number of words** in `words`
+such that `f(queries[i]) < f(W)` for each `W` in `words`.
 
-Constraints:
-- 1 <= queries.length <= 2000
-- 1 <= words.length <= 2000
-- 1 <= queries[i].length, words[i].length <= 10
-- queries[i][j], words[i][j] are English lowercase letters.
+Return an integer array `answer`, where each `answer[i]` is the answer to the
+`ith` query.
+
+## Constraints
+
+- `1 <= queries.length <= 2000`
+- `1 <= words.length <= 2000`
+- `1 <= queries[i].length, words[i].length <= 10`
+- `queries[i][j], words[i][j]` consist of lowercase English letters.
 
 */
 
-import { deepStrictEqual } from 'assert';
-
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 1796 ms, faster than 10.87% of JavaScript online submissions
 // Memory Usage: 51.4 MB, less than 100.00% of JavaScript online submissions
@@ -42,7 +45,7 @@ import { deepStrictEqual } from 'assert';
 
 // console.log(words.map(f));
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 224 ms, faster than 35.51% of JavaScript online submissions
 // Memory Usage: 43.5 MB, less than 100.00% of JavaScript online submissions
@@ -74,7 +77,7 @@ import { deepStrictEqual } from 'assert';
 //   return queries.map(q => words.filter(w => q < w).length);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 236 ms, faster than 31.40% of JavaScript online submissions
 // Memory Usage: 42.5 MB, less than 100.00% of JavaScript online submissions
@@ -99,7 +102,7 @@ import { deepStrictEqual } from 'assert';
 //   return queries.map(q => words.filter(w => q < w).length);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 5312 ms, faster than 5.08% of JavaScript online submissions
 // Memory Usage: 67.5 MB, less than 100.00% of JavaScript online submissions
@@ -124,7 +127,7 @@ import { deepStrictEqual } from 'assert';
 // const numSmallerByFrequency = (queries, words) =>
 //   queries.map(f).map(q => words.map(f).filter(w => q < w).length);
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 2856 ms, faster than 8.94% of JavaScript online submissions
 // Memory Usage: 50.6 MB, less than 100.00% of JavaScript online submissions
@@ -147,7 +150,7 @@ import { deepStrictEqual } from 'assert';
 // const numSmallerByFrequency = (queries, words) =>
 //   queries.map(q => words.filter(w => f(q) < f(w)).length);
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 132 ms, faster than 50.48% of JavaScript online submissions
 // Memory Usage: 38.6 MB, less than 100.00% of JavaScript online submissions
@@ -172,7 +175,7 @@ import { deepStrictEqual } from 'assert';
 //   return queries.map(q => words.reduce((cnt, w) => cnt + (q < w ? 1 : 0), 0));
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 104 ms, faster than 70.77% of JavaScript online submissions
 // Memory Usage: 41.5 MB, less than 100.00% of JavaScript online submissions
@@ -202,7 +205,7 @@ import { deepStrictEqual } from 'assert';
 //   });
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 232 ms, faster than 32.61% of JavaScript online submissions
 // Memory Usage: 42.3 MB, less than 100.00% of JavaScript online submissions
@@ -227,7 +230,7 @@ import { deepStrictEqual } from 'assert';
 //   return queries.map(q => words.filter(w => q < w).length);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 248 ms, faster than 28.50% of JavaScript online submissions
 // Memory Usage: 42.9 MB, less than 100.00% of JavaScript online submissions
@@ -252,7 +255,7 @@ import { deepStrictEqual } from 'assert';
 //   return queries.map(q => words.filter(w => q < w).length);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 100 ms, faster than 73.43% of JavaScript online submissions
 // Memory Usage: 42.2 MB, less than 100.00% of JavaScript online submissions
@@ -283,7 +286,7 @@ import { deepStrictEqual } from 'assert';
 //   });
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 88 ms, faster than 85.27% of JavaScript online submissions
 // Memory Usage: 38.6 MB, less than 100.00% of JavaScript online submissions
@@ -314,7 +317,7 @@ import { deepStrictEqual } from 'assert';
 //   });
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 120 ms, faster than 59.90% of JavaScript online submissions
 // Memory Usage: 38.3 MB, less than 100.00% of JavaScript online submissions
@@ -342,7 +345,7 @@ import { deepStrictEqual } from 'assert';
 //   });
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 96 ms, faster than 78.26% of JavaScript online submissions
 // Memory Usage: 38.5 MB, less than 100.00% of JavaScript online submissions
@@ -370,19 +373,320 @@ import { deepStrictEqual } from 'assert';
 //   });
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 104 ms, faster than 70.77% of JavaScript online submissions
 // Memory Usage: 38.8 MB, less than 100.00% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @returns
+//  */
+// const f = s => {
+//   const cnts = new Array(26).fill(0);
+//   for (let i = 0; i < s.length; i++) cnts[s.charCodeAt(i) - 97]++;
+//   for (const cnt of cnts) if (0 < cnt) return cnt;
+// };
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (queries, words) => {
+//   const wFreqs = words.map(f);
+//   return queries.map(query => {
+//     const qFreq = f(query);
+//     return wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0);
+//   });
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {string} s
+//  * @returns {number}
+//  */
+// const f = s => {
+//   const cnts = new Array(26).fill(0);
+//   for (let i = 0; i < s.length; i++) cnts[s.charCodeAt(i) - 97]++;
+//   for (const cnt of cnts) if (0 < cnt) return cnt;
+// };
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @returns {number[]}
+//  */
+// const numSmallerByFrequency = (queries, words) => {
+//   const wFreqs = words.map(f);
+//   return queries.map(query => {
+//     const qFreq = f(query);
+//     return wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0);
+//   });
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 152 ms, faster than 29.79% of JavaScript online submissions
+// Memory Usage: 46 MB, less than 21.28% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (queries, words) =>
+//   ((qFreqs, wFreqs) =>
+//     qFreqs.map(qFreq =>
+//       wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0),
+//     ))(
+//     ...[queries, words].map(a =>
+//       a.map(
+//         s =>
+//           [...s].reduce(
+//             ([cnts, minChar], char) => [
+//               cnts.set(char, (cnts.get(char) || 0) + 1),
+//               !minChar || char < minChar ? char : minChar,
+//               cnts.get(!minChar || char < minChar ? char : minChar),
+//             ],
+//             [new Map()],
+//           )[2],
+//       ),
+//     ),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 152 ms, faster than 29.79% of JavaScript online submissions
+// Memory Usage: 45.8 MB, less than 27.66% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (queries, words) =>
+//   ((qFreqs, wFreqs) =>
+//     qFreqs.map(qFreq =>
+//       wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0),
+//     ))(
+//     ...[queries, words].map(a =>
+//       a.map(s =>
+//         ((cnts, minChar) => cnts.get(minChar))(
+//           ...[...s].reduce(
+//             ([cnts, minChar], char) => [
+//               cnts.set(char, (cnts.get(char) || 0) + 1),
+//               !minChar || char < minChar ? char : minChar,
+//             ],
+//             [new Map()],
+//           ),
+//         ),
+//       ),
+//     ),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (
+//   queries,
+//   words,
+//   letters = [...'abcdefghijklmnopqrstuvwxyz'],
+// ) => {
+//   ((queriesMin, wordsMin, queriesCnts, wordsCnts) => {
+//     // console.log(queriesMin, wordsMin);
+//     // console.log(queriesCnts, wordsCnts);
+//     console.log(
+//       queriesCnts.map((cnt, idx) => cnt.get(queriesMin[idx])),
+//       wordsCnts.map((cnt, idx) => cnt.get(wordsMin[idx])),
+//     );
+//   })(
+//     ...[queries, words].map(a =>
+//       a.map(s => letters.find(letter => s.includes(letter))),
+//     ),
+//     ...[queries, words].map(a =>
+//       a.map(s =>
+//         [...s].reduce(
+//           (cnts, char) => cnts.set(char, (cnts.get(char) || 0) + 1),
+//           new Map(),
+//         ),
+//       ),
+//     ),
+//   );
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 144 ms, faster than 34.04% of JavaScript online submissions
+// Memory Usage: 43.9 MB, less than 48.94% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (
+//   queries,
+//   words,
+//   letters = [...'abcdefghijklmnopqrstuvwxyz'],
+// ) =>
+//   ((qFreqs, wFreqs) =>
+//     qFreqs.map(qFreq =>
+//       wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0),
+//     ))(
+//     ...[queries, words].map(a =>
+//       a.map(s =>
+//         [...s]
+//           .reduce(
+//             (cnts, char) => cnts.set(char, (cnts.get(char) || 0) + 1),
+//             new Map(),
+//           )
+//           .get(letters.find(letter => s.includes(letter))),
+//       ),
+//     ),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 148 ms, faster than 31.91% of JavaScript online submissions
+// Memory Usage: 42 MB, less than 70.21% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (
+//   queries,
+//   words,
+//   aToZ = [...'abcdefghijklmnopqrstuvwxyz'],
+// ) =>
+//   ((qFreqs, wFreqs) =>
+//     qFreqs.map(qFreq =>
+//       wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0),
+//     ))(
+//     ...[queries, words].map(a =>
+//       a.map(
+//         s =>
+//           s.replace(new RegExp(`[^${aToZ.find(c => s.includes(c))}]`, 'g'), '')
+//             .length,
+//       ),
+//     ),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 152 ms, faster than 29.79% of JavaScript online submissions
+// Memory Usage: 44.8 MB, less than 44.68% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @returns {number}
+//  */
+// const f = s =>
+//   s.replace(
+//     new RegExp(
+//       `[^${[...'abcdefghijklmnopqrstuvwxyz'].find(c => s.includes(c))}]`,
+//       'g',
+//     ),
+//     '',
+//   ).length;
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (
+//   queries,
+//   words,
+//   qFreqs = queries.map(query => f(query)),
+//   wFreqs = words.map(word => f(word)),
+// ) =>
+//   qFreqs.map(qFreq => wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0));
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 148 ms, faster than 32.61% of JavaScript online submissions
+// Memory Usage: 45.4 MB, less than 36.96% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @returns {number}
+//  */
+// const f = (
+//   s,
+//   sSet = new Set([...s]),
+//   minChar = [...'abcdefghijklmnopqrstuvwxyz'].find(c => sSet.has(c)),
+// ) => s.replace(new RegExp(`[^${minChar}]`, 'g'), '').length;
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (
+//   queries,
+//   words,
+//   qFreqs = queries.map(query => f(query)),
+//   wFreqs = words.map(word => f(word)),
+// ) =>
+//   qFreqs.map(qFreq => wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0));
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 160 ms, faster than 28.26% of JavaScript online submissions
+// Memory Usage: 45.8 MB, less than 28.26% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @param {number[]} codes
+//  * @param {string} smallest
+//  * @returns {number}
+//  */
+// const f = (
+//   s,
+//   codes = [...new Set([...s])].map(c => c.charCodeAt(0)),
+//   smallest = String.fromCharCode(Math.min(...codes)),
+// ) => s.replace(new RegExp(`[^${smallest}]`, 'g'), '').length;
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @param {number[]} qFreqs
+//  * @param {number[]} wFreqs
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (
+//   queries,
+//   words,
+//   qFreqs = queries.map(query => f(query)),
+//   wFreqs = words.map(word => f(word)),
+// ) =>
+//   qFreqs.map(qFreq => wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0));
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 136 ms, faster than 41.30% of JavaScript online submissions
+// Memory Usage: 43.9 MB, less than 50.00% of JavaScript online submissions
+
 /**
  * @param {string} s
- * @returns
+ * @returns {number}
  */
 const f = s => {
-  const cnts = new Array(26).fill(0);
-  for (let i = 0; i < s.length; i++) cnts[s.charCodeAt(i) - 97]++;
-  for (const cnt of cnts) if (0 < cnt) return cnt;
+  let [cnts, min] = [new Array(26).fill(0), Infinity];
+  for (let i = 0; i < s.length; i++) {
+    const cntIdx = s.charCodeAt(i) - 97;
+    cnts[cntIdx]++;
+    min = Math.min(min, cntIdx);
+  }
+  return cnts[min];
 };
 
 /**
@@ -391,24 +695,56 @@ const f = s => {
  * @return {number[]}
  */
 const numSmallerByFrequency = (queries, words) => {
-  const wFreqs = words.map(f);
-  return queries.map(query => {
-    const qFreq = f(query);
-    return wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0);
-  });
+  const qFreqs = queries.map(query => f(query));
+  const wFreqs = words.map(word => f(word));
+  return qFreqs.map(qFreq =>
+    wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0),
+  );
 };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+import { deepStrictEqual } from 'assert';
 
 // Example 1:
 deepStrictEqual(numSmallerByFrequency(['cbd'], ['zaaaz']), [1]);
-// Explanation: On the first query we have f("cbd") = 1, f("zaaaz") = 3 so
-// f("cbd") < f("zaaaz").
+// Explanation: On the first query we have `f("cbd") = 1, f("zaaaz") = 3`
+// so `f("cbd") < f("zaaaz")`.
 
 // Example 2:
 deepStrictEqual(
   numSmallerByFrequency(['bbb', 'cc'], ['a', 'aa', 'aaa', 'aaaa']),
   [1, 2],
 );
-// Explanation: On the first query only f("bbb") < f("aaaa"). On the second
-// query both f("aaa") and f("aaaa") are both > f("cc").
+// Explanation: On the first query only `f("bbb") < f("aaaa")`.
+// On the second query both `f("aaa")` and `f("aaaa")` are both `> f("cc")`.
+
+deepStrictEqual(
+  numSmallerByFrequency(
+    [
+      'bba',
+      'abaaaaaa',
+      'aaaaaa',
+      'bbabbabaab',
+      'aba',
+      'aa',
+      'baab',
+      'bbbbbb',
+      'aab',
+      'bbabbaabb',
+    ],
+    [
+      'aaabbb',
+      'aab',
+      'babbab',
+      'babbbb',
+      'b',
+      'bbbbbbbbab',
+      'a',
+      'bbbbbbbbbb',
+      'baaabbaab',
+      'aa',
+    ],
+  ),
+  [6, 1, 1, 2, 3, 3, 3, 1, 3, 2],
+);
