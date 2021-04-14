@@ -1,5 +1,5 @@
 // 1170. Compare Strings by Frequency of the Smallest Character
-//       https://leetcode.com/problems/compare-strings-by-frequency-of-the-smallest-character/
+// https://leetcode.com/problems/compare-strings-by-frequency-of-the-smallest-character/
 
 /*
 
@@ -675,19 +675,77 @@ Return an integer array `answer`, where each `answer[i]` is the answer to the
 // Runtime: 136 ms, faster than 41.30% of JavaScript online submissions
 // Memory Usage: 43.9 MB, less than 50.00% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @returns {number}
+//  */
+// const f = s => {
+//   let [cnts, min] = [new Array(26).fill(0), Infinity];
+//   for (let i = 0; i < s.length; i++) {
+//     const cntIdx = s.charCodeAt(i) - 97;
+//     cnts[cntIdx]++;
+//     min = Math.min(min, cntIdx);
+//   }
+//   return cnts[min];
+// };
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (queries, words) => {
+//   const qFreqs = queries.map(query => f(query));
+//   const wFreqs = words.map(word => f(word));
+//   return qFreqs.map(qFreq =>
+//     wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0),
+//   );
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 140 ms, faster than 36.96% of JavaScript online submissions
+// Memory Usage: 45.2 MB, less than 41.30% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @returns {number}
+//  */
+// const f = s =>
+//   [...s].reduce(
+//     ([min, cnt], c) =>
+//       c < min ? [c, 1] : c === min ? [min, cnt + 1] : [min, cnt],
+//     ['{', 0],
+//   )[1];
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @return {number[]}
+//  */
+// const numSmallerByFrequency = (queries, words) => {
+//   const qFreqs = queries.map(query => f(query));
+//   const wFreqs = words.map(word => f(word));
+//   return qFreqs.map(qFreq =>
+//     wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0),
+//   );
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 136 ms, faster than 39.53% of JavaScript online submissions
+// Memory Usage: 45.4 MB, less than 32.56% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @returns {number}
  */
-const f = s => {
-  let [cnts, min] = [new Array(26).fill(0), Infinity];
-  for (let i = 0; i < s.length; i++) {
-    const cntIdx = s.charCodeAt(i) - 97;
-    cnts[cntIdx]++;
-    min = Math.min(min, cntIdx);
-  }
-  return cnts[min];
-};
+const f = s =>
+  [...s].reduce(
+    ([min, cnt], c) =>
+      c < min ? [c, 1] : c === min ? [min, cnt + 1] : [min, cnt],
+    ['{', 0],
+  )[1];
 
 /**
  * @param {string[]} queries
@@ -695,10 +753,17 @@ const f = s => {
  * @return {number[]}
  */
 const numSmallerByFrequency = (queries, words) => {
-  const qFreqs = queries.map(query => f(query));
-  const wFreqs = words.map(word => f(word));
-  return qFreqs.map(qFreq =>
-    wFreqs.reduce((cnt, wFreq) => cnt + (qFreq < wFreq), 0),
+  const queryFreqs = queries.map(f);
+  // console.log(queryFreqs);
+  const sortedWordFreqs = words.map(word => f(word)).sort((a, b) => b - a);
+  // console.log(sortedWordFreqs);
+
+  return queryFreqs.map(queryFreq =>
+    queryFreq < sortedWordFreqs[words.length - 1]
+      ? words.length
+      : sortedWordFreqs[0] < queryFreq
+      ? 0
+      : sortedWordFreqs.findIndex(n => n <= queryFreq),
   );
 };
 
@@ -711,13 +776,13 @@ deepStrictEqual(numSmallerByFrequency(['cbd'], ['zaaaz']), [1]);
 // Explanation: On the first query we have `f("cbd") = 1, f("zaaaz") = 3`
 // so `f("cbd") < f("zaaaz")`.
 
-// Example 2:
+// // Example 2:
 deepStrictEqual(
   numSmallerByFrequency(['bbb', 'cc'], ['a', 'aa', 'aaa', 'aaaa']),
   [1, 2],
 );
-// Explanation: On the first query only `f("bbb") < f("aaaa")`.
-// On the second query both `f("aaa")` and `f("aaaa")` are both `> f("cc")`.
+// // Explanation: On the first query only `f("bbb") < f("aaaa")`.
+// // On the second query both `f("aaa")` and `f("aaaa")` are both `> f("cc")`.
 
 deepStrictEqual(
   numSmallerByFrequency(
@@ -747,4 +812,38 @@ deepStrictEqual(
     ],
   ),
   [6, 1, 1, 2, 3, 3, 3, 1, 3, 2],
+);
+
+deepStrictEqual(
+  numSmallerByFrequency(
+    [
+      'aabbabbb',
+      'abbbabaa',
+      'aabbbabaa',
+      'aabba',
+      'abb',
+      'a',
+      'ba',
+      'aa',
+      'ba',
+      'baabbbaaaa',
+      'babaa',
+      'bbbbabaa',
+    ],
+    [
+      'b',
+      'aaaba',
+      'aaaabba',
+      'aa',
+      'aabaabab',
+      'aabbaaabbb',
+      'ababb',
+      'bbb',
+      'aabbbabb',
+      'aab',
+      'bbaaababba',
+      'baaaaa',
+    ],
+  ),
+  [6, 5, 0, 6, 11, 11, 11, 8, 11, 0, 6, 6],
 );
