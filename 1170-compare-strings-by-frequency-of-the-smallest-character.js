@@ -753,17 +753,18 @@ const f = s =>
  * @return {number[]}
  */
 const numSmallerByFrequency = (queries, words) => {
-  const queryFreqs = queries.map(f);
-  // console.log(queryFreqs);
-  const sortedWordFreqs = words.map(word => f(word)).sort((a, b) => b - a);
-  // console.log(sortedWordFreqs);
-
-  return queryFreqs.map(queryFreq =>
-    queryFreq < sortedWordFreqs[words.length - 1]
+  if (Number.isInteger(queries[0])) {
+    return numSmallerByFrequency(
+      queries.map(f),
+      words.map(f).sort((a, b) => a - b),
+    );
+  }
+  return queries.map(qFreq =>
+    qFreq < words[words.length - 1]
       ? words.length
-      : sortedWordFreqs[0] < queryFreq
+      : words[0] < qFreq
       ? 0
-      : sortedWordFreqs.findIndex(n => n <= queryFreq),
+      : words.findIndex(wFreq => wFreq <= qFreq),
   );
 };
 
