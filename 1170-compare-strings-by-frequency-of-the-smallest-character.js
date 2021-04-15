@@ -736,16 +736,60 @@ Return an integer array `answer`, where each `answer[i]` is the answer to the
 // Runtime: 116 ms, faster than 60.47% of JavaScript online submissions
 // Memory Usage: 46.8 MB, less than 11.63% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @returns {number}
+//  */
+// const f = s =>
+//   [...s].reduce(
+//     ([min, cnt], char) =>
+//       char < min ? [char, 1] : char === min ? [min, cnt + 1] : [min, cnt],
+//     ['{', 0],
+//   )[1];
+
+// /**
+//  * Ensure `nums` is sorted
+//  *
+//  * @param {number} n
+//  * @param {number[]} nums Sorted array of numbers
+//  * @param {number} [lo=0]
+//  * @param {number} [hi=nums.length - 1]
+//  * @returns {number}
+//  */
+// let cntIsLt = (n, nums, lo = 0, hi = nums.length - 1) =>
+//   hi < lo
+//     ? nums.length - (hi + 1)
+//     : (mid =>
+//         n < nums[mid]
+//           ? cntIsLt(n, nums, lo, mid - 1)
+//           : cntIsLt(n, nums, mid + 1, hi))(Math.trunc((lo + hi) / 2));
+
+// /**
+//  * @param {string[]} queries
+//  * @param {string[]} words
+//  * @returns {number[]}
+//  */
+// const numSmallerByFrequency = (queries, words) =>
+//   (sfWords => queries.map(query => cntIsLt(f(query), sfWords)))(
+//     words.map(f).sort((a, b) => a - b),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 104 ms, faster than 79.07% of JavaScript online submissions
+// Memory Usage: 42.8 MB, less than 53.49% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @returns {number}
  */
-const f = s =>
-  [...s].reduce(
-    ([min, cnt], char) =>
-      char < min ? [char, 1] : char === min ? [min, cnt + 1] : [min, cnt],
-    ['{', 0],
-  )[1];
+const f = s => {
+  let cnt = 1;
+  for (let i = 1, min = s[0]; i < s.length; i++)
+    if (s[i] < min) [min, cnt] = [s[i], 1];
+    else if (s[i] === min) cnt++;
+  return cnt;
+};
 
 /**
  * Ensure `nums` is sorted
@@ -756,23 +800,25 @@ const f = s =>
  * @param {number} [hi=nums.length - 1]
  * @returns {number}
  */
-let cntIsLt = (n, nums, lo = 0, hi = nums.length - 1) =>
-  hi < lo
-    ? nums.length - (hi + 1)
-    : (mid =>
-        n < nums[mid]
-          ? cntIsLt(n, nums, lo, mid - 1)
-          : cntIsLt(n, nums, mid + 1, hi))(Math.trunc((lo + hi) / 2));
+let cntSmaller = (n, nums) => {
+  let [lo, hi] = [0, nums.length - 1];
+  while (lo <= hi) {
+    const mid = Math.trunc((lo + hi) / 2);
+    if (n < nums[mid]) hi = mid - 1;
+    else lo = mid + 1;
+  }
+  return nums.length - (hi + 1);
+};
 
 /**
  * @param {string[]} queries
  * @param {string[]} words
  * @returns {number[]}
  */
-const numSmallerByFrequency = (queries, words) =>
-  (sfWords => queries.map(query => cntIsLt(f(query), sfWords)))(
-    words.map(f).sort((a, b) => a - b),
-  );
+const numSmallerByFrequency = (queries, words) => {
+  words = words.map(f).sort((a, b) => a - b);
+  return queries.map(query => cntSmaller(f(query), words));
+};
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
