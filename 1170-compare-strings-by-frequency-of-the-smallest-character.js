@@ -733,8 +733,8 @@ Return an integer array `answer`, where each `answer[i]` is the answer to the
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// Runtime: 136 ms, faster than 39.53% of JavaScript online submissions
-// Memory Usage: 45.4 MB, less than 32.56% of JavaScript online submissions
+// Runtime: 116 ms, faster than 60.47% of JavaScript online submissions
+// Memory Usage: 46.8 MB, less than 11.63% of JavaScript online submissions
 
 /**
  * @param {string} s
@@ -742,31 +742,37 @@ Return an integer array `answer`, where each `answer[i]` is the answer to the
  */
 const f = s =>
   [...s].reduce(
-    ([min, cnt], c) =>
-      c < min ? [c, 1] : c === min ? [min, cnt + 1] : [min, cnt],
+    ([min, cnt], char) =>
+      char < min ? [char, 1] : char === min ? [min, cnt + 1] : [min, cnt],
     ['{', 0],
   )[1];
 
 /**
+ * Ensure `nums` is sorted
+ *
+ * @param {number} n
+ * @param {number[]} nums Sorted array of numbers
+ * @param {number} [lo=0]
+ * @param {number} [hi=nums.length - 1]
+ * @returns {number}
+ */
+let cntIsLt = (n, nums, lo = 0, hi = nums.length - 1) =>
+  hi < lo
+    ? nums.length - (hi + 1)
+    : (mid =>
+        n < nums[mid]
+          ? cntIsLt(n, nums, lo, mid - 1)
+          : cntIsLt(n, nums, mid + 1, hi))(Math.trunc((lo + hi) / 2));
+
+/**
  * @param {string[]} queries
  * @param {string[]} words
- * @return {number[]}
+ * @returns {number[]}
  */
-const numSmallerByFrequency = (queries, words) => {
-  if (Number.isInteger(queries[0])) {
-    return numSmallerByFrequency(
-      queries.map(f),
-      words.map(f).sort((a, b) => a - b),
-    );
-  }
-  return queries.map(qFreq =>
-    qFreq < words[words.length - 1]
-      ? words.length
-      : words[0] < qFreq
-      ? 0
-      : words.findIndex(wFreq => wFreq <= qFreq),
+const numSmallerByFrequency = (queries, words) =>
+  (sfWords => queries.map(query => cntIsLt(f(query), sfWords)))(
+    words.map(f).sort((a, b) => a - b),
   );
-};
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -777,13 +783,13 @@ deepStrictEqual(numSmallerByFrequency(['cbd'], ['zaaaz']), [1]);
 // Explanation: On the first query we have `f("cbd") = 1, f("zaaaz") = 3`
 // so `f("cbd") < f("zaaaz")`.
 
-// // Example 2:
+// Example 2:
 deepStrictEqual(
   numSmallerByFrequency(['bbb', 'cc'], ['a', 'aa', 'aaa', 'aaaa']),
   [1, 2],
 );
-// // Explanation: On the first query only `f("bbb") < f("aaaa")`.
-// // On the second query both `f("aaa")` and `f("aaaa")` are both `> f("cc")`.
+// Explanation: On the first query only `f("bbb") < f("aaaa")`.
+// On the second query both `f("aaa")` and `f("aaaa")` are both `> f("cc")`.
 
 deepStrictEqual(
   numSmallerByFrequency(
