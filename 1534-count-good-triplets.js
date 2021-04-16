@@ -25,10 +25,57 @@ Constraints:
 
 import { strictEqual } from 'assert';
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 80 ms, faster than 100.00% of JavaScript online submissions
 // Memory Usage: 37 MB, less than 100.00% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} arr
+//  * @param {number} a
+//  * @param {number} b
+//  * @param {number} c
+//  * @return {number}
+//  */
+// const countGoodTriplets = (arr, a, b, c) => {
+//   let cnt = 0;
+//   for (let i = 0; i < arr.length; i++)
+//     for (let j = i + 1; j < arr.length; j++)
+//       for (let k = j + 1; k < arr.length; k++)
+//         if (
+//           Math.abs(arr[i] - arr[j]) <= a &&
+//           Math.abs(arr[j] - arr[k]) <= b &&
+//           Math.abs(arr[i] - arr[k]) <= c
+//         )
+//           cnt++;
+//   return cnt;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {number[]} arr
+//  * @param {number} a
+//  * @param {number} b
+//  * @param {number} c
+//  * @return {number}
+//  */
+// const countGoodTriplets = (arr, a, b, c) => {
+//   console.log(arr, a, b, c);
+//   const tmp = new Array(arr.length * 3)
+//     .fill(a, 0, arr.length)
+//     .fill(b, arr.length, arr.length * 2)
+//     .fill(c, arr.length * 2, arr.length * 3);
+//   console.log(tmp);
+//   for (let i = 0; i < arr.length; i++) {
+//     tmp[i] -= arr[i];
+//     tmp[i + arr.length] -= arr[i];
+//     tmp[i + arr.length * 2] -= arr[i];
+//   }
+//   console.log(tmp.sort((a, b) => a - b));
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 /**
  * @param {number[]} arr
@@ -38,20 +85,23 @@ import { strictEqual } from 'assert';
  * @return {number}
  */
 const countGoodTriplets = (arr, a, b, c) => {
+  console.log(arr, a, b, c);
   let cnt = 0;
-  for (let i = 0; i < arr.length; i++)
-    for (let j = i + 1; j < arr.length; j++)
-      for (let k = j + 1; k < arr.length; k++)
-        if (
-          Math.abs(arr[i] - arr[j]) <= a &&
-          Math.abs(arr[j] - arr[k]) <= b &&
-          Math.abs(arr[i] - arr[k]) <= c
-        )
-          cnt++;
+  for (let i = 0; i < arr.length - 2; i++) {
+    const [x, y, z] = [
+      Math.abs(arr[i] - arr[i + 1]),
+      Math.abs(arr[i + 1] - arr[i + 2]),
+      Math.abs(arr[i] - arr[i + 2]),
+    ];
+    console.log(x, y, z);
+    if (a < x || b < y || c < z) continue;
+    console.log(arr[i], arr[i + 1], arr[i + 2]);
+    cnt++;
+  }
   return cnt;
 };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Example 1:
 strictEqual(countGoodTriplets([3, 0, 1, 1, 9, 7], 7, 2, 3), 4);
@@ -67,7 +117,6 @@ strictEqual(countGoodTriplets([3, 0, 1, 1, 9, 7], 7, 2, 3), 4);
 0, 1, 3
 0, 1, 4
 0, 1, 5
-
 
 */
 
