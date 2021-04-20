@@ -21,31 +21,31 @@ if sentence is a pangram, or false otherwise.
 // Runtime: 72 ms, faster than 100.00% of JavaScript online submissions
 // Memory Usage: 40 MB, less than 21.19% of JavaScript online submissions
 
-/**
- * @param {string} sentence
- * @return {boolean}
- */
-var checkIfPangram = sentence => {
-  const found = new Set();
-  for (const c of sentence) {
-    if (/[a-z]/.test(c)) found.add(c);
-    if (26 === found.size) return true;
-  }
-  return false;
-};
+// /**
+//  * @param {string} sentence
+//  * @return {boolean}
+//  */
+// var checkIfPangram = sentence => {
+//   const found = new Set();
+//   for (const c of sentence) {
+//     if (/[a-z]/.test(c)) found.add(c);
+//     if (26 === found.size) return true;
+//   }
+//   return false;
+// };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Runtime: 84 ms, faster than 74.17% of JavaScript online submissions
+// Memory Usage: 39 MB, less than 56.95% of JavaScript online submissions
+
 /**
  * @param {string} sentence
  * @return {boolean}
  */
-var checkIfPangram = sentence => {
+const checkIfPangram = sentence => {
   const found = new Set();
-  for (const c of sentence) {
-    if (/[a-z]/.test(c)) found.add(c);
-    if (26 === found.size) return true;
-  }
+  for (const c of sentence) if (26 === found.add(c).size) return true;
   return false;
 };
 
