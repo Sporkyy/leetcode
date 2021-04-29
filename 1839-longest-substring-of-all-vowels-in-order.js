@@ -27,6 +27,20 @@ A **substring** is a contiguous sequence of characters in a string.
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Time Limit Exceeded
+
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const longestBeautifulSubstring = word =>
+//   (word.match(/a+e+i+o+u+/g) || []).reduce(
+//     (acc, curr) => Math.max(acc, curr.length),
+//     0,
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 // Runtime: 244 ms, faster than 22.48% of JavaScript online submissions
 // Memory Usage: 50.3 MB, less than 29.46% of JavaScript online submissions
 
@@ -94,46 +108,202 @@ A **substring** is a contiguous sequence of characters in a string.
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Runtime: 452 ms, faster than 7.75% of JavaScript online submissions
+// Memory Usage: 67.2 MB, less than 10.08% of JavaScript online submissions
+
 // /**
 //  * @param {string} word
 //  * @return {number}
 //  */
 // const longestBeautifulSubstring = word => {
-//   let stk = [];
+//   const isNext = (x, y) =>
+//     ({
+//       a: 'a' === y || 'e' === y,
+//       e: 'e' === y || 'i' === y,
+//       i: 'i' === y || 'o' === y,
+//       o: 'o' === y || 'u' === y,
+//       u: 'u' === y,
+//     }[x]);
+//   let [stk, max] = [[], 0];
 //   for (let i = 0; i < word.length; i++) {
 //     if ('a' === word[i] && 'a' !== stk[stk.length - 1]) stk = [word[i]];
-//     else if (!stk.length || stk[stk.length - 1] <= word[i]) stk.push(word[i]);
+//     else if (isNext(stk[stk.length - 1], word[i])) stk.push(word[i]);
 //     else stk = [];
-//     // if (stk[stk.length])
-//     console.log(stk);
+//     if ('u' === stk[stk.length - 1]) max = Math.max(max, stk.length);
 //   }
+//   return max;
 // };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// Runtime: 452 ms, faster than 7.75% of JavaScript online submissions
-// Memory Usage: 67.2 MB, less than 10.08% of JavaScript online submissions
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const longestBeautifulSubstring = word => {
+//   const str = 'aeiou';
+//   let max = 0;
+//   for (let i = 0, j = 0; i < word.length; i++, j++) {
+//     if (str[0] === word[i]) j = 0;
+//     while (word[i] === str[j] && i < word.length && j < str.length) {
+//       while (word[i] === str[j]) i++;
+//       if (word[i + 1] === str[j + 1]) {
+//         i++;
+//         j++;
+//       }
+//     }
+//     console.log(j);
+//     // if (j === str.length) max = Math.max(max, i - l + 1);
+//   }
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const longestBeautifulSubstring = word => {
+//   const str = 'aeiou';
+//   let [max, i, j] = [0, 0, 0];
+//   while (i < word.length) {
+//     console.log(word[i], str[j]);
+//     if (word[i + 1] === str[j + 1]) j++;
+//     i++;
+//   }
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const longestBeautifulSubstring = word => {
+//   const str = 'aeiou';
+//   let max = 0;
+//   for (let i = 0; i < word.length; i++) {
+//     if (str[0] !== word[i]) continue;
+//     for (let j = 0; word[i] === str[j]; j++) {
+//       console.log(str[j % 5]);
+//       if (word[i] !== str[j]) i++;
+//     }
+//     console.log(i);
+//     // while (i < word.length) {
+//     //   console.log(word[i], str[j]);
+//     //   if (word[i + 1] === str[j + 1]) j++;
+//     //   i++;
+//     // }
+//   }
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const longestBeautifulSubstring = word => {
+//   const str = 'aeiou';
+//   let max = 0;
+//   for (let i = 0, j = 0, cnt = 0; i < word.length; i++) {
+//     if (!cnt && str[0] === word[i]) j = 0;
+
+//     // if (word[i] === str[j + 1]) j++;
+//     // else if (word[i] === str[j]) i++;
+//     // if (word[i] === str[j]) cnt++;
+//     // else [j, cnt] = [0, 0];
+//     console.log(word[i], str[j], cnt);
+//     // if (str.length - 1 === j) max = Math.max(max, cnt);
+//   }
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const longestBeautifulSubstring = word => {
+//   const str = 'aeiou';
+//   let max = 0;
+//   for (let i = 0; i < word.length; i++) {
+//     let x = 0;
+//     for (let j = 0; j < str.length && word[i + x + 1] = ; j++) {
+//       while (word[i + x] === str[j]) x++;
+//     }
+//     i += x;
+//   }
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const longestBeautifulSubstring = word => {
+//   const matrix = [
+//     ['a', 'e', 'i', 'o', 'u'],
+//     ['a', 'e', 'i', 'o', 'u'],
+//     ['a', 'e', 'i', 'o', 'u'],
+//     ['a', 'e', 'i', 'o', 'u'],
+//     ['a', 'e', 'i', 'o', 'u'],
+//   ];
+//   let max = 0;
+//   for (let i = 0, iRow = 0, iCol = 0; i < word.length; i++) {
+//     if (!(iRow + iCol) && 'a' !== word[i]) continue;
+//     const move = [0, 0];
+//     if (word[i + 1] === matrix[(iRow + 1) % 5][iCol % 5]) move[0]++;
+//     if (word[i + 1] === matrix[iRow % 5][(iCol + 1) % 5]) move[1]++;
+//     if (!(move[0] + move[1])) [iRow, iCol] = [0, 0];
+//     else [iRow, iCol] = [iRow + move[0], iCol + move[1]];
+//     if (3 < iCol) max = Math.max(max, iRow + iCol);
+//     console.log(`${word[i]} (${iRow},${iCol})`);
+//   }
+
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 /**
  * @param {string} word
  * @return {number}
  */
 const longestBeautifulSubstring = word => {
-  const isNext = (x, y) =>
-    ({
-      a: 'a' === y || 'e' === y,
-      e: 'e' === y || 'i' === y,
-      i: 'i' === y || 'o' === y,
-      o: 'o' === y || 'u' === y,
-      u: 'u' === y,
-    }[x]);
-  let [stk, max] = [[], 0];
-  for (let i = 0; i < word.length; i++) {
-    if ('a' === word[i] && 'a' !== stk[stk.length - 1]) stk = [word[i]];
-    else if (isNext(stk[stk.length - 1], word[i])) stk.push(word[i]);
-    else stk = [];
-    if ('u' === stk[stk.length - 1]) max = Math.max(max, stk.length);
+  const matrix = [
+    ['a', 'e', 'i', 'o', 'u'],
+    ['a', 'e', 'i', 'o', 'u'],
+    ['a', 'e', 'i', 'o', 'u'],
+    ['a', 'e', 'i', 'o', 'u'],
+    ['a', 'e', 'i', 'o', 'u'],
+  ];
+  let max = 0;
+  for (let i = 0, iRow = 0, iCol = 0; i < word.length; i++) {
+    // if ('a' !== word[i - 1]) {
+    //   [iRow, iCol] = [0, 0];
+    //   continue;
+    // }
+    // if (!(iRow + iCol) && 'a' !== word[i]) continue;
+    // const move = [0, 0];
+    if (word[i] === matrix[iRow % 5][iCol % 5]) {
+      if (word[i + 1] === matrix[(iRow + 1) % 5][iCol % 5]) iRow++;
+      else if (word[i + 1] === matrix[iRow % 5][(iCol + 1) % 5]) iCol++;
+    } else {
+      [iRow, iCol] = [0, 0];
+    }
+    // if (!(move[0] + move[1])) [iRow, iCol] = [0, 0];
+    // else [iRow, iCol] = [iRow + move[0], iCol + move[1]];
+    if (3 < iCol) max = Math.max(max, iRow + iCol + 1);
+    console.log(`${word[i]} (${iRow},${iCol})`);
   }
+
   return max;
 };
 
@@ -141,26 +311,70 @@ const longestBeautifulSubstring = word => {
 
 import { strictEqual } from 'assert';
 
-// Example 1:
-strictEqual(longestBeautifulSubstring('aeiaaioaaaaeiiiiouuuooaauuaeiu'), 13);
-// Explanation: The longest beautiful substring in word is "aaaaeiiiiouuu" of
-// length 13.
+// // Example 1:
+// strictEqual(longestBeautifulSubstring('aeiaaioaaaaeiiiiouuuooaauuaeiu'), 13);
+// // Explanation: The longest beautiful substring in word is "aaaaeiiiiouuu" of
+// // length 13.
 
-// Example 2:
-strictEqual(longestBeautifulSubstring('aeeeiiiioooauuuaeiou'), 5);
-// Explanation: The longest beautiful substring in word is "aeiou" of length 5.
+// // Example 2:
+// strictEqual(longestBeautifulSubstring('aeeeiiiioooauuuaeiou'), 5);
+// // Explanation: The longest beautiful substring in word is "aeiou" of length 5.
 
-// Example 3:
-strictEqual(longestBeautifulSubstring('a'), 0);
-// Explanation: There is no beautiful substring, so return 0.
+// // Example 3:
+// strictEqual(longestBeautifulSubstring('a'), 0);
+// // Explanation: There is no beautiful substring, so return 0.
 
-strictEqual(longestBeautifulSubstring('u'), 0);
+// strictEqual(longestBeautifulSubstring('u'), 0);
 
-strictEqual(longestBeautifulSubstring('uuuuu'), 0);
+// strictEqual(longestBeautifulSubstring('uuuuu'), 0);
+
+// strictEqual(
+//   longestBeautifulSubstring(
+//     'auoeioueiaaioeuieuoaieuaoeuoaiaoueioiaeuiuaeouaoie',
+//   ),
+//   0,
+// );
 
 strictEqual(
   longestBeautifulSubstring(
-    'eieuuoeeueauueeoiiueaeuioeiiieioaouoeeoiiauiueiiuieueeeoaeaeoooiuauiaaueieoeeeeioauaouueiioeiaaaaooeaaaeoouoaoioauoaeuiioaiuuiaaaiieiuiuoiaeuuiooeiiuoaauoioeaeieaeeeiouieuaaaaaeoaeiaeeeaoaeooueieaaaeieooouueaueeiaiuoioiioieuoeeoeaaeeaauoaiaoaauaauioaueiaiooeoiiaiauaooiiauaiaoaoeaioeiaeeuueioauoueuaaiiouoeoeoiaeeooaauieoeaiueioiaieouiaeauaeiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuiuaeouiioieouieeiuaeeuoiooioiiaoueioeuaeeoaauoaaeeaaoiuueoeaeoaaeueoueeiiiuiouieaiuoieeoooueiiiaeeuaaieeaaoiuuoeuoauouiieuaeeiueaeeeaaoieaeuiuoeuoaaiueieiouiiiaoueuuiuooeioaeooaeueouiaeuaaiueuoeeiouioiiueiueaaiuoaieuiaoeuoeaeaiuaaoeeuouiiioeeoueuuauoieiaoaeeaeioouoaiieueoauaoeeoeouaiaoaueioiuaooouiueuieuauieeoeaiouoaoeeeueuoeuieooaaaaaiuoououiuuueoioieueuueaueaeuaieueeaieioieuuuueoooueueoiaoiuuiooiauaaiiiiuoaaueeaiiaeaauaooooeaaeuiaaouooauaaaaiieiaeeeeeiauiiuaueieuieaoeeiauiuaueouaeoaaoiuaoiaiouaiaeoiaooieeioiieieioeeioeuioeiooouiiioaiaeeaaieouoaooaiaiueeuieoiuaeuieeiuaoaueiouoieauieiuoooieuiaooeaeaoiueaeeuieaioiuoaeieuaaeouuoiieioeoiaeuiiiuiuaaaoeaaaoiuauaiiuaaaaiieeueeoieuiueuaueiiaioaoaoueiieueoauuueeeeuuueoiuuaiaaeuauuiaeuuaeiaiiioiooeaeiaeoeaeouuaouueeiieaoaeoaueuaoouoioeiaiuiouaueuaiaoeouoeoooioiuioaeeoeaaoioeiioiuoaiiuioiiioeuiiaaaieaoaaeoaeieuiiiuieiieaaioaueoiiiuueeiouuueoiiaeuuaeaaiauaeeieoaioiiuueuaoieieiuiaioeaeuiiaioaieeeaoaieoooiuiaeuuuieeaeeeeuoeueioeiiaaieaiaiiieiouueaouoooueeoiauooeieeoeuoueioauieoeuooiiaiueeouiiuuiaiuuouoaaiuiiiouuuaiiiuiiuouiioaoauiaoeiioaooeuoaauaiiieiuueuueioeaioaaieuuoioeaeeeuauouuiaauuiauuuaiiiooaiaeaeeuioaueeaoiaioiieooueaieoeieoiaouuuuioaieauioeuoauauaaeaoueeiaaoooauoioueaieeaaiuuiieieaaaeoiueeoeoeoaaoioaueeoeoiooeiioiaoeieieaeiaaaoeeuoiueaueoeoaueeiioauuuoaiaeaooaiaaauuieaioeaaoeioouaiauiaaoieiiieeioeeuaiauuaeeooiuuuaeeieaeieoaaiioaoooeaaeaooouaaoeaoiiuaiauooaiuoeauoeiaeaaeueeiaiooaeaoioeuuauaioaiiioioeuuueiuaeoeaiiuaioiueooioeiueaaeueeiauoiaoeooiuaeuoaououiiiauuaaeeuaiuueaaoioueouaooaaiieeeiueieeouoieiuoueeueauauoueaooaoiuouuiauaeoiouaoeaauaaaoaaueoaeaoeuaiiiaueeiiaaoeuaouiaaiauoeeueueiaooeiooaeuooiieioaaeiueuieuoueiaeiiiaaueaaaoauiauaooaeoeouaaoeeoieuioeuooeaeeoioeeoouieiouuooeaioooouoaoeeouueioaeuoeoiioeouoeuiuuaaouaiuaioaiiuiiuuieaoiiieaaeeioeeiuuouioiuoaiuuuouoeauuoauoeiuuoiiuauoaeuieaiaaoaoiieoeeiaoaueuuoiaauioueeiueeaouioiiauoeuaooiueaaeuuiiiooioeiuioaeuuaouieeiuooaeeaeiiiaiieoaeeoaoioieiuiaeiaiiiouoeoeaeuiuaoeuiiouoaeioiouioiaouiaoooioooieiieaeeaiaaiuoaaaaeoauioiouaaaoeiiueaooeieieueaoiuiaiueaaauiuiuooeaaaaeoiooeueiaaueeaeaoouoioouoeouaoaooauieeuuoeooaauuoaueoaaauiiueoaauiiaaiaoaiuoeeooiiauaueeuoiuooaiueeeauaoeeaiieeoeaaaoueaeiouaouioauoouaeoiauaauouuuaoeuaaeueeeouoaouueaooiueeauuiiioeaeeieoaoeaooauaiiiueoaiauoueeiooueeiooiaouauiaoooioaaaaoeiaieoeaeaeeoaoaeeaeeuuuuioouaioeouuiuouuoeoaeeaaaeeaoooiaeieiuiuauouuieuiauooioiuoeeoieooeeouoiaaoueoaaiaiuauaauouiauiuoiioiiiauiuooiaooeeiuoeaoaeouuauueiueiuoioeiiaiioueeuiiiueoaieuueaoaiioeeuuauuuiuaueooeaaeeioieuieuuieaeoeoaaoeaoaoueiiaueuouiuuaauiiiuuoaaouaeioioooieoaioeouiiuoeaiaiiueoauaaiaeaaeouaeoiouieuaiaeuieuuioueiueueuaooiiouaioeuooeuaaoooieuauuaueiieoeiouaoaeuiaoaooeoeiaoieeaiiuaeaeauoaieeoeoeoauiauiaooouioaoiueuiueaueaaaoaouoeauueaieeuaiueiuauiueaoieoaioouiaaeuiiiueuaiuaiaeiaouooeioaoeaoiaieaeiuouaieeieoaiaaoioaeau',
+    'ooueeieaauauuiuiuoauoeuioeaaaiueiiiieeaooaioouueaiaooouuuioiuaieeuiaeeuoeuoaaaaauuaioaiaoiaoiueaauuaaieauaoeaoeieeooauoueauaeeiaiaeaoeouaeuaeoaeeieoaeiiaeeuiiaoueaauioaueeiuieiuaoieueiiauuoooaueaeaaaioaoauuoaeuaiooauoiuiuieeoaiiieoaauaueueioeaauiuaoouiioaooeiaaeeiiiiouioueoiaiauiauaaiuuuuoaueoaoiiaiuouaaeouuauauiiaauuioeaioaiaauiiaaoeaaioeuoiueeaieiaeaouoaaoeeiieaoeaieoiiiiaueieaueieoeaaueaaueoueoeoaoeuauiiuuaeouiuuiauoeouueiueoaiouiiaeoiioiuaauaaeeauueaieiuuoaieuoauuiiuiieeaoaaaoiaeauiiuiuiiiaaaieaueauaieuouauoouueieeeeaaeoiaiuaeooiuooieuoaaooauueeueoeaioeauuuauueeiuaiuouaiauaeuioieuoaoaeoeiauueaaieaauaaeaeaieaaoiioiuuaauauuaieueoeeuaiiaaueoeuaiaoeaioiaaeuiiiauueeoouuueaooouuaeuioaaeiaieaeiiueoeioiaaueuuaieiaooiioauoeiiaaoaaoaaoeuoiuiaeeiaouaioaeuoaoaeiaieaeieioieeoieaeuouiiuauaeouoiiieeeoeaoieuaaiuoaaoaiauoauuouoaeiaouiiuaaiuuiueaoieuuaoouoiooaeiaeoaaieeooaeaauuouaoioueeeoiuioeuiiaiaoiaoaoeaeiuuuoaeiueiueeuoiiuaaoiueiueuuaaeuuuuiauuouoiieuiiaooiaauoiaaueuioioaeaeeiaeaoeaouaeaaoiiauaaaoioauuuuoeeaaeoouooiuaeeoeoeeieeeoeeaieueuieoiiuiaiuiaeaeaoiooieiieaieouaoieuaiiaueeoaouaaiiieuieiiaioaooeeoaauiueouoioouuiiiaeoieiueuueeiioiooauiaeaoiuueaaiuaiaeaeoeeieiuoiuouaieaeueaeooaauoiououiouoaeeeioeouoeiaaieuoiiiuoeiiaaoooaiiaiuiuouoooiieiooaieauieeoueaoauuoaeoaioiiuaauoeauaoieeeiaiiiieeauueoieaiuoieaeiuaeeauiiuiioieioaaeooeeoaoiaeueeieeeaaiieuoieeeeooueeioiiuiieiiiuiuoaauoeiouieouaeiaaeieaeaaiiuiioauaeoeeooeieuuauaouiuiieeeueuuiaooaeiuuaouuuoeeiououuieaiuaeoieiieaoouaouaoaooiiiuuuiuueouaoueouioaoauuioeouuoeaouuuuioeaoiaouoauaooiuooieueeuuaeeeeaiiuoiuiieaaiouiouooiieeaeeaauaiuiioeoiuaaieoeeaeeeiiuauuoaoeiieiuauoiuuieiueaiaaoeueaauiueeioieaaouiueeiaoaeoeauiaeuiiueaiooouaeouiaeeiiauuaieoueeeaeoeiuuouaoeuuoaaaoeauaiiuuuoaaieuaeeeiuuiiaoaeaeuuieeeuuoieuiuiaiiuiaiieauouueoeouiieaooiuueeeuuuoeiaiauoioeiuaoaaioauaaaaieueuooiiiiueiioaaeuoeuiuiuaeuoeaiuauueiiioaiaaeeiooeiuaeauiuuouaeueueieouauaouuieeuoaiuaeiaaoauoaeeaaoauoaiiooiiouuuuaieeoeeauaauieuaeeuoaaoeuueieeuiaiiouuiiooeueaeoaiieuiaaeuooaaaiiueoeeiaaeeeaaeiaiaaeeooaoeeaoiieaoaaieuiaouoeioeeuauueiiaueiaeioaoaeeaueoiooooieaooeeiiaieaaeeieiiiauoiioiuauauaiaeeooioeoaieuiaaoouiuuieuaaeoeoaaooiiouaeuaueoaeiiuiiaiouuuoeouioiiaauaieaeioouuoeaoeoeeeoaeuoaooiuaaiiauaaoueiiuouueaeiieoououueeeiuuooeeaoueioiiueiieeoeeoeauauioooiuuiiiuuoaeeuoaoaeeuiuuiiuuaeeuiooeieiuueuioioauaiaouiououeoueeoouuueeoiaaeooooaaeeuaaieiaaoaaeaaueieaeeiaoauaaoaeuoeeeuuoauauiiieeuaeooauuuiuaeaeoueoieieouaoeouuuiaaaueouuaiieauoaioaaeeuuaioouuioeueaouiaauooauaiooeaeuouiueaaueuaaiaiaioiuieuooiiaeouoauuaouuooueuiuauuueoooeoiuieoeeuououaiaoiauieaooaoeeeieoeeeiuaeeeiiuiiueoieaiiieoiuuuaaieeaoaeeuaiaooaouooueaouaeuaaeaiuaaeeoeaeooeiuaiouuooioeeaaauuuaiaouuaauoiuaeeuuoeoieeeooeoaeiouuaoaeaeeaueeuaiueoiiieauiuauioeeooauueoeeeiiaaaaoueaaeuioeoiiooeeiauiooaoeuiuoieiueouaauuuoaaieauuioeoeauauuaioueoaeeieiaaoouoeauuooueeoeooeaiuuiuuiiaaauieeeuioeeoeeooioaiiiaiooaaoeiuauuueaueeeieauieaaeeioeaeeooieoieoueoeuaiiauuoiiuieoeeuuuoiuaoaoaaiiiuuiuueaaoeaeaeeiuaueeeioeeiaaiuaaooooaaeaiaaeiaeuuuouiaieoioouaaeiaiuoooaieauaeuouueiuoauuaoaaeueeiioeeueeeiieaioaouueooioeaooeoiauieaooieeeeeieiiaiuiaeiooaiieaeaaeioiuaaaeueaooeaeuoaeeuioeueaeiiaiiaiaaiieeoeaouiuouoeaoeeiaioeueiuuoaeeuuiiaouaiauuoiiuoiaueoioeaeuieaaouueeuieiaueuioueuuaeieiaiaaaaeeeeeiaauiieuaaeeoeoooiueouaeaeiuuiiaueoiaioaoeeiiiiioeoeuoaeiueaoieuoauoeieaiauuiauiaeieooeouoeeeeuieeaaoooueeioaueeiuooieoaioieuiieeaooiauoiaiauuooeouieueouaaiueuuooaaeaaoaeaaaooioueioouaeoaouaoeeeieioeaaeueaiuioaiaouoaiuiiueiueuaiooooiieuooeuaoueoouaaiioeuueiiiaeaaiioaiiooaeoiiaeeoououauioeeieauuoeueoeeoiaaaiaiaiiuaoaouaeoeeuuouoaoeauaooiieaouooaoaoauueiuaueuooeuaoaiueeuoiuoieiuiuuuuauoeeaoiaaeeioeouaooaiaeuiouaieiuaeioieooaauouauoeiaiuaieioueeoaiuuuieeueueeiuoooaeiiuuuaaeiaooeeoaiouooaueeaieueaueuioueaueoaaaoiuaaeueeeueooiuuioiueoaaoeuioeoaeoaoueiiuuaoueeaooooauuuouoauioieiuuiaeueiaoueoeeoauueeeeuoeoaaiioieaiiuoiioioiiuoaoeauooiuoiuoiaeaauiouioaaooioeooeiuueiaioaaoeiaioaeooeeeoeaauuaaiauieiuoeaoaoaiauauaaieioaaooeaoueioiaueiuauaouoooaiiaoeuaiaoieouaoeeaaeeeaouuioaeoouiieuaiauoiaeeaaioiiaaeeoeeaoiiaiiaeaiiuueooaieaieooaoeoeouiaieaioiaoeiaaooauaooieiouaioiuaieoeoouuoaaoeaaauaaaoeeeiuuuoiieaeuuaeeaauooiuiieeaaoeieaaoaioiaeoaoaeaeeooaiaeoooiauoeeooieiuiouuueuoieaaauoeoeoaeeuiaouuuaiaooeoiaeoiuauiuoeioeieoaoauioieaeeeouiaaaouoaeaoaieieaieioiuueueueoaueaioeeiiuoeiaaoeuuaieeaeiauoiuuuuouoiaioioaeieuoeeeeaiaeaaiaauiuooiaiioieeaoeieaeuuiiiooieiaaoiaiueuaeoaoeouoaeaauioeoeaeiuuuuioeeaaiieieaoaiaeuieoaueioeueeoeoueooaeeeouueoaeuiaeuoaoaaiaeeouoioaaoaoaoaeuieuuueeoeiueououuoiauiaiiuaeeeaeoauueuuauueueiuiueeiuuieaeiuiuiiaiueoieuueieoiouououaeiuiouuoaieuiueioeaoiouieoieueuoeoiooeauaeieuuoiiieeoioauoeeoaueoioieuioauooaaoooueaiuuaiuiaeoiaeiiooooeaueiuiioeaeeiaeoeiuaaoioioeueeeueouaeiaaeiiaoiaoaouuouuauiaoieuauaeieoueaeouiuiiouoiaeoaauiuaiieeaaiueeeaoiouiuuiuiiaeeoieueeoooouaeiaooaouuieaouuiuaoaiiieaoueoiiuaaeioauioeeaiaoiaeaeeauueiaioieoeioieaaiaiiuuiauaeuoieauiaiiauuoieoououoeaoaooieeeuioouiaaouaueooioiauuieaiaeeieoeuoiaueioeauiuiieieuauouuueeiuaeeaioeiiieaeeeaiaaiuoeeaeeoiieueaaiiuoaeiiueoauaeeioaeueaiuaaaaioooaeauoiuaeeuoueeiioaoooeouoaooeeuaeeooooeieuoiaeaaueeoeiiuoieeoiaeoeuaeeieiauauaaaoaieiiauoeoaaeuioueaiouoeauieoeaaioaeiaeuuioioaiieooeaeaiaeeeiiioeaieoeeueuiiaiiueuieieaooeuaooeoioeoeeuuaoiuuieoioiaouoeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuaouuuuaooeooueiuiuaaieouuiieeeieeiauaiaauaiaaoiueiooueuaaaeieeoeaoouiueuiaaoeuuiiuauiuaoiaouuiuuaeoaueoueeeooaeueaaieoiueuuoauuoaeeauiieeuaeioiiiuuaueeeououeueieueoeouaiuoooeeeuaouuauaueaieuauiuioeuioeiiiuuiueooaueuuaeeiaeuoauoaauioauuaoeoeioeiuaiiauoueeoiuuiooiuaeooiuuooeeiooaeiuaoiieeaoeaouoaaeiueieaoiuaeiaeoeiuuaoauoaieaiauuiiaieeeoueuiaauoaeeeiieoaeuieeoiioauuooaaaoaoooeaaaooooaaieaiauoiuioieeueeuueieaaeiaioieeaoaeoeuiouauieoaueuoaeuaiiu',
   ),
-  2169,
+  1753,
 );
+
+// strictEqual(
+//   longestBeautifulSubstring(
+//     'eieuuoeeueauueeoiiueaeuioeiiieioaouoeeoiiauiueiiuieueeeoaeaeoooiuauiaaueieoeeeeioauaouueiioeiaaaaooeaaaeoouoaoioauoaeuiioaiuuiaaaiieiuiuoiaeuuiooeiiuoaauoioeaeieaeeeiouieuaaaaaeoaeiaeeeaoaeooueieaaaeieooouueaueeiaiuoioiioieuoeeoeaaeeaauoaiaoaauaauioaueiaiooeoiiaiauaooiiauaiaoaoeaioeiaeeuueioauoueuaaiiouoeoeoiaeeooaauieoeaiueioiaieouiaeauaeiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuiuaeouiioieouieeiuaeeuoiooioiiaoueioeuaeeoaauoaaeeaaoiuueoeaeoaaeueoueeiiiuiouieaiuoieeoooueiiiaeeuaaieeaaoiuuoeuoauouiieuaeeiueaeeeaaoieaeuiuoeuoaaiueieiouiiiaoueuuiuooeioaeooaeueouiaeuaaiueuoeeiouioiiueiueaaiuoaieuiaoeuoeaeaiuaaoeeuouiiioeeoueuuauoieiaoaeeaeioouoaiieueoauaoeeoeouaiaoaueioiuaooouiueuieuauieeoeaiouoaoeeeueuoeuieooaaaaaiuoououiuuueoioieueuueaueaeuaieueeaieioieuuuueoooueueoiaoiuuiooiauaaiiiiuoaaueeaiiaeaauaooooeaaeuiaaouooauaaaaiieiaeeeeeiauiiuaueieuieaoeeiauiuaueouaeoaaoiuaoiaiouaiaeoiaooieeioiieieioeeioeuioeiooouiiioaiaeeaaieouoaooaiaiueeuieoiuaeuieeiuaoaueiouoieauieiuoooieuiaooeaeaoiueaeeuieaioiuoaeieuaaeouuoiieioeoiaeuiiiuiuaaaoeaaaoiuauaiiuaaaaiieeueeoieuiueuaueiiaioaoaoueiieueoauuueeeeuuueoiuuaiaaeuauuiaeuuaeiaiiioiooeaeiaeoeaeouuaouueeiieaoaeoaueuaoouoioeiaiuiouaueuaiaoeouoeoooioiuioaeeoeaaoioeiioiuoaiiuioiiioeuiiaaaieaoaaeoaeieuiiiuieiieaaioaueoiiiuueeiouuueoiiaeuuaeaaiauaeeieoaioiiuueuaoieieiuiaioeaeuiiaioaieeeaoaieoooiuiaeuuuieeaeeeeuoeueioeiiaaieaiaiiieiouueaouoooueeoiauooeieeoeuoueioauieoeuooiiaiueeouiiuuiaiuuouoaaiuiiiouuuaiiiuiiuouiioaoauiaoeiioaooeuoaauaiiieiuueuueioeaioaaieuuoioeaeeeuauouuiaauuiauuuaiiiooaiaeaeeuioaueeaoiaioiieooueaieoeieoiaouuuuioaieauioeuoauauaaeaoueeiaaoooauoioueaieeaaiuuiieieaaaeoiueeoeoeoaaoioaueeoeoiooeiioiaoeieieaeiaaaoeeuoiueaueoeoaueeiioauuuoaiaeaooaiaaauuieaioeaaoeioouaiauiaaoieiiieeioeeuaiauuaeeooiuuuaeeieaeieoaaiioaoooeaaeaooouaaoeaoiiuaiauooaiuoeauoeiaeaaeueeiaiooaeaoioeuuauaioaiiioioeuuueiuaeoeaiiuaioiueooioeiueaaeueeiauoiaoeooiuaeuoaououiiiauuaaeeuaiuueaaoioueouaooaaiieeeiueieeouoieiuoueeueauauoueaooaoiuouuiauaeoiouaoeaauaaaoaaueoaeaoeuaiiiaueeiiaaoeuaouiaaiauoeeueueiaooeiooaeuooiieioaaeiueuieuoueiaeiiiaaueaaaoauiauaooaeoeouaaoeeoieuioeuooeaeeoioeeoouieiouuooeaioooouoaoeeouueioaeuoeoiioeouoeuiuuaaouaiuaioaiiuiiuuieaoiiieaaeeioeeiuuouioiuoaiuuuouoeauuoauoeiuuoiiuauoaeuieaiaaoaoiieoeeiaoaueuuoiaauioueeiueeaouioiiauoeuaooiueaaeuuiiiooioeiuioaeuuaouieeiuooaeeaeiiiaiieoaeeoaoioieiuiaeiaiiiouoeoeaeuiuaoeuiiouoaeioiouioiaouiaoooioooieiieaeeaiaaiuoaaaaeoauioiouaaaoeiiueaooeieieueaoiuiaiueaaauiuiuooeaaaaeoiooeueiaaueeaeaoouoioouoeouaoaooauieeuuoeooaauuoaueoaaauiiueoaauiiaaiaoaiuoeeooiiauaueeuoiuooaiueeeauaoeeaiieeoeaaaoueaeiouaouioauoouaeoiauaauouuuaoeuaaeueeeouoaouueaooiueeauuiiioeaeeieoaoeaooauaiiiueoaiauoueeiooueeiooiaouauiaoooioaaaaoeiaieoeaeaeeoaoaeeaeeuuuuioouaioeouuiuouuoeoaeeaaaeeaoooiaeieiuiuauouuieuiauooioiuoeeoieooeeouoiaaoueoaaiaiuauaauouiauiuoiioiiiauiuooiaooeeiuoeaoaeouuauueiueiuoioeiiaiioueeuiiiueoaieuueaoaiioeeuuauuuiuaueooeaaeeioieuieuuieaeoeoaaoeaoaoueiiaueuouiuuaauiiiuuoaaouaeioioooieoaioeouiiuoeaiaiiueoauaaiaeaaeouaeoiouieuaiaeuieuuioueiueueuaooiiouaioeuooeuaaoooieuauuaueiieoeiouaoaeuiaoaooeoeiaoieeaiiuaeaeauoaieeoeoeoauiauiaooouioaoiueuiueaueaaaoaouoeauueaieeuaiueiuauiueaoieoaioouiaaeuiiiueuaiuaiaeiaouooeioaoeaoiaieaeiuouaieeieoaiaaoioaeau',
+//   ),
+//   2169,
+// );
+
+/*
+
+|---|---|---|---|---|
+| a | e | i | o | u |
+|---|---|---|---|---|
+| a | e | i | o | u |
+|---|---|---|---|---|
+| a | e | i | o | u |
+|---|---|---|---|---|
+| a | e | i | o | u |
+|---|---|---|---|---|
+| a | e | i | o | u |
+|---|---|---|---|---|
+
+a [0, 0]
+a [1, 0]
+a [2, 0]
+a [3, 0]
+e [3, 1]
+i [3, 2]
+i [4, 2]
+i [0, 2]
+i [1, 2]
+o [1, 3]
+u [1, 4]
+u [2, 4]
+u [3, 4]
+
+*/
