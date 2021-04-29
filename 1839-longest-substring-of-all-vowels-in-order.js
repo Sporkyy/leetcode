@@ -64,6 +64,56 @@ A **substring** is a contiguous sequence of characters in a string.
 // Runtime: 152 ms, faster than 62.02% of JavaScript online submissions
 // Memory Usage: 51.9 MB, less than 22.48% of JavaScript online submissions
 
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const longestBeautifulSubstring = word => {
+//   const isNext = (x, y) =>
+//     ({
+//       a: 'a' === y || 'e' === y,
+//       e: 'e' === y || 'i' === y,
+//       i: 'i' === y || 'o' === y,
+//       o: 'o' === y || 'u' === y,
+//       u: 'u' === y,
+//     }[x]);
+//   let max = 0;
+//   for (
+//     let i = 1, cnt = 'a' === word[0] ? 1 : 0, last = word[0];
+//     i < word.length;
+//     i++
+//   ) {
+//     if (cnt && isNext(last, word[i])) cnt++;
+//     else if ('a' === word[i]) cnt = 1;
+//     else cnt = 0;
+//     if ('u' === word[i]) max = Math.max(max, cnt);
+//     last = word[i];
+//   }
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const longestBeautifulSubstring = word => {
+//   let stk = [];
+//   for (let i = 0; i < word.length; i++) {
+//     if ('a' === word[i] && 'a' !== stk[stk.length - 1]) stk = [word[i]];
+//     else if (!stk.length || stk[stk.length - 1] <= word[i]) stk.push(word[i]);
+//     else stk = [];
+//     // if (stk[stk.length])
+//     console.log(stk);
+//   }
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 452 ms, faster than 7.75% of JavaScript online submissions
+// Memory Usage: 67.2 MB, less than 10.08% of JavaScript online submissions
+
 /**
  * @param {string} word
  * @return {number}
@@ -77,17 +127,12 @@ const longestBeautifulSubstring = word => {
       o: 'o' === y || 'u' === y,
       u: 'u' === y,
     }[x]);
-  let max = 0;
-  for (
-    let i = 1, cnt = 'a' === word[0] ? 1 : 0, last = word[0];
-    i < word.length;
-    i++
-  ) {
-    if (cnt && isNext(last, word[i])) cnt++;
-    else if ('a' === word[i]) cnt = 1;
-    else cnt = 0;
-    if ('u' === word[i]) max = Math.max(max, cnt);
-    last = word[i];
+  let [stk, max] = [[], 0];
+  for (let i = 0; i < word.length; i++) {
+    if ('a' === word[i] && 'a' !== stk[stk.length - 1]) stk = [word[i]];
+    else if (isNext(stk[stk.length - 1], word[i])) stk.push(word[i]);
+    else stk = [];
+    if ('u' === stk[stk.length - 1]) max = Math.max(max, stk.length);
   }
   return max;
 };
