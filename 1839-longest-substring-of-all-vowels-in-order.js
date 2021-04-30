@@ -161,8 +161,8 @@ A **substring** is a contiguous sequence of characters in a string.
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// Runtime: 236 ms, faster than 27.89% of JavaScript online submissions
-// Memory Usage: 50.3 MB, less than 33.33% of JavaScript online submissions
+// Runtime: 296 ms, faster than 21.09% of JavaScript online submissions
+// Memory Usage: 49.7 MB, less than 36.05% of JavaScript online submissions
 
 /**
  * @param {string} word
@@ -170,8 +170,8 @@ A **substring** is a contiguous sequence of characters in a string.
  */
 const longestBeautifulSubstring = word => {
   const vowels = 'aeiou';
-  let [vIdx, vCnt, max] = [0, 0, 0];
-  for (let i = 0; i < word.length; i++) {
+  let max = 0;
+  for (let i = 0, vIdx = 0, vCnt = 0; i < word.length; i++) {
     if (vowels[vIdx] === word[i]) vIdx++;
     else if (vowels[vIdx - 1] === word[i]) vCnt++;
     else if (vowels[0] === word[i]) [vIdx, vCnt] = [1, 0];
