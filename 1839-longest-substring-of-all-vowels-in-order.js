@@ -164,19 +164,39 @@ A **substring** is a contiguous sequence of characters in a string.
 // Runtime: 296 ms, faster than 21.09% of JavaScript online submissions
 // Memory Usage: 49.7 MB, less than 36.05% of JavaScript online submissions
 
+// /**
+//  * @param {string} word
+//  * @return {number}
+//  */
+// const longestBeautifulSubstring = word => {
+//   const vowels = 'aeiou';
+//   let max = 0;
+//   for (let i = 0, vIdx = 0, vCnt = 0; i < word.length; i++) {
+//     if (vowels[vIdx] === word[i]) vIdx++;
+//     else if (vowels[vIdx - 1] === word[i]) vCnt++;
+//     else if (vowels[0] === word[i]) [vIdx, vCnt] = [1, 0];
+//     else [vIdx, vCnt] = [0, 0];
+//     if (4 < vIdx) max = Math.max(max, vIdx + vCnt);
+//   }
+//   return max;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 144 ms, faster than 65.09% of JavaScript online submissions
+// Memory Usage: 51.5 MB, less than 25.44% of JavaScript online submissions
+
 /**
  * @param {string} word
  * @return {number}
  */
 const longestBeautifulSubstring = word => {
-  const vowels = 'aeiou';
   let max = 0;
-  for (let i = 0, vIdx = 0, vCnt = 0; i < word.length; i++) {
-    if (vowels[vIdx] === word[i]) vIdx++;
-    else if (vowels[vIdx - 1] === word[i]) vCnt++;
-    else if (vowels[0] === word[i]) [vIdx, vCnt] = [1, 0];
-    else [vIdx, vCnt] = [0, 0];
-    if (4 < vIdx) max = Math.max(max, vIdx + vCnt);
+  for (let i = 0; i < word.length; i++) {
+    let [j, s] = [i, new Set(word[i])];
+    while (word[j] <= word[j + 1]) s.add(word[++j]);
+    if (5 === s.size) max = Math.max(max, j - i + 1);
+    i = j;
   }
   return max;
 };
