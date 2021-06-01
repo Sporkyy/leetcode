@@ -17,7 +17,7 @@ Note:
 
 import { strictEqual } from 'assert';
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // /**
 //  * @param {number[]} nums
@@ -39,7 +39,7 @@ import { strictEqual } from 'assert';
 //   return Infinity === startI ? 0 : endI - startI + 1;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // /**
 //  * @param {number[]} nums
@@ -56,7 +56,7 @@ import { strictEqual } from 'assert';
 //   return j - i + 1;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 104 ms, faster than 53.74% of JavaScript online submissions
 // Memory Usage: 39.4 MB, less than 12.50% of JavaScript online submissions
@@ -73,23 +73,39 @@ import { strictEqual } from 'assert';
 //     .join('')
 //     .trim().length;
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 104 ms, faster than 53.61% of JavaScript online submissions
 // Memory Usage: 41.4 MB, less than 12.50% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const findUnsortedSubarray = nums =>
+//   nums
+//     .slice()
+//     .sort((a, b) => a - b)
+//     .reduce((acc, curr, idx) => acc + (curr === nums[idx] ? ' ' : 'x'), '')
+//     .trim().length;
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 108 ms, faster than 44.59% of JavaScript online submissions
+// Memory Usage: 45.2 MB, less than 9.91% of JavaScript online submissions
 
 /**
  * @param {number[]} nums
  * @return {number}
  */
-const findUnsortedSubarray = nums =>
-  nums
-    .slice()
+const findUnsortedSubarray = nums => {
+  return [...nums]
     .sort((a, b) => a - b)
     .reduce((acc, curr, idx) => acc + (curr === nums[idx] ? ' ' : 'x'), '')
     .trim().length;
+};
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Example 1:
 strictEqual(findUnsortedSubarray([2, 6, 4, 8, 10, 9, 15]), 5);
