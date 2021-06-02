@@ -24,7 +24,7 @@ Constraints:
 
 import { deepStrictEqual } from 'assert';
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 7672 ms, faster than 9.34% of JavaScript online submissions
 // Memory Usage: 59.1 MB, less than 100.00% of JavaScript online submissions
@@ -43,7 +43,7 @@ import { deepStrictEqual } from 'assert';
 //   return getFolderNames(names, uniqueNames.add(`${name}(${i})`));
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 3936 ms, faster than 46.70% of JavaScript online submissions
 // Memory Usage: 54 MB, less than 100.00% of JavaScript online submissions
@@ -65,7 +65,7 @@ import { deepStrictEqual } from 'assert';
 //   return [...uniqueNames];
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 4132 ms, faster than 40.66% of JavaScript online submissions
 // Memory Usage: 57.8 MB, less than 100.00% of JavaScript online submissions
@@ -91,7 +91,7 @@ import { deepStrictEqual } from 'assert';
 //   return [...uniqueNames];
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 4092 ms, faster than 41.21% of JavaScript online submissions
 // Memory Usage: 57.4 MB, less than 100.00% of JavaScript online submissions
@@ -117,7 +117,7 @@ import { deepStrictEqual } from 'assert';
 //   return [...set];
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 216 ms, faster than 77.47% of JavaScript online submissions
 // Memory Usage: 62.7 MB, less than 100.00% of JavaScript online submissions
@@ -143,7 +143,7 @@ import { deepStrictEqual } from 'assert';
 //   return [...set];
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 7588 ms, faster than 9.00% of JavaScript online submissions
 // Memory Usage: 59.5 MB, less than 100.00% of JavaScript online submissions
@@ -161,7 +161,7 @@ import { deepStrictEqual } from 'assert';
 //   return getFolderNames(oldNames, newNames.add(`${name}(${i})`));
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 188 ms, faster than 80.00% of JavaScript online submissions
 // Memory Usage: 53.2 MB, less than 100.00% of JavaScript online submissions
@@ -181,24 +181,24 @@ import { deepStrictEqual } from 'assert';
 //   return [...map.keys()];
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 1832 ms, faster than 52.50% of JavaScript online submissions
 // Memory Usage: 58.1 MB, less than 100.00% of JavaScript online submissions
 
-/**
- * @param {string[]} names
- * @return {string[]}
- */
-const getFolderNames = (names, acts /* ACTual nameS */ = new Map()) => {
-  if (!names.length) return [...acts.keys()];
-  const n = names.shift();
-  if (!acts.has(n)) return getFolderNames(names, acts.set(n, 1));
-  while (acts.has(`${n}(${acts.get(n)})`)) acts.set(n, acts.get(n) + 1);
-  return getFolderNames(names, acts.set(`${n}(${acts.get(n)})`, 1));
-};
+// /**
+//  * @param {string[]} names
+//  * @return {string[]}
+//  */
+// const getFolderNames = (names, acts /* ACTual nameS */ = new Map()) => {
+//   if (!names.length) return [...acts.keys()];
+//   const n = names.shift();
+//   if (!acts.has(n)) return getFolderNames(names, acts.set(n, 1));
+//   while (acts.has(`${n}(${acts.get(n)})`)) acts.set(n, acts.get(n) + 1);
+//   return getFolderNames(names, acts.set(`${n}(${acts.get(n)})`, 1));
+// };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // FATAL ERROR: Scavenger: semi-space copy Allocation failed -
 // JavaScript heap out of memory
@@ -219,7 +219,7 @@ const getFolderNames = (names, acts /* ACTual nameS */ = new Map()) => {
 //   );
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 188 ms, faster than 80.00% of JavaScript online submissions
 // Memory Usage: 53.3 MB, less than 100.00% of JavaScript online submissions
@@ -239,7 +239,7 @@ const getFolderNames = (names, acts /* ACTual nameS */ = new Map()) => {
 //   return [...acts.keys()];
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 3984 ms, faster than 43.00% of JavaScript online submissions
 // Memory Usage: 54.3 MB, less than 100.00% of JavaScript online submissions
@@ -260,7 +260,7 @@ const getFolderNames = (names, acts /* ACTual nameS */ = new Map()) => {
 //   return [...acts];
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Status: Time Limit Exceeded
 
@@ -280,7 +280,237 @@ const getFolderNames = (names, acts /* ACTual nameS */ = new Map()) => {
 //   return acts;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 228 ms, faster than 45.10% of JavaScript online submissions
+// Memory Usage: 56.2 MB, less than 82.35% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} names
+//  * @return {string[]}
+//  */
+// const getFolderNames = names => {
+//   const [ret, cnt] = [new Set(), new Map()];
+//   for (const name of names) {
+//     if (!ret.has(name)) {
+//       ret.add(name);
+//     } else {
+//       do cnt.set(name, (cnt.get(name) || 0) + 1);
+//       while (ret.has(`${name}(${cnt.get(name)})`));
+//       ret.add(`${name}(${cnt.get(name)})`);
+//     }
+//   }
+//   return [...ret];
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 268 ms, faster than 41.18% of JavaScript online submissions
+// Memory Usage: 64.8 MB, less than 7.84% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} names
+//  * @return {string[]}
+//  */
+// const getFolderNames = names => [
+//   ...names.reduce(
+//     ([set, map], name) => {
+//       if (!set.has(name)) {
+//         set.add(name);
+//       } else {
+//         do map.set(name, (map.get(name) || 0) + 1);
+//         while (set.has(`${name}(${map.get(name)})`));
+//         set.add(`${name}(${map.get(name)})`);
+//       }
+//       return [set, map];
+//     },
+//     [new Set(), new Map()],
+//   )[0],
+// ];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 180 ms, faster than 76.47% of JavaScript online submissions
+// Memory Usage: 55.9 MB, less than 90.20% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} names
+//  * @return {string[]}
+//  */
+// const getFolderNames = names => [
+//   ...names
+//     .reduce((acc, curr) => {
+//       if (!acc.has(curr)) {
+//         acc.set(curr, 0);
+//       } else {
+//         do acc.set(curr, (acc.get(curr) || 0) + 1);
+//         while (acc.has(`${curr}(${acc.get(curr)})`));
+//         acc.set(`${curr}(${acc.get(curr)})`, 0);
+//       }
+//       return acc;
+//     }, new Map())
+//     .keys(),
+// ];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 5544 ms, faster than 15.69% of JavaScript online submissions
+// Memory Usage: 60.4 MB, less than 31.37% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} names
+//  * @return {string[]}
+//  */
+// const getFolderNames = names => [
+//   ...names
+//     .reduce(
+//       (acc, curr) =>
+//         acc.set(
+//           !acc.has(curr)
+//             ? curr
+//             : (cnt => {
+//                 while (acc.has(`${curr}(${cnt})`)) cnt++;
+//                 return curr + (cnt ? `(${cnt})` : '');
+//               })(acc.get(curr) + 1),
+//           0,
+//         ),
+//       new Map(),
+//     )
+//     .keys(),
+// ];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 8504 ms, faster than 5.88% of JavaScript online submissions
+// Memory Usage: 84.2 MB, less than 5.88% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} names
+//  * @return {string[]}
+//  */
+// const getFolderNames = names => {
+//   const map = new Map();
+//   for (const name of names) {
+//     if (!map.has(name)) {
+//       map.set(name, 1);
+//     } else {
+//       let cnt = map.get(name);
+//       while (map.has(`${name}(${cnt})`)) cnt++;
+//       map.set(`${name}(${cnt})`, 1);
+//     }
+//   }
+//   return [...map.keys()];
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 7308 ms, faster than 5.88% of JavaScript online submissions
+// Memory Usage: 84.9 MB, less than 5.88% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} names
+//  * @return {string[]}
+//  */
+// const getFolderNames = names => {
+//   const map = new Map();
+//   const getActualName = name => {
+//     let cnt = map.get(name) || 0;
+//     if (cnt) {
+//       while (map.has(`${name}(${cnt})`)) cnt++;
+//       name = `${name}(${cnt})`;
+//     }
+//     map.set(name, 1);
+//     return name;
+//   };
+//   return names.map(getActualName);
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 7344 ms, faster than 5.88% of JavaScript online submissions
+// Memory Usage: 64.7 MB, less than 7.84% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} names
+//  * @return {string[]}
+//  */
+// const getFolderNames = names => {
+//   const next = (existing, name) => {
+//     if (!existing.has(name)) return name;
+//     let i = 1;
+//     while (existing.has(`${name}(${i})`)) i++;
+//     return `${name}(${i})`;
+//   };
+//   return [...names.reduce((acc, curr) => acc.add(next(acc, curr)), new Set())];
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 6624 ms, faster than 5.88% of JavaScript online submissions
+// Memory Usage: 65.3 MB, less than 7.84% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} names
+//  * @return {string[]}
+//  */
+// const getFolderNames = names => {
+//   const seen = new Set();
+//   const getActualName = name => {
+//     if (seen.has(name)) {
+//       let i = 1;
+//       while (seen.has(`${name}(${i})`)) i++;
+//       name = `${name}(${i})`;
+//     }
+//     seen.add(name);
+//     return name;
+//   };
+//   return names.map(getActualName);
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 7596 ms, faster than 5.88% of JavaScript online submissions
+// Memory Usage: 64.8 MB, less than 7.84% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} names
+//  * @return {string[]}
+//  */
+// const getFolderNames = names => {
+//   const actualNames = new Set();
+//   for (let name of names) {
+//     if (actualNames.has(name)) {
+//       let i = 1;
+//       while (actualNames.has(`${name}(${i})`)) i++;
+//       name = `${name}(${i})`;
+//     }
+//     actualNames.add(name);
+//   }
+//   return [...actualNames];
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 304 ms, faster than 39.22% of JavaScript online submissions
+// Memory Usage: 60.8 MB, less than 27.45% of JavaScript online submissions
+
+/**
+ * @param {string[]} names
+ * @return {string[]}
+ */
+const getFolderNames = names => [
+  ...names
+    .reduce((acc, curr) => {
+      if (!acc.has(curr)) return acc.set(curr, 1);
+      let cnt = acc.get(curr);
+      while (acc.has(`${curr}(${cnt})`)) cnt++;
+      acc.set(curr, cnt);
+      return acc.set(`${curr}(${cnt})`, 1);
+    }, new Map())
+    .keys(),
+];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Example 1:
 deepStrictEqual(getFolderNames(['pes', 'fifa', 'gta', 'pes(2019)']), [
