@@ -23,7 +23,7 @@ Constraints:
 
 import { strictEqual } from 'assert';
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 9220 ms, faster than 5.00% of JavaScript online submissions
 // Memory Usage: 46.5 MB, less than 9.68% of JavaScript online submissions
@@ -52,7 +52,7 @@ import { strictEqual } from 'assert';
 //   return maxSum;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // /**
 //  * @param {number[]} cardPoints
@@ -77,7 +77,7 @@ import { strictEqual } from 'assert';
 //   );
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Time Limit Exceeded
 
@@ -98,7 +98,7 @@ import { strictEqual } from 'assert';
 //       ),
 //   );
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 204 ms, faster than 8.75% of JavaScript online submissions
 // Memory Usage: 57.3 MB, less than 6.45% of JavaScript online submissions
@@ -132,7 +132,7 @@ import { strictEqual } from 'assert';
 //   return Math.max(...sums);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 144 ms, faster than 12.50% of JavaScript online submissions
 // Memory Usage: 55.9 MB, less than 6.45% of JavaScript online submissions
@@ -155,7 +155,7 @@ import { strictEqual } from 'assert';
 //   return Math.max(...sums);
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Time Limit Exceeded
 
@@ -179,7 +179,7 @@ import { strictEqual } from 'assert';
 //       ),
 //   );
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 156 ms, faster than 10.00% of JavaScript online submissions
 // Memory Usage: 55 MB, less than 6.45% of JavaScript online submissions
@@ -201,7 +201,7 @@ import { strictEqual } from 'assert';
 //       }, []),
 //   );
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 216 ms, faster than 8.75% of JavaScript online submissions
 // Memory Usage: 55.2 MB, less than 6.45% of JavaScript online submissions
@@ -222,7 +222,7 @@ import { strictEqual } from 'assert';
 //       }, []),
 //   );
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 156 ms, faster than 10.00% of JavaScript online submissions
 // Memory Usage: 54.8 MB, less than 6.45% of JavaScript online submissions
@@ -244,7 +244,7 @@ import { strictEqual } from 'assert';
 //       [0, 0],
 //     )[1];
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 292 ms, faster than 8.75% of JavaScript online submissions
 // Memory Usage: 51 MB, less than 6.45% of JavaScript online submissions
@@ -262,10 +262,30 @@ import { strictEqual } from 'assert';
 //       .map((pts, idx, arr) => (sum += pts - (arr[idx - k] || 0))),
 //   );
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 116 ms, faster than 21.88% of JavaScript online submissions
 // Memory Usage: 50.7 MB, less than 6.45% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} cardPoints
+//  * @param {number} k
+//  * @return {number}
+//  */
+// const maxScore = (cardPoints, k, sum = 0) =>
+//   cardPoints
+//     .slice(-k)
+//     .concat(cardPoints.slice(0, k))
+//     .reduce(
+//       (acc, curr, idx, arr) =>
+//         Math.max(acc, (sum += curr - (arr[idx - k] || 0))),
+//       0,
+//     );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 124 ms, faster than 15.39% of JavaScript online submissions
+// Memory Usage: 57.6 MB, less than 5.02% of JavaScript online submissions
 
 /**
  * @param {number[]} cardPoints
@@ -277,12 +297,12 @@ const maxScore = (cardPoints, k, sum = 0) =>
     .slice(-k)
     .concat(cardPoints.slice(0, k))
     .reduce(
-      (acc, curr, idx, arr) =>
-        Math.max(acc, (sum += curr - (arr[idx - k] || 0))),
-      0,
-    );
+      ([sum, max], curr, i, arr) =>
+        (tmp => [tmp, Math.max(max, tmp)])(sum + curr - (arr[i - k] || 0)),
+      [0, -Infinity],
+    )[1];
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Example 1:
 strictEqual(maxScore([1, 2, 3, 4, 5, 6, 1], 3), 12);
@@ -290,6 +310,13 @@ strictEqual(maxScore([1, 2, 3, 4, 5, 6, 1], 3), 12);
 // choosing the rightmost card first will maximize your total score. The optimal
 // strategy is to take the three cards on the right, giving a final score of 1 +
 // 6 + 5 = 12.
+
+/*
+
+
+1, 2, 3, 4, 5, 6, 1
+
+*/
 
 // Example 2:
 strictEqual(maxScore([2, 2, 2], 2), 4);
