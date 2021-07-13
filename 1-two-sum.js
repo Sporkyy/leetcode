@@ -137,19 +137,40 @@ You can return the answer in any order.
 // Runtime: 76 ms, faster than 90.70% of JavaScript online submissions
 // Memory Usage: 38.8 MB, less than 69.50% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @param {number} target
+//  * @return {number[]}
+//  */
+// const twoSum = (nums, target) =>
+//   nums.reduce(
+//     (acc, curr, idx, arr) =>
+//       acc.has(target - curr)
+//         ? arr.splice(0) && [idx, acc.get(target - curr)]
+//         : acc.set(curr, idx),
+//     new Map(),
+//   );
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 76 ms, faster than 89.82% of JavaScript online submissions
+// Memory Usage: 41.2 MB, less than 15.59% of JavaScript online submissions
+
 /**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
+ * This was produced by GitHub Copilot.
+ *
+ * @param {[number]} nums
+ * @param {[number]} target
+ * @return {[number]}
  */
-const twoSum = (nums, target) =>
-  nums.reduce(
-    (acc, curr, idx, arr) =>
-      acc.has(target - curr)
-        ? arr.splice(0) && [idx, acc.get(target - curr)]
-        : acc.set(curr, idx),
-    new Map(),
-  );
+function twoSum(nums, target) {
+  const map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    const need = target - nums[i];
+    if (map.has(need)) return [map.get(need), i];
+    map.set(nums[i], i);
+  }
+}
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
