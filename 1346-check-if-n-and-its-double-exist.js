@@ -91,6 +91,25 @@ const checkIfExist = arr =>
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
+// Runtime: 132 ms, faster than 7.00% of JavaScript online submissions
+// Memory Usage: 40.1 MB, less than 55.64% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} arr
+//  * @return {boolean}
+//  */
+// function checkIfExist(arr) {
+//   const set = new Set();
+//   while (arr.length) {
+//     const n = arr.pop();
+//     if (set.has(n / 2) || set.has(n * 2)) return true;
+//     set.add(n, n * 2);
+//   }
+//   return false;
+// }
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 import { ok } from 'assert';
 
 // Example 1:
