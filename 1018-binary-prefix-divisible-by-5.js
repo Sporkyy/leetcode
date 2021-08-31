@@ -1,14 +1,32 @@
 // 1018. Binary Prefix Divisible By 5
 // https://leetcode.com/problems/binary-prefix-divisible-by-5/
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+/*
+
+You are given a binary array nums (0-indexed).
+
+We define `xi` as the number whose binary representation is the subarray
+`nums[0..i]` (from most-significant-bit to least-significant-bit).
+
+- For example, if `nums = [1,0,1]`, then `x0 = 1`, `x1 = 2`, and `x2 = 5`.
+
+Return an array of booleans answer where `answer[i]` is `true` if `xi` *is
+divisible by* `5`.
+
+## Constraints
+- 1 <= nums.length <= 105
+- nums[i] is 0 or 1.
+
+*/
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Limited by 53-big numbers
 
-/**
- * @param {number[]} A
- * @return {boolean[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {boolean[]}
+//  */
 // var prefixesDivBy5 = function(A) {
 //   const s = A.join('');
 //   const d = new Array(A.length);
@@ -18,26 +36,26 @@
 //   return d;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Works in all reasonable cases
 
-/**
- * @param {number[]} A
- * @return {boolean[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {boolean[]}
+//  */
 // const prefixesDivBy5 = A =>
 //   A.map((n, i) => BigInt(0) === BigInt(`0b${A.slice(0, i).join('')}${n}`) % BigInt(5));
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 84 ms, faster than 34.53% of JavaScript online submissions
 // Memory Usage: 42.1 MB, less than 13.42% of JavaScript online submissions
 
-/**
- * @param {number[]} A
- * @return {boolean[]}
- */
+// /**
+//  * @param {number[]} A
+//  * @return {boolean[]}
+//  */
 // const prefixesDivBy5 = A => {
 //   const result = [];
 //   for (let i = 0, s = ''; i < A.length; i++) {
@@ -52,7 +70,7 @@
 //   return result;
 // };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 // Runtime: 72 ms, faster than 59.00% of JavaScript online submissions
 // Memory Usage: 38.2 MB, less than 92.31% of JavaScript online submissions
@@ -64,7 +82,7 @@
  */
 const prefixesDivBy5 = (A, acc = 0) => A.map(d => !(acc = (acc * 2 + d) % 5));
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
 import { deepStrictEqual } from 'assert';
 
@@ -117,27 +135,7 @@ deepStrictEqual(
 
 deepStrictEqual(
   prefixesDivBy5([
-    1,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    1,
-    1,
-    0,
-    0,
-    1,
-    0,
-    1,
-    1,
-    1,
+    1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1,
   ]),
   [
     false,
@@ -166,65 +164,9 @@ deepStrictEqual(
 
 deepStrictEqual(
   prefixesDivBy5([
-    1,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    1,
-    1,
-    0,
-    0,
-    1,
-    0,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    0,
-    0,
-    0,
-    1,
-    0,
-    1,
-    1,
-    1,
-    1,
-    0,
-    1,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    1,
-    1,
-    0,
-    0,
-    1,
-    1,
-    1,
+    1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0,
+    0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
+    0, 0, 1, 1, 0, 0, 1, 1, 1,
   ]),
   [
     false,
