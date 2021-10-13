@@ -27,20 +27,102 @@ Return the **minimum** number of moves required so that all the characters of
 // Runtime: 72 ms, faster than 85.90% of JavaScript online submissions
 // Memory Usage: 38 MB, less than 98.68% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const minimumMoves = s => {
+//   let cntMoves = 0;
+//   for (let i = 0; i < s.length; i++) {
+//     if ('X' === s[i]) {
+//       cntMoves++;
+//       i += 2;
+//     }
+//   }
+//   return cntMoves;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 128 ms, faster than 5.73% of JavaScript online submissions
+// Memory Usage: 40.1 MB, less than 11.89% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const minimumMoves = s => {
+//   // console.log(s.match(/(X..|X+)/g));
+//   // console.log(
+//   //   [...s]
+//   //     .reverse()
+//   //     .join('')
+//   //     .match(/(X..|X+)/g),
+//   // );
+//   // console.log(s.match(/$(.?X.?)*/) ?? 0);
+//   // console.log(s.match(/(.?X.?)*^/) ?? 0);
+
+//   return Math.min(
+//     (s.match(/(X..|X+)/g) ?? []).length,
+//     (
+//       [...s]
+//         .reverse()
+//         .join('')
+//         .match(/(X..|X+)/g) ?? []
+//     ).length,
+//   );
+
+//   // return s.match(/.?X.?/g) ?? 0;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 76 ms, faster than 72.69% of JavaScript online submissions
+// Memory Usage: 39.8 MB, less than 13.66% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const minimumMoves = s => (s.match(/(X..|X+)/g) ?? []).length;
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 72 ms, faster than 85.90% of JavaScript online submissions
+// Memory Usage: 40.3 MB, less than 11.45% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const minimumMoves = s => {
+//   // console.log([...s.match(/X.?.?/g)].length);
+//   // console.log([...s.matchAll('X.?.?')]);
+//   // (s.match(/X{,3}/g) ?? []).length;
+//   return s.match(/X.?.?/g)?.length ?? 0;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 85 ms, faster than 45.82% of JavaScript online submissions
+// Memory Usage: 39.7 MB, less than 13.66% of JavaScript online submissions
+
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const minimumMoves = s => s.match(/X.?.?/g)?.length ?? 0;
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 83 ms, faster than 47.58% of JavaScript online submissions
+// Memory Usage: 39.2 MB, less than 17.18% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {number}
  */
-const minimumMoves = s => {
-  let cntMoves = 0;
-  for (let i = 0; i < s.length; i++) {
-    if ('X' === s[i]) {
-      cntMoves++;
-      i += 2;
-    }
-  }
-  return cntMoves;
-};
+const minimumMoves = s => s.match(/X.{0,2}/g)?.length ?? 0;
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -63,8 +145,12 @@ strictEqual(minimumMoves('XXOX'), 2);
 strictEqual(minimumMoves('OOOO'), 0);
 // Explanation: There are no 'X's in s to convert.
 
-// strictEqual(minimumMoves('OXOOX'), 2);
+strictEqual(minimumMoves('OXOOX'), 2);
 
 strictEqual(minimumMoves('OXOX'), 1);
 // OXOX
-// XXOO
+// OOOO
+
+strictEqual(minimumMoves('XXXXX'), 2);
+
+strictEqual(minimumMoves('XXXOOXXX'), 2);
