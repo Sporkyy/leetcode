@@ -27,22 +27,80 @@ empty 2D array if it is impossible.*
 // Runtime: 316 ms, faster than 48.25% of JavaScript online submissions
 // Memory Usage: 65.6 MB, less than 39.47% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} original
+//  * @param {number} m
+//  * @param {number} n
+//  * @return {number[][]}
+//  */
+// const construct2DArray = (original, m, n) =>
+//   m * n === original.length
+//     ? original.reduce(
+//         (acc, curr, idx) => {
+//           acc[Math.trunc(idx / n)][idx % n] = curr;
+//           return acc;
+//         },
+//         new Array(m).fill().map(_ => new Array(n)),
+//       )
+//     : [];
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 228 ms, faster than 89.91% of JavaScript online submissions
+// Memory Usage: 58 MB, less than 91.23% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} original
+//  * @param {number} m
+//  * @param {number} n
+//  * @return {number[][]}
+//  */
+// const construct2DArray = (original, m, n) => {
+//   if (m * n !== original.length) return [];
+//   const tmp = [];
+//   for (let i = 0; i < m; i++) {
+//     // console.log(i);
+//     // console.log(original.slice(i * n, i * n + n));
+//     tmp.push(original.slice(i * n, i * n + n));
+//   }
+//   return tmp;
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 289 ms, faster than 52.63% of JavaScript online submissions
+// Memory Usage: 65.4 MB, less than 40.79% of JavaScript online submissions
+
 /**
  * @param {number[]} original
  * @param {number} m
  * @param {number} n
  * @return {number[][]}
  */
-const construct2DArray = (original, m, n) =>
-  m * n === original.length
-    ? original.reduce(
-        (acc, curr, idx) => {
-          acc[Math.trunc(idx / n)][idx % n] = curr;
-          return acc;
-        },
-        new Array(m).fill().map(_ => new Array(n)),
-      )
-    : [];
+const construct2DArray = (original, m, n) => {
+  const arr = [];
+  if (m * n !== original.length) return arr;
+  for (let i = 0; i < m; i++) arr.push(original.slice(i * n, i * n + n));
+  return arr;
+};
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 433 ms, faster than 15.35% of JavaScript online submissions
+// Memory Usage: 64.6 MB, less than 46.93% of JavaScript online submissions
+
+// /**
+//  * @param {number[]} original
+//  * @param {number} m
+//  * @param {number} n
+//  * @return {number[][]}
+//  */
+// const construct2DArray = (original, m, n) => {
+//   if (m * n !== original.length) return [];
+//   const tmp = [];
+//   while (original.length) tmp.push(original.splice(0, n));
+//   return tmp;
+// };
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
