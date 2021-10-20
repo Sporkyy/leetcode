@@ -236,16 +236,16 @@ Constraints
 // Runtime: 80 ms, faster than 72.17% of JavaScript online submissions
 // Memory Usage: 38.8 MB, less than 6.09% of JavaScript online submissions
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
-const specialArray = (nums, x = nums.length) =>
-  0 === x
-    ? -1
-    : x === nums.reduce((cnt, n) => cnt + (x <= n ? 1 : 0), 0)
-    ? x
-    : specialArray(nums, x - 1);
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const specialArray = (nums, x = nums.length) =>
+//   0 === x
+//     ? -1
+//     : x === nums.reduce((cnt, n) => cnt + (x <= n ? 1 : 0), 0)
+//     ? x
+//     : specialArray(nums, x - 1);
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -390,6 +390,22 @@ const specialArray = (nums, x = nums.length) =>
 //   }
 //   return -1;
 // };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 108 ms, faster than 21.43% of JavaScript online submissions
+// Memory Usage: 38.5 MB, less than 92.86% of JavaScript online submissions
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+const specialArray = (nums, len = nums.length) =>
+  0 === len
+    ? -1
+    : len === nums.reduce((cnt, n) => cnt + (len <= n), 0)
+    ? len
+    : specialArray(nums, len - 1);
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
