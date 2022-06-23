@@ -22,7 +22,7 @@ Return the final order of the logs.
 
 */
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 68 ms, faster than 87.60% of JavaScript online submissions
 // Memory Usage: 37.1 MB, less than 50.00% of JavaScript online submissions
@@ -60,7 +60,7 @@ Return the final order of the logs.
 //     .concat(digitLogs);
 // };
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 99.61% of JavaScript online submissions
 // Memory Usage: 36.7 MB, less than 83.33% of JavaScript online submissions
@@ -90,7 +90,7 @@ Return the final order of the logs.
 //     .concat(logsWithInfo.filter(({ type }) => 'digit' === type).map(({ original }) => original));
 // };
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 99.61% of JavaScript online submissions
 // Memory Usage: 36.5 MB, less than 83.33% of JavaScript online submissions
@@ -121,7 +121,7 @@ Return the final order of the logs.
 //     .concat(digitLogs);
 // };
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 80 ms, faster than 24.23% of JavaScript online submissions
 // Memory Usage: 37.3 MB, less than 71.43% of JavaScript online submissions
@@ -152,7 +152,7 @@ Return the final order of the logs.
 //     .concat(digitLogs);
 // };
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 60 ms, faster than 91.72% of JavaScript online submissions
 // Memory Usage: 38.4 MB, less than 42.86% of JavaScript online submissions
@@ -185,7 +185,7 @@ Return the final order of the logs.
 //   return letterLogs.sort(sortLetterLogs).concat(digitLogs);
 // };
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 64 ms, faster than 81.72% of JavaScript online submissions
 // Memory Usage: 37.8 MB, less than 42.86% of JavaScript online submissions
@@ -211,7 +211,7 @@ Return the final order of the logs.
 //   return letterLogs.concat(digitLogs);
 // };
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 76 ms, faster than 38.75% of JavaScript online submissions
 // Memory Usage: 37.8 MB, less than 42.86% of JavaScript online submissions
@@ -230,7 +230,7 @@ Return the final order of the logs.
 //     )
 //     .concat(logs.filter(log => /\d$/.test(log)));
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 80 ms, faster than 95.71% of JavaScript online submissions
 // Memory Usage: 44 MB, less than 19.38% of JavaScript online submissions
@@ -253,7 +253,7 @@ Return the final order of the logs.
 //     )
 //     .concat(logs.filter(log => /\d$/.test(log)));
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 92 ms, faster than 47.17% of JavaScript online submissions
 // Memory Usage: 45.8 MB, less than 9.09% of JavaScript online submissions
@@ -274,7 +274,7 @@ Return the final order of the logs.
 //     )
 //     .concat(logs.filter(log => /\d$/.test(log)));
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 88 ms, faster than 70.15% of JavaScript online submissions
 // Memory Usage: 45.1 MB, less than 14.41% of JavaScript online submissions
@@ -311,7 +311,7 @@ Return the final order of the logs.
 //     ),
 //   );
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 96 ms, faster than 31.56% of JavaScript online submissions
 // Memory Usage: 43.8 MB, less than 24.70% of JavaScript online submissions
@@ -336,7 +336,7 @@ Return the final order of the logs.
 //   return [...lLogs.map(([id, words]) => `${id} ${words}`), ...dLogs];
 // };
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 129 ms, faster than 17.34% of JavaScript online submissions
 // Memory Usage: 48.2 MB, less than 18.73% of JavaScript online submissions
@@ -363,24 +363,24 @@ Return the final order of the logs.
 //   return logs; // ?
 // };
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 115 ms, faster than 32.97% of JavaScript online submissions
 // Memory Usage: 48 MB, less than 19.97% of JavaScript online submissions
 
-/**
- * @param {string[]} logs
- * @return {string[]}
- */
-const reorderLogFiles = logs =>
-  logs.sort((a, b) =>
-    /^\S+[\d\s]+$/.test(a) ? 1 :
-      /^\S+[\d\s]+$/.test(b) ? -1 :
-        a.replace(/\S+\s(.+)/, '$1').localeCompare(
-          b.replace(/\S+\s(.+)/, '$1')) || a.localeCompare(b)
-  );
+// /**
+//  * @param {string[]} logs
+//  * @return {string[]}
+//  */
+// const reorderLogFiles = logs =>
+//   logs.sort((a, b) =>
+//     /^\S+[\d\s]+$/.test(a) ? 1 :
+//       /^\S+[\d\s]+$/.test(b) ? -1 :
+//         a.replace(/\S+\s(.+)/, '$1').localeCompare(
+//           b.replace(/\S+\s(.+)/, '$1')) || a.localeCompare(b)
+//   );
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 import { deepStrictEqual } from 'assert';
 
