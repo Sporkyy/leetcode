@@ -74,8 +74,8 @@ var isUnivalTree = (root, unival = root.val) =>
   null === root
     ? true
     : unival !== root.val
-    ? false
-    : isUnivalTree(root.left, unival) && isUnivalTree(root.right, unival);
+      ? false
+      : isUnivalTree(root.left, unival) && isUnivalTree(root.right, unival);
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
