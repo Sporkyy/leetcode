@@ -6,7 +6,7 @@
 You have an array of logs. Each log is a space delimited string of words.
 
 For each log, the first word in each log is an alphanumeric identifier.
- Then, either:
+Then, either:
 
 - Each word after the identifier will consist only of lowercase letters, or;
 - Each word after the identifier will consist only of digits.
@@ -258,21 +258,21 @@ Return the final order of the logs.
 // Runtime: 92 ms, faster than 47.17% of JavaScript online submissions
 // Memory Usage: 45.8 MB, less than 9.09% of JavaScript online submissions
 
-/**
- * @param {string[]} logs
- * @return {string[]}
- */
-const reorderLogFiles = logs =>
-  logs
-    .filter(log => /[a-z]$/.test(log))
-    .sort((a, b) =>
-      ((aId, aWords, _, bId, bWords) =>
-        aWords.localeCompare(bWords) || aId.localeCompare(bId))(
-        ...a.split(/\s(.+)/),
-        ...b.split(/\s(.+)/),
-      ),
-    )
-    .concat(logs.filter(log => /\d$/.test(log)));
+// /**
+//  * @param {string[]} logs
+//  * @return {string[]}
+//  */
+// const reorderLogFiles = logs =>
+//   logs
+//     .filter(log => /[a-z]$/.test(log))
+//     .sort((a, b) =>
+//       ((aId, aWords, _, bId, bWords) =>
+//         aWords.localeCompare(bWords) || aId.localeCompare(bId))(
+//         ...a.split(/\s(.+)/),
+//         ...b.split(/\s(.+)/),
+//       ),
+//     )
+//     .concat(logs.filter(log => /\d$/.test(log)));
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
@@ -335,6 +335,50 @@ const reorderLogFiles = logs =>
 //   );
 //   return [...lLogs.map(([id, words]) => `${id} ${words}`), ...dLogs];
 // };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 129 ms, faster than 17.34% of JavaScript online submissions
+// Memory Usage: 48.2 MB, less than 18.73% of JavaScript online submissions
+
+// /**
+//  * @param {string[]} logs
+//  * @return {string[]}
+//  */
+// const reorderLogFiles = logs => {
+//   logs.sort((a, b) => {
+//     // ({ a, b }); // ?
+//     // ({ a: a.replace(/(\S+)\s(.+)/, '$2 $1'), b: b.replace(/(\S+)\s(.+)/, '$2 $1') }) //?
+//     if (/^\S+[\d\s]+$/.test(a)) {
+//       // ({ a, b }); // ?
+//       return 1;
+//     }
+//     if (/^\S+[\d\s]+$/.test(b)) {
+//       // ({ a, b }); // ?
+//       return -1;
+//     }
+//     // return a.replace(/(\S+)\s(.+)/, '$2 $1').localeCompare(b.replace(/(\S+)\s(.+)/, '$2 $1'));
+//     return a.replace(/\S+\s(.+)/, '$1').localeCompare(b.replace(/\S+\s(.+)/, '$1')) || a.localeCompare(b);
+//   });
+//   return logs; // ?
+// };
+
+// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
+// Runtime: 115 ms, faster than 32.97% of JavaScript online submissions
+// Memory Usage: 48 MB, less than 19.97% of JavaScript online submissions
+
+/**
+ * @param {string[]} logs
+ * @return {string[]}
+ */
+const reorderLogFiles = logs =>
+  logs.sort((a, b) =>
+    /^\S+[\d\s]+$/.test(a) ? 1 :
+      /^\S+[\d\s]+$/.test(b) ? -1 :
+        a.replace(/\S+\s(.+)/, '$1').localeCompare(
+          b.replace(/\S+\s(.+)/, '$1')) || a.localeCompare(b)
+  );
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
