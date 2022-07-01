@@ -57,6 +57,43 @@ the frequency of 'b' is 1.
 // Runtime: 186 ms, faster than 67.33% of JavaScript online submissions
 // Memory Usage: 49.3 MB, less than 30.65% of JavaScript online submissions
 
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// const minDeletions = s => {
+//   const freq = new Map();
+//   for (const c of s) freq.set(c, (freq.get(c) || 0) + 1);
+
+//   // console.log(freq);
+//   // console.log(freq.size === new Set(freq.values()));
+//   // console.log([...freq.values()].sort((a, b) => a - b));
+
+//   const sorted = [...freq.values()].sort((a, b) => a - b); // ?
+//   const used = new Set();
+
+//   let deletions = 0;
+//   for (const x of sorted) {
+//     if (!used.has(x)) {
+//       used.add(x);
+//     } else {
+//       let tmp = x; // ?
+//       while (0 < tmp && used.has(tmp)) tmp--;
+//       console.log(tmp);
+//       deletions += x - tmp;
+//       used.add(tmp);
+//     }
+//   }
+
+//   // console.log(deletions);
+//   return deletions;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 244 ms, faster than 44.73% of JavaScript online submissions
+// Memory Usage: 48.1 MB, less than 54.58% of JavaScript online submissions
+
 /**
  * @param {string} s
  * @return {number}
@@ -64,28 +101,19 @@ the frequency of 'b' is 1.
 const minDeletions = s => {
   const freq = new Map();
   for (const c of s) freq.set(c, (freq.get(c) || 0) + 1);
-
-  // console.log(freq);
-  // console.log(freq.size === new Set(freq.values()));
-  // console.log([...freq.values()].sort((a, b) => a - b));
-
-  const sorted = [...freq.values()].sort((a, b) => a - b); // ?
-  const used = new Set();
-
+  const sortedFreqs = [...freq.values()].sort((a, b) => a - b);
+  const seen = new Set();
   let deletions = 0;
-  for (const x of sorted) {
-    if (!used.has(x)) {
-      used.add(x);
+  for (const freq of sortedFreqs) {
+    if (!seen.has(freq)) {
+      seen.add(freq);
     } else {
-      let tmp = x; // ?
-      while (0 < tmp && used.has(tmp)) tmp--;
-      console.log(tmp);
-      deletions += x - tmp;
-      used.add(tmp);
+      let tmp = freq;
+      while (0 < tmp && seen.has(tmp)) tmp--;
+      deletions += freq - tmp;
+      seen.add(tmp);
     }
   }
-
-  // console.log(deletions);
   return deletions;
 };
 
