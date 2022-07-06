@@ -61,6 +61,22 @@ You must write an algorithm that runs in O(n) time.
 // Runtime: 907 ms, faster than 5.02% of JavaScript online submissions
 // Memory Usage: 58.2 MB, less than 41.37% of JavaScript online submissions
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// const longestConsecutive = nums =>
+//   (set =>
+//     nums.reduce((longest, num, idx) => {
+//       if (!set.has(num - 1)) while (set.has(num)) num += 1;
+//       return Math.max(longest, num - nums[idx]);
+//     }, 0))(new Set(nums));
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 857 ms, faster than 5.26% of JavaScript online submissions
+// Memory Usage: 58.6 MB, less than 33.44% of JavaScript online submissions
+
 /**
  * @param {number[]} nums
  * @return {number}
@@ -68,7 +84,7 @@ You must write an algorithm that runs in O(n) time.
 const longestConsecutive = nums =>
   (set =>
     nums.reduce((longest, num, idx) => {
-      if (!set.has(num - 1)) while (set.has(num)) num += 1;
+      if (!set.has(num - 1)) while (set.has(num)) num++;
       return Math.max(longest, num - nums[idx]);
     }, 0))(new Set(nums));
 
