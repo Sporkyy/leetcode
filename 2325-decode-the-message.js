@@ -35,26 +35,50 @@ a secret message, respectively. The steps to decode `message` are as follows:
 // Runtime: 121 ms, faster than 16.94% of JavaScript online submissions
 // Memory Usage: 43.9 MB, less than 96.35% of JavaScript online submissions
 
+// /**
+//  * @param {string} key
+//  * @param {string} message
+//  * @return {string}
+//  */
+// const decodeMessage = (key, message) => {
+//   const x = [...key].reduce((acc, curr) => {
+//     return ' ' === curr || acc.has(curr) ? acc : acc.set(curr, 97 + acc.size);
+//   }, new Map());
+
+//   // console.log(x);
+
+//   const y = [...message].reduce((acc, curr) => {
+//     return acc + (' ' === curr ? ' ' : String.fromCharCode(x.get(curr)));
+//   }, '');
+
+//   // console.log(y);
+
+//   return y;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 112 ms, faster than 22.59% of JavaScript online submissions
+// Memory Usage: 44.3 MB, less than 85.05% of JavaScript online submissions
+
 /**
  * @param {string} key
  * @param {string} message
  * @return {string}
  */
-const decodeMessage = (key, message) => {
-  const x = [...key].reduce((acc, curr) => {
-    return ' ' === curr || acc.has(curr) ? acc : acc.set(curr, 97 + acc.size);
-  }, new Map());
-
-  // console.log(x);
-
-  const y = [...message].reduce((acc, curr) => {
-    return acc + (' ' === curr ? ' ' : String.fromCharCode(x.get(curr)));
-  }, '');
-
-  // console.log(y);
-
-  return y;
-};
+const decodeMessage = (key, message) =>
+  (keyMap =>
+    [...message].reduce(
+      (acc, curr) =>
+        acc + (' ' === curr ? ' ' : String.fromCharCode(keyMap.get(curr))),
+      '',
+    ))(
+    [...key].reduce(
+      (acc, curr) =>
+        ' ' === curr || acc.has(curr) ? acc : acc.set(curr, 97 + acc.size),
+      new Map(),
+    ),
+  );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
