@@ -18,7 +18,7 @@ The richest customer is the customer that has the maximum wealth.
 
 */
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 76 ms, faster than 80.99% of JavaScript online submissions
 // Memory Usage: 38.7 MB, less than 30.92% of JavaScript online submissions
@@ -30,7 +30,7 @@ The richest customer is the customer that has the maximum wealth.
 const maximumWealth = accounts =>
   Math.max(...accounts.map(arr => arr.reduce((acc, curr) => acc + curr)));
 
-// 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 import { strictEqual } from 'assert';
 
