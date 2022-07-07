@@ -61,22 +61,41 @@ a secret message, respectively. The steps to decode `message` are as follows:
 // Runtime: 112 ms, faster than 22.59% of JavaScript online submissions
 // Memory Usage: 44.3 MB, less than 85.05% of JavaScript online submissions
 
+// /**
+//  * @param {string} key
+//  * @param {string} message
+//  * @return {string}
+//  */
+// const decodeMessage = (key, message) =>
+//   (keyMap =>
+//     [...message].reduce(
+//       (acc, curr) =>
+//         acc + (' ' === curr ? ' ' : String.fromCharCode(keyMap.get(curr))),
+//       '',
+//     ))(
+//     [...key].reduce(
+//       (acc, curr) =>
+//         ' ' === curr || acc.has(curr) ? acc : acc.set(curr, 97 + acc.size),
+//       new Map(),
+//     ),
+//   );
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 128 ms, faster than 10.96% of JavaScript online submissions
+// Memory Usage: 44.3 MB, less than 85.05% of JavaScript online submissions
+
 /**
  * @param {string} key
  * @param {string} message
  * @return {string}
  */
 const decodeMessage = (key, message) =>
-  (keyMap =>
-    [...message].reduce(
-      (acc, curr) =>
-        acc + (' ' === curr ? ' ' : String.fromCharCode(keyMap.get(curr))),
-      '',
-    ))(
+  (decoder => [...message].reduce((acc, curr) => acc + decoder.get(curr), ''))(
     [...key].reduce(
       (acc, curr) =>
-        ' ' === curr || acc.has(curr) ? acc : acc.set(curr, 97 + acc.size),
-      new Map(),
+        acc.set(curr, acc.get(curr) ?? String.fromCharCode(96 + acc.size)),
+      new Map([[' ', ' ']]),
     ),
   );
 
