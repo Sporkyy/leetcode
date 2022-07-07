@@ -3,18 +3,18 @@
 
 /*
 
-You are given an m x n integer grid accounts where accounts[i][j] is the amount
-of money the i​​​​​​​​​​​th​​​​ customer has in the j​​​​​​​​​​​th​​​​ bank.
-Return the wealth that the richest customer has.
+You are given an `m x n` integer grid `accounts` where `accounts[i][j]` is the
+amount of money the `i​​​​​​​​​​​th​​​​` customer has in the `j​​​​​​​​​​​th​​​​` bank. Return *the
+**wealth** that the richest customer has*.
 
-A customer's wealth is the amount of money they have in all their bank accounts.
-The richest customer is the customer that has the maximum wealth.
+A customer's **wealth** is the amount of money they have in all their bank
+accounts. The richest customer is the customer that has the maximum **wealth**.
 
 ## Constraints
-- m == accounts.length
-- n == accounts[i].length
-- 1 <= m, n <= 50
-- 1 <= accounts[i][j] <= 100
+- `m == accounts.length`
+- `n == accounts[i].length`
+- `1 <= m, n <= 50`
+- `1 <= accounts[i][j] <= 100`
 
 */
 
@@ -22,6 +22,15 @@ The richest customer is the customer that has the maximum wealth.
 
 // Runtime: 76 ms, faster than 80.99% of JavaScript online submissions
 // Memory Usage: 38.7 MB, less than 30.92% of JavaScript online submissions
+
+// /**
+//  * @param {number[][]} accounts
+//  * @return {number}
+//  */
+// const maximumWealth = accounts =>
+//   Math.max(...accounts.map(arr => arr.reduce((acc, curr) => acc + curr)));
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /**
  * @param {number[][]} accounts
