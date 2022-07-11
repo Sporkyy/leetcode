@@ -41,6 +41,9 @@ accounts. The richest customer is the customer that has the maximum **wealth**.
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Runtime: 58 ms, faster than 97.37% of JavaScript online submissions
+// Memory Usage: 42.2 MB, less than 49.16% of JavaScript online submissions
+
 /**
  * @param {number[][]} accounts
  * @return {number}
