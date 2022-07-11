@@ -32,12 +32,28 @@ accounts. The richest customer is the customer that has the maximum **wealth**.
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * @param {number[][]} accounts
+//  * @return {number}
+//  */
+// const maximumWealth = accounts =>
+//   Math.max(...accounts.map(arr => arr.reduce((acc, curr) => acc + curr)));
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {number[][]} accounts
  * @return {number}
  */
 const maximumWealth = accounts =>
-  Math.max(...accounts.map(arr => arr.reduce((acc, curr) => acc + curr)));
+  accounts.reduce(
+    (max, custAccts) =>
+      Math.max(
+        max,
+        custAccts.reduce((wealth, amount) => wealth + amount, 0),
+      ),
+    0,
+  );
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
