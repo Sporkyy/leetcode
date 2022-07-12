@@ -82,31 +82,48 @@ pieces of the string* `start` ***any** number of times*. Otherwise, return
 // Runtime: 228 ms, faster than 60.66% of JavaScript online submissions
 // Memory Usage: 54 MB, less than 72.13% of JavaScript online submissions
 
+// /**
+//  * @param {string} start
+//  * @param {string} target
+//  * @return {boolean}
+//  */
+// const canChange = (start, target) => {
+//   const a = start.replace(/_/g, ''); // ?
+//   const b = target.replace(/_/g, ''); // ?
+
+//   const c = target.indexOf('L') <= start.indexOf('L'); // ?
+//   const f = start.indexOf('R') <= target.indexOf('R'); // ?
+
+//   const d = start.lastIndexOf('R') <= target.lastIndexOf('R'); // ?
+//   const e = target.lastIndexOf('L') <= start.lastIndexOf('L'); // ?
+//   // const d = start.lastIndexOf('R') < target.lastIndexOf('R'); // ?
+//   // return a === b && c && d;
+//   return a === b && c && d && e && f;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 258 ms, faster than 47.54% of JavaScript online submissions
+// Memory Usage: 53.8 MB, less than 72.13% of JavaScript online submissions
+
 /**
  * @param {string} start
  * @param {string} target
  * @return {boolean}
  */
-const canChange = (start, target) => {
-  const a = start.replace(/_/g, ''); // ?
-  const b = target.replace(/_/g, ''); // ?
-
-  const c = target.indexOf('L') <= start.indexOf('L'); // ?
-  const f = start.indexOf('R') <= target.indexOf('R'); // ?
-
-  const d = start.lastIndexOf('R') <= target.lastIndexOf('R'); // ?
-  const e = target.lastIndexOf('L') <= start.lastIndexOf('L'); // ?
-  // const d = start.lastIndexOf('R') < target.lastIndexOf('R'); // ?
-  // return a === b && c && d;
-  return a === b && c && d && e && f;
-};
+const canChange = (start, target) =>
+  start.replace(/_/g, '') === target.replace(/_/g, '') &&
+  target.indexOf('L') <= start.indexOf('L') &&
+  start.indexOf('R') <= target.indexOf('R') &&
+  start.lastIndexOf('R') <= target.lastIndexOf('R') &&
+  target.lastIndexOf('L') <= start.lastIndexOf('L');
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 import { ok } from 'assert';
 
 // Example 1:
-// ok(canChange('_L__R__R_', 'L______RR'));
+ok(canChange('_L__R__R_', 'L______RR'));
 // Input: start = "_L__R__R_", target = "L______RR"
 // Output: true
 // Explanation: We can obtain the string target from start by doing the
@@ -120,7 +137,7 @@ import { ok } from 'assert';
 // Since it is possible to get the string target from start, we return true.
 
 // Example 2:
-// ok(!canChange('R_L_', '__LR'));
+ok(!canChange('R_L_', '__LR'));
 // Input: start = "R_L_", target = "__LR"
 // Output: false
 // Explanation: The 'R' piece in the string start can move one step to the
@@ -129,7 +146,7 @@ import { ok } from 'assert';
 // string target from start.
 
 // Example 3:
-// ok(!canChange('_R', 'R_'));
+ok(!canChange('_R', 'R_'));
 // Input: start = "_R", target = "R_"
 // Output: false
 // Explanation: The piece in the string start can move only to the right, so it
