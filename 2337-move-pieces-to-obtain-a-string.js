@@ -106,17 +106,122 @@ pieces of the string* `start` ***any** number of times*. Otherwise, return
 // Runtime: 258 ms, faster than 47.54% of JavaScript online submissions
 // Memory Usage: 53.8 MB, less than 72.13% of JavaScript online submissions
 
+// /**
+//  * @param {string} start
+//  * @param {string} target
+//  * @return {boolean}
+//  */
+// const canChange = (start, target) =>
+//   start.replace(/_/g, '') === target.replace(/_/g, '') &&
+//   target.indexOf('L') <= start.indexOf('L') &&
+//   start.indexOf('R') <= target.indexOf('R') &&
+//   start.lastIndexOf('R') <= target.lastIndexOf('R') &&
+//   target.lastIndexOf('L') <= start.lastIndexOf('L');
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 319 ms, faster than 26.23% of JavaScript online submissions
+// Memory Usage: 64.9 MB, less than 42.62% of JavaScript online submissions
+
+// /**
+//  * @param {string} start
+//  * @param {string} target
+//  * @return {boolean}
+//  */
+// const canChange = (start, target) => {
+//   let [ss, ts] = ['', ''];
+//   let [sfl, sfr, sll, slr] = [-1, -1, -1, -1];
+//   let [tfl, tfr, tll, tlr] = [-1, -1, -1, -1];
+//   for (let [i, j] = [0, start.length - 1]; i < start.length; i++, j--) {
+//     if ('_' !== start[i]) ss += start[i];
+//     if ('_' !== target[i]) ts += target[i];
+//     if ('L' === start[i] && sfl < 0) sfl = i;
+//     if ('R' === start[i] && sfr < 0) sfr = i;
+//     if ('L' === target[i] && tfl < 0) tfl = i;
+//     if ('R' === target[i] && tfr < 0) tfr = i;
+//     if ('L' === start[j] && sll < 0) sll = j;
+//     if ('R' === start[j] && slr < 0) slr = j;
+//     if ('L' === target[j] && tll < 0) tll = j;
+//     if ('R' === target[j] && tlr < 0) tlr = j;
+//   }
+//   // console.log(ss, ts);
+//   // console.log({ sfl, sfr, tfl, tfr });
+//   // console.log({ sll, slr, tll, tlr });
+//   return ss === ts && tfl <= sfl && sfr <= tfr && slr <= tlr && tll <= sll;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 268 ms, faster than 44.26% of JavaScript online submissions
+// Memory Usage: 57.3 MB, less than 62.30% of JavaScript online submissions
+
+// /**
+//  * @param {string} start
+//  * @param {string} target
+//  * @return {boolean}
+//  */
+// const canChange = (start, target) => {
+//   let [ss, ts] = [[], []];
+//   let [sfl, sfr, sll, slr] = [-1, -1, -1, -1];
+//   let [tfl, tfr, tll, tlr] = [-1, -1, -1, -1];
+//   for (let [i, j] = [0, start.length - 1]; i < start.length; i++, j--) {
+//     if ('_' !== start[i]) ss.push(start[i]);
+//     if ('_' !== target[i]) ts.push(target[i]);
+//     if ('L' === start[i] && sfl < 0) sfl = i;
+//     if ('R' === start[i] && sfr < 0) sfr = i;
+//     if ('L' === target[i] && tfl < 0) tfl = i;
+//     if ('R' === target[i] && tfr < 0) tfr = i;
+//     if ('L' === start[j] && sll < 0) sll = j;
+//     if ('R' === start[j] && slr < 0) slr = j;
+//     if ('L' === target[j] && tll < 0) tll = j;
+//     if ('R' === target[j] && tlr < 0) tlr = j;
+//   }
+//   // console.log(ss, ts);
+//   // console.log({ sfl, sfr, tfl, tfr });
+//   // console.log({ sll, slr, tll, tlr });
+//   return (
+//     JSON.stringify(ss) === JSON.stringify(ts) &&
+//     tfl <= sfl &&
+//     sfr <= tfr &&
+//     slr <= tlr &&
+//     tll <= sll
+//   );
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 195 ms, faster than 65.57% of JavaScript online submissions
+// Memory Usage: 71.3 MB, less than 32.79% of JavaScript online submissions
+
 /**
  * @param {string} start
  * @param {string} target
  * @return {boolean}
  */
-const canChange = (start, target) =>
-  start.replace(/_/g, '') === target.replace(/_/g, '') &&
-  target.indexOf('L') <= start.indexOf('L') &&
-  start.indexOf('R') <= target.indexOf('R') &&
-  start.lastIndexOf('R') <= target.lastIndexOf('R') &&
-  target.lastIndexOf('L') <= start.lastIndexOf('L');
+const canChange = (start, target) => {
+  let [ss, ts] = [[], []];
+  let [sfl, sfr, sll, slr] = [-1, -1, -1, -1];
+  let [tfl, tfr, tll, tlr] = [-1, -1, -1, -1];
+  for (let [i, j] = [0, start.length - 1]; i < start.length; i++, j--) {
+    if ('_' !== start[i]) ss.push(start[i]);
+    if ('_' !== target[i]) ts.push(target[i]);
+    if ('L' === start[i] && sfl < 0) sfl = i;
+    if ('R' === start[i] && sfr < 0) sfr = i;
+    if ('L' === target[i] && tfl < 0) tfl = i;
+    if ('R' === target[i] && tfr < 0) tfr = i;
+    if ('L' === start[j] && sll < 0) sll = j;
+    if ('R' === start[j] && slr < 0) slr = j;
+    if ('L' === target[j] && tll < 0) tll = j;
+    if ('R' === target[j] && tlr < 0) tlr = j;
+  }
+  return (
+    ss.join('') === ts.join('') &&
+    tfl <= sfl &&
+    sfr <= tfr &&
+    slr <= tlr &&
+    tll <= sll
+  );
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
