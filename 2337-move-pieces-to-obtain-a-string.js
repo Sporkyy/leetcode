@@ -269,6 +269,31 @@ pieces of the string* `start` ***any** number of times*. Otherwise, return
 // Runtime: 169 ms, faster than 62.77% of JavaScript online submissions
 // Memory Usage: 47.5 MB, less than 82.98% of JavaScript online submissions
 
+// /**
+//  * @param {string} start
+//  * @param {string} target
+//  * @return {boolean}
+//  */
+// const canChange = (start, target) => {
+//   let [si, ti] = [0, 0];
+//   while (si < start.length || ti < target.length) {
+//     while ('_' === start[si]) si++;
+//     while ('_' === target[ti]) ti++;
+//     if (start[si] === target[ti]) {
+//       if ('L' === start[si] && si < ti) break;
+//       if ('R' === start[si] && ti < si) break;
+//     } else break;
+//     if (si < start.length) si++;
+//     if (ti < target.length) ti++;
+//   }
+//   return si + ti === start.length * 2;
+// };
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Runtime: 142 ms, faster than 75.53% of JavaScript online submissions
+// Memory Usage: 47.2 MB, less than 91.49% of JavaScript online submissions
+
 /**
  * @param {string} start
  * @param {string} target
@@ -280,13 +305,13 @@ const canChange = (start, target) => {
     while ('_' === start[si]) si++;
     while ('_' === target[ti]) ti++;
     if (start[si] === target[ti]) {
-      if ('L' === start[si] && si < ti) break;
-      if ('R' === start[si] && ti < si) break;
-    } else break;
+      if ('L' === start[si] && si < ti) return false;
+      if ('R' === start[si] && ti < si) return false;
+    } else return false;
     if (si < start.length) si++;
     if (ti < target.length) ti++;
   }
-  return si + ti === start.length * 2;
+  return si + ti === start.length + target.length;
 };
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
