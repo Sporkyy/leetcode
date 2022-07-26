@@ -393,8 +393,8 @@ Constraints
 
 // 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 
-// Runtime: 108 ms, faster than 21.43% of JavaScript online submissions
-// Memory Usage: 38.5 MB, less than 92.86% of JavaScript online submissions
+// Runtime: 78 ms, faster than 71.55% of JavaScript online submissions
+// Memory Usage: 42.3 MB, less than 53.88% of JavaScript online submissions
 
 /**
  * @param {number[]} nums
@@ -403,7 +403,7 @@ Constraints
 const specialArray = (nums, len = nums.length) =>
   0 === len
     ? -1
-    : len === nums.reduce((cnt, n) => cnt + (len <= n), 0)
+    : len === nums.reduce((cnt, n) => cnt + +(len <= n), 0)
     ? len
     : specialArray(nums, len - 1);
 
