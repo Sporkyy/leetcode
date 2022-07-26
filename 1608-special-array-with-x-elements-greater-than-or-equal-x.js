@@ -436,4 +436,4 @@ strictEqual(specialArray([0, 5, 0, 1, 8, 3, 0, 1]), 3);
 
 strictEqual(specialArray([3]), 1);
 
-// strictEqual(specialArray([0, 4, 4, 0]), 2);
+strictEqual(specialArray([0, 4, 4, 0]), 2);
