@@ -96,25 +96,44 @@ Constraints:
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * @param {number[]} nums
+//  * @param {number} diff
+//  * @return {number}
+//  */
+// const arithmeticTriplets = (nums, diff) => {
+//   let cnt = 0;
+//   for (let i = 0; i < nums.length; i++) {
+//     for (let j = i; j < nums.length; j++) {
+//       for (let k = j; k < nums.length; k++) {
+//         if (diff === nums[j] - nums[i] && diff === nums[k] - nums[j]) cnt++;
+//       }
+//     }
+//   }
+//   return cnt;
+// };
+
+// Runtime 120 ms | Beats 21.46%
+// Memory 42 MB | Beats 59.93%
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {number[]} nums
  * @param {number} diff
  * @return {number}
  */
 const arithmeticTriplets = (nums, diff) => {
+  const numsSet = new Set(nums);
   let cnt = 0;
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = i; j < nums.length; j++) {
-      for (let k = j; k < nums.length; k++) {
-        if (diff === nums[j] - nums[i] && diff === nums[k] - nums[j]) cnt++;
-      }
-    }
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (numsSet.has(nums[i] + diff) && numsSet.has(nums[i] + 2 * diff)) cnt++;
   }
   return cnt;
 };
 
-// Runtime 120 ms | Beats 21.46%
-// Memory 42 MB | Beats 59.93%
+// Runtime 66 ms | Beats 83.16%
+// Memory 42.4 MB | Beats 23.76%
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -126,19 +145,17 @@ strictEqual(arithmeticTriplets([0, 1, 4, 6, 7, 10], 3), 2);
 // (1, 4, 7) is an arithmetic triplet because both 7 - 4 == 3 and 4 - 1 == 3.
 // (4, 7, 10) is an arithmetic triplet because both 10 - 7 == 3 and 7 - 4 == 3.
 
+/*
+
+0, 1, 4, 6, 7, 10
+1, 4, 6, 7, 10
+4, 6, 7, 10
+6, 7, 10
+
+*/
+
 // Example 2:
 strictEqual(arithmeticTriplets([4, 5, 6, 7, 8, 9], 2), 2);
 // Explanation:
 // (4, 6, 8) is an arithmetic triplet because both 8 - 6 == 2 and 6 - 4 == 2.
 // (5, 7, 9) is an arithmetic triplet because both 9 - 7 == 2 and 7 - 5 == 2.
-
-/*
-
-k - j == d and j - i == d
-7 - 4 == 3 and 4 - 1 == 3
-d + j == k and d + i == j
-3 + 4 == 7 and 3 + 1 == 4
-
-10 - 7 == 3 and 7 - 4 == 3
-
-*/
