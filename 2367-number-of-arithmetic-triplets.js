@@ -118,22 +118,42 @@ Constraints:
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// /**
+//  * @param {number[]} nums
+//  * @param {number} diff
+//  * @return {number}
+//  */
+// const arithmeticTriplets = (nums, diff) => {
+//   const numsSet = new Set(nums);
+//   let cnt = 0;
+//   for (let i = 0; i < nums.length - 2; i++) {
+//     if (numsSet.has(nums[i] + diff) && numsSet.has(nums[i] + 2 * diff)) cnt++;
+//   }
+//   return cnt;
+// };
+
+// Runtime 66 ms | Beats 83.16%
+// Memory 42.4 MB | Beats 23.76%
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /**
  * @param {number[]} nums
  * @param {number} diff
  * @return {number}
  */
 const arithmeticTriplets = (nums, diff) => {
-  const numsSet = new Set(nums);
+  const seen = new Set();
   let cnt = 0;
-  for (let i = 0; i < nums.length - 2; i++) {
-    if (numsSet.has(nums[i] + diff) && numsSet.has(nums[i] + 2 * diff)) cnt++;
+  for (let i = nums.length - 1; 0 <= i; i--) {
+    seen.add(nums[i]);
+    if (seen.has(nums[i] + diff) && seen.has(nums[i] + 2 * diff)) cnt++;
   }
   return cnt;
 };
 
-// Runtime 66 ms | Beats 83.16%
-// Memory 42.4 MB | Beats 23.76%
+// Runtime 96 ms | Beats 43.9%
+// Memory 42.5 MB | Beats 23.76%
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
