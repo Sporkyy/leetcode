@@ -74,7 +74,7 @@ import { strictEqual } from 'assert';
 */
 
 // Example 2:
-// strictEqual(sumOddLengthSubarrays([1, 2]), 3);
+strictEqual(sumOddLengthSubarrays([1, 2]), 3);
 // Explanation: There are only 2 subarrays of odd length, [1] and [2]. Their sum is 3.
 
 /*
@@ -90,7 +90,7 @@ import { strictEqual } from 'assert';
 */
 
 // Example 3:
-// strictEqual(sumOddLengthSubarrays([10, 11, 12]), 66);
+strictEqual(sumOddLengthSubarrays([10, 11, 12]), 66);
 
 /*
 
