@@ -135,38 +135,38 @@
 // Runtime: 48 ms, faster than 95.77% of JavaScript online submissions
 // Memory Usage: 33.8 MB, less than 100.00% of JavaScript online submissions
 
-// /**
-//  * @param {string} str1
-//  * @param {string} str2
-//  * @return {string}
-//  */
-// const gcdOfStrings = (str1, str2) => {
-//   if (str1 + str2 !== str2 + str1) return '';
-//   const gcd = (a, b) => (0 === b ? a : gcd(b, a % b));
-//   return str1.substring(0, gcd(str1.length, str2.length));
-// };
+/**
+ * @param {string} str1
+ * @param {string} str2
+ * @return {string}
+ */
+const gcdOfStrings = (str1, str2) => {
+  if (str1 + str2 !== str2 + str1) return '';
+  const gcd = (a, b) => (0 === b ? a : gcd(b, a % b));
+  return str1.substring(0, gcd(str1.length, str2.length));
+};
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Runtime: 112 ms, faster than 7.43% of JavaScript online submissions
 // Memory Usage: 33.6 MB, less than 100.00% of JavaScript online submissions
 
-/**
- * @param {number} x
- * @param {number} y
- * @return {number} The greatest common denominator
- */
-const gcd = (x, y) => (0 === y ? x : gcd(y, x % y));
+// /**
+//  * @param {number} x
+//  * @param {number} y
+//  * @return {number} The greatest common denominator
+//  */
+// const gcd = (x, y) => (0 === y ? x : gcd(y, x % y));
 
-/**
- * @param {string} str1
- * @param {string} str2
- * @return {string}
- */
-const gcdOfStrings = (str1, str2) =>
-  str1 + str2 !== str2 + str1
-    ? ''
-    : str1.substring(0, gcd(str1.length, str2.length));
+// /**
+//  * @param {string} str1
+//  * @param {string} str2
+//  * @return {string}
+//  */
+// const gcdOfStrings = (str1, str2) =>
+//   str1 + str2 !== str2 + str1
+//     ? ''
+//     : str1.substring(0, gcd(str1.length, str2.length));
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
